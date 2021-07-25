@@ -1,0 +1,78 @@
+/* 各种容器 */
+.scrollContainer{
+  color: rgba(255,255,255,0.75);
+  font-weight: 700;
+  margin-top: 20rpx;
+  display: inline-block;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
+}
+
+/* 配色方案 */
+
+.linearGradient_0{ 
+  background: rgba(255,106,156,0.75);
+}
+.linearGradient_1{ 
+  background: rgba(24,130,253,0.75);
+}
+.linearGradient_2{ 
+  background: rgba(252,172,106,0.75);
+}
+.linearGradient_3{ 
+  background: rgba(187,81,236,0.75);
+}
+
+/* 状态栏 */
+.pageTopBar{
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+.pageTopBar-Left{
+  font-size: 36rpx;
+  font-weight: 800;
+}
+.pageTopBar_title{
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5rpx;
+}
+.pageTopBar_subtitle{
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.4);
+}
+.pageTopBar-Left_title{
+  margin: 5rpx 0 0 16rpx;
+}
+.pageTopButton{
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  margin: 2rpx 0 0  24rpx;
+  border: 1rpx solid rgba(220,220,220, 0.8);
+}
+.container{
+  font-size: 28rpx;
+}
+/* 阴影效果 */
+
+.glassShadow{
+  background-color: hsla(0,0%,89.8%,.25);
+  background: hsla(0,0%,89.8%,.25);
+  backdrop-filter: blur(25rpx);
+}
+
+/* 元素效果 */
+
+.br25{
+  border-radius: 25rpx;
+}
+
+/* 文字效果 */
+
+.black95{
+  color: rgba(0, 0, 0, 0.95);
+}

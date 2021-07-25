@@ -1,0 +1,89 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <image class="pageTopButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="pageTopBar"><text class="pageTopBar_title black95">消息中心</text></view>
+</view>
+<!-- 顶部功能区 -->
+<view class="container" style="height:{{contentHeight}}px;">
+  <view class="topWrap">
+    <!-- 功能选择栏 -->
+    <view class="topInfoBar">
+      <view class="topWrap_name">{{myInfo[0].name}}</view>
+      <view class="topWrap_major">{{myInfo[0].major}}</view>
+      <image class="topWrap_avatar" src="{{myInfo[0].url}}"></image>
+      <image class="topWrap_calendar" src="../../images/conmon/calendar.png"></image>
+      <image class="topWrap_setting" src="../../images/conmon/setting.png"></image>
+    </view>
+    <!-- 信息源选择 -->
+    <view class="infoFromBar">
+      <text>关注的人</text>
+      <image class="infoFromBar_img" src="../../images/conmon/down.png"></image>
+    </view>
+    <!-- 信息源浏览 -->
+    <view class="topWrap_list">
+      <scroll-view scroll-x="true" style="height:175rpx;white-space:nowrap;">
+        <view class="infoFromBox" bindtap="fromTap" wx:for="{{infoFromBox}}" wx:key="index" data-id="{{index}}">
+          <image class="infoFromBox_img{{fromTarget == index?'Checked':'UnChecked'}}" src="{{item.url}}"></image>
+          <text class="infoFromBox_count">{{item.count}}</text>
+          <text class="infoFromBox_name{{fromTarget == index?'Checked':'UnChecked'}}">{{item.name}}</text>
+        </view>
+        <view class="infoFromBox">
+          <image class="infoFromBox_imgAdd" src="/images/inbox/add.png"></image>
+          <text class="infoFromBox_nameAdd">添加</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="midWrap">
+    <view class="infoListBar">
+      <view class="infoListTitle{{titleTarget == index?'Checked':'UnCheck'}}" bindtap="infoListTap" wx:for="{{infoListTitle}}" wx:key="index" data-id="{{index}}">
+        <text>{{item.name}}</text>
+        <view class="infoListTitle_border" wx:if="{{titleTarget == index}}"></view>
+      </view>
+      <view class="editBtn" bindtap="clearBtn">清除</view>
+    </view>
+  </view>
+  <view class="bottomWrap">
+    <view class="msgListWrap">
+      <scroll-view scroll-y="ture" style="height:55vh;" bindtouchstart="touchStart" bindtouchend="touchEnd">
+      <block wx:if="{{titleTarget == 0}}">
+        <view class="msgBox" wx:for="{{officeList}}" wx:key="index" data-id="{{index}}"bindtap="navToOffice">
+          <!-- <image class="msgBox_img" src="{{item.url}}"></image> -->
+          <view class="msgBox_status" wx:if="{{item.status == 0}}"></view>
+          <view class="msgBox_time">{{item.time}}</view>
+          <view class="msgBox_title">{{item.title}}</view>
+          <view class="msgBox_detail">{{item.detail}}</view>
+        </view>
+        <view class="defaultWrap" wx:if="{{officeList.length == 0}}">
+          <image class="defaultImg" src="/images/default/noMsg.png"></image>
+          <view class="defaultNotice">当前无通知</view>
+        </view>
+      </block>
+      <block wx:if="{{titleTarget == 1}}">
+        <view class="msgBox" wx:for="{{msgList}}" wx:key="index" data-id="{{index}}" wx:if="{{titleTarget == 1}}" bindtap="navToMessage">
+          <view class="msgBox_status" wx:if="{{item.status == 0}}"></view>
+          <view class="msgBox_time">{{item.time}}</view>
+          <view class="msgBox_title">{{item.title}}</view>
+          <view class="msgBox_detail">{{item.detail}}</view>
+        </view>
+        <view class="defaultWrap" wx:if="{{msgList.length == 0}}">
+          <image class="defaultImg" src="/images/default/noMsg.png"></image>
+          <view class="defaultNotice">当前无留言</view>
+        </view>
+      </block>
+      <block wx:if="{{titleTarget == 2}}">
+        <view class="msgBox" wx:for="{{subList}}" wx:key="index" data-id="{{index}}" wx:if="{{titleTarget == 1}}" bindtap="navToSub">
+          <view class="msgBox_status" wx:if="{{item.status == 0}}"></view>
+          <view class="msgBox_time">{{item.time}}</view>
+          <view class="msgBox_title">{{item.title}}</view>
+          <view class="msgBox_detail">{{item.detail}}</view>
+        </view>
+        <view class="defaultWrap" wx:if="{{subList.length == 0}}">
+          <image class="defaultImg" src="/images/default/noMsg.png"></image>
+          <view class="defaultNotice">当前无动态</view>
+        </view>
+      </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

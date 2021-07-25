@@ -1,0 +1,22 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <image class="pageTopButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="pageTopBar"><text class="pageTopBar_title black95">教学校历</text></view>
+</view>
+<view class="container" style="height:{{contentHeight}}px;">
+  <view class="topWrap">
+    <view class="countBar">
+      <view class="countBox">
+        <view class="countBox_title">开学已经过去</view>
+        <view class="countBox_detail">20 天</view>
+      </view>
+      <image class="countImg" src="/images/conmon/right_circle.png"></image>
+      <view class="countBox">
+        <view class="countBox_title">距离寒假还有</view>
+        <view class="countBox_detail">80 天</view>
+      </view>
+    </view>
+    <van-calendar type="range" class="calendar" show="true" formatter="{{formatter}}" poppable="{{false}}" row-height="50" show-title="{{false}}" show-confirm="{{false}}" first-day-of-week="1" min-date="{{startDate}}" max-date="{{endDate}}" show-subtitle="{{false}}" color="#5137F3"/>
+  </view>
+  <view class=""></view>
+</view>

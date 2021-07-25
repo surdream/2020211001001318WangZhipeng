@@ -1,0 +1,42 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/office/office",
+          "pathName": "pages/office/office",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index-status/index-status",
+          "pathName": "pages/index-status/index-status",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/inbox/inbox",
+          "pathName": "pages/inbox/inbox",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/office-calendar/office-calendar",
+          "pathName": "pages/office-calendar/office-calendar",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

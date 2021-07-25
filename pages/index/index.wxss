@@ -1,0 +1,343 @@
+page{
+  overflow: hidden;
+}
+
+/* 背景与毛玻璃效果 */
+
+.bg_box{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
+}
+.bg_box>image{
+  width: 100%;
+  height: 100%;
+}
+.shadow{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0,0%,89.8%,.25);
+  background: hsla(0,0%,25%,.25);
+  backdrop-filter: blur(50rpx);
+  top: 0;
+  left: 0;
+}
+
+/* 状态栏样式 */
+
+/* 个人状态区样式 */
+
+.topWrap{
+  height: 200rpx;
+}
+.avatarWrap{
+  position: absolute;
+  margin: 30rpx;
+}
+.avatar{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow:  10rpx -10rpx 20rpx rgba(255,255,255, 0.25),
+              -10rpx 10rpx 20rpx rgba(255,255,255, 0.25);
+}
+.infoWrap{
+  position: absolute;
+  margin: 65rpx 0 0 215rpx;
+  font-weight: 900;
+  font-size: 36rpx;
+  color: white;
+}
+.infoWrapDetail{
+  position: absolute;
+  margin: 115rpx 0 0 215rpx;
+  font-weight: 700;
+  font-size: 30rpx;
+  color: white;
+}
+.topWord{
+  position: absolute;
+  margin: 30rpx 0 0 208rpx;
+  font-weight: 900;
+  width: 475rpx;
+  font-size: 30rpx;
+  color: rgba(255,255,255, 0.75);
+}
+.topWordFrom{
+  font-weight: 700;
+  font-size: 24rpx;
+  color: rgba(255,255,255, 0.5);
+}
+.statusWrap{
+  position: absolute;
+  margin: 145rpx 0 0 204rpx;
+  display: inline-flex;
+}
+.defaultStatus{
+  padding: 4rpx 10rpx 5rpx 9rpx;
+  font-weight: 700;
+  font-size: 24rpx;
+  color: rgba(255,255,255, 0.6);
+}
+.topStatus_img{
+  margin: 2rpx 8rpx 0 2rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.topStatus{
+  font-weight: 700;
+  font-size: 26rpx;
+  color: rgba(255,255,255, 0.75);
+}
+
+.infoWrapArrow{
+  height: 80rpx;
+  width: 80rpx;
+  position: absolute;
+  margin-top: 66rpx;
+  right: 15rpx;
+}
+
+/* 常用功能区 */
+
+.midWrap{
+  margin: 15rpx 0 0 24rpx;
+}
+.midWrapItem{
+  text-align: center;
+  color: white;
+  display: inline-block;
+  margin-right: 20rpx;
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 25rpx;
+}
+.midWrapItemIcon{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 18rpx 0 0 -24rpx;
+  position: absolute;
+}
+.midWrapItemText{  
+  font-size: 22rpx;
+  font-weight: 800;
+  margin-top: 76rpx;
+}
+
+/* 消息通知区 */
+
+.msgWrap{
+  width: 725rpx;
+  height: 240rpx;
+  margin-top: 32rpx;
+}
+.msgWrap_title{
+  margin-left: 25rpx;
+  height: 40rpx;
+  font-weight: 800;
+  font-size: 30rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+.msgWrap_list{
+  width: 100%;
+  margin: 20rpx 0 0 5rpx;
+  height: 164rpx;
+  display: inline-flex;
+  border-radius: 25rpx;
+}
+.msgBox{
+  margin-left: 20rpx;
+  height: 164rpx;
+  width: 585rpx;
+  display: inline-flex;
+  border-radius: 25rpx;
+}
+.msgBox_img{
+  margin: 16rpx 16rpx;
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 50%;
+}
+.msgBox_title{
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 800;
+  font-size: 28rpx;
+  margin-top: 15rpx;
+}
+.msgBox_detail{
+  position: absolute;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 800;
+  font-size: 26rpx;
+  margin: 54rpx 0 0 160rpx;
+  width: 420rpx;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
+}
+.msgBox_time{
+  position: absolute;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 12rpx;
+  right: 24rpx;
+  font-weight: 800;
+  font-size: 24rpx;
+}
+
+/* 课表待办区 */
+/* 课表待办标题 */
+.bottomWrap{
+  margin: 10rpx 0 0 30rpx;
+}
+.checked{
+  margin-right: 12rpx;
+  padding: 5rpx 0rpx;
+  border-bottom: 6rpx solid white;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 900;
+  font-size: 30rpx;
+}
+.no-checked{
+  margin-right: 12rpx;
+  color: rgba(255,255,255,0.6);
+  font-size: 26rpx;
+  font-weight: 800;
+}
+.viewAll{
+  font-size: 28rpx;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  position: absolute;
+  right: 70rpx;
+}
+.viewAllIcon{
+  margin: 2rpx 0 0 0;
+  right: 28rpx;
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  border-radius: 25rpx;
+}
+
+/* 课表待办内容 */
+
+.bottomWrap_list{
+  color: rgba(255,255,255,0.75);
+  font-weight: 700;
+  margin-top: 20rpx;
+  width: 700rpx;
+  display: inline-block;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
+}
+.affairWrap{
+  margin: 8rpx 0;
+  height: 180rpx;
+  width: 100%;
+  display: inline-flex;
+  border-radius: 25rpx;
+}
+.affairTime{
+  width: 130rpx;
+  text-align: center;
+}
+.startTime{
+  font-size: 28rpx;
+  margin-top: 15rpx;
+}
+.endTime{
+  font-size: 28rpx;
+  margin-top: 75rpx;
+}
+.lineIcon{
+  position: absolute;
+  margin: 10rpx 0;
+  width: 10rpx;
+  height: 80rpx;
+  border-radius: 25rpx;
+}
+.affairBox{
+  border-radius: 25rpx;
+}
+.affairBox_border{
+  position: absolute;
+  border-radius: 50rpx 0 0 50rpx;
+  background-color: rgba(255,255,255, 0.5);
+  top: 2rpx;
+  width: 16rpx;
+  height: 176rpx;
+}
+.affairBox_content{
+  background-color: rgba(255,255,255, 0.25);
+  color: black;
+  width: 575rpx;
+  height: 180rpx;
+  border-radius: 25rpx;
+}
+.boxTop{
+  font-size: 30rpx;
+  position: absolute;
+  margin: 6rpx 0 0 30rpx;
+  width: 300rpx;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.boxMid{
+  font-size: 28rpx;
+  color: rgba(0,0,0, 0.5);
+  position: absolute;
+  margin: 45rpx 0 0 30rpx;
+  width: 300rpx;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.boxBottom{
+  font-size: 26rpx;
+  color: rgba(0,0,0, 0.5);
+  position: absolute;
+  margin: 80rpx 0 0 30rpx;
+  width: 300rpx;
+}
+.boxImg_wrap{
+  position: absolute;
+  right: 0rpx;
+  padding: 8rpx 10rpx; 
+  width: 190rpx;
+  height: 164rpx;
+  border-radius: 25rpx;
+  background-color: rgba(255,255,255, 0.25);
+}
+.boxImg{
+  width: 120rpx;
+  height: 164rpx;
+  position: absolute;
+  border-radius: 25rpx;
+  box-shadow:  5rpx -5rpx 5rpx rgba(255,255,255, 0.1),
+              -5rpx 5rpx 5rpx rgba(255,255,255, 0.1);
+}
+.boxImg_from{
+  margin: 0rpx 0 0 128rpx;
+  width: 60rpx;
+  height: 60rpx;
+  z-index: 999;
+  border-radius: 50%;
+}
+.helpBtn{
+  width: 700rpx;
+  border-radius: 30rpx;
+  margin-top: 8rpx;
+  background-color: rgba(255,255,255, 0.25);
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 800;
+  padding: 22rpx 0 26rpx 0;
+}
+

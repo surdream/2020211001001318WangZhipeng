@@ -1,0 +1,21 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/index-status/index-status",
+    "pages/office/office",
+    "pages/inbox/inbox",
+    "pages/office-calendar/office-calendar"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "van-button": "miniprogram_npm/vant-weapp/button/index",
+    "van-calendar": "@vant/weapp/calendar/index"
+  },
+  "sitemapLocation": "sitemap.json"
+}

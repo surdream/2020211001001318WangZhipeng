@@ -1,0 +1,35 @@
+.topWrap{
+  width: 95%;
+  margin-left: 2.5%;
+}
+.countBar{
+  display: inline-block;
+  margin: 20rpx 2.5%;
+  width: 95%;
+  height: 135rpx;
+  border: 3rpx solid #5137F3;
+  border-radius: 16rpx;
+  text-align: center;
+  padding: 50rpx 0 0 0;
+  box-shadow:  0rpx 0rpx 10rpx darkgray;
+}
+.calendar {
+  --calendar-height: 75vh;
+}
+.countBox{
+  margin: 0 50rpx;
+  display: inline-block;
+}
+.countImg{
+  width: 40rpx;
+  height: 40rpx;
+}
+.countBox_title{
+  font-weight: 800;
+}
+.countBox_detail{
+  margin-top: 5rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: rgba(0,0,0,0.75);
+}
