@@ -4,7 +4,9 @@
     "pages/index-status/index-status",
     "pages/office/office",
     "pages/inbox/inbox",
-    "pages/office-calendar/office-calendar"
+    "pages/office-calendar/office-calendar",
+    "pages/office-testify/office-testify",
+    "pages/office-target/office-target"
   ],
   "window":{
     "backgroundTextStyle":"light",

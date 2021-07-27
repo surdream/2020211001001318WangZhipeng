@@ -313,5 +313,27 @@ Page({
     this.setData({
       pickerImg:'/images/office/down-tri.png'
     })
+  },
+  navTo(e){
+    console.log(e.currentTarget.dataset.url)
+    let url = e.currentTarget.dataset.url;
+    if(url === 'office-calendar'){
+      wx.navigateTo({
+        url: '/pages/office-calendar/office-calendar',
+      })
+    } else if(url === 'note'){
+      wx.navigateTo({
+        url: '/pages/note/note',
+      })
+    } else if(url === 'office-testify'){
+      wx.navigateTo({
+        url: '/pages/office-testify/office-testify',
+      })
+    } else if(url === 'office-target'){
+      wx.navigateTo({
+        url: '/pages/office-target/office-target',
+      })
+    }
+
   }
 })

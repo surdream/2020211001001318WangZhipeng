@@ -22,19 +22,19 @@
   <!-- 常用功能区 -->
   <view class="usefulWrap">
     <view class="usefulWrap_box">
-      <image src="/images/office/infomation.png" class="usefulWrap_icon" bindtap="navTo" data-url="office" style="background: rgba(106,91,241,0.5)"></image>
+      <image src="/images/office/infomation.png" class="usefulWrap_icon" bindtap="navTo" data-url="office-calendar" style="background: rgba(106,91,241,0.5)"></image>
       <view class="usefulWrap_text">教学校历</view>
     </view>
     <view class="usefulWrap_box">
-      <image src="/images/office/note.png" class="usefulWrap_icon" bindtap="navTo" data-url="office" style="background: rgba(252,212,48,0.5)"></image>
+      <image src="/images/office/note.png" class="usefulWrap_icon" bindtap="navTo" data-url="note" style="background: rgba(252,212,48,0.5)"></image>
       <view class="usefulWrap_text">课堂笔记</view>
     </view>
     <view class="usefulWrap_box">
-      <image src="/images/office/photo.png" class="usefulWrap_icon" bindtap="navTo" data-url="office" style="background: rgba(107,219,246,0.5)"></image>
+      <image src="/images/office/photo.png" class="usefulWrap_icon" bindtap="navTo" data-url="office-testify" style="background: rgba(107,219,246,0.5)"></image>
       <view class="usefulWrap_text">加分证明</view>
     </view>
     <view class="usefulWrap_box" style="margin:0;">
-      <image src="/images/office/target.png" class="usefulWrap_icon" bindtap="navTo" data-url="office" style="background: rgba(122,122,252,0.5)"></image>
+      <image src="/images/office/target.png" class="usefulWrap_icon" bindtap="navTo" data-url="office-target" style="background: rgba(122,122,252,0.5)"></image>
       <view class="usefulWrap_text">学期目标</view>
     </view>
   </view>
