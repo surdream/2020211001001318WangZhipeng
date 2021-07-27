@@ -1,2 +1,7 @@
-<!--pages/office-testify/office-testify.wxml-->
-<text>pages/office-testify/office-testify.wxml</text>
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <image class="pageTopButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="pageTopBar"><text class="pageTopBar_title black95">加分证明</text></view>
+</view>
+<view class="container" style="height:{{contentHeight}}px;">
+</view>

@@ -3,8 +3,8 @@
   <image class="pageTopButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
   <view class="pageTopBar"><text class="pageTopBar_title black95">消息中心</text></view>
 </view>
-<!-- 顶部功能区 -->
 <view class="container" style="height:{{contentHeight}}px;">
+  <!-- 顶部功能区 -->
   <view class="topWrap">
     <!-- 功能选择栏 -->
     <view class="topInfoBar">
@@ -26,10 +26,6 @@
           <image class="infoFromBox_img{{fromTarget == index?'Checked':'UnChecked'}}" src="{{item.url}}"></image>
           <text class="infoFromBox_count">{{item.count}}</text>
           <text class="infoFromBox_name{{fromTarget == index?'Checked':'UnChecked'}}">{{item.name}}</text>
-        </view>
-        <view class="infoFromBox">
-          <image class="infoFromBox_imgAdd" src="/images/inbox/add.png"></image>
-          <text class="infoFromBox_nameAdd">添加</text>
         </view>
       </scroll-view>
     </view>

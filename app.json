@@ -6,7 +6,8 @@
     "pages/inbox/inbox",
     "pages/office-calendar/office-calendar",
     "pages/office-testify/office-testify",
-    "pages/office-target/office-target"
+    "pages/office-target/office-target",
+    "pages/navigation/navigation"
   ],
   "window":{
     "backgroundTextStyle":"light",

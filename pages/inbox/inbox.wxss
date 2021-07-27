@@ -150,15 +150,15 @@ page{
   font-size: 30rpx;
 }
 .infoListTitle_border{
-  width: 64rpx;
+  width: 60rpx;
   border-bottom: 6rpx solid #3C80F2;
   margin: auto;
   margin-top: 16rpx;
   border-radius: 50rpx;
 }
 .infoListTitle_unBorder{
-  width: 32rpx;
-  border-bottom: 6rpx solid rgba(0, 0, 0, 0.5);
+  width: 30rpx;
+  border-bottom: 6rpx solid rgba(0, 0, 0, 0.25);
   margin: auto;
   margin-top: 16rpx;
   border-radius: 50rpx;
