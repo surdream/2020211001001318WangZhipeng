@@ -315,7 +315,6 @@ Page({
     })
   },
   navTo(e){
-    console.log(e.currentTarget.dataset.url)
     let url = e.currentTarget.dataset.url;
     if(url === 'office-calendar'){
       wx.navigateTo({

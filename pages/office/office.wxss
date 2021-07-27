@@ -16,6 +16,7 @@ page{
   position: absolute;
   right: 30rpx;
   border-radius: 50%;
+  box-shadow:  0rpx 0rpx 4rpx #96A3EA;
 }
 .topTitle{
   font-weight: 900;
@@ -115,7 +116,7 @@ page{
   font-size: 24rpx;
   font-weight: 700;
   border: 4rpx solid rgba(64,88,226, 0.5);
-  box-shadow:  0rpx 0rpx 5rpx #B4C7FA;
+  box-shadow:  0rpx 0rpx 6rpx #B4C7FA;
 }
 .afBtn{
   position: absolute;
@@ -126,7 +127,7 @@ page{
   font-size: 22rpx;
   font-weight: 700;
   border: 4rpx solid rgba(64,88,226, 0.5);
-  box-shadow:  0rpx 0rpx 5rpx #B4C7FA;
+  box-shadow:  0rpx 0rpx 6rpx #B4C7FA;
 }
 .infoControlBar_picker{
   position: absolute;
@@ -136,7 +137,7 @@ page{
   font-size: 24rpx;
   font-weight: 700;
   border: 4rpx solid rgba(64,88,226, 0.5);
-  box-shadow:  0rpx 0rpx 5rpx #B4C7FA;
+  box-shadow:  0rpx 0rpx 8rpx #B4C7FA;
 }
 .pickerImg{
   margin: 6rpx 0 0 0;
@@ -168,6 +169,13 @@ page{
 .infoListTitle_border{
   width: 60rpx;
   border-bottom: 8rpx solid rgba(64,88,226, 0.5);
+  margin: auto;
+  margin-top: 8rpx;
+  border-radius: 50rpx;
+}
+.infoListTitle_unBorder{
+  width: 30rpx;
+  border-bottom: 8rpx solid rgba(0, 0, 0, 0.25);
   margin: auto;
   margin-top: 8rpx;
   border-radius: 50rpx;

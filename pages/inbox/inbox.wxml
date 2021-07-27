@@ -39,6 +39,7 @@
       <view class="infoListTitle{{titleTarget == index?'Checked':'UnCheck'}}" bindtap="infoListTap" wx:for="{{infoListTitle}}" wx:key="index" data-id="{{index}}">
         <text>{{item.name}}</text>
         <view class="infoListTitle_border" wx:if="{{titleTarget == index}}"></view>
+        <view class="infoListTitle_unBorder" wx:if="{{titleTarget != index}}"></view>
       </view>
       <view class="editBtn" bindtap="clearBtn">清除</view>
     </view>
