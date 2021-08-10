@@ -3,7 +3,6 @@ Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    contentHeight: app.globalData.contentHeight,
   },
   onLoad: function (options) {
 
@@ -14,6 +13,6 @@ Page({
   BackPage() {
     wx.navigateBack({
         delta: 1,
-    });
+    }); 
   },
 })

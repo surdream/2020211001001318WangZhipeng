@@ -1,7 +1,46 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <image class="pageTopButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
-  <view class="pageTopBar"><text class="pageTopBar_title black95">加分证明</text></view>
+  <image class="navBarButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">加分证明</text></view>
 </view>
-<view class="container" style="height:{{contentHeight}}px;">
+<view class="container">
+  <view class="swiperView">
+    <scroll-view scroll-y="ture" style="height:{{contentHeight}}px;">
+      <view class="infoBox" style="background: linear-gradient(150deg,#FDE6E2 25%,#FCDDD7 50%,#F6CCC4 75%);">
+        <view class="infoBox_title">
+          <view>学院认证</view>
+          <view class="infoBox_titleRep">(通道暂未开放)</view>
+        </view>
+        <view class="infoBox_detail">
+          <view>与所处学院的学分认证处进行关联绑定</view>
+          <view>无需线下上交打印件即可完成学分认证</view>
+        </view>
+        <view class="infoBox_btn" style="background: linear-gradient(-120deg, #FF5130 30%,#FC5330 60%,#E74E2D 100%);">开始提交</view>
+        <image class="infoBox_img" src="/images/office/data.png"></image>
+      </view>
+      <view class="infoBox" style="background: linear-gradient(150deg,#DDECFC 20%,#C3DCF8 40%,#A5C7EC 100%);" bindtap="navToManagement">
+        <view class="infoBox_title">
+          <view>管理证明</view>
+          <view class="infoBox_titleRep">已上传 (0/6)</view>
+        </view>
+        <view class="infoBox_detail">
+          <view>上传你的加分证明，体验便捷云端管理</view>
+          <view>内测阶段，至多上传 6 张证明</view>
+        </view>
+        <view class="infoBox_btn" style="background: linear-gradient(-120deg, #559FEF 30%,#3E97F5 60%,#3E97F4 100%);">点击管理</view>
+        <image class="infoBox_img" src="/images/office/file.png"></image>
+      </view>
+      <view class="infoBox" style="background: linear-gradient(150deg,#F1ECFE 25%,#E3DBFA 50%,#D6CCF3 75%);">
+        <view class="infoBox_title">
+          <view>更多功能</view>
+          <view class="infoBox_titleRep">(秃头开发ing)</view>
+        </view>
+        <view class="infoBox_detail">
+          <view>敬请期待</view>
+          <view>欢迎大家加入我们</view>
+        </view>
+        <image class="infoBox_img" style="height:200rpx;width:188rpx;" src="/images/office/plan.png"></image>
+      </view>
+    </scroll-view>
+  </view>
 </view>

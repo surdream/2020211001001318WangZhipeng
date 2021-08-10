@@ -1,1 +1,41 @@
-/* pages/office-testify/office-testify.wxss */
+.infoBox{
+  margin: 25rpx 0 25rpx 4%;
+  width: 92%;
+  padding-top: 60rpx;
+  height: 600rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  box-shadow:  0rpx 0rpx 6rpx #dfe4ea;
+}
+.infoBox_title{
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 800;
+  font-size: 36rpx;
+}
+.infoBox_titleRep{
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 24rpx;
+}
+.infoBox_detail{
+  color: rgba(0, 0, 0, 0.8);
+  width: 500rpx;
+  margin: 25rpx auto;
+  font-size: 28rpx;
+  margin-bottom: 50rpx;
+}
+.infoBox_btn{
+  background: #000;
+  color: rgba(255, 255, 255, 0.95);
+  width: 150rpx;
+  padding: 20rpx;
+  font-weight: 800;
+  font-size: 28rpx;
+  margin: 20rpx auto;
+  border-radius: 32rpx;
+  box-shadow:  0rpx 0rpx 6rpx #dfe4ea;
+}
+.infoBox_img{
+  width: 200rpx;
+  height: 185rpx;
+  margin-top: 35rpx;
+}

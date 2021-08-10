@@ -1,5 +1,6 @@
+@import "./office.skeleton.wxss";
 page{
-  background: #EDEFF3;
+  background: #EFEFEF;
 }
 .courentWeek{
   display: inline-block;
@@ -7,7 +8,7 @@ page{
   color: rgba(0, 0, 0, 0.8);
 }
 .topWrap{
-  margin-top: 20rpx;
+  padding-top: 20rpx;
   height: 90rpx;
 }
 .topSchImg{
@@ -180,14 +181,10 @@ page{
   margin-top: 8rpx;
   border-radius: 50rpx;
 }
-.infoListWrap{
-  height: 54vh;
-}
 .infoBox{
-  margin-left: 20rpx;
+  margin: 0 0 20rpx 20rpx;
   width: 650rpx;
   border-radius: 40rpx;
-  margin-bottom: 20rpx;
   background-color: rgba(255, 255, 255, 1.0);
   padding: 24rpx 30rpx;
   border-radius: 40rpx;
@@ -242,7 +239,7 @@ page{
   position: absolute;
   font-weight: 800;
   font-size: 20rpx;
-  margin: 12rpx 0 0 10rpx;
+  margin: 12rpx 0 0 16rpx;
   color: rgba(0, 0, 0, 0.5);
 }
 .infoBox_linkText{

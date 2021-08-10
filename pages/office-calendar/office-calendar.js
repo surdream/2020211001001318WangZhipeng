@@ -1,9 +1,9 @@
 var app = getApp();
 Page({
   data: {
+    loading: true,
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    contentHeight: app.globalData.contentHeight,
     startDate: '2021/3/1',
     endDate: '2022/2/27',
     formatter(day) {
@@ -36,7 +36,6 @@ Page({
           day.type = 'middle'
         } 
       }
-
       return day;
     },
   },

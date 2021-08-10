@@ -1,0 +1,4 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <view class="navBar"><text class="navBar_title black95">我的</text></view>
+</view>

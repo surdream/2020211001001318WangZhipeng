@@ -1,0 +1,148 @@
+.pageBackground{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.statusBar{
+  display: inline-flex;
+}
+.status_circle{
+  margin: 12rpx 6rpx 0 0;
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 12rpx;
+  border-radius: 50%;
+}
+.status_text{
+  font-size: 30rpx;
+}
+.block{
+  position: absolute;
+  width: 80%;
+  text-align: center;
+}
+.topWrap{
+  width: 80%;
+  margin-left: 10%;
+  padding: 60rpx 0 180rpx 0;
+  font-weight: 800;
+  font-size: 60rpx;
+  color: rgba(255, 255, 255, 1.0);
+}
+swiper{
+  text-align: center;
+  border-radius: 25rpx;
+  height: 500rpx;
+  pointer-events: none;
+}
+.swiper-box{
+  position: relative;
+  border-radius: 25rpx;
+}
+.dots{
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  bottom: 8rpx; 
+  display: flex; 
+  justify-content: center; 
+} 
+.dots .dot{ 
+  margin: 0 12rpx; 
+  width: 40rpx; 
+  height: 8rpx; 
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16rpx; 
+  transition: all .8s; 
+} 
+.dots .dot.active{ 
+  width: 48rpx; 
+  background: rgba(255, 255, 255, 1.0);
+}
+swiper image {
+  width: 480rpx;
+  height: 480rpx;
+}
+.pickerImg{
+  margin-top: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  right: 12%;
+}
+.picker{
+  width: 100%;
+  padding: 8rpx 0 12rpx 0;
+}
+.inputWrap{
+  width: 73%;
+  margin-left: 7.5%;
+  border-radius: 50rpx;
+  padding: 0 6%;
+  background: rgba(255,255,255,1.0);
+}
+.inputBox{ 
+  padding: 30rpx 0;
+  font-size: 30rpx;
+  width: 80%;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+.helpWrap{
+  text-align: center;
+  padding: 40rpx 0;
+  color: #AF58BA;
+  font-weight: 800;
+  font-size: 32rpx;
+  background: #EBDEF0;
+  border-radius: 40rpx;
+  width: 40%;
+  margin: 40rpx 0 0 30%;
+}
+.pointer_account{
+  position: absolute;
+  color: rgba(0, 0, 0, 0.5);
+  right: 12%;
+  margin-top: 35rpx;
+}
+.pointer_right{
+  color: #3AC569;
+}
+.pointer_wrong{
+  color: #F1948A;
+}
+.inputPassword image{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  margin-top: 30rpx;
+  right: 12%;
+}
+.inputSearch{
+  color: rgba(0, 0, 0, 0.5);
+}
+.inputSearch image{
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  margin-top: 32rpx;
+  right: 12%;
+}
+.skipBtn{
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  left: 7.5%;
+  bottom: 105rpx;
+  font-size: 30rpx;
+}
+.nextBtn{
+  color: #fff;
+  background: #000;
+  position: absolute;
+  padding: 35rpx 70rpx;
+  text-align: center;
+  border-radius: 70rpx;
+  bottom: 70rpx;
+  right: 7.5%;
+  font-weight: 800;
+  letter-spacing: 3rpx;
+}

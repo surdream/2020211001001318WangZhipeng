@@ -35,6 +35,30 @@
           "pathName": "pages/office-calendar/office-calendar",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/office-testify/office-testify",
+          "pathName": "pages/office-testify/office-testify",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/office-testify-management/office-testify-management",
+          "pathName": "pages/office-testify-management/office-testify-management",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/guide/guide",
+          "pathName": "pages/guide/guide",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "scene": null
         }
       ]
     }

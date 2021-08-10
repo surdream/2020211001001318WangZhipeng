@@ -1,0 +1,106 @@
+<view class="pageBackground" style="background: {{colorList[swiperCurrent].background}};height: {{windowHeight}}px;"></view>
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+  <image wx:if="{{swiperCurrent != 0}}" class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="backStep"></image>
+  <view class="navBar">
+    <view class="statusBar navBar_title white95">
+      <view wx:if="{{swiperCurrent == 3}}">一目校园</view>
+      <block wx:if="{{swiperCurrent == 1}}">
+        <view class="status_circle" style="background: {{status_color}};"></view>
+        <view class="status_text">{{connectStatus}}</view>
+      </block>
+    </view>
+  </view>
+</view>
+<!-- 内容区域 -->
+<view class="container">
+  <view class="swiper-box" style="height: 1010rpx;">
+    <view class="topWrap">
+      <van-transition show="{{swiperCurrent == 0}}" custom-class="block">
+        <view>选择所在高校</view>
+      </van-transition>
+      <van-transition show="{{swiperCurrent == 1}}" custom-class="block">
+        <view>接下来</view>
+        <view>验证你的身份</view>
+      </van-transition>
+      <van-transition show="{{swiperCurrent == 2}}" custom-class="block">
+        <view>关联一位同学</view>
+        <view>时刻知晓Ta的课程</view>
+      </van-transition>
+      <van-transition show="{{swiperCurrent == 3}}" custom-class="block">
+        <view>万事俱备</view>
+        <view>开启你的高效学习生活</view>
+      </van-transition>
+    </view>
+    <!-- 背景图区域 -->
+    <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
+      <block>
+        <swiper-item>
+          <van-transition show="{{swiperCurrent == 0}}"><image src="{{imgUrls[0]}}" class="slide-image" mode="aspectFull"/></van-transition>
+          <van-transition show="{{swiperCurrent == 1}}"><image src="{{imgUrls[1]}}" class="slide-image" mode="aspectFull"/></van-transition>
+          <van-transition show="{{swiperCurrent == 2}}"><image src="{{imgUrls[2]}}" class="slide-image" mode="aspectFull"/></van-transition>
+          <van-transition show="{{swiperCurrent == 3}}"><image src="{{imgUrls[3]}}" class="slide-image" mode="aspectFull"/></van-transition>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 表单区域 -->
+    <view class="inputWrap">
+      <!-- 选择学校 -->
+      <view wx:if="{{swiperCurrent == 0}}" style="margin-top: 50rpx;" bindtap="selectTap">
+        <view class="inputBox">
+          <image src="{{pickerImg}}" class="pickerImg"></image>
+          <text>{{school}}</text>
+        </view>
+      </view>
+      <!-- 身份验证 -->
+      <view wx:if="{{swiperCurrent == 1}}">
+        <view class="inputAccount">
+          <view class="pointer_account"><text class="pointer_{{account.length == 16?'right':'wrong'}}">{{account.length}}</text>/16</view>
+          <input class="inputBox" placeholder="请输入智慧交大账号" value="{{account}}" bindinput="detailInput" type="number" data-name="account"></input>
+        </view>
+        <view class="inputPassword">
+          <image src="/images/guide/eye_{{passwordType}}.png" bindtap="passwordTap"></image>
+          <input class="inputBox" placeholder="请输入智慧交大密码" value="{{password}}" bindinput="detailInput" type="{{inputType}}" data-name="password"></input>
+        </view>
+      </view>
+      <!-- 关联好友 -->
+      <view wx:if="{{swiperCurrent == 2}}">
+        <view class="inputAccount">
+          <view class="pointer_account"><text class="pointer_{{account_link.length == 16?'right':'wrong'}}">{{account_link.length}}</text>/16</view>
+          <input class="inputBox" placeholder="请输入Ta的智慧交大账号" value="{{account_link}}" bindinput="detailInput" type="number" data-name="account_link"></input>
+        </view>
+        <view class="inputSearch">
+          <image src="/images/guide/search.png"></image>
+          <view class="inputBox">{{searchResult}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="helpWrap" wx:if="{{swiperCurrent == 3}}">
+      关注我们
+    </view>
+    <!-- 指示器区域 -->
+    <view class="dots"> 
+        <block wx:for="{{imgUrls}}" wx:key="index"> 
+          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view> 
+        </block> 
+    </view>
+  </view>
+  <!-- 底部按钮区域 -->
+  <view class="bottomWrap">
+    <view class="nextBtn" bindtap="nextStep">
+      <text wx:if="{{!isLoading}}">{{nextBtn}}</text>
+      <van-loading size="16px" text-size="12px" wx:if="{{isLoading}}">认证中...</van-loading>
+    </view>
+    <view class="skipBtn">跳过</view>
+
+  </view>
+  <van-action-sheet
+    title="学校列表"
+    description="目前仅适配部分高校"
+    show="{{ show }}"
+    actions="{{ actions }}"
+    bind:close="onClose"
+    bind:select="onSelect"
+    close-on-click-overlay="{{ true }}"
+  />
+</view>

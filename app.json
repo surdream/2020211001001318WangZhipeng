@@ -1,14 +1,24 @@
 {
   "pages":[
+    "pages/blank/blank",
+    "pages/home/home",
+    "pages/guide/guide",
     "pages/index/index",
     "pages/index-status/index-status",
     "pages/office/office",
     "pages/inbox/inbox",
     "pages/office-calendar/office-calendar",
     "pages/office-testify/office-testify",
+    "pages/office-testify-management/office-testify-management",
     "pages/office-target/office-target",
-    "pages/navigation/navigation"
+    "pages/navigation/navigation",
+    "pages/mine/mine"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
@@ -18,7 +28,45 @@
   },
   "usingComponents": {
     "van-button": "miniprogram_npm/vant-weapp/button/index",
-    "van-calendar": "@vant/weapp/calendar/index"
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-transition": "@vant/weapp/transition/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#42D3AD",
+    "backgroundColor":"#EFEFEF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/images/tabbar/home_not.png",
+        "selectedIconPath": "/images/tabbar/home.png"
+      },
+      {
+        "pagePath": "pages/office/office",
+        "text": "教务",
+        "iconPath": "/images/tabbar/office_not.png",
+        "selectedIconPath": "/images/tabbar/office.png"
+      },
+      {
+        "pagePath": "pages/navigation/navigation",
+        "text": "地图",
+        "iconPath": "/images/tabbar/navigation_not.png",
+        "selectedIconPath": "/images/tabbar/navigation.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/images/tabbar/mine_not.png",
+        "selectedIconPath": "/images/tabbar/mine.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

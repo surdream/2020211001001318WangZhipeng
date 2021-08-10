@@ -1,0 +1,123 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <view class="navBar-Left"><text class="navBar_title">一目校园</text></view>
+</view>
+<!-- 内容区域 -->
+<view class="container">
+  <view class="topWrap">
+    <!-- 轮播图 -->
+    <view class="swiper-box">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
+        <block wx:for="{{imgUrls}}" wx:key="index">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" mode="aspectFull"/>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots"> 
+        <block wx:for="{{imgUrls}}" wx:key="index"> 
+          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view> 
+        </block> 
+      </view>
+    </view>
+    <!-- 公告栏 -->
+    <view class="notice-box">
+      <van-notice-bar 
+      left-icon="/images/home/notice.png" 
+      scrollable text="欢迎大家加入群聊进行反馈哦~" 
+      color="rgba(0,0,0,0.4)" 
+      background="linear-gradient(90deg, #DDF2ED 0%,#EFEFEF 100%);"
+      speed="100"
+      />
+    </view>
+  </view>
+  <view class="midWrap">
+    <view class="useful-box" bindtap="navTo" data-url="office-calendar">
+      <image src="/images/home/calendar.png"></image>
+      <text>教学校历</text>
+    </view>
+    <view class="useful-box" bindtap="navTo" data-url="note">
+      <image src="/images/home/note.png"></image>
+      <text>课堂笔记</text>
+    </view>
+    <view class="useful-box">
+      <image src="/images/home/classroom.png"></image>
+      <text>查空教室</text>
+    </view>
+    <view class="useful-box">
+      <image src="/images/home/club.png"></image>
+      <text>认识社团</text>
+    </view>
+    <view class="useful-box">
+      <image src="/images/home/confess.png"></image>
+      <text>校园表白墙</text>
+    </view>
+  </view>
+  <view class="switchBar">
+      <view class="infoListTitle{{titleTarget == 0?'Checked':'UnCheck'}}" bindtap="infoListTap"  data-id="0">
+        <image src="/images/home/schedule.png" wx:if="{{titleTarget == 0}}"></image>
+        <image src="/images/home/schedule_not.png" wx:if="{{titleTarget != 0}}"></image>
+        <text>今日课程</text>
+      </view>
+      <view class="infoListTitle{{titleTarget == 1?'Checked':'UnCheck'}}" bindtap="infoListTap"  data-id="1">
+        <image src="/images/home/link.png" wx:if="{{titleTarget == 1}}"></image>
+        <image src="/images/home/link_not.png" wx:if="{{titleTarget != 1}}"></image>
+        <text>关联课程</text>
+      </view>
+      <view class="infoListTitle{{titleTarget == 2?'Checked':'UnCheck'}}" bindtap="infoListTap"  data-id="2">
+        <image src="/images/home/massage.png" wx:if="{{titleTarget == 2}}"></image>
+        <image src="/images/home/massage_not.png" wx:if="{{titleTarget != 2}}"></image>
+        <view class="msgDot" wx:if="{{hasMsg}}"></view>
+        <text class="{{titleTarget == 2? 'msgText':''}}">留言板</text>
+      </view>
+  </view>
+  <view class="courseWrap">
+    <scroll-view scroll-y="ture" style="height:270rpx;" bindtouchstart="touchStart" bindtouchend="touchEnd">
+      <block wx:if="{{titleTarget == 0}}">
+        <view class="infoBox" style="--background--:{{item.background}}" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}">
+          <view class="infoBox_time">{{item.time}}</view>
+          <view class="infoBox_title">
+            <view>{{item.name}}</view>
+            <view class="courseStatus end" wx:if="{{item.status === 'end'}}">已结束</view>
+            <view class="courseStatus now" wx:if="{{item.status === 'now'}}">上课中</view>
+            <view class="courseStatus next" wx:if="{{item.status === 'next'}}">即将开始</view>
+            <view class="courseStatus remark" wx:if="{{item.remark === 'has'}}">有作业</view>
+          </view>
+          <view class="infoBox_detail">@31-205</view>
+        </view>
+      </block>
+      <block wx:if="{{titleTarget == 1}}">
+        <view class="infoBox" style="--background--:{{item.background}}" wx:for="{{link_list}}" wx:key="index" data-id="{{index}}">
+          <view class="infoBox_time">{{item.time}}</view>
+          <view class="infoBox_title">
+            <view>{{item.name}}</view>
+            <view class="courseStatus end" wx:if="{{item.status === 'end'}}">已结束</view>
+            <view class="courseStatus now" wx:if="{{item.status === 'now'}}">上课中</view>
+            <view class="courseStatus next" wx:if="{{item.status === 'next'}}">即将开始</view>
+            <view class="courseStatus remark" wx:if="{{item.remark === 'has'}}">有作业</view>
+          </view>
+          <view class="infoBox_detail">@31-205</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="switchBar">
+    <view class="infoListTitleChecked">
+      <image src="/images/home/news.png"></image>
+      <text>校园动态</text>
+      <!-- <text class="viewAll">查看更多></text> -->
+    </view>
+  </view>
+  <view class="newsWrap">
+    <scroll-view scroll-y="ture" style="height:{{220 + adaptValue}}rpx;">
+      <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-id="{{index}}">
+        <view class="newsBox_title">{{item.title}}</view>
+        <view class="newsBox_detail">
+          {{item.from}}
+          <text>{{item.time}}</text>
+          <text>阅读量：{{item.count}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

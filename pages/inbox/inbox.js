@@ -7,7 +7,7 @@ Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    contentHeight: app.globalData.contentHeight,
+    adaptValue: app.globalData.adaptValue,
     titleTarget: 0,
     myInfo: [{name: '屁屁威',major:'软件工程',url: '/images/conmon/boy.png'}],
     infoFromBox: [

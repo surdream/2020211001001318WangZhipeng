@@ -3,7 +3,7 @@
 
 <view
   wx:if="{{ show }}"
-  class="custom-class {{ utils.bem('notice-bar', { withicon: mode, wrapable }) }}"
+  class="custom-class {{ utils.bem('notice-bar', { withicon: mode, wrapable }) }} van-notice-bar__wrapUserMade"
   style="{{ computed.rootStyle({ color, backgroundColor, background }) }}"
   bind:tap="onClick"
 >

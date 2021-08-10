@@ -1,0 +1,153 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/8/7 上午11:06:35
+使用方法：
+在 D:\微信小程序\一目校园\pages\office\office.wxml 引入模板
+
+```
+<import src="office.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\微信小程序\一目校园\pages\office\office.wxss 中引入样式
+```
+@import "./office.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view style="height:32px;margin-top:50px;">
+      <view class="navBar">
+        <view class="navBar_title">
+          <view class="sk-transparent sk-text-14-2857-868 sk-text" style="background-position-x: 50%;">教务处</view>
+          <text class="courentWeek sk-transparent sk-text-14-2857-217 sk-text" style="background-position-x: 50%;">(16周)</text>
+        </view>
+      </view>
+    </view>
+    <view class="container">
+      <view class="topWrap">
+        <image class="topSchImg sk-image"></image>
+        <view class="topTitle sk-transparent sk-text-14-2857-388 sk-text">选择课程</view>
+      </view>
+      <view class="course_list">
+        <scroll-view scroll-x="true" style="height:78px;white-space:nowrap;">
+          <view class="courseBox" data-id="0" style="background:#7BDEE8">
+            <text class="courseBox_title sk-transparent sk-text-14-2857-288 sk-text">高等数学Ⅰ</text>
+            <text class="courseBox_class sk-transparent sk-text-14-2857-165 sk-text">2020-2小二班</text>
+            <text class="courseBox_microNum sk-transparent sk-text-14-2857-413 sk-text">23</text>
+          </view>
+          <view class="courseBox" data-id="1" style="background:#EE7785">
+            <text class="courseBox_title sk-transparent sk-text-14-2857-525 sk-text">高等数学Ⅰ</text>
+            <text class="courseBox_class sk-transparent sk-text-14-2857-64 sk-text">2020-2小二班</text>
+            <text class="courseBox_microNum sk-transparent sk-text-14-2857-147 sk-text">23</text>
+          </view>
+          <view class="courseBox" data-id="2" style="background:#E3C160">
+            <text class="courseBox_title sk-transparent sk-text-14-2857-795 sk-text">高等数学Ⅰ</text>
+            <text class="courseBox_class sk-transparent sk-text-14-2857-89 sk-text">2020-2小二班</text>
+            <text class="courseBox_microNum sk-transparent sk-text-14-2857-865 sk-text">23</text>
+          </view>
+          <view class="courseBox" data-id="3" style="background:#C1E965"></view>
+        </scroll-view>
+      </view>
+      <view class="usefulWrap">
+        <view class="usefulWrap_box">
+          <image class="usefulWrap_icon sk-image" data-url="office-calendar" style="background: rgba(106,91,241,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-508 sk-text" style="background-position-x: 50%;">教学校历</view>
+        </view>
+        <view class="usefulWrap_box">
+          <image class="usefulWrap_icon sk-image" data-url="note" style="background: rgba(252,212,48,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-476 sk-text" style="background-position-x: 50%;">课堂笔记</view>
+        </view>
+        <view class="usefulWrap_box">
+          <image class="usefulWrap_icon sk-image" data-url="office-testify" style="background: rgba(107,219,246,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-69 sk-text" style="background-position-x: 50%;">加分证明</view>
+        </view>
+        <view class="usefulWrap_box" style="margin:0;">
+          <image class="usefulWrap_icon sk-image" data-url="office-target" style="background: rgba(122,122,252,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-6 sk-text" style="background-position-x: 50%;">学期目标</view>
+        </view>
+      </view>
+      <view class="infoWrap">
+        <view class="infoControlWrap">
+          <view class="infoControlBar">
+            <image class="infoControlBar_img sk-image" style="background: rgba(112,132,252, 0.5);"></image>
+            <view class="infoControlBar_title sk-transparent sk-text-14-2857-16 sk-text">课程信息</view>
+            <view class="infoControlBar_detail sk-transparent sk-text-14-2857-310 sk-text">你今天共有 4 堂课</view>
+            <view class="bfBtn sk-transparent sk-text-14-2857-219 sk-text" data-type="before" style="border: none;">前一天</view>
+            <view class="afBtn sk-transparent sk-text-14-2857-450 sk-text" data-type="after" style="border: none;">后一天</view>
+          </view>
+        </view>
+        <view class="infoBar">
+          <view class="infoListTitleChecked" data-id="0">
+            <text class="sk-transparent sk-text-14-2857-163 sk-text">我的课表</text>
+            <view class="infoListTitle_border" style="border: none;"></view>
+          </view>
+          <view class="infoListTitleUnCheck" data-id="1">
+            <text class="sk-transparent sk-text-14-2857-128 sk-text">查询成绩</text>
+            <view class="infoListTitle_unBorder" style="border: none;"></view>
+          </view>
+          <view class="infoListTitleUnCheck" data-id="2">
+            <text class="sk-transparent sk-text-14-2857-863 sk-text">考试安排</text>
+            <view class="infoListTitle_unBorder" style="border: none;"></view>
+          </view>
+        </view>
+        <view class="infoListWrap">
+          <scroll-view scroll-y="true" style="height:289px;">
+            <view class="infoBox" data-id="0">
+              <view class="infoBox_stick" style="background:#7BDEE8;"></view>
+              <image class="infoBox_notice sk-image"></image>
+              <view class="infoBox_top sk-transparent sk-text-14-2857-544 sk-text">上午 08:00 - 09:40</view>
+              <view class="infoBox_title sk-transparent sk-text-14-2857-106 sk-text">高等数学Ⅰ 刘二根</view>
+              <view class="infoBox_detail sk-transparent sk-text-14-2857-113 sk-text">31栋306 必修课 学分:6</view>
+              <view class="infoBox_linkWrap">
+                <view class="infoBox_linkBar" data-id="0">
+                  <image class="infoBox_linkImg sk-image"></image>
+                </view>
+                <view class="infoBox_linkBar" data-id="1">
+                  <image class="infoBox_linkImg sk-image"></image>
+                </view>
+                <view class="infoBox_linkBar" data-id="2">
+                  <image class="infoBox_linkImg sk-image"></image>
+                </view>
+                <view class="linkPlus infoBox_linkImg" style="background:#7BDEE8">
+                  <text class="linkPlus_text sk-transparent sk-opacity">+3</text>
+                </view>
+                <view class="infoBox_linkText sk-transparent sk-text-14-2857-431 sk-text">6个同学也在,过来看看吧&gt;</view>
+              </view>
+            </view>
+            <view class="infoBox" data-id="1">
+              <view class="infoBox_stick" style="background:#EE7785;"></view>
+              <image class="infoBox_notice sk-image"></image>
+              <view class="infoBox_top sk-transparent sk-text-14-2857-461 sk-text">上午 08:00 - 09:40</view>
+              <view class="infoBox_title sk-transparent sk-text-14-2857-894 sk-text">高等数学Ⅰ 刘二根</view>
+              <view class="infoBox_detail sk-transparent sk-text-14-2857-708 sk-text">31栋306 必修课 学分:6</view>
+              <view class="infoBox_linkWrap">
+                <view class="infoBox_linkBar" data-id="0">
+                  <image class="infoBox_linkImg sk-image"></image>
+                </view>
+                <view class="infoBox_linkBar" data-id="1">
+                  <image class="infoBox_linkImg sk-image"></image>
+                </view>
+                <view class="infoBox_linkBar" data-id="2">
+                  <image class="infoBox_linkImg sk-image"></image>
+                </view>
+                <view class="linkPlus infoBox_linkImg" style="background:#EE7785">
+                  <text class="linkPlus_text sk-transparent sk-opacity">+5</text>
+                </view>
+                <view class="infoBox_linkText sk-transparent sk-text-14-2857-419 sk-text">8个同学也在,过来看看吧&gt;</view>
+              </view>
+            </view>
+            <view class="infoBox" data-id="2">
+              <view class="infoBox_stick" style="background:#E3C160;"></view>
+              <image class="infoBox_notice sk-image"></image>
+              <view class="infoBox_top sk-transparent sk-text-14-2857-849 sk-text">上午 08:00 - 09:40</view>
+              <view class="infoBox_title sk-transparent sk-text-14-2857-833 sk-text">高等数学Ⅰ 刘二根</view>
+              <view class="infoBox_detail sk-transparent sk-text-14-2857-639 sk-text">31栋306 必修课 学分:6</view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

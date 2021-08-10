@@ -7,7 +7,6 @@ Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    contentHeight: app.globalData.contentHeight,
     colorList: app.globalData.glassColor,
     hasStatus: false,
     hasUserInfo: false,

@@ -1,9 +1,9 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <image class="pageTopButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
-  <view class="pageTopBar"><text class="pageTopBar_title black95">消息中心</text></view>
+  <image class="navBarButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">消息中心</text></view>
 </view>
-<view class="container" style="height:{{contentHeight}}px;">
+<view class="container">
   <!-- 顶部功能区 -->
   <view class="topWrap">
     <!-- 功能选择栏 -->
@@ -42,7 +42,7 @@
   </view>
   <view class="bottomWrap">
     <view class="msgListWrap">
-      <scroll-view scroll-y="ture" style="height:55vh;" bindtouchstart="touchStart" bindtouchend="touchEnd">
+      <scroll-view scroll-y="ture" style="height:55vh" bindtouchstart="touchStart" bindtouchend="touchEnd">
       <block wx:if="{{titleTarget == 0}}">
         <view class="msgBox" wx:for="{{officeList}}" wx:key="index" data-id="{{index}}"bindtap="navToOffice">
           <!-- <image class="msgBox_img" src="{{item.url}}"></image> -->

@@ -1,0 +1,13 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <image class="navBarButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">管理证明</text></view>
+</view>
+<view class="container" style="height:{{contentHeight}}px;">
+  <view class="topWrap">
+    <view class="topWrapTitle">上传证明</view>
+    <view class="uploadBar">
+      <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+    </view>
+  </view>
+</view>

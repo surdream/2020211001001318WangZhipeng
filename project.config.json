@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -39,7 +39,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.17.3",
-  "appid": "wxe92ee5a2ffdb95e8",
+  "appid": "wx2d43f6e5c05a27bf",
   "projectname": "%E4%B8%80%E7%9B%AE%E6%A0%A1%E5%9B%AD",
   "cloudfunctionTemplateRoot": "",
   "watchOptions": {

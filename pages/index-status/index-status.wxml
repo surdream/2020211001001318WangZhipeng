@@ -1,12 +1,12 @@
 <view class="bg_box">
-  <image src="../../images/status/background.jpg"></image>
+  <image src="/images/status/background.jpg"></image>
   <view class="shadow"></view>
 </view>
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <image class="pageTopButton" src="../../images/conmon/left.png" bindtap="BackPage" style="padding:{{(menuButtonHeight-20)/2}}px;"></image>
-  <view class="pageTopBar">
-    <view class="pageTopBar_title">设置状态</view>
-    <view class="pageTopBar_subtitle">关注你的人可见哦</view>
+  <image class="navBarButton" src="/images/conmon/left.png" bindtap="BackPage" style="padding:{{(menuButtonHeight-20)/2}}px;"></image>
+  <view class="navBar">
+    <view class="navBar_title white95">设置状态</view>
+    <view class="navBar_subtitle">关注你的人可见哦</view>
   </view>
 </view>
 <view class="scrollContainer" style="height:{{contentHeight}}px;">

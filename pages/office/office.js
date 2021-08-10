@@ -8,12 +8,13 @@ Page({
     colorList: app.globalData.glassColor,
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    contentHeight: app.globalData.contentHeight,
+    adaptValue: app.globalData.adaptValue,
+    loading: true,
     courentWeek: '16',
     titleTarget: 0,
     pickerIndex: 0,
     default: '2020-1学期',
-    pickerImg:'/images/office/down-tri.png',
+    pickerImg:'/images/conmon/down-tri.png',
     officeColorList: [
       '#7BDEE8','#EE7785','#E3C160','#C1E965'
     ],
@@ -176,7 +177,11 @@ Page({
     ],
   },
   onLoad: function (options) {
-
+    setTimeout(()=>{
+      this.setData({
+        loading:false
+      })
+    },1000)
   },
   onShow: function () {
 
@@ -269,7 +274,8 @@ Page({
     this.setData({
       index: e.detail.value,
       default: term_array[index],
-      choose_term: index
+      choose_term: index,
+      pickerImg:'/images/conmon/down-tri.png'
     })
     switch (this.data.choose_term) {
       case '0': {
@@ -306,33 +312,18 @@ Page({
   },
   pickerTap(){
     this.setData({
-      pickerImg:'/images/office/up-tri.png'
+      pickerImg:'/images/conmon/up-tri.png'
     })
   },
   pickerCancel(){
     this.setData({
-      pickerImg:'/images/office/down-tri.png'
+      pickerImg:'/images/conmon/down-tri.png'
     })
   },
   navTo(e){
     let url = e.currentTarget.dataset.url;
-    if(url === 'office-calendar'){
-      wx.navigateTo({
-        url: '/pages/office-calendar/office-calendar',
-      })
-    } else if(url === 'note'){
-      wx.navigateTo({
-        url: '/pages/note/note',
-      })
-    } else if(url === 'office-testify'){
-      wx.navigateTo({
-        url: '/pages/office-testify/office-testify',
-      })
-    } else if(url === 'office-target'){
-      wx.navigateTo({
-        url: '/pages/office-target/office-target',
-      })
-    }
-
+    wx.navigateTo({
+      url: '/pages/' + url + '/' + url,
+    })
   }
 })
