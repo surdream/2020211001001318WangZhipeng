@@ -120,7 +120,25 @@ swiper image {
 .inputSearch{
   color: rgba(0, 0, 0, 0.5);
 }
-.inputSearch image{
+.sentApply{
+  position: absolute;
+  right: 20%;
+  font-size: 20rpx;
+  font-weight: 800;
+  background: #FDEDEC;
+  color: #F1948A;
+  border-radius: 25rpx;
+  padding: 3rpx 5rpx 3rpx 5rpx;
+  border: 4rpx solid #F1948A;
+}
+.sexImg{
+  position: relative;
+  width: 30rpx;
+  height: 30rpx;
+  top: 5rpx;
+  left: 5rpx;
+}
+.searchImg{
   width: 36rpx;
   height: 36rpx;
   position: absolute;

@@ -109,7 +109,7 @@
     </view>
   </view>
   <view class="newsWrap">
-    <scroll-view scroll-y="ture" style="height:{{220 + adaptValue}}rpx;">
+    <scroll-view scroll-y="ture" style="height:{{180 + adaptValue}}rpx;">
       <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-id="{{index}}">
         <view class="newsBox_title">{{item.title}}</view>
         <view class="newsBox_detail">

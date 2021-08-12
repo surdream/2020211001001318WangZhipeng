@@ -2,11 +2,8 @@ var app = getApp();
 const { request } = require("./utils/request/request");
 App({
   onLaunch() {
+    // 用户登录
     let userInfo = wx.getStorageSync('userInfo');
-    
-    // let account = 2019211006000115;
-    // let password = 'Jobs1314';
-
     if (userInfo == undefined || userInfo == ''){
       console.log('未登录')
     } else{
@@ -15,7 +12,6 @@ App({
       }).then(res => {
         wx.removeStorageSync('sessionid');
         wx.setStorageSync("sessionid", res.cookies[0]);
-        console.log(res);
       })
     }
     wx.getSystemInfo({

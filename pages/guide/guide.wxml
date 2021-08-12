@@ -70,8 +70,15 @@
           <input class="inputBox" placeholder="请输入Ta的智慧交大账号" value="{{account_link}}" bindinput="detailInput" type="number" data-name="account_link"></input>
         </view>
         <view class="inputSearch">
-          <image src="/images/guide/search.png"></image>
-          <view class="inputBox">{{searchResult}}</view>
+          <image class="searchImg" src="/images/guide/search.png" bindtap="searchTap"></image>
+          <view class="inputBox">
+            <text class="sentApply" bindtap="sentTap">发送申请</text>
+            <text wx:if="{{!haveResult}}">点击放大镜进行搜索</text>
+            <view wx:if="{{haveResult}}">
+              <text>{{searchResult.openname}}</text>
+              <image class="sexImg" src="/images/guide/{{searchResult.sex}}.png"></image>
+            </view>
+          </view>
         </view>
       </view>
     </view>
@@ -91,7 +98,7 @@
       <text wx:if="{{!isLoading}}">{{nextBtn}}</text>
       <van-loading size="16px" text-size="12px" wx:if="{{isLoading}}">认证中...</van-loading>
     </view>
-    <view class="skipBtn">跳过</view>
+    <view class="skipBtn" bindtap="skipTap">跳过</view>
 
   </view>
   <van-action-sheet

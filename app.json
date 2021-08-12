@@ -1,11 +1,11 @@
 {
   "pages":[
+    "pages/office/office",
     "pages/blank/blank",
     "pages/home/home",
     "pages/guide/guide",
     "pages/index/index",
     "pages/index-status/index-status",
-    "pages/office/office",
     "pages/inbox/inbox",
     "pages/office-calendar/office-calendar",
     "pages/office-testify/office-testify",
@@ -34,7 +34,8 @@
     "van-notice-bar": "@vant/weapp/notice-bar/index",
     "van-transition": "@vant/weapp/transition/index",
     "van-loading": "@vant/weapp/loading/index",
-    "van-action-sheet": "@vant/weapp/action-sheet/index"
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-notify": "@vant/weapp/notify/index"
   },
   "tabBar": {
     "color": "#8a8a8a",

@@ -7,17 +7,19 @@ Page({
     windowHeight: app.globalData.windowHeight,
     school: '华东交通大学',
     connectStatus: '认证通道畅通',
+    show: false,
     isLoading: false,
+    haveResult: false,
+    hasUserInfo: false,
     account: '',
     password: '',
     account_link: '',
-    searchResult: '已注册的同学会显示在此',
-    inputType: 'password',
+    searchResult: '',
     nextBtn: '下一步',
+    inputType: 'password',
     passwordType: 'open',
     status_color: '#C9D6DE',
     pickerImg: '/images/conmon/down-tri.png',
-    show: false,
     colorList: [
       {background: '#FF9542'},
       {background: '#6D91F7'},
@@ -66,6 +68,13 @@ Page({
     swiperCurrent: 0,
   },
   onLoad: function (options) {
+    let isSkip = wx.getStorageSync('isSkip');
+    if(isSkip){
+      wx.showToast({
+        title: '使用便捷校园服务,请先进行认证',
+        icon: 'none'
+      })
+    }
     request({
       url: "api/edu/isconnect",
       method: 'GET', 
@@ -97,15 +106,18 @@ Page({
   onShow: function () {
 
   },
+  // 输入框
   detailInput: function(e){
     let {
     } = this.data;
     let name = e.currentTarget.dataset.name;
     let value = e.detail.value;
     this.setData({
-      [name]: value
+      [name]: value,
+      haveResult: false
     });
   },
+  // 下一步
   nextStep(){
     let swiperCurrent = this.data.swiperCurrent;
     let account = this.data.account;
@@ -124,6 +136,7 @@ Page({
     if(swiperCurrent == 1){
       if(account.length === 16){
         if(password.length != 0){
+        let hasUserInfo = this.data.hasUserInfo;
           this.setData({
             isLoading: true
           })
@@ -144,8 +157,36 @@ Page({
               wx.setStorageSync('userInfo', userInfo);
               this.setData({
                 isLoading: false,
-                swiperCurrent: 2,
               })
+              if(!hasUserInfo){
+                wx.getUserProfile({
+                  desc: '获取用户昵称、头像',
+                  success: (res) => {
+                    console.log(res)
+                    let userInfo = res.userInfo;
+                    this.setData({
+                      userInfo: userInfo,
+                      hasUserInfo: true
+                    })
+                    request({
+                      url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + userInfo.nickName,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                    }).then(res => {
+                      console.log(res)
+                    })
+                  },
+                  fail: () => {
+                    wx.showToast({
+                      title: '已取消授权，设置为默认昵称和头像',
+                      icon: 'none'
+                    })
+                  },
+                  complete: () => {
+                    this.setData({
+                    swiperCurrent: 2,
+                    })
+                  }
+                })
+              }
             } else if(res.data.code == 401){
               wx.showToast({
                 title: '账号或密码有误,请重新检查后输入',
@@ -164,6 +205,7 @@ Page({
               })
             }
           })
+
         } else{
           wx.showToast({
             title: '请输入你的密码',
@@ -184,12 +226,14 @@ Page({
       })
     }
     if(swiperCurrent == 3){
+      wx.removeStorageSync('isSkip');
       wx.setStorageSync('firstUse', 'not')
       wx.redirectTo({
         url: '/pages/blank/blank',
       })
     }
   },
+  // 返回键
   backStep() {
     let swiperCurrent = this.data.swiperCurrent;
     if(swiperCurrent = 1){
@@ -202,6 +246,7 @@ Page({
       }) 
     }
   },
+  // 密码可视
   passwordTap(){
     let passwordType = this.data.passwordType;
     if(passwordType == 'open'){
@@ -216,10 +261,78 @@ Page({
       })
     }
   },
+  // 选择按钮
   selectTap(){
     this.setData({
       show: true,
       pickerImg:'/images/conmon/up-tri.png'
+    })
+  },
+  // 搜索按钮
+  searchTap(){
+    let account_link = this.data.account_link;
+    if(account_link.length == 16){
+      request({
+        url: "api/user/searchAccount?" + "account=" + account_link, 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res);
+        if(res.data.code == 200){
+          wx.showToast({
+            title: '匹配到一位用户',
+          })
+          this.setData({
+            searchResult: res.data,
+            haveResult: true
+          })
+        } else if(res.data.code == 403){
+          wx.showToast({
+            title: '账号不存在',
+            icon: 'error'
+          })
+        }
+      })
+    } else{
+      wx.showToast({
+        title: '学号输入不规范',
+        icon: 'error'
+      })
+    }
+  },
+  sentTap(){
+    let account = this.data.account_link;
+    request({
+      url: "api/user/bindLover?" + "account=" + account, 
+      method: 'GET',  header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res => {
+      console.log(res.data)
+      if(res.data.code == 200){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none'
+        })
+      } else if(res.data.code == 206){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none'
+        })
+      } else if(res.data.code == 207){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none'
+        })
+      } else if(res.data.code == 400){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  skipTap(){
+    wx.setStorageSync('isSkip', true)
+    wx.switchTab({
+      url: '/pages/home/home',
     })
   },
   onClose() {

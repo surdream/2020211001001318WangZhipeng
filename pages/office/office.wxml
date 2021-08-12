@@ -1,5 +1,6 @@
 <import src="office.skeleton.wxml"/>
 <template is="skeleton" wx-if="{{loading}}" />
+<van-notify id="van-notify"/>
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
   <view class="navBar"><view class="navBar_title">
   <view>教务处</view> 
@@ -12,11 +13,11 @@
     <view class="topTitle">选择课程</view>
   </view>
   <view class="course_list">
-    <scroll-view scroll-x="true" style="height:156rpx;white-space:nowrap;">
+    <scroll-view scroll-x="true" style="height:152rpx;white-space:nowrap;">
       <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}"  style="background:{{officeColorList[index%4]}}">
-        <text class="courseBox_title">{{item.title}}</text>
-        <text class="courseBox_class">{{item.class}}</text>
-        <text class="courseBox_microNum">{{item.microNum}}</text>
+        <text class="courseBox_title">{{item.course_name}}</text>
+        <text class="courseBox_class">{{item.class}}小一班</text>
+        <text class="courseBox_microNum">{{item.class_number}}</text>
       </view>
     </scroll-view>
   </view>
@@ -45,8 +46,8 @@
     <view class="infoControlWrap">
       <view class="infoControlBar" wx:if="{{titleTarget == 0}}">
           <image src="/images/office/calendar.png" class="infoControlBar_img" style="background: rgba(112,132,252, 0.5);"></image>
-          <view class="infoControlBar_title">课程信息</view>
-          <view class="infoControlBar_detail">你今天共有 4 堂课</view>
+          <view class="infoControlBar_title">课程信息 {{courentDay}}</view>
+          <view class="infoControlBar_detail">你今天共有 {{chart_list.length}} 堂课</view>
           <view class="bfBtn" bindtap="switchBtn" data-type="before">前一天</view>
           <view class="afBtn" bindtap="switchBtn" data-type="after">后一天</view>
       </view>
@@ -55,24 +56,16 @@
           <view class="infoControlBar_title">成绩详情</view>
           <view class="infoControlBar_detail">绩点:2.2|素拓:2.0|科创:2.0</view>
           <view class="infoControlBar_picker">
-            <picker class="picker" bindchange="bindCoursePickerChange" value="{{pickerIndex}}" range="{{term_array}}" bindcancel="pickerCancel" bindtap="pickerTap">
-                <image src="{{pickerImg}}" class="pickerImg"></image>
-                <text>{{default}}</text>
-            </picker>
+            <view class="picker" bindtap="pickerTap">
+              <image src="{{pickerImg}}" class="pickerImg"></image>
+              <text>{{grade_term}} 学期</text>
+            </view>
           </view>
       </view>
       <view class="infoControlBar" wx:if="{{titleTarget == 2}}">
           <image src="/images/office/schedule.png" class="infoControlBar_img" style="background: rgba(64,88,226, 0.5);"></image>
           <view class="infoControlBar_title">考试信息</view>
           <view class="infoControlBar_detail">当前你共有 2 门考试</view>
-          <view class="infoControlBar_picker">
-            <picker bindchange="bindCoursePickerChange" value="{{pickerIndex}}" range="{{term_array}}" bindcancel="pickerCancel">
-              <view class="picker" bindtap="pickerTap">
-                <image src="{{pickerImg}}" class="pickerImg"></image>
-                <text>{{default}}</text>
-              </view>
-            </picker>
-          </view>
       </view>
     </view>
     <!-- 信息选择栏 -->
@@ -89,37 +82,35 @@
       <block wx:if="{{titleTarget == 0}}">
         <view class="infoBox" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}" wx:for-item="chartItem">
           <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
-          <image class="infoBox_notice" src="../../images/office/notice.png"></image>
-          <view class="infoBox_top">{{chartItem.time}}</view>
-          <view class="infoBox_title">{{chartItem.title}} {{chartItem.teacher}}</view>
-          <view class="infoBox_detail">{{chartItem.address}} {{chartItem.type}} 学分:{{chartItem.credit}}</view>
-          <view class="infoBox_linkWrap">
+          <!-- <image class="infoBox_notice" src="../../images/office/notice.png"></image> -->
+          <view class="infoBox_top">{{chartItem.startTime}} - {{chartItem.endTime}}</view>
+          <view class="infoBox_title">{{chartItem.course}}</view>
+          <view class="infoBox_detail">{{chartItem.classRoom}} {{chartItem.teacherName}} {{chartItem.courseRequire}} {{chartItem.weekSpan}}周</view>
+          <!-- 相同的人 -->
+          <!-- <view class="infoBox_linkWrap">
             <view class="infoBox_linkBar" wx:for="{{chartItem.imgList}}" wx:key="index" data-id="{{index}}" wx:for-item="item" wx:if="{{index<3}}">
               <image class="infoBox_linkImg" src="{{item.url}}"></image>
             </view>
             <view class="linkPlus infoBox_linkImg" style="background:{{officeColorList[index%4]}}" wx:if="{{chartItem.imgList.length > 3}}"><text class="linkPlus_text">+{{chartItem.imgList.length - 3}}</text></view>
             <view class="infoBox_linkText">{{chartItem.imgList.length}}个同学也在,过来看看吧></view>
-          </view>
+          </view> -->
         </view>
         <view class="defaultWrap" wx:if="{{chart_list.length == 0}}">
           <image class="defaultImg" src="/images/office/noChart.png"></image>
-          <view class="defaultNotice">今天没有课</view>
+          <view class="defaultNotice">今天没有课哦</view>
         </view>
       </block>
       <block wx:if="{{titleTarget == 1}}">
         <view class="infoBox" wx:for="{{grade_list}}" wx:key="index" data-id="{{index}}" wx:for-item="gradeItem">
           <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
           <view class="infoBox_notice"></view>
-          <view class="infoBox_top">成绩:{{gradeItem.grade}} 绩点:{{gradeItem.gpa}}</view>
-          <view class="infoBox_title">{{gradeItem.title}} {{gradeItem.teacher}}</view>
-          <view class="infoBox_detail">{{gradeItem.type}} 学分:{{gradeItem.credit}}</view>
-          <view class="infoBox_linkWrap">
-            <view class="infoBox_linkBar" wx:for="{{gradeItem.imgList}}" wx:key="index" data-id="{{index}}" wx:for-item="item" wx:if="{{index<3}}">
-              <image class="infoBox_linkImg" src="{{item.url}}"></image>
-            </view>
-            <view class="linkPlus infoBox_linkImg" style="background:{{officeColorList[index%4]}}" wx:if="{{gradeItem.imgList.length > 3}}"><text class="linkPlus_text">+{{gradeItem.imgList.length - 3}}</text></view>
-            <view class="infoBox_linkText">{{chartItem.imgList.length}}个同学在激烈讨论中></view>
+          <view class="infoBox_top">
+            成绩:<text>{{gradeItem.grade}} </text>
+            <text wx:if="{{gradeItem.makeup_grade}}" style="color: {{officeColorList[2]}};">补考:{{gradeItem.makeup_grade}} </text>
+            <text wx:if="{{gradeItem.rebuild_grade}}" style="color: {{officeColorList[1]}};">重修:{{gradeItem.rebuild_grade}}</text>
           </view>
+          <view class="infoBox_title">{{gradeItem.course_name}} {{gradeItem.teacher}}</view>
+          <view class="infoBox_detail">{{gradeItem.method}} {{gradeItem.course_require}} 学分:{{gradeItem.credit}}</view>
         </view>
         <view class="defaultWrap" wx:if="{{grade_list.length == 0}}">
           <image class="defaultImg" src="/images/office/noChart.png"></image>
@@ -127,26 +118,40 @@
         </view>
       </block>
       <block wx:if="{{titleTarget == 2}}">
-        <view class="infoBox" wx:for="{{arrange_list}}" wx:key="index" data-id="{{index}}" wx:for-item="arrangeItem">
-          <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
-          <image class="infoBox_notice" src=""></image>
-          <view class="infoBox_top">{{arrangeItem.date}} {{arrangeItem.time}}</view>
-          <view class="infoBox_title">{{arrangeItem.title}} {{arrangeItem.teacher}}</view>
-          <view class="infoBox_detail">{{arrangeItem.address}} {{arrangeItem.type}} 学分:{{arrangeItem.credit}}</view>
-          <view class="infoBox_linkWrap">
-            <view class="infoBox_linkBar" wx:for="{{arrangeItem.imgList}}" wx:key="index" data-id="{{index}}" wx:for-item="item" wx:if="{{index<3}}">
-              <image class="infoBox_linkImg" src="{{item.url}}"></image>
-            </view>
-            <view class="linkPlus infoBox_linkImg" style="background:{{officeColorList[index%4]}}" wx:if="{{chartItem.imgList.length > 3}}"><text class="linkPlus_text">+{{chartItem.imgList.length - 3}}</text></view>
-            <view class="infoBox_linkText">{{chartItem.imgList.length}}个同学和你一个考场></view>
+        <block wx:if="arrange_list.length != 0">
+          <view class="infoBox" wx:for="{{arrange_list}}" wx:key="index" data-id="{{index}}" wx:for-item="arrangeItem">
+            <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
+            <image class="infoBox_notice" src=""></image>
+            <view class="infoBox_top">{{arrangeItem.date}} {{arrangeItem.time}}</view>
+            <view class="infoBox_title">{{arrangeItem.title}} {{arrangeItem.teacher}}</view>
+            <view class="infoBox_detail">{{arrangeItem.address}} {{arrangeItem.type}} 学分:{{arrangeItem.credit}}</view>
           </view>
-        </view>
-        <view class="defaultWrap" wx:if="{{chart_list.length == 0}}">
-          <image class="defaultImg" src="/images/office/noChart.png"></image>
-          <view class="defaultNotice">今天没有课</view>
+        </block>
+        <block wx:if="repair_list.length != 0">
+          <view class="infoBox" wx:for="{{repair_list}}" wx:key="index" data-id="{{index}}" wx:for-item="arrangeItem">
+            <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
+            <image class="infoBox_notice" src=""></image>
+            <view class="infoBox_top">{{arrangeItem.date}} {{arrangeItem.time}}</view>
+            <view class="infoBox_title">{{arrangeItem.title}} {{arrangeItem.teacher}}</view>
+            <view class="infoBox_detail">{{arrangeItem.address}} {{arrangeItem.type}} 学分:{{arrangeItem.credit}}</view>
+          </view>
+        </block>
+        <view class="defaultWrap" wx:if="{{chart_list.length == 0 && repair_list.length == 0}}">
+            <image class="defaultImg" src="/images/office/noChart.png"></image>
+            <view class="defaultNotice">当前没有考试安排</view>
         </view>
       </block>
       </scroll-view>
     </view>
   </view>
 </view>
+<!-- 底部弹出选项卡 -->
+<van-action-sheet
+    title="学期列表"
+    description="选择你要查询的学期"
+    show="{{ showGrade }}"
+    actions="{{ grade_actions }}"
+    bind:close="onClose"
+    bind:select="onSelect"
+    close-on-click-overlay="{{ true }}"
+/>

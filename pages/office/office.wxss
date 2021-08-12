@@ -3,7 +3,6 @@ page{
   background: #EFEFEF;
 }
 .courentWeek{
-  display: inline-block;
   font-size: 24rpx;
   color: rgba(0, 0, 0, 0.8);
 }
@@ -34,7 +33,7 @@ page{
 }
 .courseBox{
   margin-left: 25rpx;
-  height: 156rpx;
+  height: 152rpx;
   width: 215rpx;
   display: inline-flex;
   border-radius: 25rpx;
@@ -42,22 +41,30 @@ page{
 .courseBox_title{
   color: rgba(0, 0, 0, 0.8);
   font-weight: 800; 
-  font-size: 24rpx;
-  margin: 72rpx 0 0 20rpx;
+  font-size: 20rpx;
+  margin: 75rpx 0 0 15rpx;
   position: absolute;
+  width: 200rpx;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .courseBox_class{
   color: rgba(0, 0, 0, 0.8);
-  font-weight: 800;
-  font-size: 22rpx;
-  margin: 108rpx 0 0 20rpx;
+  font-weight: 800; 
+  font-size: 20rpx;
+  margin: 105rpx 0 0 15rpx;
   position: absolute;
+  width: 200rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .courseBox_microNum{
   color: rgba(0, 0, 0, 1.0);
   font-weight: 900;
   font-size: 28rpx;
-  margin: 16rpx 0 0 156rpx;
+  margin: 16rpx 0 0 160rpx;
   position: absolute;
 }
 .usefulWrap{
@@ -151,7 +158,6 @@ page{
   width: 216rpx;
   padding: 10rpx 0rpx 14rpx 14rpx;
 }
-
 .infoBar{
   margin-left: 30rpx;
   display: inline-flex;
@@ -203,7 +209,7 @@ page{
   right: 45rpx;
 }
 .infoBox_top{
-  margin: -6rpx 0 0 40rpx;
+  margin: -8rpx 0 0 40rpx;
   font-weight: 800;
   font-size: 30rpx;
 }
@@ -211,13 +217,11 @@ page{
   margin: 0rpx 0 0 40rpx;
   font-weight: 800;
   font-size: 28rpx;
-  color: rgba(0, 0, 0, 0.8);
 }
 .infoBox_detail{
-  margin: 0rpx 0 0 40rpx;
-  font-weight: 700;
+  margin: 2rpx 0 0 40rpx;
   font-size: 28rpx;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.75);
 }
 .infoBox_linkWrap{
   margin: 16rpx 0 0 48rpx;
@@ -256,9 +260,9 @@ page{
   text-align: center
 }
 .defaultImg{
-  margin: 125rpx 0 15rpx 0;
+  margin: 128rpx 0 12rpx 0;
   width: 180rpx;
-  height: 200rpx;
+  height: 192rpx;
 }
 .defaultNotice{
   font-weight: 800;

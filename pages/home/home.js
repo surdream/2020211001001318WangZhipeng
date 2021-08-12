@@ -1,4 +1,5 @@
 var app = getApp();
+const { request } = require("../../utils/request/request");
 let touchDotX = 0;
 let touchDotY = 0;
 let interval;
@@ -37,8 +38,11 @@ Page({
     swiperCurrent: 0,
   },
   onLoad: function (options) {
-    wx.setBackgroundColor({
-      backgroundColor: '#000000',
+    request({
+      url: "api/user/profile?", 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      console.log(res)
     })
   },
   onShow: function () {

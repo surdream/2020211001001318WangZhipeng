@@ -17,8 +17,7 @@ page {
 .navBar{
   font-size: 32rpx;
   font-weight: 800;
-  display: flex; 
-  justify-content: center; 
+  text-align: center;
 }
 .navBar-Left{
   font-size: 36rpx;
