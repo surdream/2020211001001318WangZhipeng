@@ -1,6 +1,6 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <view class="navBar-Left"><text class="navBar_title">一目校园</text></view>
+  <view class="navBar-Left36"><text class="navBar_title">一目校园</text></view>
 </view>
 <!-- 内容区域 -->
 <view class="container">
@@ -121,3 +121,4 @@
     </scroll-view>
   </view>
 </view>
+<van-dialog id="van-dialog" />

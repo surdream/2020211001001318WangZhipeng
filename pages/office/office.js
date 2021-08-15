@@ -14,10 +14,14 @@ Page({
     adaptValue: app.globalData.adaptValue,
     loading: true,
     showGrade: false,
-    courentWeek: '16',
-    titleTarget: 0,
     diff: 0, //日期差值
+    titleTarget: 0, //列表标签
     grade_term: '2020.2', //默认学期
+    pickerImg:'/images/conmon/down-tri.png',
+    chart_list: [],
+    grade_list: [],
+    arrange_list: [],
+    repair_list: [],
     grade_actions: [
       {name: '2021.2'},
       {name: '2021.1'},
@@ -28,7 +32,6 @@ Page({
       {name: '2018.2'},
       {name: '2018.1'},
     ],
-    pickerImg:'/images/conmon/down-tri.png',
     officeColorList: [
       '#7BDEE8','#EE7785','#E3C160','#C1E965'
     ],
@@ -44,12 +47,12 @@ Page({
       {title: '高等数学Ⅰ',teacher: '刘二根',address: '31栋218',class: '2020-2小二班',microNum: '23'},
       {title: '高等数学Ⅰ',teacher: '刘二根',address: '31栋218',class: '2020-2小二班',microNum: '23'},
     ],
-    chart_list: [],
-    grade_list: [],
-    arrange_list: [],
-    repair_list: []
   },
   onLoad: function (options) {
+    let accountInfo = wx.getStorageSync('accountInfo');
+    this.setData({
+      accountInfo: accountInfo
+    })
     // 查询课表
     request({
       url: "api/edu/today?", 

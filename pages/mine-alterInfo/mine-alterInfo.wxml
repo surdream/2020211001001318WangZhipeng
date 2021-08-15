@@ -1,0 +1,34 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <image class="navBarButton" src="../../images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title white95">个人信息</text></view>
+</view>
+<!-- 内容区域 -->
+<view class="container">
+  <view class="topWrap">
+    <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
+    <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
+    <text class="topWrap_openname">{{accountInfo.openname}}</text>
+    <view class="topWrap_detail">一目校园 | id：{{accountInfo.userid}}</view>
+    <view class="topWrap_update" bindtap="updateTap">
+      <image src="/images/mine/update.png"></image>
+      <text>同步微信信息</text>
+    </view>
+  </view>
+  <view class="mainContent">
+    <scroll-view scroll-y="true" style="height: 60vh;">
+      <view class="inputBox">所属学校：<text class="inputBox_detail">华东交通大学</text></view>
+      <view class="inputBox">当前学期：<text class="inputBox_detail">{{accountInfo.term}}</text></view>
+      <view class="inputBox">开学日期：<text class="inputBox_detail">2021/09/01</text></view>
+      <view class="inputBox">政治面貌：<text class="inputBox_detail">{{accountInfo.political}}</text></view>
+      <view class="inputBox">英语分级：<text class="inputBox_detail">{{accountInfo.elevel}}</text></view>
+      <view class="inputBox">姓名：<text class="inputBox_detail">{{accountInfo.realname}}</text></view>
+      <view class="inputBox">班级：<text class="inputBox_detail">{{accountInfo.class}}</text></view>
+      <view class="inputBox">生日：<text class="inputBox_detail">{{accountInfo.birth}}</text></view>
+      <view class="inputBox">家乡：<text class="inputBox_detail">{{accountInfo.hometown}}</text></view>
+      <view class="inputBox">民族：<text class="inputBox_detail">{{accountInfo.nation}}</text></view>
+      <!-- <input class="inputBox" placeholder="请输入智慧交大账号" value="{{account}}" bindinput="detailInput" type="number" data-name="account"></input> -->
+    </scroll-view>
+
+  </view>
+</view>

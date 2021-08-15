@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/office/office",
     "pages/blank/blank",
+    "pages/office/office",
     "pages/home/home",
     "pages/guide/guide",
     "pages/index/index",
@@ -12,7 +12,8 @@
     "pages/office-testify-management/office-testify-management",
     "pages/office-target/office-target",
     "pages/navigation/navigation",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/mine-alterInfo/mine-alterInfo"
   ],
   "permission": {
     "scope.userLocation": {
@@ -35,7 +36,10 @@
     "van-transition": "@vant/weapp/transition/index",
     "van-loading": "@vant/weapp/loading/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
-    "van-notify": "@vant/weapp/notify/index"
+    "van-notify": "@vant/weapp/notify/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index"
   },
   "tabBar": {
     "color": "#8a8a8a",

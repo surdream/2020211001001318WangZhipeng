@@ -1,4 +1,52 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <view class="navBar"><text class="navBar_title black95">我的</text></view>
+  <view class="navBar-Left32"><text class="navBar_title white95">{{loginStatus}}</text></view>
+</view>
+<view class="container">
+  <view class="topWrap">
+    <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
+    <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
+    <text class="topWrap_openname">{{accountInfo.openname}}</text>
+    <view class="topWrap_detail">{{accountInfo.class}} 华东交通大学</view>
+  </view>
+  <view class="mainContent">
+    <view class="alterBar">
+      <view class="alterBox alterBox_border" bindtap="navTo" data-url="guide">
+        <image class="alterBox_img" src="/images/mine/import.png"></image>
+        <text class="alterBox_text">导入课表</text>
+      </view>
+      <view class="alterBox" bindtap="navTo" data-url="mine-alterInfo">
+        <image class="alterBox_img" src="/images/mine/alter.png"></image>
+        <text class="alterBox_text">个人信息</text>
+      </view>
+    </view>
+    <view class="midWrap">
+      <view class="usefulBox" bindtap="navTo" data-url="couple">
+        <image class="usefulBox_img" src="/images/mine/couple.png"></image>
+        <text class="usefulBox_text">情侣空间&绑定情侣</text>
+        <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
+      </view>
+      <view class="usefulBox" bindtap="navTo" data-url="wechat">
+        <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
+        <text class="usefulBox_text">校园公众号&精彩推文</text>
+        <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
+      </view>
+      <view class="usefulBox" bindtap="navTo" data-url="help">
+        <image class="usefulBox_img" src="/images/mine/idea.png"></image>
+        <text class="usefulBox_text">查看帮助&使用建议</text>
+        <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
+      </view>
+    </view>
+    <view class="aboutWrap">
+      <van-grid column-num="2" custom-class="aboutLink" clickable="true" border="{{ false }}" icon-size="24">
+        <van-grid-item icon="/images/mine/team.png" text="关于我们" />
+        <van-grid-item icon="/images/mine/privacy.png" text="安全&隐私" />
+      </van-grid>
+      <van-grid column-num="2" custom-class="aboutLink" clickable="true" border="{{ false }}"
+      icon-size="24">
+        <van-grid-item icon="/images/mine/chat.png" text="反馈&聊天" />
+        <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" />
+      </van-grid>
+    </view>
+  </view>
 </view>

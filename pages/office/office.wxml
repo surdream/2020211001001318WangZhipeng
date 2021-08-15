@@ -4,7 +4,8 @@
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
   <view class="navBar"><view class="navBar_title">
   <view>教务处</view> 
-  <text class="courentWeek">({{courentWeek}}周)</text>
+  <text class="courentWeek" wx:if="{{accountInfo.week >= 0}}">(第{{accountInfo.week}}周)</text>
+  <text class="courentWeek" wx:if="{{accountInfo.week < 0}}">(放假中)</text>
   </view></view>
 </view>
 <view class="container" wx-if="{{!loading}}">
@@ -12,11 +13,12 @@
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
     <view class="topTitle">选择课程</view>
   </view>
+  <!-- 课程列表 -->
   <view class="course_list">
     <scroll-view scroll-x="true" style="height:152rpx;white-space:nowrap;">
       <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}"  style="background:{{officeColorList[index%4]}}">
         <text class="courseBox_title">{{item.course_name}}</text>
-        <text class="courseBox_class">{{item.class}}小一班</text>
+        <text class="courseBox_class">{{item.class_name_fix}}</text>
         <text class="courseBox_microNum">{{item.class_number}}</text>
       </view>
     </scroll-view>
@@ -54,7 +56,7 @@
       <view class="infoControlBar" wx:if="{{titleTarget == 1}}">
           <image src="/images/office/grade.png" class="infoControlBar_img" style="background: rgba(228,72,66, 0.5);"></image>
           <view class="infoControlBar_title">成绩详情</view>
-          <view class="infoControlBar_detail">绩点:2.2|素拓:2.0|科创:2.0</view>
+          <view class="infoControlBar_detail">绩点:{{accountInfo.gpa}}|素拓:{{accountInfo.credit_art}}|科创:{{accountInfo.credit_vo}}</view>
           <view class="infoControlBar_picker">
             <view class="picker" bindtap="pickerTap">
               <image src="{{pickerImg}}" class="pickerImg"></image>

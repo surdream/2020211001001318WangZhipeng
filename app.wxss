@@ -19,10 +19,15 @@ page {
   font-weight: 800;
   text-align: center;
 }
-.navBar-Left{
+.navBar-Left36{
   font-size: 36rpx;
   font-weight: 800;
   padding-left: 32rpx;
+}
+.navBar-Left32{
+  font-size: 32rpx;
+  font-weight: 800;
+  padding-left: 28rpx;
 }
 .navBar_title{
   color: rgba(0, 0, 0, 0.8);

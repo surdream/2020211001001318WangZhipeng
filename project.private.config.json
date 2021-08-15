@@ -59,6 +59,24 @@
           "pathName": "pages/home/home",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/mine/mine",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine-alterInfo/mine-alterInfo",
+          "pathName": "pages/mine-alterInfo/mine-alterInfo",
+          "query": "",
+          "scene": null
         }
       ]
     }
