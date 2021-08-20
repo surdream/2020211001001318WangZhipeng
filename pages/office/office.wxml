@@ -4,8 +4,8 @@
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
   <view class="navBar"><view class="navBar_title">
   <view>教务处</view> 
-  <text class="courentWeek" wx:if="{{accountInfo.week >= 0}}">(第{{accountInfo.week}}周)</text>
-  <text class="courentWeek" wx:if="{{accountInfo.week < 0}}">(放假中)</text>
+  <text class="courentWeek" wx:if="{{accountInfo.week > 0}}">(第{{accountInfo.week}}周)</text>
+  <text class="courentWeek" wx:if="{{accountInfo.week <= 0}}">(未开学)</text>
   </view></view>
 </view>
 <view class="container" wx-if="{{!loading}}">
@@ -67,7 +67,7 @@
       <view class="infoControlBar" wx:if="{{titleTarget == 2}}">
           <image src="/images/office/schedule.png" class="infoControlBar_img" style="background: rgba(64,88,226, 0.5);"></image>
           <view class="infoControlBar_title">考试信息</view>
-          <view class="infoControlBar_detail">当前你共有 2 门考试</view>
+          <view class="infoControlBar_detail">最近你有 {{arrange_list.length}} 门考试</view>
       </view>
     </view>
     <!-- 信息选择栏 -->

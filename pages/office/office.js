@@ -124,7 +124,7 @@ Page({
     timestamp = timestamp / 1000;
     this.setData({
       courentTime: timestamp,
-      courentDay: time.formatTimeTwo(timestamp,'M/D')
+      courentDay: time.formatTimeRev(timestamp,'M/D')
     })
   },
   BackPage() {
@@ -186,14 +186,14 @@ Page({
       this.setData({
         diff:diff+1,
         courentTime: courentTime + 86400,
-        courentDay: time.formatTimeTwo((courentTime + 86400),'M/D')
+        courentDay: time.formatTimeRev((courentTime + 86400),'M/D')
       })
       diff++;
     } else if( type == 'before'){
       this.setData({
         diff:diff-1,
         courentTime: courentTime - 86400,
-        courentDay: time.formatTimeTwo((courentTime - 86400),'M/D')
+        courentDay: time.formatTimeRev((courentTime - 86400),'M/D')
       })
       diff--;
     }

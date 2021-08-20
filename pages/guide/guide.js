@@ -11,6 +11,7 @@ Page({
     isLoading: false,
     haveResult: false,
     hasUserInfo: false,
+    from: '',
     account: '',
     password: '',
     account_link: '',
@@ -68,6 +69,16 @@ Page({
     swiperCurrent: 0,
   },
   onLoad: function (options) {
+    let from = options.from
+    if(from == 'couple'){
+      this.setData({
+        swiperCurrent: 2,
+        nextBtn: '完成'
+      })
+    }
+    this.setData({
+      from: from
+    })
     let isSkip = wx.getStorageSync('isSkip');
     if(isSkip){
       wx.showToast({
@@ -181,9 +192,19 @@ Page({
                     })
                   },
                   complete: () => {
-                    this.setData({
-                    swiperCurrent: 2,
-                    })
+                    let from = this.data.from;
+                    if(from == 'import'){
+                      this.setData({
+                        nextBtn: '完成'
+                      })
+                      wx.switchTab({
+                        url: '/pages/office/office',
+                      })
+                    } else{
+                      this.setData({
+                        swiperCurrent: 2,
+                      })
+                    }
                   }
                 })
               }
@@ -205,7 +226,6 @@ Page({
               })
             }
           })
-
         } else{
           wx.showToast({
             title: '请输入你的密码',
@@ -220,10 +240,17 @@ Page({
       }
     }
     if(swiperCurrent == 2){
-      this.setData({
-        swiperCurrent: 3,
-        nextBtn: '开始使用'
-      })
+      let from = this.data.from;
+      if(from == 'couple'){
+        wx.switchTab({
+          url: '/pages/mine/mine',
+        })
+      } else{
+        this.setData({
+          swiperCurrent: 3,
+          nextBtn: '开始使用'
+        })
+      }
     }
     if(swiperCurrent == 3){
       wx.removeStorageSync('isSkip');
@@ -346,5 +373,10 @@ Page({
     console.log(event.detail);
     let name = event.detail.name;
     this.setData({ school: name})
+  },
+  BackPage() {
+    wx.navigateBack({
+        delta: 1,
+    }); 
   },
 })

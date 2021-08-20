@@ -16,7 +16,7 @@
     </view>
   </view>
   <view class="mainContent">
-    <scroll-view scroll-y="true" style="height: 60vh;">
+    <scroll-view scroll-y="true" style="height: 70vh;">
       <view class="inputBox">所属学校：<text class="inputBox_detail">华东交通大学</text></view>
       <view class="inputBox">当前学期：<text class="inputBox_detail">{{accountInfo.term}}</text></view>
       <view class="inputBox">开学日期：<text class="inputBox_detail">2021/09/01</text></view>

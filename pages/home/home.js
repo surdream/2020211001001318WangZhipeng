@@ -10,8 +10,7 @@ Page({
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
     adaptValue: app.globalData.adaptValue,
-    titleTarget: 0,
-    hasMsg: true,
+    titleTarget: 2,
     chart_list: [
       {time: '08:00-09:40',name: '高等数学Ⅰ',background: '#74b9ff',status: 'now',remark: 'has'},
       {time: '10:30-12:10',name: '大学物理Ⅰ',background: '#55efc4',status: 'next'},
@@ -32,6 +31,10 @@ Page({
       '/images/home/show.png',
       '/images/home/show.png'
     ],
+    msgValue: '',
+    hasMsg: false,
+    popShow: false,
+    actionShow: false,
     indicatorDots: false,
     autoplay: true,
     interval: 2400,
@@ -46,23 +49,25 @@ Page({
       if(res.data.code == 200){
         console.log(res.data.data);
         let accountInfo = res.data.data;
-        wx.setStorageSync('accountInfo', accountInfo);
         let lover_status = accountInfo.lover_status;
-        if(lover_status == 0){
-          wx.showToast({
-            title: '你还没有情侣',
-            icon: 'none'
+        wx.setStorageSync('accountInfo', accountInfo);
+        this.setData({
+          accountInfo: accountInfo
+        })
+        if(accountInfo.lover.msg.length != 0){
+          this.setData({
+            hasMsg: true
           })
-        } else if(lover_status == 2){
+        }
+        if(lover_status == 2){
+          this.setData({
+            popShow: true
+          })
           wx.showToast({
             title: '有一条绑定申请',
             icon: 'none'
           })
-        } else if(lover_status == 3){
-          wx.showToast({
-            title: '发出申请未答复',
-            icon: 'none'
-          })
+          this.onLoad()
         }
       } else if(res.data.code == 400){
         wx.showToast({
@@ -90,6 +95,26 @@ Page({
       url: '/pages/' + url + '/' + url,
     })
   },
+  popBtnTap(e){
+    let type = e.currentTarget.dataset.type;
+    console.log(type);
+    request({
+      url: "api/user/" + type, 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      console.log(res)
+      this.setData({ popShow: false });
+    })
+  },
+  popLinkTap(){
+    wx.showToast({
+      title: '抱歉，个人主页暂未开放',
+      icon: 'none'
+    })
+  },
+  writeTap(){
+    this.setData({ actionShow: true })
+  },
   swiperChange(e) {
     let current = e.detail.current;
     let that = this;
@@ -107,6 +132,44 @@ Page({
         hasMsg: false
       })
     }
+  },
+  showPopup() {
+    this.setData({ popShow: true });
+  },
+  onClose() {
+    this.setData({ popShow: false });
+  },
+  onChange(e){
+    let value = e.detail;
+    this.setData({
+      msgValue: value
+    })
+  },
+  actionClose() {
+    this.setData({ actionShow: false });
+  },
+  sentMsg(){
+    let msgValue = this.data.msgValue;
+    request({
+      url: "api/user/sendmsg?content=" + msgValue, 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      console.log(res);
+      if(res.data.code == 200){
+        wx.showToast({
+          title: '留言发送成功！',
+        })
+        this.setData({
+          actionShow: false,
+          msgValue: ''
+        })
+      } else if(res.data.code == 400){
+        wx.showToast({
+          title: '发送失败请重试',
+          icon: 'error'
+        })
+      }
+    })
   },
   touchStart: function(e){
     // console.log(e)

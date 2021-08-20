@@ -1,7 +1,17 @@
+<!-- 背景区域 -->
 <view class="pageBackground" style="background: {{colorList[swiperCurrent].background}};height: {{windowHeight}}px;"></view>
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
-  <image wx:if="{{swiperCurrent != 0}}" class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="backStep"></image>
+  <block wx:if="{{from == ''}}">
+    <image wx:if="{{swiperCurrent != 0}}" class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="backStep"></image>
+  </block>
+  <block wx:if="{{from == 'import'}}">
+    <image wx:if="{{swiperCurrent == 0}}" class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+    <image wx:if="{{swiperCurrent != 0}}" class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="backStep"></image>
+  </block>
+  <block wx:if="{{from == 'couple'}}">
+    <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  </block>
   <view class="navBar">
     <view class="statusBar navBar_title white95">
       <view wx:if="{{swiperCurrent == 3}}">一目校园</view>

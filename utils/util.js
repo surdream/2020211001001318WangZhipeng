@@ -21,7 +21,7 @@ function formatNumber(n) {
  * number: 传入时间戳 
  * format：返回格式，支持自定义，但参数必须与formateArr里保持一致 
 */
-function formatTimeTwo(number, format) {
+function formatTimeRev(number, format) {
  
     var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
     var returnArr = [];
@@ -43,5 +43,5 @@ function formatTimeTwo(number, format) {
  
 module.exports = {
     formatTime: formatTime,
-    formatTimeTwo: formatTimeTwo  
+    formatTimeRev: formatTimeRev  
 }

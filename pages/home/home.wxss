@@ -110,6 +110,7 @@ swiper image {
   font-weight: 800;
   font-size: 34rpx;
 }
+/* 课程、留言模块 */
 .infoBox{
   margin: 12rpx;
   border-radius: 25rpx;
@@ -138,6 +139,40 @@ swiper image {
   border-radius: 25rpx;
   color: rgba(255, 255, 255, 0.8);
   margin: 0 5rpx;
+}
+.writeBtn{
+  text-align: center;
+  padding: 10rpx 0;
+  border-radius: 25rpx;
+  font-weight: 800;
+  font-size: 25rpx;
+  background: rgba(240,109,113, 0.8);
+  border: 15rpx solid rgba(240,109,113, 0.4);
+  color: #fff;
+}
+.msgWrap{
+  width: 92%;
+  padding: 20rpx 2%;
+  display: inline-flex;
+  margin: 14rpx 2% 0 2%;
+  border-radius: 25rpx;
+  background: rgba(240,109,113, 0.25);
+  box-shadow:  0rpx 0rpx 10rpx rgba(240,109,113, 0.5);
+}
+.msgWrap_detail{
+  font-weight: 800;
+  width: 500rpx;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
+  color: rgba(0, 0, 0, 0.6);
+}
+.msgWrap_time{
+  font-size: 26rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  right: 5%;
 }
 .end{
   background: #8283a7;
@@ -182,4 +217,106 @@ swiper image {
 }
 .newsBox text{
   margin-left: 20rpx;
+}
+.popTitle{
+  font-weight: 900;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 25rpx;
+}
+.popWrap{
+  height: 100%;
+  overflow: hidden;
+}
+.popTopBox{
+  padding-top: 25rpx;
+}
+.popAvatar{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-left: 50rpx;
+  box-shadow:  0rpx 0rpx 10rpx gray;
+}
+.popBtn{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  padding: 25rpx;
+  margin-top: 25rpx;
+}
+.acceptBtn{
+  background: rgba(30, 144, 255,0.25);
+  right: 50rpx;
+}
+.refuseBtn{
+  background: rgba(255, 165, 2,0.25);
+  right: 175rpx;
+}
+.popInfo{
+  padding: 0 50rpx;
+  color: rgba(0, 0, 0, 0.75);
+}
+.popInfo_title{
+  font-weight: 800;
+  font-size: 28rpx;
+  margin-top: 25rpx;
+}
+.popInfo_detail{
+  font-size: 26rpx;
+  margin-top: 5rpx;
+  font-weight: 800;
+}
+.popInfo_detail text{
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+.popLink{
+  background: rgba(30, 144, 255,0.2);
+  border-radius: 25rpx;
+  width: 88%;
+  margin: 25rpx 6%;
+  padding: 5rpx 0;
+}
+.popLink text{
+  position: absolute;
+  margin: 21rpx 0 0 25rpx;
+  font-size: 26rpx;
+  font-weight: 800;
+  color: rgba(30, 144, 255,0.75);
+}
+.popLink_img{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+  padding: 15rpx;
+}
+.popLink_arrow{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 8%;
+  margin-top: 15rpx;
+}
+/* 编辑留言模块 */
+.msgBox{
+  margin: 50rpx 0 0 5%;
+  width: 90%;
+}
+.msgBox_title{
+  font-weight: 800;
+  font-size: 32rpx;
+  margin: 0 0 20rpx 30rpx;
+}
+.sentMsg{
+  text-align: center;
+  margin: 25rpx 0 50rpx 0;
+  font-weight: 800;
+  font-size: 28rpx;
+  color: #fff;
+  background: rgba(240,109,113, 0.8);
+  border: 15rpx solid rgba(240,109,113, 0.4);
+  border-radius: 25rpx;
+  padding: 15rpx 0;
 }

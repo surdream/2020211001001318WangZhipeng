@@ -1,0 +1,207 @@
+.hasDatePage{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  background: #F1948A;
+}
+.noDatePage{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(180deg, #FFFBFC 10%,#F8C2CF 50%,#FEE3F2 100%);
+}
+.textPink{
+  color: #F48BAD;
+  font-size: 30rpx;
+}
+
+/* 情侣空间 */
+
+.topWrap{
+  text-align: center;
+  width: 80%;
+  height: 400rpx;
+  margin: 50rpx 10% 25rpx 10%;
+  background: linear-gradient(180deg, #F97390 10%,#F15375 50%,#EB3C62 100%);
+  border-radius: 25%;
+  box-shadow:  20rpx 20rpx 40rpx #d4627a,
+              -2rpx -2rpx 4rpx #FFFBFC;
+}
+.topWrap_love{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 50rpx;
+}
+.topWrap_avatar{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 50rpx;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow:  5rpx 5rpx 10rpx #d4627a,
+              -2rpx -2rpx 5rpx #ff84a4;
+}
+.leftAvatar{
+  left: 20%;
+}
+.rightAvatar{
+  right: 20%;
+}
+.eventBar{
+  margin: 36rpx 0 20rpx 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 28rpx;
+  letter-spacing: 1rpx;
+}
+.eventBar_count{
+  font-size: 36rpx;
+}
+.eventBar_day{
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+.sendMsgBtn{
+  margin-left: 32.5%;
+  width: 35%;
+  padding: 20rpx 0;
+  font-size: 25rpx;
+  border-radius: 25rpx;
+  background: #fff;
+  color: #F97390;
+  font-weight: 800;
+}
+.midWrap{
+  width: 600rpx;
+  margin: 40rpx auto;
+}
+.coupleBox{
+  display: inline-block;
+  border: 2rpx solid #F48BAD;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50rpx;
+  width: 275rpx;
+  height: 275rpx;
+  margin: 0 0 15rpx 15rpx;
+}
+.coupleBox_img{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx 0 0 24rpx;
+}
+.coupleBox_title{
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+.coupleBox_detail{
+  margin-left: 32rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+.coupleBox_detail text{
+  margin-left: 8rpx;
+  font-weight: 500;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* 信息获取 */
+
+.topWrap-Get{
+  text-align: center;
+  margin-top: 50rpx;
+}
+.topWrap-Get image{
+  width: 360rpx;
+  height: 360rpx;
+}
+.midWrap-Get{
+  margin-top: 60rpx;
+  text-align: center;
+}
+.loverBox{
+  display: inline-block;
+}
+.loverAvatar{
+  width: 125rpx;
+  height: 125rpx;
+  border-radius: 50%;
+}
+.loverName{
+  font-size: 26rpx;
+  margin-top: 2rpx;
+  color: #FBCBBE;
+}
+.heartImg{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 30rpx 60rpx 30rpx;
+}
+.bottomWrap-Get{
+  margin-top: 30rpx;
+  text-align: center;
+}
+.pickerTitle{
+  color: #FDEDEC;
+  font-size: 42rpx;
+  letter-spacing: 2rpx;
+}
+.pickerBar{
+  color: #FDEDEC;
+  margin-top: 24rpx;
+}
+.pickerBar_count{
+  font-size: 80rpx;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+}
+.pickerBar_day{
+  font-weight: 800;
+  position: absolute;
+  font-size: 40rpx;
+  margin: 36rpx 0 0 24rpx;
+}
+.pickerBox{
+  margin-top: 32rpx;
+  color: #FDEDEC;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+.nextBtn{
+  display: inline-flex;
+  margin-top: 42rpx;
+  padding: 8rpx 64rpx 12rpx 64rpx;
+  border: 4rpx solid #FDEDEC;
+  border-radius: 24rpx;
+  color: #FDEDEC;
+}
+/* 编辑留言模块 */
+.msgBox{
+  margin: 50rpx 0 0 5%;
+  width: 90%;
+}
+.msgBox_title{
+  font-weight: 800;
+  font-size: 32rpx;
+  margin: 0 0 20rpx 30rpx;
+}
+.sentMsg{
+  text-align: center;
+  margin: 25rpx 0 50rpx 0;
+  font-weight: 800;
+  font-size: 28rpx;
+  color: #fff;
+  background: rgba(240,109,113, 0.8);
+  border: 15rpx solid rgba(240,109,113, 0.4);
+  border-radius: 25rpx;
+  padding: 15rpx 0;
+}
+.heartWrap{
+  margin-left: 275rpx;
+  position: absolute;
+  bottom: 0rpx;
+  width: 200rpx;
+  height: 100rpx;
+}

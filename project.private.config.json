@@ -77,6 +77,12 @@
           "pathName": "pages/mine-alterInfo/mine-alterInfo",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/couple/couple",
+          "pathName": "pages/couple/couple",
+          "query": "",
+          "scene": null
         }
       ]
     }

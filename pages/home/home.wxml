@@ -99,6 +99,13 @@
           <view class="infoBox_detail">@31-205</view>
         </view>
       </block>
+      <block wx:if="{{titleTarget == 2}}">
+        <view class="writeBtn" bindtap="writeTap">+ 给Ta留言</view>
+        <view class="msgWrap" wx:for="{{accountInfo.lover.msg}}" wx:key="index">
+          <view class="msgWrap_detail">{{item.content}}</view>
+          <view class="msgWrap_time">{{item.createtime}}</view>
+        </view>
+      </block>
     </scroll-view>
   </view>
   <view class="switchBar">
@@ -121,4 +128,52 @@
     </scroll-view>
   </view>
 </view>
-<van-dialog id="van-dialog" />
+<!-- 情侣弹窗 -->
+<van-popup
+  show="{{ popShow }}"
+  position="bottom"
+  custom-style="height: 40%"
+  bind:close="onClose"
+  safe-area-inset-bottom="true"
+  round
+>
+  <view class="popTitle">课表绑定申请</view>
+  <view class="popTopBox">
+    <image class="popBtn acceptBtn" bindtap="popBtnTap" data-type="acceptLover" src="/images/home/accept.png"></image>
+    <image class="popBtn refuseBtn" bindtap="popBtnTap" data-type="rejectLover" src="/images/home/refuse.png"></image>
+    <image class="popAvatar" src="{{accountInfo.lover.avatar}}"></image>
+  </view>
+  <view class="popInfo">
+    <view class="popInfo_title">{{accountInfo.lover.class}} / {{accountInfo.lover.realname}}</view>
+    <view class="popInfo_detail">申请时间：<text>{{accountInfo.lover.lover_apply_time}}</text></view>
+  </view>
+  <view class="popLink" bindtap="popLinkTap">
+    <image class="popLink_img" src="/images/home/social.png"></image>
+    <text>查看对方的个人主页</text>
+    <image class="popLink_arrow" src="/images/conmon/right-blue.png"></image>
+  </view>
+</van-popup>
+<!-- 留言弹窗 -->
+<van-action-sheet
+    description=""
+    show="{{ actionShow }}"
+    bind:close="actionClose"
+    close-on-click-overlay="{{ true }}"
+>
+  <view class="msgBox">
+    <view class="msgBox_title">编辑留言</view>
+    <van-cell-group>
+      <van-field
+        value="{{ msgValue }}"
+        placeholder="输入想说的话..."
+        border="{{ false }}"
+        bind:change="onChange"
+        clearable="true"
+        show-word-limit="true"
+        maxlength="50"
+        custom-style="border-radius:25rpx;height:275rpx;"
+      />
+    </van-cell-group>
+    <view class="sentMsg" bindtap="sentMsg">发送留言</view>
+  </view>
+</van-action-sheet>
