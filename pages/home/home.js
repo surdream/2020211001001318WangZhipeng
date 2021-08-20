@@ -10,7 +10,6 @@ Page({
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
     adaptValue: app.globalData.adaptValue,
-    titleTarget: 2,
     chart_list: [
       {time: '08:00-09:40',name: '高等数学Ⅰ',background: '#74b9ff',status: 'now',remark: 'has'},
       {time: '10:30-12:10',name: '大学物理Ⅰ',background: '#55efc4',status: 'next'},
@@ -39,6 +38,7 @@ Page({
     autoplay: true,
     interval: 2400,
     duration: 800,
+    titleTarget: 0,
     swiperCurrent: 0,
   },
   onLoad: function (options) {

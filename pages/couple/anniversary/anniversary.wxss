@@ -1,0 +1,149 @@
+page{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(180deg, #FFFBFC 10%,#F8C2CF 75%,#FEE3F2 100%);
+}
+.textPink{
+  color: #F48BAD;
+  font-size: 30rpx;
+}
+.topWrap{
+  text-align: center;
+  width: 90%;
+  height: 365rpx;
+  margin: 50rpx 5% 25rpx 5%;
+  background: linear-gradient(180deg, #F97390 10%,#F15375 50%,#EB3C62 100%);
+  border-radius: 40rpx;
+  box-shadow:  10rpx 10rpx 20rpx #d4627a,
+              -2rpx -2rpx 4rpx #FFFBFC;
+}
+.topWrap_love{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 40rpx;
+}
+.topWrap_avatar{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 40rpx;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow:  5rpx 5rpx 10rpx #d4627a,
+              -2rpx -2rpx 5rpx #ff84a4;
+}
+.leftAvatar{
+  left: 25%;
+}
+.rightAvatar{
+  right: 25%;
+}
+.eventBar{
+  margin: 18rpx 0 20rpx 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 28rpx;
+  letter-spacing: 1rpx;
+}
+.eventBar_count{
+  font-size: 36rpx;
+}
+.eventBar_day{
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+.addBtn{
+  margin-left: 36%;
+  width: 28%;
+  padding: 18rpx 0;
+  font-size: 25rpx;
+  border-radius: 25rpx;
+  background: #fff;
+  color: #F97390;
+  font-weight: 800;
+}
+.listTopBar{
+  width: 90%;
+  margin: 5rpx 5% 0 5%;
+  color: #F97390;
+}
+.listTopBar_add{
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  right: 70rpx;
+}
+.listTopBar_alter{
+  margin-top: -10rpx;
+  width: 35rpx;
+  height: 35rpx;
+  padding: 10rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  right: 60rpx;
+}
+.listTopBar_title{
+  margin-left: 20rpx;
+  font-weight: 700;
+  font-size: 26rpx;
+}
+.anniversary{
+  display: inline-flex;
+  width: 90%;
+  margin: 0 5%;
+  padding: 40rpx 0;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+.anniversary_icon{
+  margin-left: 25rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.anniversary_title{
+  position: absolute;
+  margin: -10rpx 0 0 100rpx;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1rpx;
+  font-weight: 700;
+}
+.anniversary_time{
+  position: absolute;
+  margin: 30rpx 0 0 100rpx;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 1rpx;
+  font-weight: 500;
+  font-size: 26rpx;
+}
+.anniversary_count{
+  position: absolute;
+  right: 8%;
+  font-weight: 700;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+.anniversary_add{
+  position: absolute;
+  right: 8%;
+  padding: 9rpx 25rpx;
+  border-radius: 16rpx;
+  background: #F97390;
+  color: #fff;
+  font-weight: 800;
+  font-size: 25rpx;
+}
+.anniversary_alter{
+  position: absolute;
+  right: 8%;
+  padding: 9rpx 25rpx;
+  border-radius: 16rpx;
+  background: rgba(255, 255, 255, 0.5);
+  color: #F97390;
+  font-weight: 800;
+  font-size: 25rpx;
+}
+.countText{
+  font-size: 44rpx;
+  color: #F97390;
+  margin-right: 8rpx;
+}

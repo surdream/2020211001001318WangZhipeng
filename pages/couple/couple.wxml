@@ -12,7 +12,7 @@
   <!-- 情侣空间页 -->
   <van-transition name="slide-right" show="{{hasLoveDate}}" custom-class="block">
     <view class="topWrap">
-      <view>
+      <view class="avatarBar">
         <image class="topWrap_avatar leftAvatar" src="{{accountInfo.avatar}}"></image>
         <image class="topWrap_avatar rightAvatar" src="{{loverInfo.avatar}}"></image>
         <image class="topWrap_love" src="/images/couple/love.png"></image>
@@ -21,15 +21,15 @@
         <view>距离我们在一起还有<text class="eventBar_count"> {{365-dayDiff}} </text>天</view>
         <view class="eventBar_day">目标日:{{selectedDay}}</view>
       </view>
-      <view class="sendMsgBtn" bindtap="writeTap">写留言</view>
+      <view class="sendMsgBtn" bindtap="writeTap">去留言</view>
     </view>
     <view class="midWrap">
-      <view class="coupleBox">
+      <view class="coupleBox" bindtap="navTo" data-url="msgboard">
         <image class="coupleBox_img" src="/images/couple/loveMsg.png"></image>
         <view class="coupleBox_title">留言板</view>
         <view class="coupleBox_detail">{{loverInfo.msg.length}}<text>历史留言</text></view>
       </view>
-      <view class="coupleBox">
+      <view class="coupleBox" bindtap="navTo" data-url="anniversary">
         <image class="coupleBox_img" src="/images/couple/loveEvent.png"></image>
         <view class="coupleBox_title">纪念日</view>
         <view class="coupleBox_detail">{{loverInfo.msg.length+1}}<text>个日子</text></view>
@@ -71,7 +71,7 @@
         <text class="pickerBar_day">天</text>
       </view>
       <view class="pickerBox">
-        <picker mode="date" value="{{selectedDay}}" start="2018-09-01" end="{{courentDay}}" bindchange="listenerDatePickerSelected">
+        <picker mode="date" value="{{selectedDay}}" start="2018-09-01" end="{{courentDay}}" bindchange="datePickerSelected">
           <text>起始日期：<text style="color: #E53B2F;">{{selectedDay}}</text></text>
         </picker>
       </view>

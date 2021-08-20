@@ -1,0 +1,22 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+  <image class="navBarButton" src="/images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title textPink">{{pageTitle}}</text></view>
+</view>
+<!-- 内容区域 -->
+<view class="container">
+  <view class="topWrap contentBox">
+    <image class="contentBox_img" src="/images/anniversary/edit.png"></image>
+    <input class="contentBox_input" placeholder="点击输入纪念日内容" value="{{dayTitle}}" bindinput="detailInput" type="text" data-name="dayTitle"></input>
+  </view>
+  <view class="midWrap contentBox">
+    <image class="contentBox_img" src="/images/anniversary/time.png"></image>
+    <view class="contentBox_input">
+      <picker mode="date" value="{{selectedDay}}" start="2018-09-01" end="{{courentDay}}" bindchange="datePickerSelected">
+        起始日期：<text class="datePickerText">{{selectedDay}}</text>
+      </picker>
+    </view>
+  </view>
+  <view class="subBtn_{{type}}" bindtap="subTap">完成</view>
+  <view class="delBtn" bindtap="delTap" wx:if="{{type == 'alter'}}">删除</view>
+</view>

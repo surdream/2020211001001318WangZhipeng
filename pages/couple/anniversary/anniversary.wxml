@@ -1,0 +1,43 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+  <image class="navBarButton" src="/images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title textPink">纪念日</text></view>
+</view>
+<!-- 内容区域 -->
+<view class="container">
+  <view class="topWrap">
+    <view class="avatarBar">
+      <image class="topWrap_avatar leftAvatar" src="{{accountInfo.avatar}}"></image>
+      <image class="topWrap_avatar rightAvatar" src="{{loverInfo.avatar}}"></image>
+      <image class="topWrap_love" src="/images/couple/love.png"></image>
+    </view>
+    <view class="eventBar">
+      <view>距离我们在一起还有<text class="eventBar_count"> {{80}} </text>天</view>
+      <view class="eventBar_day">目标日:2021/11/7</view>
+    </view>
+    <view class="addBtn" bindtap="addTap">+ 去添加</view>
+  </view>
+  <view class="listWrap">
+    <view class="listTopBar">
+      <image class="listTopBar_{{type}}" src="/images/anniversary/alter.png" bindtap="alterStatus"></image>
+      <view class="listTopBar_title">日期列表</view>
+    </view>
+    <scroll-view scroll-y="ture" style="height:56vh;">
+      <view class="anniversary" wx:for="{{nextList}}" wx:key="index">
+        <image class="anniversary_icon" src="{{item.icon}}"></image>
+        <view class="anniversary_title">{{item.title}}</view>
+        <view class="anniversary_time">{{item.time}}</view>
+        <view class="anniversary_count"><text class="countText">{{item.count}}</text>天</view>
+      </view>
+      <view class="anniversary" wx:for="{{dayList}}" wx:key="index">
+        <image class="anniversary_icon" src="{{item.icon}}"></image>
+        <view class="anniversary_title">{{item.title}}</view>
+        <view class="anniversary_time" wx:if="{{item.time == ''}}">点击右边添加纪念日</view>
+        <view class="anniversary_time" wx:if="{{item.time != ''}}">{{item.time}}</view>
+        <view class="anniversary_add" wx:if="{{item.count == ''}}" bindtap="listTap" data-title="{{item.title}}" data-time="{{item.time}}" data-type="add">添加</view>
+        <view class="anniversary_alter" wx:if="{{item.count != '' && type == 'alter'}}"  bindtap="listTap" data-title="{{item.title}}" data-time="{{item.time}}" data-type="alter">修改</view>
+        <view class="anniversary_count" wx:if="{{item.count != '' && type == 'add'}}"><text class="countText">{{item.count}}</text>天</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

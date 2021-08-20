@@ -22,7 +22,6 @@ Page({
       accountInfo: accountInfo,
       loverInfo: loverInfo
     })
-
   },
   onShow: function () {
     var timestamp = Date.parse(new Date());
@@ -32,7 +31,13 @@ Page({
       courentDay: courentDay
     })
   },
-  listenerDatePickerSelected(e){
+  navTo(e){
+    let url = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: '/pages/couple/' + url + '/' + url,
+    })
+  },
+  datePickerSelected(e){
     let selectedDay = e.detail.value.replace(/-/g,'/')
     let courentDay = this.data.courentDay;
     let dayDiff = ((Date.parse(courentDay))-(Date.parse(selectedDay)))/86400000;

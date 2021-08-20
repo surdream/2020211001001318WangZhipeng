@@ -170,7 +170,8 @@ Page({
                 isLoading: false,
               })
               if(!hasUserInfo){
-                wx.getUserProfile({
+                  let from = this.data.from;
+                  wx.getUserProfile({
                   desc: '获取用户昵称、头像',
                   success: (res) => {
                     console.log(res)
@@ -186,19 +187,25 @@ Page({
                     })
                   },
                   fail: () => {
-                    wx.showToast({
-                      title: '已取消授权，设置为默认昵称和头像',
-                      icon: 'none'
-                    })
+                    if(from == 'import'){
+                      wx.showToast({
+                        title: '已取消授权，昵称和头像维持不变',
+                        icon: 'none'
+                      })
+                    } else{
+                      wx.showToast({
+                        title: '已取消授权，设置为默认昵称和头像',
+                        icon: 'none'
+                      })
+                    }
                   },
                   complete: () => {
-                    let from = this.data.from;
                     if(from == 'import'){
                       this.setData({
                         nextBtn: '完成'
                       })
-                      wx.switchTab({
-                        url: '/pages/office/office',
+                      wx.navigateTo({
+                        url: '/pages/blank/blank',
                       })
                     } else{
                       this.setData({

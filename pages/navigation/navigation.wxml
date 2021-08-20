@@ -1,5 +1,5 @@
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar"><text class="navBar_title black95">校园地图</text></view>
 </view>
 <!-- 内容区域 -->
