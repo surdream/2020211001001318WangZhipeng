@@ -42,58 +42,59 @@ Page({
     swiperCurrent: 0,
   },
   onLoad: function (options) {
-    request({
-      url: "api/user/profile?", 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      if(res.data.code == 200){
-        console.log(res.data.data);
-        let accountInfo = res.data.data;
-        let lover_status = accountInfo.lover_status;
-        wx.setStorageSync('accountInfo', accountInfo);
-        this.setData({
-          accountInfo: accountInfo
-        })
-        if(accountInfo.lover.msg.length != 0){
+    let firstUse = wx.getStorageSync('firstUse');
+    if(firstUse == 'not'){
+      request({
+        url: "api/user/profile?", 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        if(res.data.code == 200){
+          console.log(res.data.data);
+          let accountInfo = res.data.data;
+          let lover_status = accountInfo.lover_status;
+          wx.setStorageSync('accountInfo', accountInfo);
           this.setData({
-            hasMsg: true
+            accountInfo: accountInfo
           })
-        }
-        if(lover_status == 2){
-          this.setData({
-            popShow: true
-          })
+          if(accountInfo.lover.msg.length != 0){
+            this.setData({
+              hasMsg: true
+            })
+          }
+          if(lover_status == 2){
+            this.setData({
+              popShow: true
+            })
+            wx.showToast({
+              title: '有一条绑定申请',
+              icon: 'none'
+            })
+            this.onLoad()
+          }
+        } else if(res.data.code == 400){
           wx.showToast({
-            title: '有一条绑定申请',
-            icon: 'none'
+            title: '系统正在维护',
+            icon: 'error'
           })
-          this.onLoad()
         }
-      } else if(res.data.code == 400){
-        wx.showToast({
-          title: '系统正在维护',
-          icon: 'error'
-        })
-      }
-    })
+      })
+    }
   },
   onShow: function () {
-    // Dialog.confirm({
-    //   title: '课表绑定申请',
-    //   message: '弹窗内容',
-    // })
-    //   .then(() => {
-    //     console.log('确认')
-    //   })
-    //   .catch(() => {
-    //     console.log('取消')
-    //   });
+
   },
   navTo(e){
-    let url = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: '/pages/' + url + '/' + url,
-    })
+    let firstUse = wx.getStorageSync('firstUse');
+    if(firstUse == 'not'){
+      let url = e.currentTarget.dataset.url;
+      wx.navigateTo({
+        url: '/pages/' + url + '/' + url,
+      })
+    } else{
+      wx.navigateTo({
+        url: '../guide/guide?from=import',
+      })
+    }
   },
   popBtnTap(e){
     let type = e.currentTarget.dataset.type;

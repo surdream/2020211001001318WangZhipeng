@@ -49,75 +49,85 @@ Page({
     ],
   },
   onLoad: function (options) {
-    let accountInfo = wx.getStorageSync('accountInfo');
-    this.setData({
-      accountInfo: accountInfo
-    })
-    // 查询课表
-    request({
-      url: "api/edu/today?", 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      console.log(res)
-      if(res.data.code == 200){
-        let chart_list = res.data.data
-        this.setData({
-          chart_list: chart_list
-        })
-        Notify({
-          message: '查询到当天共有' + chart_list.length + '门课',
-          type: 'primary',
-          safeAreaInsetTop: true
-        });
-      } else if(res.data.code == 400){
-        Notify({
-          message: '查询失败',
-          safeAreaInsetTop: true
-        });
-      }
-      // 查询选课
+    let firstUse = wx.getStorageSync('firstUse');
+    if(firstUse == 'not'){
+      let accountInfo = wx.getStorageSync('accountInfo');
+      this.setData({
+        accountInfo: accountInfo
+      })
+      // 查询课表
       request({
-        url: "api/edu/course?", 
+        url: "api/edu/today?", 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res)
         if(res.data.code == 200){
-          let courseList = res.data.data
+          let chart_list = res.data.data
           this.setData({
-            courseList: courseList
+            chart_list: chart_list
           })
+          Notify({
+            message: '查询到当天共有' + chart_list.length + '门课',
+            type: 'primary',
+            safeAreaInsetTop: true
+          });
         } else if(res.data.code == 400){
+          Notify({
+            message: '查询失败',
+            safeAreaInsetTop: true
+          });
         }
+        // 查询选课
+        request({
+          url: "api/edu/course?", 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res)
+          if(res.data.code == 200){
+            let courseList = res.data.data
+            this.setData({
+              courseList: courseList
+            })
+          } else if(res.data.code == 400){
+          }
+        })
       })
-    })
-    // 查询成绩
-    request({
-      url: "api/edu/grade?term=2020.2", 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      console.log(res.data)
-      let grade_list = res.data.data;
-      this.setData({
-        grade_list: grade_list
-      })
-      // 考试安排
+      // 查询成绩
       request({
-        url: "api/edu/exam", 
+        url: "api/edu/grade?term=2020.2", 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res.data)
-        let arrange_list = res.data.data.normal;
-        let repair_list = res.data.data.re;
+        let grade_list = res.data.data;
         this.setData({
-          arrange_list: arrange_list,
-          repair_list: repair_list
+          grade_list: grade_list
         })
-        this.setData({
-          loading: false
+        // 考试安排
+        request({
+          url: "api/edu/exam", 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res.data)
+          let arrange_list = res.data.data.normal;
+          let repair_list = res.data.data.re;
+          this.setData({
+            arrange_list: arrange_list,
+            repair_list: repair_list
+          })
+          this.setData({
+            loading: false
+          })
         })
       })
-    })
-
+    } else{
+      this.setData({
+        loading: false
+      })
+      wx.showToast({
+        title: '请先导入课表',
+        icon: 'error'
+      })
+    }
   },
   onShow: function () {
     var timestamp = Date.parse(new Date());
@@ -173,58 +183,73 @@ Page({
     })
   },
   navTo(e){
-    let url = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: '/pages/' + url + '/' + url,
-    })
+    let firstUse = wx.getStorageSync('firstUse');
+    if(firstUse == 'not'){
+      let url = e.currentTarget.dataset.url;
+      wx.navigateTo({
+        url: '/pages/' + url + '/' + url,
+      })
+    } else{
+      wx.navigateTo({
+        url: '../guide/guide?from=import',
+      })
+    }
   },
   switchBtn(e){
-    let diff = this.data.diff;
-    let courentTime = this.data.courentTime;    
-    let type = e.currentTarget.dataset.type;
-    if( type == 'after'){
-      this.setData({
-        diff:diff+1,
-        courentTime: courentTime + 86400,
-        courentDay: time.formatTimeRev((courentTime + 86400),'M/D')
-      })
-      diff++;
-    } else if( type == 'before'){
-      this.setData({
-        diff:diff-1,
-        courentTime: courentTime - 86400,
-        courentDay: time.formatTimeRev((courentTime - 86400),'M/D')
-      })
-      diff--;
-    }
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
-    request({
-      url: "api/edu/today?" + 'oday=' + diff, 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      console.log(res.data.data)
-      if(res.data.code == 200){
-        let chart_list = res.data.data
+    let firstUse = wx.getStorageSync('firstUse');
+    if(firstUse == 'not'){
+      let diff = this.data.diff;
+      let courentTime = this.data.courentTime;    
+      let type = e.currentTarget.dataset.type;
+      if( type == 'after'){
         this.setData({
-          chart_list: chart_list
+          diff:diff+1,
+          courentTime: courentTime + 86400,
+          courentDay: time.formatTimeRev((courentTime + 86400),'M/D')
         })
-        wx.hideLoading()
-        Notify({
-          message: '查询到当天共有' + chart_list.length + '门课',
-          type: 'primary',
-          safeAreaInsetTop: true,
-          duration: 800,
-        });
-      } else if(res.data.code == 400){
-        Notify({
-          message: '查询失败',
-          duration: 800,
-        });
+        diff++;
+      } else if( type == 'before'){
+        this.setData({
+          diff:diff-1,
+          courentTime: courentTime - 86400,
+          courentDay: time.formatTimeRev((courentTime - 86400),'M/D')
+        })
+        diff--;
       }
-    })
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      })
+      request({
+        url: "api/edu/today?" + 'oday=' + diff, 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res.data.data)
+        if(res.data.code == 200){
+          let chart_list = res.data.data
+          this.setData({
+            chart_list: chart_list
+          })
+          wx.hideLoading()
+          Notify({
+            message: '查询到当天共有' + chart_list.length + '门课',
+            type: 'primary',
+            safeAreaInsetTop: true,
+            duration: 800,
+          });
+        } else if(res.data.code == 400){
+          Notify({
+            message: '查询失败',
+            duration: 800,
+          });
+        }
+      })
+    } else{
+      wx.showToast({
+        title: '未导入课表，无法进行查询',
+        icon: 'none'
+      })
+    }
   },
   touchStart: function (e) {
     // console.log(e)

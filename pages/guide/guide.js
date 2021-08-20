@@ -170,50 +170,57 @@ Page({
                 isLoading: false,
               })
               if(!hasUserInfo){
-                  let from = this.data.from;
-                  wx.getUserProfile({
-                  desc: '获取用户昵称、头像',
-                  success: (res) => {
+                let from = this.data.from;
+                wx.getUserProfile({
+                desc: '获取用户昵称、头像',
+                success: (res) => {
+                  console.log(res)
+                  let userInfo = res.userInfo;
+                  this.setData({
+                    userInfo: userInfo,
+                    hasUserInfo: true
+                  })
+                  request({
+                    url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + userInfo.nickName,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                  }).then(res => {
                     console.log(res)
-                    let userInfo = res.userInfo;
-                    this.setData({
-                      userInfo: userInfo,
-                      hasUserInfo: true
+                  })
+                },
+                fail: () => {
+                  if(from == 'import'){
+                    wx.showToast({
+                      title: '已取消授权，昵称和头像维持不变',
+                      icon: 'none'
                     })
-                    request({
-                      url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + userInfo.nickName,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-                    }).then(res => {
-                      console.log(res)
+                  } else{
+                    wx.showToast({
+                      title: '已取消授权，设置为默认昵称和头像',
+                      icon: 'none'
                     })
-                  },
-                  fail: () => {
-                    if(from == 'import'){
-                      wx.showToast({
-                        title: '已取消授权，昵称和头像维持不变',
-                        icon: 'none'
-                      })
-                    } else{
-                      wx.showToast({
-                        title: '已取消授权，设置为默认昵称和头像',
-                        icon: 'none'
-                      })
-                    }
-                  },
-                  complete: () => {
-                    if(from == 'import'){
-                      this.setData({
-                        nextBtn: '完成'
-                      })
-                      wx.navigateTo({
-                        url: '/pages/blank/blank',
-                      })
-                    } else{
-                      this.setData({
-                        swiperCurrent: 2,
-                      })
-                    }
                   }
-                })
+                },
+                complete: () => {
+                  if(from == 'import'){
+                    this.setData({
+                      nextBtn: '完成'
+                    })
+                    wx.showToast({
+                      title: '导入成功，如信息显示不正常请重新进入小程序',
+                      icon: 'none'
+                    })
+                    setTimeout(function() {
+                      wx.setStorageSync('firstUse', 'not');
+                      wx.redirectTo({
+                        url: '../blank/blank',
+                      });
+                    }, 1250);
+                  } else{
+                    this.setData({
+                      swiperCurrent: 2,
+                    })
+                  }
+                }
+              })
               }
             } else if(res.data.code == 401){
               wx.showToast({
@@ -261,7 +268,7 @@ Page({
     }
     if(swiperCurrent == 3){
       wx.removeStorageSync('isSkip');
-      wx.setStorageSync('firstUse', 'not')
+      wx.setStorageSync('firstUse', 'not');
       wx.redirectTo({
         url: '/pages/blank/blank',
       })

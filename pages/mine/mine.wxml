@@ -4,10 +4,17 @@
 </view>
 <view class="container">
   <view class="topWrap">
-    <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
-    <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
-    <text class="topWrap_openname">{{accountInfo.openname}}</text>
-    <view class="topWrap_detail">{{accountInfo.class}} 华东交通大学</view>
+    <block wx:if="{{firstUse}}">
+      <image class="topWrap_avatar" src="/images/default/avatar.png"></image>
+      <text class="topWrap_openname" bindtap="navTo">微信用户</text>
+      <view class="topWrap_detail" bindtap="navTo">点击进行认证</view>
+    </block>
+    <block wx:if="{{!firstUse}}">
+      <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
+      <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
+      <text class="topWrap_openname">{{accountInfo.openname}}</text>
+      <view class="topWrap_detail">{{accountInfo.class}} 华东交通大学</view>
+    </block>
   </view>
   <view class="mainContent">
     <view class="alterBar">

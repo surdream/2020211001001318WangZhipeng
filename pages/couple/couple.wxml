@@ -10,7 +10,7 @@
 <!-- 内容区域 -->
 <view class="container">
   <!-- 情侣空间页 -->
-  <van-transition name="slide-right" show="{{hasLoveDate}}" custom-class="block">
+  <van-transition name="slide-right" show="{{hasLoveDate}}">
     <view class="topWrap">
       <view class="avatarBar">
         <image class="topWrap_avatar leftAvatar" src="{{accountInfo.avatar}}"></image>
@@ -47,7 +47,7 @@
     </view>
   </van-transition>
   <!-- 情侣信息获取页 -->
-  <van-transition name="fade-left" show="{{!hasLoveDate}}" custom-class="block">
+  <van-transition name="fade-left" show="{{!hasLoveDate}}">
     <view class="topWrap-Get">
         <image src="/images/guide/couple.png"></image>
     </view>

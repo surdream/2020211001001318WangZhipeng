@@ -8,7 +8,7 @@ Page({
     windowHeight: app.globalData.windowHeight,
     msgValue: '',
     pageTitle: '情侣空间',
-    hasLoveDate: true,
+    hasLoveDate: false,
     actionShow: false,
     selectedDay: '请选择',
     courentDay: '',

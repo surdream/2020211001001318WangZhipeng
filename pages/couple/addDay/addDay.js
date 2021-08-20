@@ -7,7 +7,7 @@ Page({
     dayTitle: '',
     type: 'add',
     pageTitle: '添加纪念日',
-    selectedDay: '点击这里选择日期',
+    selectedDay: '点击选择日期',
   },
   onLoad: function (options) {
     let type = options.type;
@@ -24,6 +24,7 @@ Page({
     var timestamp = Date.parse(new Date());
         timestamp = timestamp / 1000;
     let courentDay = time.formatTimeRev(timestamp,'Y/M/D');
+    console.log(courentDay)
     this.setData({
       dayTitle: dayTitle,
       courentDay: courentDay
