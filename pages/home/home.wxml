@@ -161,7 +161,13 @@
     close-on-click-overlay="{{ true }}"
 >
   <view class="msgBox">
-    <view class="msgBox_title">编辑留言</view>
+    <view class="msgBox_title">
+      <view class="msgBox_nav" bindtap="navTo" data-url="couple">
+        <text>情侣空间</text>
+        <image src="/images/home/navCouple.png"></image>
+      </view>
+      <text>编辑留言</text>
+    </view>
     <van-cell-group>
       <van-field
         value="{{ msgValue }}"

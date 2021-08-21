@@ -308,7 +308,25 @@ swiper image {
 .msgBox_title{
   font-weight: 800;
   font-size: 32rpx;
-  margin: 0 0 20rpx 30rpx;
+  margin: 0 0 20rpx 5%;
+}
+.msgBox_nav{
+  display: inline-flex;
+  position: absolute;
+  right: 7.5%;
+  background: #fff;
+  padding: 5rpx 10rpx;
+  border-radius: 15rpx;
+}
+.msgBox_nav text{
+  font-size: 25rpx;
+  margin-right: 5rpx;
+  color: #F0878A;
+}
+.msgBox_nav image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-top: 4rpx;
 }
 .sentMsg{
   text-align: center;
