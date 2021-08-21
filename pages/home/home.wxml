@@ -32,7 +32,7 @@
     </view>
   </view>
   <view class="midWrap">
-    <view class="useful-box" bindtap="navTo" data-url="office-calendar">
+    <view class="useful-box" bindtap="navTo" data-url="schoolCalendar">
       <image src="/images/home/calendar.png"></image>
       <text>教学校历</text>
     </view>

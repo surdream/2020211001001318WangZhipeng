@@ -19,7 +19,7 @@ Page({
   },
   navToManagement(){
     wx.navigateTo({
-      url: '/pages/office-testify-management/office-testify-management',
+      url: './management/management',
     })
   }
 })

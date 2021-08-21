@@ -10,7 +10,7 @@
 <!-- 内容区域 -->
 <view class="container">
   <!-- 情侣空间页 -->
-  <van-transition name="slide-right" show="{{hasLoveDate}}">
+  <view wx:if="{{hasLoveDate}}">
     <view class="topWrap">
       <view class="avatarBar">
         <image class="topWrap_avatar leftAvatar" src="{{accountInfo.avatar}}"></image>
@@ -45,9 +45,9 @@
         <view class="coupleBox_detail">6<text>个参加的活动</text></view>
       </view>
     </view>
-  </van-transition>
+  </view>
   <!-- 情侣信息获取页 -->
-  <van-transition name="fade-left" show="{{!hasLoveDate}}">
+  <view wx:if="{{!hasLoveDate}}">
     <view class="topWrap-Get">
         <image src="/images/guide/couple.png"></image>
     </view>
@@ -77,5 +77,5 @@
       </view>
       <view class="nextBtn" bindtap="changeContent">完成</view>
     </view>
-  </van-transition>
+  </view>
 </view>

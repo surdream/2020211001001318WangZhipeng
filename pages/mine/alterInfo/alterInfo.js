@@ -1,5 +1,5 @@
 var app = getApp();
-const { request } = require("../../utils/request/request");
+const { request } = require("../../../utils/request/request");
 Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,

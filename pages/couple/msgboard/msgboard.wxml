@@ -7,7 +7,7 @@
 <view class="container">
   <!-- 消息显示栏 -->
   <view class="msgWrap">
-    <scroll-view scroll-y="true" style="height:{{contentHeight-95}}px;">
+    <scroll-view scroll-y="true" style="height:{{contentHeight-100}}px;">
       <view class="msgBox" wx:for="{{loverInfo.msg}}" wx:key="index">
         <view class="msgBox_time">{{item.createtime}}</view>
         <image class="msgBox_img img_{{item.userid == user_id?'self':'lover'}}" src="{{item.userid == user_id?user_img:lover_img}}"></image>
