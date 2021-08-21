@@ -1,6 +1,6 @@
 <!-- 背景区域 -->
 <view class="{{!hasLoveDate?'hasDatePage':'noDatePage'}}" style="height: {{windowHeight}}px;"></view>
-<image class="heartWrap" src="/images/couple/manyHearts.png" wx:if="{{hasLoveDate}}"></image>
+<image class="heartWrap" src="/images/couple/manyHearts.png" wx:if="{{hasLoveDate}}" bindtap="heartTap"></image>
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{hasLoveDate}}"></image>
@@ -34,12 +34,12 @@
         <view class="coupleBox_title">纪念日</view>
         <view class="coupleBox_detail">{{loverInfo.msg.length+1}}<text>个日子</text></view>
       </view>
-      <view class="coupleBox">
+      <view class="coupleBox" bindtap="navTo" data-url="loverTarget">
         <image class="coupleBox_img" src="/images/couple/loveHabbit.png"></image>
         <view class="coupleBox_title">目标</view>
         <view class="coupleBox_detail">1<text>个共同目标</text></view>
       </view>
-      <view class="coupleBox">
+      <view class="coupleBox" bindtap="navTo" data-url="loverActivity">
         <image class="coupleBox_img" src="/images/couple/loveActive.png"></image>
         <view class="coupleBox_title">活动</view>
         <view class="coupleBox_detail">6<text>个参加的活动</text></view>
@@ -79,27 +79,3 @@
     </view>
   </van-transition>
 </view>
-<!-- 留言弹窗 -->
-<van-action-sheet
-    description=""
-    show="{{ actionShow }}"
-    bind:close="actionClose"
-    close-on-click-overlay="{{ true }}"
->
-  <view class="msgBox">
-    <view class="msgBox_title">编辑留言</view>
-    <van-cell-group>
-      <van-field
-        value="{{ msgValue }}"
-        placeholder="输入想说的话..."
-        border="{{ false }}"
-        bind:change="onChange"
-        clearable="true"
-        show-word-limit="true"
-        maxlength="50"
-        custom-style="border-radius:25rpx;height:275rpx;"
-      />
-    </van-cell-group>
-    <view class="sentMsg" bindtap="sentMsg">发送留言</view>
-  </view>
-</van-action-sheet>

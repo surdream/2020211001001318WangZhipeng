@@ -9,7 +9,6 @@ Page({
     msgValue: '',
     pageTitle: '情侣空间',
     hasLoveDate: false,
-    actionShow: false,
     selectedDay: '请选择',
     courentDay: '',
     dayDiff: '?',
@@ -17,7 +16,6 @@ Page({
   onLoad: function (options) {
     let accountInfo = wx.getStorageSync('accountInfo');
     let loverInfo = wx.getStorageSync('accountInfo').lover;
-    console.log(loverInfo)
     this.setData({
       accountInfo: accountInfo,
       loverInfo: loverInfo
@@ -33,9 +31,16 @@ Page({
   },
   navTo(e){
     let url = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: '/pages/couple/' + url + '/' + url,
-    })
+    if(url == 'loverTarget'||url == 'loverActivity'){
+      wx.showToast({
+        title: '功能正在开发，敬请期待',
+        icon: 'none'
+      })
+    } else{
+      wx.navigateTo({
+        url: '/pages/couple/' + url + '/' + url,
+      })
+    }
   },
   datePickerSelected(e){
     let selectedDay = e.detail.value.replace(/-/g,'/')
@@ -69,38 +74,14 @@ Page({
     }
   },
   writeTap(){
-    this.setData({ actionShow: true })
-  },
-  onChange(e){
-    let value = e.detail;
-    this.setData({
-      msgValue: value
+    wx.navigateTo({
+      url: './msgboard/msgboard',
     })
   },
-  actionClose() {
-    this.setData({ actionShow: false });
-  },
-  sentMsg(){
-    let msgValue = this.data.msgValue;
-    request({
-      url: "api/user/sendmsg?content=" + msgValue, 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      console.log(res);
-      if(res.data.code == 200){
-        wx.showToast({
-          title: '留言发送成功！',
-        })
-        this.setData({
-          actionShow: false,
-          msgValue: ''
-        })
-      } else if(res.data.code == 400){
-        wx.showToast({
-          title: '发送失败请重试',
-          icon: 'error'
-        })
-      }
+  heartTap(){
+    wx.showToast({
+      title: 'enjoy~🥰',
+      icon: 'none'
     })
   },
   BackPage() {

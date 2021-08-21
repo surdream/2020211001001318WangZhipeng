@@ -80,9 +80,9 @@
   border: 2rpx solid #F48BAD;
   background: rgba(255,255,255,0.05);
   border-radius: 50rpx;
-  width: 275rpx;
-  height: 275rpx;
-  margin: 0 0 15rpx 15rpx;
+  width: 260rpx;
+  height: 260rpx;
+  margin: 0 0 25rpx 25rpx;
 }
 .coupleBox_img{
   width: 100rpx;
@@ -137,7 +137,7 @@
 .heartImg{
   width: 50rpx;
   height: 50rpx;
-  margin: 0 30rpx 60rpx 30rpx;
+  margin: 0 25rpx 65rpx 25rpx;
 }
 .bottomWrap-Get{
   margin-top: 30rpx;
@@ -147,6 +147,7 @@
   color: #FDEDEC;
   font-size: 42rpx;
   letter-spacing: 2rpx;
+  font-weight: 700;
 }
 .pickerBar{
   color: #FDEDEC;
@@ -175,6 +176,7 @@
   padding: 8rpx 64rpx 12rpx 64rpx;
   border: 4rpx solid #FDEDEC;
   border-radius: 24rpx;
+  font-weight: 700;
   color: #FDEDEC;
 }
 /* 编辑留言模块 */

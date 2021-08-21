@@ -64,7 +64,7 @@ page{
 }
 .listTopBar{
   width: 90%;
-  margin: 15rpx 5% 0 5%;
+  margin: 15rpx 5% 15rpx 5%;
   color: #F97390;
 }
 .listTopBar_add{

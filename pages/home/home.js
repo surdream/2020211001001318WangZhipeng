@@ -151,26 +151,33 @@ Page({
   },
   sentMsg(){
     let msgValue = this.data.msgValue;
-    request({
-      url: "api/user/sendmsg?content=" + msgValue, 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      console.log(res);
-      if(res.data.code == 200){
-        wx.showToast({
-          title: '留言发送成功！',
-        })
-        this.setData({
-          actionShow: false,
-          msgValue: ''
-        })
-      } else if(res.data.code == 400){
-        wx.showToast({
-          title: '发送失败请重试',
-          icon: 'error'
-        })
-      }
-    })
+    if(msgValue.length == 0){
+      wx.showToast({
+        title: '请输入想说的话',
+        icon: 'error'
+      })
+    } else{
+      request({
+        url: "api/user/sendmsg?content=" + msgValue, 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res);
+        if(res.data.code == 200){
+          wx.showToast({
+            title: '留言发送成功！',
+          })
+          this.setData({
+            actionShow: false,
+            msgValue: ''
+          })
+        } else if(res.data.code == 400){
+          wx.showToast({
+            title: '发送失败请重试',
+            icon: 'error'
+          })
+        }
+      })
+    }
   },
   touchStart: function(e){
     // console.log(e)

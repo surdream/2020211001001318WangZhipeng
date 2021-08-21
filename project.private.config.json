@@ -89,6 +89,12 @@
           "pathName": "pages/couple/anniversary/anniversary",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/couple/msgboard/msgboard",
+          "pathName": "pages/couple/msgboard/msgboard",
+          "query": "",
+          "scene": null
         }
       ]
     }

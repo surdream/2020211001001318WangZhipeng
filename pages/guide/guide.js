@@ -204,6 +204,21 @@ Page({
                     this.setData({
                       nextBtn: '完成'
                     })
+                    // 用户登录
+                    let userInfo = wx.getStorageSync('userInfo');
+                    request({
+                      url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+                    }).then(res => {
+                        wx.removeStorageSync('sessionid');
+                        wx.setStorageSync("sessionid", res.cookies[0]);
+                        request({
+                          url: "api/user/profile?", 
+                          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                        }).then(res =>{
+                          let accountInfo = res.data.data;
+                          wx.setStorageSync('accountInfo', accountInfo);
+                        })
+                    })
                     wx.showToast({
                       title: '导入成功，如信息显示不正常请重新进入小程序',
                       icon: 'none'

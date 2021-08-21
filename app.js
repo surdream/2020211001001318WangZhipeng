@@ -20,7 +20,7 @@ App({
         let menuButtonObject = wx.getMenuButtonBoundingClientRect();// 获取胶囊实例
         let menuButtonHeight = menuButtonObject.height;// 胶囊高度
         let menuButtonTop = menuButtonObject.top;// 胶囊顶距
-        
+        // 兼容不同设备显示区域
         let statusBarHeight = e.statusBarHeight;// 状态栏高度
         let windowHeight = e.windowHeight;// 窗口高度
         let displayScale = (750 / windowHeight)// 转换高度

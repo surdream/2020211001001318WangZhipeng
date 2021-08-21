@@ -1,8 +1,37 @@
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
-  <image class="navBarButton" src="/images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
-  <view class="navBar"><text class="navBar_title textPink">留言板</text></view>
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #EB3C62;">
+  <image class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title white95">情侣留言</text></view>
 </view>
 <!-- 内容区域 -->
 <view class="container">
+  <!-- 消息显示栏 -->
+  <view class="msgWrap">
+    <scroll-view scroll-y="true" style="height:{{contentHeight-95}}px;">
+      <view class="msgBox" wx:for="{{loverInfo.msg}}" wx:key="index">
+        <view class="msgBox_time">{{item.createtime}}</view>
+        <image class="msgBox_img img_{{item.userid == user_id?'self':'lover'}}" src="{{item.userid == user_id?user_img:lover_img}}"></image>
+        <view class="msgBox_content content_{{item.userid == user_id?'self':'lover'}}">{{item.content}}</view>
+      </view>
+  </scroll-view>
+  </view>
+  <!-- 消息发送栏 -->
+  <view class="sentBar">
+    <van-cell-group>
+      <van-field
+        value="{{ msgValue }}"
+        placeholder="输入想说的话..."
+        border="{{ false }}"
+        bind:change="onChange"
+        clearable="true"
+        maxlength="50"
+        custom-style="border-radius:12rpx;height:40px;width:75%;margin-left:3.5%;padding: 7px 42px 5px 15px;font-size:13px;background:rgba(0,0,0,0.05);color:rgba(0,0,0,0.5);"
+        placeholder-style="color:rgba(0,0,0,0.5);"
+      />
+      <view class="inputCount">{{msgValue.length}}/50</view>
+      <view class="sentBtn" bindtap="sentTap">发送</view>
+      <view class="safeArea"></view>
+    </van-cell-group>
+  </view>
 </view>
+
