@@ -51,6 +51,10 @@ Page({
           title: '你发出的申请对方还没有回应',
           icon: 'none'
         })
+      } else if(url == 'alterInfo'){
+        wx.navigateTo({
+          url: './alterInfo/alterInfo',
+        })
       } else{
         wx.navigateTo({
           url: '/pages/' + url + '/' + url,

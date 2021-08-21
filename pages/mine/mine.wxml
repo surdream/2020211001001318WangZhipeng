@@ -22,7 +22,7 @@
         <image class="alterBox_img" src="/images/mine/import.png"></image>
         <text class="alterBox_text">导入课表</text>
       </view>
-      <view class="alterBox" bindtap="navTo" data-url="mine-alterInfo">
+      <view class="alterBox" bindtap="navTo" data-url="alterInfo">
         <image class="alterBox_img" src="/images/mine/alter.png"></image>
         <text class="alterBox_text">个人信息</text>
       </view>
