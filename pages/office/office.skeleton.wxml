@@ -3,97 +3,90 @@
     <view is="miniprogram_npm/@vant/weapp/notify/index" id="van-notify">
       <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
     </view>
-    <view style="height:32px;margin-top:50px;">
+    <view style="height:52px;padding-top:50px;">
       <view class="navBar">
         <view class="navBar_title">
-          <view class="sk-transparent sk-text-14-2857-481 sk-text" style="background-position-x: 50%;">教务处</view>
-          <text class="courentWeek sk-transparent sk-text-14-2857-565 sk-text" style="background-position-x: 50%;">(16周)</text>
+          <view class="sk-transparent sk-text-14-2857-317 sk-text" style="background-position-x: 50%;">教务处</view>
+          <text class="courentWeek sk-transparent sk-text-14-2857-722 sk-text" style="background-position-x: 50%;">(未开学)</text>
         </view>
       </view>
     </view>
-    <view class="container">
+    <scroll-view class="container" scroll-y="true" style="height: 648px;">
       <view class="topWrap">
         <image class="topSchImg sk-image"></image>
-        <view class="topTitle sk-transparent sk-text-14-2857-373 sk-text">选择课程</view>
+        <view class="topTitle sk-transparent sk-text-14-2857-786 sk-text">选择课程</view>
       </view>
       <view class="course_list">
         <scroll-view scroll-x="true" style="height:76px;white-space:nowrap;">
           <view class="courseBox" data-id="0" style="background:#7BDEE8">
-            <text class="courseBox_title sk-transparent sk-text-14-2857-29 sk-text">JAVA Web框架技术</text>
-            <text class="courseBox_class sk-transparent sk-text-14-2857-31 sk-text">小一班</text>
-            <text class="courseBox_microNum sk-transparent sk-text-14-2857-568 sk-text">18</text>
+            <text class="courseBox_title sk-transparent sk-text-14-2857-725 sk-text">JAVA Web框架技术</text>
+            <text class="courseBox_class sk-transparent sk-text-14-2857-427 sk-text">20211-4【小2班】</text>
+            <text class="courseBox_microNum sk-transparent sk-text-14-2857-485 sk-text">18</text>
           </view>
           <view class="courseBox" data-id="1" style="background:#EE7785">
-            <text class="courseBox_title sk-transparent sk-text-14-2857-146 sk-text">Javascript编程技术</text>
-            <text class="courseBox_class sk-transparent sk-text-14-2857-965 sk-text">小一班</text>
-            <text class="courseBox_microNum sk-transparent sk-text-14-2857-637 sk-text">16</text>
+            <text class="courseBox_title sk-transparent sk-text-14-2857-871 sk-text">Javascript编程技术</text>
+            <text class="courseBox_class sk-transparent sk-text-14-2857-421 sk-text">20211-2【小1班】</text>
+            <text class="courseBox_microNum sk-transparent sk-text-14-2857-523 sk-text">16</text>
           </view>
           <view class="courseBox" data-id="2" style="background:#E3C160">
-            <text class="courseBox_title sk-transparent sk-text-14-2857-368 sk-text">Linux操作系统</text>
-            <text class="courseBox_class sk-transparent sk-text-14-2857-958 sk-text">小一班</text>
+            <text class="courseBox_title sk-transparent sk-text-14-2857-34 sk-text">Linux操作系统</text>
+            <text class="courseBox_class sk-transparent sk-text-14-2857-439 sk-text">20211-5【小1班】</text>
             <text class="courseBox_microNum sk-transparent sk-opacity">7</text>
           </view>
           <view class="courseBox" data-id="3" style="background:#C1E965"></view>
         </scroll-view>
       </view>
       <view class="usefulWrap">
-        <view class="usefulWrap_box">
-          <image class="usefulWrap_icon sk-image" data-url="office-calendar" style="background: rgba(106,91,241,0.5)"></image>
-          <view class="usefulWrap_text sk-transparent sk-text-14-2857-174 sk-text" style="background-position-x: 50%;">教学校历</view>
+        <view class="usefulWrap_box" data-url="schoolCalendar">
+          <image class="usefulWrap_icon sk-image" style="background: rgba(106,91,241,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-819 sk-text" style="background-position-x: 50%;">教学校历</view>
         </view>
-        <view class="usefulWrap_box">
-          <image class="usefulWrap_icon sk-image" data-url="note" style="background: rgba(252,212,48,0.5)"></image>
-          <view class="usefulWrap_text sk-transparent sk-text-14-2857-239 sk-text" style="background-position-x: 50%;">课堂笔记</view>
+        <view class="usefulWrap_box" data-url="note">
+          <image class="usefulWrap_icon sk-image" style="background: rgba(252,212,48,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-574 sk-text" style="background-position-x: 50%;">课堂笔记</view>
         </view>
-        <view class="usefulWrap_box">
-          <image class="usefulWrap_icon sk-image" data-url="office-testify" style="background: rgba(107,219,246,0.5)"></image>
-          <view class="usefulWrap_text sk-transparent sk-text-14-2857-92 sk-text" style="background-position-x: 50%;">加分证明</view>
+        <view class="usefulWrap_box" data-url="testify">
+          <image class="usefulWrap_icon sk-image" style="background: rgba(107,219,246,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-117 sk-text" style="background-position-x: 50%;">加分证明</view>
         </view>
-        <view class="usefulWrap_box" style="margin:0;">
-          <image class="usefulWrap_icon sk-image" data-url="office-target" style="background: rgba(122,122,252,0.5)"></image>
-          <view class="usefulWrap_text sk-transparent sk-text-14-2857-870 sk-text" style="background-position-x: 50%;">学期目标</view>
+        <view class="usefulWrap_box" data-url="target" style="margin:0;">
+          <image class="usefulWrap_icon sk-image" style="background: rgba(122,122,252,0.5)"></image>
+          <view class="usefulWrap_text sk-transparent sk-text-14-2857-325 sk-text" style="background-position-x: 50%;">学期目标</view>
         </view>
       </view>
       <view class="infoWrap">
         <view class="infoControlWrap">
           <view class="infoControlBar">
             <image class="infoControlBar_img sk-image" style="background: rgba(112,132,252, 0.5);"></image>
-            <view class="infoControlBar_title sk-transparent sk-text-14-2857-767 sk-text">课程信息 08/12</view>
-            <view class="infoControlBar_detail sk-transparent sk-text-14-2857-731 sk-text">你今天共有 0 堂课</view>
-            <view class="bfBtn sk-transparent sk-text-14-2857-241 sk-text" data-type="before" style="border: none;">前一天</view>
-            <view class="afBtn sk-transparent sk-text-14-2857-287 sk-text" data-type="after" style="border: none;">后一天</view>
+            <view class="infoControlBar_title sk-transparent sk-text-14-2857-89 sk-text">课程信息 08/22</view>
+            <view class="infoControlBar_detail sk-transparent sk-text-14-2857-531 sk-text">你今天共有 0 堂课</view>
+            <view class="bfBtn sk-transparent sk-text-14-2857-190 sk-text" data-type="before" style="border: none;">前一天</view>
+            <view class="afBtn sk-transparent sk-text-14-2857-549 sk-text" data-type="after" style="border: none;">后一天</view>
           </view>
         </view>
         <view class="infoBar">
           <view class="infoListTitleChecked" data-id="0">
-            <text class="sk-transparent sk-text-14-2857-644 sk-text">我的课表</text>
+            <text class="sk-transparent sk-text-14-2857-181 sk-text">我的课表</text>
             <view class="infoListTitle_border" style="border: none;"></view>
           </view>
           <view class="infoListTitleUnCheck" data-id="1">
-            <text class="sk-transparent sk-text-14-2857-94 sk-text">查询成绩</text>
+            <text class="sk-transparent sk-text-14-2857-89 sk-text">查询成绩</text>
             <view class="infoListTitle_unBorder" style="border: none;"></view>
           </view>
           <view class="infoListTitleUnCheck" data-id="2">
-            <text class="sk-transparent sk-text-14-2857-421 sk-text">考试安排</text>
+            <text class="sk-transparent sk-text-14-2857-705 sk-text">考试安排</text>
             <view class="infoListTitle_unBorder" style="border: none;"></view>
           </view>
         </view>
         <view class="infoListWrap">
-          <scroll-view scroll-y="true" style="height:289px;">
+          <scroll-view>
             <view class="defaultWrap">
               <image class="defaultImg sk-image"></image>
-              <view class="defaultNotice sk-transparent sk-text-14-2857-668 sk-text" style="background-position-x: 50%;">今天没有课哦</view>
+              <view class="defaultNotice sk-transparent sk-text-14-2857-432 sk-text" style="background-position-x: 50%;">今天没有课哦</view>
             </view>
           </scroll-view>
         </view>
       </view>
-    </view>
-    <view is="miniprogram_npm/@vant/weapp/action-sheet/index">
-      <view is="miniprogram_npm/@vant/weapp/popup/index">
-        <view is="miniprogram_npm/@vant/weapp/overlay/index">
-          <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
-        </view>
-      </view>
-    </view>
+    </scroll-view>
   </view>
 </template>

@@ -18,8 +18,8 @@ page{
   height: 24rpx;
   margin: 50rpx 0 0 215rpx;
   border-radius: 50%;
-  background: #B6B6B6;
-  border: 4rpx solid #EFEFEF;
+  background: #EFEFEF;
+  border: 4rpx solid #fff;
 }
 .topWrap_openname{
   position: absolute;
@@ -36,7 +36,7 @@ page{
   font-size: 26rpx;
 }
 .mainContent{
-  background: linear-gradient(180deg,#fff 0%,#EFEFEF 80%);
+  background: linear-gradient(180deg,#fff 0%,#EFEFEF 75%);
   border-radius: 72rpx 72rpx 0 0;
   height: 1500rpx;
   margin-top: 50rpx;

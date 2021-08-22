@@ -11,7 +11,7 @@ Page({
     colorList: app.globalData.glassColor,
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    adaptValue: app.globalData.adaptValue,
+    contentHeight: app.globalData.contentHeight,
     loading: true,
     showGrade: false,
     diff: 0, //日期差值

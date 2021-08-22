@@ -1,0 +1,22 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #709E8D;">
+  <image class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title white95">关于</text></view>
+</view>
+<!-- 内容区域 -->
+<view class="container">
+  <view class="topInfoBar">
+    <image class="topInfoBar_logo" src="/images/mine/logo.png"></image>
+    <view class="topInfoBar_title">一目校园</view>
+    <view class="topInfoBar_detail">目之所及，皆为所爱</view>
+    <view class="topInfoBar_version">{{version}}</view>
+  </view>
+  <view class="midWrap">
+    <view class="aboutBox">
+      <view class="aboutBox_title"></view>
+      <view class="aboutBox_detail"></view>
+    </view>
+  </view>
+  <view class="subBtn">关注我们</view>
+  <view class="bottomWrap">© 2021-2022 v.powerv.top All rights reserved.</view>
+</view>

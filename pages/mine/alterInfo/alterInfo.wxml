@@ -1,6 +1,6 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <image class="navBarButton_bold" src="/images/conmon/close-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
   <view class="navBar"><text class="navBar_title white95">个人信息</text></view>
 </view>
 <!-- 内容区域 -->

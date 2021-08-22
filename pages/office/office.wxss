@@ -7,7 +7,6 @@ page{
   color: rgba(0, 0, 0, 0.8);
 }
 .topWrap{
-  padding-top: 20rpx;
   height: 90rpx;
 }
 .topSchImg{

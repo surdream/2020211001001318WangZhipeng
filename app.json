@@ -13,6 +13,10 @@
     "pages/navigation/navigation",
     "pages/mine/mine",
     "pages/mine/alterInfo/alterInfo",
+    "pages/mine/update/update",
+    "pages/mine/update/help/help",
+    "pages/mine/about/about",
+    "pages/mine/privacy/privacy",
     "pages/couple/couple",
     "pages/couple/msgboard/msgboard",
     "pages/couple/anniversary/anniversary"

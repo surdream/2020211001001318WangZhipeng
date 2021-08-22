@@ -6,7 +6,7 @@
     <image wx:if="{{swiperCurrent != 0}}" class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="backStep"></image>
   </block>
   <block wx:if="{{from == 'import'}}">
-    <image wx:if="{{swiperCurrent == 0}}" class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+    <image wx:if="{{swiperCurrent == 0}}" class="navBarButton" src="/images/conmon/close.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
     <image wx:if="{{swiperCurrent != 0}}" class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="backStep"></image>
   </block>
   <block wx:if="{{from == 'couple'}}">

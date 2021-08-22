@@ -1,0 +1,12 @@
+.helpBox{
+  padding: 40rpx 30rpx;
+}
+.helpBox_title{
+  margin-left: 15rpx;
+}
+.helpBox_img{
+  margin-top: 20rpx;
+  width: 300rpx;
+  height: 600rpx;
+  border-radius: 25rpx;
+}

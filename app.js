@@ -42,6 +42,6 @@ App({
     })
   },
   globalData: {
-
+    version: '内测 0.5（210822）'
   }
 })

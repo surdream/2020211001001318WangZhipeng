@@ -33,26 +33,26 @@
         <text class="usefulBox_text">情侣空间&绑定情侣</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="navTo" data-url="wechat">
+      <view class="usefulBox" bindtap="aboutTo" data-url="wechat">
         <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
-        <text class="usefulBox_text">校园公众号&精彩推文</text>
+        <text class="usefulBox_text">校园公众号&原创推文</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="navTo" data-url="help">
+      <view class="usefulBox" bindtap="aboutTo" data-url="update">
         <image class="usefulBox_img" src="/images/mine/idea.png"></image>
-        <text class="usefulBox_text">查看帮助&使用建议</text>
+        <text class="usefulBox_text">查看帮助&功能更新</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
     </view>
     <view class="aboutWrap">
       <van-grid column-num="2" custom-class="aboutLink" clickable="true" border="{{ false }}" icon-size="24">
-        <van-grid-item icon="/images/mine/team.png" text="关于我们" />
-        <van-grid-item icon="/images/mine/privacy.png" text="安全&隐私" />
+        <van-grid-item icon="/images/mine/team.png" text="关于我们" bindtap="aboutTo" data-url="about"/>
+        <van-grid-item icon="/images/mine/privacy.png" text="安全&隐私" bindtap="aboutTo" data-url="privacy"/>
       </van-grid>
       <van-grid column-num="2" custom-class="aboutLink" clickable="true" border="{{ false }}"
       icon-size="24">
-        <van-grid-item icon="/images/mine/chat.png" text="反馈&聊天" />
-        <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" />
+        <van-grid-item icon="/images/mine/chat.png" text="反馈&聊天" bindtap="aboutTo" data-url="feedback"/>
+        <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="aboutTo" data-url="link"/>
       </van-grid>
     </view>
   </view>

@@ -73,12 +73,6 @@
           "scene": null
         },
         {
-          "name": "pages/mine-alterInfo/mine-alterInfo",
-          "pathName": "pages/mine-alterInfo/mine-alterInfo",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/couple/couple",
           "pathName": "pages/couple/couple",
           "query": "",
@@ -93,6 +87,30 @@
         {
           "name": "pages/couple/msgboard/msgboard",
           "pathName": "pages/couple/msgboard/msgboard",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/about/about",
+          "pathName": "pages/mine/about/about",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/privacy/privacy",
+          "pathName": "pages/mine/privacy/privacy",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/update/update",
+          "pathName": "pages/mine/update/update",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/update/help/help",
+          "pathName": "pages/mine/update/help/help",
           "query": "",
           "scene": null
         }

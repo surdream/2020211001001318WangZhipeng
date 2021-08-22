@@ -1,14 +1,14 @@
 <import src="office.skeleton.wxml"/>
 <template is="skeleton" wx-if="{{loading}}" />
 <van-notify id="van-notify"/>
-<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+<view style="height:{{menuButtonHeight+20}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar"><view class="navBar_title">
   <view>教务处</view> 
   <text class="courentWeek" wx:if="{{accountInfo.week > 0}}">(第{{accountInfo.week}}周)</text>
   <text class="courentWeek" wx:if="{{accountInfo.week <= 0}}">(未开学)</text>
   </view></view>
 </view>
-<view class="container" wx-if="{{!loading}}">
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
     <view class="topTitle">选择课程</view>
@@ -80,7 +80,7 @@
     </view>
     <!-- 主要内容区 -->
     <view class="infoListWrap">
-      <scroll-view scroll-y="ture" style="height:{{475 + adaptValue}}rpx;" bindtouchstart="touchStart" bindtouchend="touchEnd">
+      <scroll-view bindtouchstart="touchStart" bindtouchend="touchEnd">
       <block wx:if="{{titleTarget == 0}}">
         <view class="infoBox" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}" wx:for-item="chartItem">
           <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
@@ -146,7 +146,7 @@
       </scroll-view>
     </view>
   </view>
-</view>
+</scroll-view>
 <!-- 底部弹出选项卡 -->
 <van-action-sheet
     title="学期列表"

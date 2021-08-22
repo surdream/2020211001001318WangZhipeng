@@ -1,4 +1,4 @@
-import Dialog from '@vant/weapp/dialog/dialog';
+import Notify from '@vant/weapp/notify/notify';
 var app = getApp();
 const { request } = require("../../utils/request/request");
 let touchDotX = 0;
@@ -9,7 +9,7 @@ Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    adaptValue: app.globalData.adaptValue,
+    contentHeight: app.globalData.contentHeight,
     chart_list: [
       {time: '08:00-09:40',name: '高等数学Ⅰ',background: '#74b9ff',status: 'now',remark: 'has'},
       {time: '10:30-12:10',name: '大学物理Ⅰ',background: '#55efc4',status: 'next'},
@@ -24,6 +24,7 @@ Page({
       {title: '第13届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'6589'},
       {title: '第14届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'23'},
       {title: '第15届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'982'},
+      {title: '第16届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'982'},
     ],
     imgUrls: [
       '/images/home/show.png',
@@ -235,5 +236,21 @@ Page({
     }
     clearInterval(interval);
     time = 0;
+  },
+  pullUpLoad: function(){
+    var that = this;
+    console.log("====下拉====");
+    let arr = that.data.news_list;
+    let newArr = arr.concat(arr);
+    console.log(newArr);
+    this.setData({
+      news_list: newArr
+    })
+    Notify({
+      message: '获取到 5 条动态',
+      type: 'success ',
+      safeAreaInsetTop: true,
+      duration: '600'
+    });
   }
 })

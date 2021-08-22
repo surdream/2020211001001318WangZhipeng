@@ -1,0 +1,12 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #EFEFEF;">
+  <image class="navBarButton_bold" src="/images/conmon/close.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">新手指引</text></view>
+</view>
+<!-- 内容区域 -->
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight}}px;">
+  <view class="helpBox">
+    <view class="helpBox_title">进行认证</view>
+    <image class="helpBox_img" src="/images/mine/help.jpg"></image>
+  </view>
+</scroll-view>

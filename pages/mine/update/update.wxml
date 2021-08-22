@@ -1,0 +1,13 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #EFEFEF;">
+  <image class="navBarButton_bold" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">帮助&更新</text></view>
+</view>
+<!-- 内容区域 -->
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-10}}px;">
+  <view class="updateBox" bindtap="navTo" data-url="help">
+    <image class="updateBox_img" src="/images/conmon/right-deepGrey.png"></image>
+    <view class="updateBox_title">一目校园 内测0.5.0(新手指引)</view>
+    <view class="updateBox_time">2021年8月22日</view>
+  </view>
+</scroll-view>
