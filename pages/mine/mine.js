@@ -37,16 +37,16 @@ Page({
         wx.navigateTo({
           url: '../guide/guide?from=import',
         })
-      } else if(status == 0){
+      } else if(status == 0 && url== 'couple'){
         wx.navigateTo({
           url: '../guide/guide?from=couple',
         })
-      } else if(status == 2){
+      } else if(status == 2 && url== 'couple'){
         wx.showToast({
           title: '你还有一条绑定申请未处理',
           icon: 'none'
         })
-      } else if(status == 3){
+      } else if(status == 3 && url== 'couple'){
         wx.showToast({
           title: '你发出的申请对方还没有回应',
           icon: 'none'
