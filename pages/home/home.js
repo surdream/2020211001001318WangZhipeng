@@ -55,7 +55,8 @@ Page({
           let lover_status = accountInfo.lover_status;
           wx.setStorageSync('accountInfo', accountInfo);
           this.setData({
-            accountInfo: accountInfo
+            accountInfo: accountInfo,
+            lover_status: lover_status
           })
           if(accountInfo.lover.msg.length != 0){
             this.setData({
@@ -101,7 +102,7 @@ Page({
     let type = e.currentTarget.dataset.type;
     console.log(type);
     request({
-      url: "api/user/" + type, 
+      url: "api/lover/" + type, 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
       console.log(res)
@@ -115,7 +116,15 @@ Page({
     })
   },
   writeTap(){
-    this.setData({ actionShow: true })
+    let lover_status = this.data.lover_status;
+    if(lover_status == 1){
+      this.setData({ actionShow: true })
+    } else{
+      wx.showToast({
+        title: '你还没有绑定情侣',
+        icon: 'none'
+      })
+    }
   },
   swiperChange(e) {
     let current = e.detail.current;
@@ -159,7 +168,7 @@ Page({
       })
     } else{
       request({
-        url: "api/user/sendmsg?content=" + msgValue, 
+        url: "api/lover/sendmsg?content=" + msgValue, 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res);

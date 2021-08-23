@@ -55,7 +55,8 @@ Page({
         wx.navigateTo({
           url: './alterInfo/alterInfo',
         })
-      } else{
+      } else if(url == 'official'){
+      }else{
         wx.navigateTo({
           url: '/pages/' + url + '/' + url,
         })

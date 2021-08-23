@@ -327,9 +327,9 @@ Page({
   // 搜索按钮
   searchTap(){
     let account_link = this.data.account_link;
-    if(account_link.length == 16){
+    if(account_link.length == 5){
       request({
-        url: "api/user/searchAccount?" + "account=" + account_link, 
+        url: "api/lover/searchAccount?" + "account=" + account_link, 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res);
@@ -358,7 +358,7 @@ Page({
   sentTap(){
     let account = this.data.account_link;
     request({
-      url: "api/user/bindLover?" + "account=" + account, 
+      url: "api/lover/bindLover?" + "account=" + account, 
       method: 'GET',  header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res => {
       console.log(res.data)

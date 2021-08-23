@@ -1,8 +1,8 @@
 export const request = (params) => {
 
   // 定义公共的  URL
-  const host = "https://kb.jswzl.xyz/";
-  var baseUrl = "https://kb.jswzl.xyz/";
+  const host = "https://v.powerv.top/";
+  var baseUrl = "https://v.powerv.top/";
 
   return new Promise((resolve, reject) => {
       wx.request({

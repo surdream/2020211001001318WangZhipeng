@@ -9,14 +9,14 @@
     <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
     <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
     <text class="topWrap_openname">{{accountInfo.openname}}</text>
-    <view class="topWrap_detail">一目校园 | id：{{accountInfo.userid}}</view>
+    <view class="topWrap_detail">一目校园 | id：{{accountInfo.userid_show}}</view>
     <view class="topWrap_update" bindtap="updateTap">
       <image src="/images/mine/update.png"></image>
-      <text>同步微信信息</text>
+      <text>同步微信账户</text>
     </view>
   </view>
   <view class="mainContent">
-    <scroll-view scroll-y="true" style="height: 70vh;">
+    <scroll-view scroll-y="true" style="height: 60vh;">
       <view class="inputBox">所属学校：<text class="inputBox_detail">华东交通大学</text></view>
       <view class="inputBox">当前学期：<text class="inputBox_detail">{{accountInfo.term}}</text></view>
       <view class="inputBox">开学日期：<text class="inputBox_detail">2021/09/01</text></view>
@@ -29,6 +29,6 @@
       <view class="inputBox">民族：<text class="inputBox_detail">{{accountInfo.nation}}</text></view>
       <!-- <input class="inputBox" placeholder="请输入智慧交大账号" value="{{account}}" bindinput="detailInput" type="number" data-name="account"></input> -->
     </scroll-view>
-
+    <view class="cancelBtn" bindtap="cancelTap">注销账户</view>
   </view>
 </view>

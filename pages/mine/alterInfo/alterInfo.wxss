@@ -19,7 +19,7 @@ page{
   margin: 50rpx 0 0 100rpx;
   border-radius: 50%;
   background: #B6B6B6;
-  border: 4rpx solid #EFEFEF;
+  border: 4rpx solid rgba(0, 0, 0, 0.1);
 }
 .topWrap_openname{
   position: absolute;
@@ -59,11 +59,24 @@ page{
 .inputBox{
   width: 90%;
   margin: 0 5%;
-  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1rpx solid #B6B6B6;
   padding: 25rpx 0;
   font-weight: 800;
 }
 .inputBox_detail{
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+}
+.cancelBtn{
+  text-align: center;
+  font-weight: 700;
+  font-size: 24rpx;
+  position: fixed;
+  bottom: 48rpx;
+  padding: 25rpx 0;
+  width: 40%;
+  margin-left: 30%;
+  border-radius: 40rpx;
+  background: #B6B6B6;
   color: rgba(0, 0, 0, 0.5);
 }

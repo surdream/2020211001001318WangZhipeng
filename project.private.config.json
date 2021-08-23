@@ -19,32 +19,8 @@
           "scene": null
         },
         {
-          "name": "pages/index-status/index-status",
-          "pathName": "pages/index-status/index-status",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/inbox/inbox",
           "pathName": "pages/inbox/inbox",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/office-calendar/office-calendar",
-          "pathName": "pages/office-calendar/office-calendar",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/office-testify/office-testify",
-          "pathName": "pages/office-testify/office-testify",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/office-testify-management/office-testify-management",
-          "pathName": "pages/office-testify-management/office-testify-management",
           "query": "",
           "scene": null
         },
@@ -113,6 +89,12 @@
           "pathName": "pages/mine/update/help/help",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "scene": 1047
         }
       ]
     }

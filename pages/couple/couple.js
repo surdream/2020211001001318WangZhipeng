@@ -7,21 +7,38 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     windowHeight: app.globalData.windowHeight,
     msgValue: '',
-    pageTitle: '情侣空间',
-    hasLoveDate: false,
+    pageTitle: '相恋日',
+    hasLoveDate: true,
     selectedDay: '请选择',
     courentDay: '',
     dayDiff: '?',
   },
   onLoad: function (options) {
+    request({
+      url: "api/lover/dayAll", 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      console.log(res)
+      let dayArr = res.data.data;
+      if(dayArr.length == 0){
+        this.setData({
+          hasLoveDate: false,
+        })
+      } else{
+        this.setData({
+          hasLoveDate: true,
+          dayArr: dayArr
+        })
+      }
+    })
+  },
+  onShow: function () {
     let accountInfo = wx.getStorageSync('accountInfo');
     let loverInfo = wx.getStorageSync('accountInfo').lover;
     this.setData({
       accountInfo: accountInfo,
       loverInfo: loverInfo
     })
-  },
-  onShow: function () {
     var timestamp = Date.parse(new Date());
         timestamp = timestamp / 1000;
     let courentDay = time.formatTimeRev(timestamp,'Y/M/D');
@@ -61,16 +78,40 @@ Page({
   },
   changeContent(){
     let dayDiff = this.data.dayDiff;
+    let selectedDay = this.data.selectedDay;
     if(dayDiff == '?'){
       wx.showToast({
         title: '请选择相恋日期',
         icon: 'error'
       })
     } else{
-      this.setData({ 
-        hasLoveDate: true,
-        pageTitle: '情侣空间'
+      request({
+        url: "api/lover/createday?content=遇到彼此&date=" + selectedDay, 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res);
+        let code = res.data.code;
+        if(code == 200){
+          wx.showToast({
+            title: '设置相恋日成功',
+          })
+          this.setData({ 
+            hasLoveDate: true,
+            pageTitle: '情侣空间'
+          })
+        } else if(code == 205){
+          wx.showToast({
+            title: 'error~请重试',
+            icon: 'error'
+          })
+        } else if(code == 400){
+          wx.showToast({
+            title: '登录状态失效，请重新打开本程序',
+            icon: 'none'
+          })
+        }
       })
+
     }
   },
   writeTap(){

@@ -7,15 +7,13 @@ Page({
   },
   onLoad: function (options) {
     let accountInfo = wx.getStorageSync('accountInfo');
-    console.log(accountInfo)
-    if(accountInfo == undefined || accountInfo == ''){
+    console.log(accountInfo);
+    this.setData({
+      accountInfo: accountInfo
+    })
+    if(accountInfo.lover_status == 1){
       this.setData({
-        loginStatus: '未登录'
-      })
-    } else{
-      this.setData({
-        loginStatus: '个人信息',
-        accountInfo: accountInfo
+        
       })
     }
   },
@@ -32,11 +30,6 @@ Page({
       [name]: value,
       haveResult: false
     });
-  },
-  BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    }); 
   },
   updateTap(){
     wx.getUserProfile({
@@ -77,5 +70,21 @@ Page({
         })
       }
     })
-  }
+  },
+  cancelTap(){
+    request({
+      url: "api/user/cancel?",method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res => {
+      console.log(res)
+      wx.clearStorageSync();
+      wx.redirectTo({
+        url: '/pages/blank/blank',
+      })
+    })
+  },
+  BackPage() {
+    wx.navigateBack({
+        delta: 1,
+    }); 
+  },
 })

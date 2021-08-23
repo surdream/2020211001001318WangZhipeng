@@ -33,7 +33,7 @@
         <text class="usefulBox_text">情侣空间&绑定情侣</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="aboutTo" data-url="wechat">
+      <view class="usefulBox" bindtap="aboutTo" data-url="official">
         <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
         <text class="usefulBox_text">校园公众号&原创推文</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
@@ -55,5 +55,6 @@
         <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="aboutTo" data-url="link"/>
       </van-grid>
     </view>
+  <official-account></official-account>
   </view>
 </view>

@@ -1,4 +1,5 @@
 var app = getApp();
+const { request } = require("../../../utils/request/request");
 Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
@@ -13,7 +14,7 @@ Page({
       },
       {
         icon: '/images/anniversary/couple.png',
-        title: '距离在一起纪念',
+        title: '距离相恋日',
         time: '2021/11/7',
         count: '85'
       },
@@ -106,15 +107,24 @@ Page({
     ]
   },
   onLoad: function (options) {
+    request({
+      url: "api/lover/dayAll", 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      console.log(res)
+      let dayArr = res.data.data;
+      this.setData({
+        dayArr: dayArr
+      })
+    })
+  },
+  onShow: function () {
     let accountInfo = wx.getStorageSync('accountInfo');
     let loverInfo = wx.getStorageSync('accountInfo').lover;
     this.setData({
       accountInfo: accountInfo,
       loverInfo: loverInfo
     })
-  },
-  onShow: function () {
-
   },
   listTap(e){
     let type = e.currentTarget.dataset.type;

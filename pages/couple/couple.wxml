@@ -18,8 +18,8 @@
         <image class="topWrap_love" src="/images/couple/love.png"></image>
       </view>
       <view class="eventBar">
-        <view>距离我们在一起还有<text class="eventBar_count"> {{365-dayDiff}} </text>天</view>
-        <view class="eventBar_day">目标日:{{selectedDay}}</view>
+        <view>距离我们{{dayArr[0].content}}还有<text class="eventBar_count"> {{365-dayArr[0].gap}} </text>天</view>
+        <view class="eventBar_day">目标日:{{dayArr[0].date}}</view>
       </view>
       <view class="sendMsgBtn" bindtap="writeTap">去留言</view>
     </view>
@@ -32,17 +32,17 @@
       <view class="coupleBox" bindtap="navTo" data-url="anniversary">
         <image class="coupleBox_img" src="/images/couple/loveEvent.png"></image>
         <view class="coupleBox_title">纪念日</view>
-        <view class="coupleBox_detail">{{loverInfo.msg.length+1}}<text>个日子</text></view>
+        <view class="coupleBox_detail">{{dayArr.length}}<text>个日子</text></view>
       </view>
       <view class="coupleBox" bindtap="navTo" data-url="loverTarget">
         <image class="coupleBox_img" src="/images/couple/loveHabbit.png"></image>
         <view class="coupleBox_title">目标</view>
-        <view class="coupleBox_detail">1<text>个共同目标</text></view>
+        <view class="coupleBox_detail">0<text>个共同目标</text></view>
       </view>
       <view class="coupleBox" bindtap="navTo" data-url="loverActivity">
         <image class="coupleBox_img" src="/images/couple/loveActive.png"></image>
         <view class="coupleBox_title">活动</view>
-        <view class="coupleBox_detail">6<text>个参加的活动</text></view>
+        <view class="coupleBox_detail">0<text>个参加的活动</text></view>
       </view>
     </view>
   </view>

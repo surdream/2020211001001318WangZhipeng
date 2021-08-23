@@ -12,8 +12,8 @@
       <image class="topWrap_love" src="/images/couple/love.png"></image>
     </view>
     <view class="eventBar">
-      <view>距离我们在一起还有<text class="eventBar_count"> {{80}} </text>天</view>
-      <view class="eventBar_day">目标日:2021/11/7</view>
+      <view>距离我们{{dayArr[0].content}}还有<text class="eventBar_count"> {{365-dayArr[0].gap}} </text>天</view>
+      <view class="eventBar_day">目标日:{{dayArr[0].date}}</view>
     </view>
     <view class="addBtn" bindtap="addTap">+ 去添加</view>
   </view>

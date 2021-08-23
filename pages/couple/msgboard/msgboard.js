@@ -8,13 +8,19 @@ Page({
     msgValue: '',
   },
   onLoad: function (options) {
+    request({
+      url: "api/lover/msgAll", 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      console.log(res);
+      let lover_msg = res.data.lover
+    })
     let accountInfo = wx.getStorageSync('accountInfo');
     let user_id = accountInfo.userid;
     let user_img = accountInfo.avatar;
     let loverInfo = accountInfo.lover;
     let lover_img = loverInfo.avatar;
     let lover_id = loverInfo.lover_id;
-    console.log(loverInfo.msg)
     this.setData({
       accountInfo: accountInfo,
       loverInfo: loverInfo,
@@ -41,7 +47,7 @@ Page({
       })
     } else{
       request({
-        url: "api/user/sendmsg?content=" + msgValue, 
+        url: "api/lover/sendmsg?content=" + msgValue, 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res);
@@ -55,19 +61,15 @@ Page({
           }).then(res =>{
             if(res.data.code == 200){
               let accountInfo = res.data.data;
-              let user_id = accountInfo.userid;
-              let user_img = accountInfo.avatar;
               let loverInfo = accountInfo.lover;
-              let lover_img = loverInfo.avatar;
-              let lover_id = loverInfo.lover_id;
               console.log(loverInfo.msg)
               this.setData({
                 accountInfo: accountInfo,
-                loverInfo: loverInfo,
-                user_id: user_id,
-                lover_id: lover_id,
-                user_img: user_img,
-                lover_img: lover_img,
+                user_id: accountInfo.userid,
+                user_img: accountInfo.avatar,
+                loverInfo: accountInfo.lover,
+                lover_id: loverInfo.lover_id,
+                lover_img: loverInfo.avatar,
               })
               wx.setStorageSync('accountInfo', accountInfo);
             }

@@ -8,7 +8,7 @@
   <view class="topInfoBar">
     <image class="topInfoBar_logo" src="/images/mine/logo.png"></image>
     <view class="topInfoBar_title">一目校园</view>
-    <view class="topInfoBar_detail">目之所及，皆为所爱</view>
+    <view class="topInfoBar_detail">目之所及，满心欢喜</view>
     <view class="topInfoBar_version">{{version}}</view>
   </view>
   <view class="midWrap">
