@@ -20,7 +20,7 @@ Page({
       accountInfo: accountInfo,
       loverInfo: loverInfo
     })
-    if(loverInfo.lover_date != ''){
+    if(loverInfo.lover_date != null){
       request({
         url: "api/lover/dayAll", 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
@@ -62,12 +62,12 @@ Page({
         title: '功能正在开发，敬请期待',
         icon: 'none'
       })
-      request({
-        url: "api/lover/unbindLover", 
-        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res)
-      })
+      // request({
+      //   url: "api/lover/unbindLover", 
+      //   method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      // }).then(res =>{
+      //   console.log(res)
+      // })
     } else{
       wx.navigateTo({
         url: '/pages/couple/' + url + '/' + url,

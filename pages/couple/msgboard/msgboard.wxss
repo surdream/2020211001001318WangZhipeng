@@ -58,7 +58,7 @@ page{
   color: rgba(0,0,0,0.5);
   font-weight: 700;
   font-size: 26rpx;
-  margin-top: 50%;
+  padding-top: 50%;
   letter-spacing: 1rpx;
 }
 
