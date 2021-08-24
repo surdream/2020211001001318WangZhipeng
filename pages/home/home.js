@@ -174,7 +174,8 @@ Page({
         console.log(res);
         if(res.data.code == 200){
           wx.showToast({
-            title: '留言发送成功！',
+            title: '留言发送成功！对方将在留言板看到你的留言',
+            icon: 'none'
           })
           this.setData({
             actionShow: false,

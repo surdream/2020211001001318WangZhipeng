@@ -53,6 +53,14 @@ page{
   background: #fff;
   color: #000;
 }
+.noContent{
+  text-align: center;
+  color: rgba(0,0,0,0.5);
+  font-weight: 700;
+  font-size: 26rpx;
+  margin-top: 50%;
+  letter-spacing: 1rpx;
+}
 
 .sentBar{
   width: 100%;

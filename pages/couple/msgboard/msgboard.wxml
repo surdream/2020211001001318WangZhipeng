@@ -1,17 +1,21 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #EB3C62;">
   <image class="navBarButton_bold" src="/images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
-  <view class="navBar"><text class="navBar_title white95">情侣留言</text></view>
+  <view class="navBar"><text class="navBar_title white95">情侣蜜语</text></view>
 </view>
 <!-- 内容区域 -->
 <view class="container">
   <!-- 消息显示栏 -->
   <view class="msgWrap">
-    <scroll-view scroll-y="true" style="height:{{contentHeight-100}}px;">
-      <view class="msgBox" wx:for="{{loverInfo.msg}}" wx:key="index">
-        <view class="msgBox_time">{{item.createtime}}</view>
+    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" style="height:{{contentHeight-100}}px;">
+      <view class="msgBox" wx:for="{{lover_msg}}" wx:for-index="index" wx:key="index" id="{{'item'+index}}" data-id="{{item.msgid}}" bindlongtap="msgDelete" wx:if="{{lover_msg.length != 0}}">
+        <view class="msgBox_time">{{item.date}} {{item.createtime}}</view>
         <image class="msgBox_img img_{{item.userid == user_id?'self':'lover'}}" src="{{item.userid == user_id?user_img:lover_img}}"></image>
         <view class="msgBox_content content_{{item.userid == user_id?'self':'lover'}}">{{item.content}}</view>
+      </view>
+      <view class="noContent" wx:if="{{lover_msg.length == 0}}">
+        <view>当前没有留言</view>
+        <view>长按消息进行删除</view>
       </view>
   </scroll-view>
   </view>

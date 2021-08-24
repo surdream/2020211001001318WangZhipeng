@@ -14,31 +14,40 @@ Page({
     dayDiff: '?',
   },
   onLoad: function (options) {
-    request({
-      url: "api/lover/dayAll", 
-      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res =>{
-      console.log(res)
-      let dayArr = res.data.data;
-      if(dayArr.length == 0){
-        this.setData({
-          hasLoveDate: false,
-        })
-      } else{
-        this.setData({
-          hasLoveDate: true,
-          dayArr: dayArr
-        })
-      }
-    })
-  },
-  onShow: function () {
     let accountInfo = wx.getStorageSync('accountInfo');
     let loverInfo = wx.getStorageSync('accountInfo').lover;
     this.setData({
       accountInfo: accountInfo,
       loverInfo: loverInfo
     })
+    if(loverInfo.lover_date != ''){
+      request({
+        url: "api/lover/dayAll", 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res)
+        let dayArr = res.data.data;
+        this.setData({
+          dayArr: dayArr
+        })
+        request({
+          url: "api/lover/msgAll", 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res);
+          let lover_msg = res.data.data;
+          this.setData({
+            lover_msg_length: lover_msg.length
+          })
+        })
+      })
+    } else{
+      this.setData({
+        hasLoveDate: false,
+      })
+    }
+  },
+  onShow: function () {
     var timestamp = Date.parse(new Date());
         timestamp = timestamp / 1000;
     let courentDay = time.formatTimeRev(timestamp,'Y/M/D');
@@ -52,6 +61,12 @@ Page({
       wx.showToast({
         title: '功能正在开发，敬请期待',
         icon: 'none'
+      })
+      request({
+        url: "api/lover/unbindLover", 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res)
       })
     } else{
       wx.navigateTo({
@@ -70,7 +85,7 @@ Page({
   },
   unbind(){
     request({
-      url: "api/user/unbindLover", 
+      url: "api/lover/unbindLover", 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
       console.log(res)
@@ -86,7 +101,7 @@ Page({
       })
     } else{
       request({
-        url: "api/lover/createday?content=遇到彼此&date=" + selectedDay, 
+        url: "api/lover/setLoverDay?date=" + selectedDay, 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res);
@@ -126,8 +141,8 @@ Page({
     })
   },
   BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    }); 
+    wx.switchTab({
+      url: '../mine/mine',
+    })
   },
 })
