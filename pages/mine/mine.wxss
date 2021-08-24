@@ -9,28 +9,28 @@ page{
   border: 4rpx solid #EFEFEF;
   width: 100rpx;
   height: 100rpx;
-  margin: 50rpx 0 0 140rpx;
+  margin: 50rpx 0 0 175rpx;
   box-shadow:  0rpx 0rpx 12rpx gray;
 }
 .avatarSex{
   position: absolute;
   width: 24rpx;
   height: 24rpx;
-  margin: 50rpx 0 0 215rpx;
+  margin: 50rpx 0 0 250rpx;
   border-radius: 50%;
   background: #EFEFEF;
   border: 4rpx solid #fff;
 }
 .topWrap_openname{
   position: absolute;
-  margin: 60rpx 0 0 265rpx;
+  margin: 60rpx 0 0 300rpx;
   color: rgba(255, 255, 255, 1.0);
   font-weight: 800;
   font-size: 28rpx;
 }
 .topWrap_detail{
   position: absolute;
-  margin: 100rpx 0 0 265rpx;
+  margin: 100rpx 0 0 300rpx;
   color: rgba(255, 255, 255, 0.75);
   font-weight: 700;
   font-size: 26rpx;

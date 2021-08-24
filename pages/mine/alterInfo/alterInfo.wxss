@@ -18,8 +18,8 @@ page{
   height: 24rpx;
   margin: 50rpx 0 0 100rpx;
   border-radius: 50%;
-  background: #B6B6B6;
-  border: 4rpx solid rgba(0, 0, 0, 0.1);
+  background: #EFEFEF;
+  border: 4rpx solid #fff;
 }
 .topWrap_openname{
   position: absolute;

@@ -3,7 +3,7 @@
 <van-notify id="van-notify"/>
 <view style="height:{{menuButtonHeight+20}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar"><view class="navBar_title">
-  <view>教务处</view> 
+  <view>教务信息</view> 
   <text class="courentWeek" wx:if="{{accountInfo.week > 0}}">(第{{accountInfo.week}}周)</text>
   <text class="courentWeek" wx:if="{{accountInfo.week <= 0}}">(未开学)</text>
   </view></view>

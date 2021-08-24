@@ -13,7 +13,7 @@
       <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
       <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
       <text class="topWrap_openname">{{accountInfo.openname}}</text>
-      <view class="topWrap_detail">{{accountInfo.class}} 华东交通大学</view>
+      <view class="topWrap_detail">{{accountInfo.class}}</view>
     </block>
   </view>
   <view class="mainContent">
@@ -55,6 +55,6 @@
         <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="aboutTo" data-url="link"/>
       </van-grid>
     </view>
-  <official-account></official-account>
+  <!-- <official-account></official-account> -->
   </view>
 </view>
