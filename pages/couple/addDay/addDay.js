@@ -9,6 +9,7 @@ Page({
     type: 'add',
     pageTitle: '添加纪念日',
     selectedDay: '点击选择日期',
+    titleInput: true
   },
   onLoad: function (options) {
     let type = options.type;
@@ -26,7 +27,8 @@ Page({
         pageTitle: '修改纪念日',
         selectedDay: selectedDay,
         dayTitle: dayTitle,
-        dayid: dayid
+        dayid: dayid,
+        titleInput: false
     })
     }
   },

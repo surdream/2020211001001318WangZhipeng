@@ -7,7 +7,7 @@
 <view class="container">
   <view class="topWrap contentBox">
     <image class="contentBox_img" src="/images/anniversary/edit.png"></image>
-    <input class="contentBox_input" placeholder="点击输入纪念日内容" value="{{dayTitle}}" bindinput="detailInput" type="text" data-name="dayTitle"></input>
+    <input class="contentBox_input" disabled="{{titleInput}}" placeholder="点击输入纪念日内容" value="{{dayTitle}}" bindinput="detailInput" type="text" data-name="dayTitle"></input>
   </view>
   <view class="midWrap contentBox">
     <image class="contentBox_img" src="/images/anniversary/time.png"></image>

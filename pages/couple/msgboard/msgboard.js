@@ -114,7 +114,8 @@ Page({
             console.log(res);
             let lover_msg = res.data.data;
             this.setData({
-              lover_msg: lover_msg
+              lover_msg: lover_msg,
+              msgValue: '',
             })
           })
         } else if(res.data.code == 400){
@@ -127,8 +128,8 @@ Page({
     }
   },
   BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    }); 
+    wx.navigateTo({
+      url: '../couple',
+    })
   },
 })

@@ -7,45 +7,61 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     windowHeight: app.globalData.windowHeight,
     msgValue: '',
-    pageTitle: '相恋日',
+    pageTitle: '情侣空间',
     hasLoveDate: true,
     selectedDay: '请选择',
     courentDay: '',
     dayDiff: '?',
   },
   onLoad: function (options) {
-    let accountInfo = wx.getStorageSync('accountInfo');
-    let loverInfo = wx.getStorageSync('accountInfo').lover;
-    this.setData({
-      accountInfo: accountInfo,
-      loverInfo: loverInfo
-    })
-    if(loverInfo.lover_date != null){
-      request({
-        url: "api/lover/dayAll", 
-        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res)
-        let dayArr = res.data.data;
+    request({
+      url: "api/user/profile?", 
+      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+    }).then(res =>{
+      if(res.data.code == 200){
+        console.log(res.data.data);
+        let accountInfo = res.data.data;
+        let loverInfo = accountInfo.lover;
+        wx.setStorageSync('accountInfo', accountInfo);
         this.setData({
-          dayArr: dayArr
+          accountInfo: accountInfo,
+          loverInfo: loverInfo
         })
-        request({
-          url: "api/lover/msgAll", 
-          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-        }).then(res =>{
-          console.log(res);
-          let lover_msg = res.data.data;
-          this.setData({
-            lover_msg_length: lover_msg.length
+        if(loverInfo.lover_date != null){
+          request({
+            url: "api/lover/dayAll", 
+            method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+          }).then(res =>{
+            console.log(res)
+            let dayArr = res.data.data;
+            this.setData({
+              dayArr: dayArr
+            })
+            request({
+              url: "api/lover/msgAll", 
+              method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+            }).then(res =>{
+              console.log(res);
+              let lover_msg = res.data.data;
+              this.setData({
+                lover_msg_length: lover_msg.length
+              })
+            })
           })
+        } else{
+          this.setData({
+            hasLoveDate: false,
+            pageTitle: '相恋日'
+          })
+        }
+      } else if(res.data.code == 400){
+        wx.showToast({
+          title: '系统正在维护',
+          icon: 'error'
         })
-      })
-    } else{
-      this.setData({
-        hasLoveDate: false,
-      })
-    }
+      }
+    })
+
   },
   onShow: function () {
     var timestamp = Date.parse(new Date());
@@ -62,12 +78,12 @@ Page({
         title: '功能正在开发，敬请期待',
         icon: 'none'
       })
-      // request({
-      //   url: "api/lover/unbindLover", 
-      //   method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      // }).then(res =>{
-      //   console.log(res)
-      // })
+      request({
+        url: "api/lover/unbindLover", 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res)
+      })
     } else{
       wx.navigateTo({
         url: '/pages/couple/' + url + '/' + url,
@@ -107,6 +123,7 @@ Page({
         console.log(res);
         let code = res.data.code;
         if(code == 200){
+          this.onLoad()
           wx.showToast({
             title: '设置相恋日成功',
           })

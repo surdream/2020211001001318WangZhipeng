@@ -72,7 +72,7 @@ page{
 .usefulWrap_box{
   display: inline-block;
   text-align: center;
-  margin-right: 64rpx;
+  margin-right: 60rpx;
   height: 150rpx;
 }
 .usefulWrap_icon{

@@ -126,6 +126,11 @@ Page({
       })
     }
   },
+  navToMsg(){
+    wx.navigateTo({
+      url: '/pages/couple/msgboard/msgboard',
+    })
+  },
   swiperChange(e) {
     let current = e.detail.current;
     let that = this;
