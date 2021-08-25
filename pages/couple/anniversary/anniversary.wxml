@@ -35,12 +35,12 @@
         <view class="anniversary_time">{{loverInfo.birth}}</view>
         <view class="anniversary_count"><text class="countText">{{loverInfo.birth_gap}}</text>天</view>
       </view>
-      <!-- <view class="anniversary" wx:for="{{dayArr}}" wx:key="index">
+      <view class="anniversary" wx:for="{{dayArr}}" wx:key="index" wx:if="{{item.type == 1}}" data-title="{{item.content}}" data-time="{{item.date}}"data-dayid="{{item.dayid}}" data-type="alterNew" bindtap="listTap">
         <image class="anniversary_icon" src="/images/anniversary/rumour.png"></image>
-        <view class="anniversary_title">{{item.content}}已经</view>
+        <view class="anniversary_title">距离{{item.content}}还有</view>
         <view class="anniversary_time">{{item.date}}</view>
-        <view class="anniversary_count" wx:if="{{type == 'add'}}"><text class="countText">{{item.gap}}</text>天</view>
-      </view> -->
+        <view class="anniversary_count"><text class="countText">{{item.gap}}</text>天</view>
+      </view>
       <view class="anniversary" wx:for="{{dayList}}" wx:key="index" bindtap="listTap" data-title="{{item.title}}" data-time="{{item.time}}" data-dayid="{{item.dayid}}" data-type="{{item.count == ''?'add':'alter'}}">
         <image class="anniversary_icon" src="{{item.icon}}"></image>
         <view class="anniversary_title">{{item.title}}已经</view>

@@ -79,12 +79,12 @@ Page({
         title: '功能正在开发，敬请期待',
         icon: 'none'
       })
-      request({
-        url: "api/lover/unbindLover", 
-        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res)
-      })
+      // request({
+      //   url: "api/lover/unbindLover", 
+      //   method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      // }).then(res =>{
+      //   console.log(res)
+      // })
     } else{
       wx.navigateTo({
         url: './' + url + '/' + url,

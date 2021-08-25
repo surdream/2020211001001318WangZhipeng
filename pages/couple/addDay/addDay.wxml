@@ -18,5 +18,5 @@
     </view>
   </view>
   <view class="subBtn_{{type}}" bindtap="subTap">完成</view>
-  <view class="delBtn" bindtap="delTap" wx:if="{{type == 'alter'}}">删除</view>
+  <view class="delBtn" bindtap="delTap" wx:if="{{type == 'alter'||type == 'alterNew'}}">删除</view>
 </view>

@@ -157,7 +157,7 @@ Page({
   },
   addTap(){
     wx.navigateTo({
-      url: '../addDay/addDay',
+      url: '../addDay/addDay?type=new',
     })
   },
   alterStatus(){

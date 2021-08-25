@@ -9,7 +9,7 @@ Page({
     type: 'add',
     pageTitle: '添加纪念日',
     selectedDay: '点击选择日期',
-    titleInput: true
+    titleInput: false
   },
   onLoad: function (options) {
     let type = options.type;
@@ -18,8 +18,9 @@ Page({
     let dayid = options.dayid;
     console.log(options)
     if(type == 'add'){
-      this.setData({
-        dayTitle: dayTitle
+        this.setData({
+          dayTitle: dayTitle,
+          titleInput: true
       })
     } else if(type == 'alter'){
       this.setData({
@@ -28,8 +29,20 @@ Page({
         selectedDay: selectedDay,
         dayTitle: dayTitle,
         dayid: dayid,
-        titleInput: false
-    })
+        titleInput: true
+      })
+    } else if (type == 'new') {
+      this.setData({
+        type: 'new'
+      })
+    } else if (type == 'alterNew') {
+      this.setData({
+        type: 'alterNew',
+        pageTitle: '修改纪念日',
+        selectedDay: selectedDay,
+        dayTitle: dayTitle,
+        dayid: dayid
+      })
     }
   },
   onShow: function () {
@@ -59,31 +72,60 @@ Page({
   subTap(){
     let dayTitle = this.data.dayTitle;
     let selectedDay = this.data.selectedDay;
+    let type = this.data.type;
+    console.log(type)
     if(selectedDay != '点击选择日期' && dayTitle != ''){
-      request({
-        url: "api/lover/createday?content=" + dayTitle + "&date=" + selectedDay, 
-        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res)
-        if(res.data.code == 200){
-          wx.navigateTo({
-            url: '../anniversary/anniversary',
-          })
-          wx.showToast({
-            title: '添加成功',
-          })
-        } else if(res.data.code == 205){
-          wx.showToast({
-            title: '无法添加纪念日',
-            icon: 'error'
-          })
-        } else if(res.data.code == 400){
-          wx.showToast({
-            title: '登录失效请重试',
-            icon: 'error'
-          })
-        }
-      })
+      if (type == 'new' || type == 'alterNew') {
+        request({
+          url: "api/lover/createday?content=" + dayTitle + "&date=" + selectedDay + '&type=1', 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res)
+          if(res.data.code == 200){
+            wx.navigateTo({
+              url: '../anniversary/anniversary',
+            })
+            wx.showToast({
+              title: '添加成功',
+            })
+          } else if(res.data.code == 205){
+            wx.showToast({
+              title: '无法添加纪念日',
+              icon: 'error'
+            })
+          } else if(res.data.code == 400){
+            wx.showToast({
+              title: '登录失效请重试',
+              icon: 'error'
+            })
+          }
+        })
+      } else{
+        request({
+          url: "api/lover/createday?content=" + dayTitle + "&date=" + selectedDay, 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res)
+          if(res.data.code == 200){
+            wx.navigateTo({
+              url: '../anniversary/anniversary',
+            })
+            wx.showToast({
+              title: '添加成功',
+            })
+          } else if(res.data.code == 205){
+            wx.showToast({
+              title: '无法添加纪念日',
+              icon: 'error'
+            })
+          } else if(res.data.code == 400){
+            wx.showToast({
+              title: '登录失效请重试',
+              icon: 'error'
+            })
+          }
+        })
+      }
     } else{
       wx.showToast({
         title: '填写信息不完整',
