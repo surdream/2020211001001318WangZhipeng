@@ -19,7 +19,7 @@
       </view>
       <view class="eventBar">
         <view>距离我们的相恋日还有<text class="eventBar_count"> {{loverInfo.lover_gap}} </text>天</view>
-        <view class="eventBar_day">目标日:{{loverInfo.lover_date}}</view>
+        <view class="eventBar_day" bindtap="changeDate">目标日:{{loverInfo.lover_date}}</view>
       </view>
       <view class="sendMsgBtn" bindtap="writeTap">去留言</view>
     </view>

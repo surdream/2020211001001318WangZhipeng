@@ -12,6 +12,7 @@ Page({
     selectedDay: '请选择',
     courentDay: '',
     dayDiff: '?',
+    alter: false
   },
   onLoad: function (options) {
     request({
@@ -86,7 +87,7 @@ Page({
       })
     } else{
       wx.navigateTo({
-        url: '/pages/couple/' + url + '/' + url,
+        url: './' + url + '/' + url,
       })
     }
   },
@@ -108,43 +109,90 @@ Page({
     })
   },
   changeContent(){
+    let alter = this.data.alter;
     let dayDiff = this.data.dayDiff;
     let selectedDay = this.data.selectedDay;
-    if(dayDiff == '?'){
-      wx.showToast({
-        title: '请选择相恋日期',
-        icon: 'error'
-      })
-    } else{
-      request({
-        url: "api/lover/setLoverDay?date=" + selectedDay, 
-        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res);
-        let code = res.data.code;
-        if(code == 200){
-          this.onLoad()
-          wx.showToast({
-            title: '设置相恋日成功',
-          })
-          this.setData({ 
-            hasLoveDate: true,
-            pageTitle: '情侣空间'
-          })
-        } else if(code == 205){
-          wx.showToast({
-            title: 'error~请重试',
-            icon: 'error'
-          })
-        } else if(code == 400){
-          wx.showToast({
-            title: '登录状态失效，请重新打开本程序',
-            icon: 'none'
-          })
-        }
-      })
-
+    if (alter) {
+      if (dayDiff == '?') {
+        this.setData({
+          hasLoveDate: true,
+        })
+        wx.showToast({
+          title: '未更改',
+          icon: 'none'
+        })
+      } else{
+        request({
+          url: "api/lover/setLoverDay?date=" + selectedDay, 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res);
+          let code = res.data.code;
+          if(code == 200){
+            this.onLoad()
+            wx.showToast({
+              title: '设置相恋日成功',
+            })
+            this.setData({ 
+              hasLoveDate: true,
+              pageTitle: '情侣空间'
+            })
+          } else if(code == 205){
+            wx.showToast({
+              title: 'error~请重试',
+              icon: 'error'
+            })
+          } else if(code == 400){
+            wx.showToast({
+              title: '登录状态失效，请重新打开本程序',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    } else {
+      if(dayDiff == '?'){
+        wx.showToast({
+          title: '请选择相恋日期',
+          icon: 'error'
+        })
+      } else{
+        request({
+          url: "api/lover/setLoverDay?date=" + selectedDay, 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res);
+          let code = res.data.code;
+          if(code == 200){
+            this.onLoad()
+            wx.showToast({
+              title: '设置相恋日成功',
+            })
+            this.setData({ 
+              hasLoveDate: true,
+              pageTitle: '情侣空间'
+            })
+          } else if(code == 205){
+            wx.showToast({
+              title: 'error~请重试',
+              icon: 'error'
+            })
+          } else if(code == 400){
+            wx.showToast({
+              title: '登录状态失效，请重新打开本程序',
+              icon: 'none'
+            })
+          }
+        })
+      }
     }
+
+  },
+  changeDate(){
+    this.setData({
+      alter: true,
+      hasLoveDate: false,
+    })
   },
   writeTap(){
     wx.navigateTo({

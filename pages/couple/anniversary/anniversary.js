@@ -107,6 +107,14 @@ Page({
     ]
   },
   onLoad: function (options) {
+    let accountInfo = wx.getStorageSync('accountInfo');
+    let loverInfo = wx.getStorageSync('accountInfo').lover;
+    this.setData({
+      accountInfo: accountInfo,
+      loverInfo: loverInfo
+    })
+  },
+  onShow: function () {
     request({
       url: "api/lover/dayAll", 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
@@ -136,15 +144,6 @@ Page({
           }
         }
       }
-
-    })
-  },
-  onShow: function () {
-    let accountInfo = wx.getStorageSync('accountInfo');
-    let loverInfo = wx.getStorageSync('accountInfo').lover;
-    this.setData({
-      accountInfo: accountInfo,
-      loverInfo: loverInfo
     })
   },
   listTap(e){

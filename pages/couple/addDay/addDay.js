@@ -106,7 +106,6 @@ Page({
               method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
             }).then(res =>{
               console.log(res)
-              console.log(111)
               if(res.data.code == 200){
                 wx.navigateTo({
                   url: '../anniversary/anniversary',
