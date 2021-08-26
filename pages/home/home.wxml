@@ -1,11 +1,11 @@
 <!-- 顶部通知 -->
 <van-notify id="van-notify"/>
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar-Left35"><text class="navBar_title">一目校园</text></view>
 </view>
 <!-- 内容区域 -->
-<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="10" style="height: {{contentHeight}}px;">
+<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="60" style="height: {{contentHeight-60}}px;">
   <view class="topWrap">
   <!-- 轮播图 -->
   <view class="swiper-box">
@@ -38,19 +38,19 @@
       <image src="/images/home/calendar.png"></image>
       <text>教学校历</text>
     </view>
-    <view class="useful-box" bindtap="navTo" data-url="note">
-      <image src="/images/home/note.png"></image>
-      <text>课堂笔记</text>
+    <view class="useful-box" bindtap="sorryTap">
+      <image src="/images/home/library.png"></image>
+      <text>馆藏查询</text>
     </view>
-    <view class="useful-box">
-      <image src="/images/home/classroom.png"></image>
-      <text>查空教室</text>
+    <view class="useful-box" bindtap="sorryTap">
+      <image src="/images/home/phoneNumber.png"></image>
+      <text>常用电话</text>
     </view>
-    <view class="useful-box">
+    <view class="useful-box" bindtap="sorryTap">
       <image src="/images/home/club.png"></image>
       <text>认识社团</text>
     </view>
-    <view class="useful-box">
+    <view class="useful-box" bindtap="sorryTap">
       <image src="/images/home/confess.png"></image>
       <text>校园表白墙</text>
     </view>
@@ -162,7 +162,7 @@
 >
   <view class="msgBox">
     <view class="msgBox_title">
-      <view class="msgBox_nav" bindtap="navTo" data-url="couple">
+      <view class="msgBox_nav" bindtap="navToCouple">
         <text>情侣空间</text>
         <image src="/images/home/navCouple.png"></image>
       </view>

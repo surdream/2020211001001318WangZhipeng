@@ -21,20 +21,16 @@ App({
         let menuButtonHeight = menuButtonObject.height;// 胶囊高度
         let menuButtonTop = menuButtonObject.top;// 胶囊顶距
         // 兼容不同设备显示区域
-        let statusBarHeight = e.statusBarHeight;// 状态栏高度
         let windowHeight = e.windowHeight;// 窗口高度
         let displayScale = (750 / windowHeight)// 转换高度
+        let statusBarHeight = e.statusBarHeight;// 状态栏高度
+        let screenHeight = e.screenHeight;//屏幕高度
         let contentHeight = windowHeight - menuButtonTop - menuButtonHeight - 2;// 显示区域
         
         this.globalData.menuButtonTop = menuButtonTop + 2;
         this.globalData.menuButtonHeight = menuButtonHeight;
         this.globalData.windowHeight = windowHeight;
         this.globalData.contentHeight = contentHeight;
-        if(contentHeight > 630){
-          this.globalData.adaptValue = Math.ceil((windowHeight - 630) * displayScale);
-        }else{
-          this.globalData.adaptValue = 0;
-        }
         // console.log(e);
         // console.log(displayScale)
         // console.log(menuButtonObject);

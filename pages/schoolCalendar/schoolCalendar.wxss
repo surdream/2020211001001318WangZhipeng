@@ -2,19 +2,32 @@
   width: 95%;
   margin-left: 2.5%;
 }
+.courentDate{
+  font-size: 20rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
 .countBar{
   display: inline-block;
   margin: 20rpx 2.5%;
   width: 95%;
-  height: 135rpx;
+  height: 150rpx;
   border: 3rpx solid #5137F3;
   border-radius: 16rpx;
   text-align: center;
   padding: 50rpx 0 0 0;
   box-shadow:  0rpx 0rpx 10rpx darkgray;
 }
+.noticeBar{
+  margin-top: 20rpx;
+}
+.noticeText{
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 1rpx;
+}
 .calendar {
-  --calendar-height: 75vh;
+  --calendar-height: 72vh;
 }
 .countBox{
   margin: 0 50rpx;

@@ -2,11 +2,13 @@
 <template is="skeleton" wx-if="{{loading}}" />
 <van-notify id="van-notify"/>
 <view style="height:{{menuButtonHeight+20}}px;padding-top:{{menuButtonTop}}px;">
-  <view class="navBar"><view class="navBar_title">
-  <view>教务信息</view> 
-  <text class="courentWeek" wx:if="{{accountInfo.week > 0}}">(第{{accountInfo.week}}周)</text>
-  <text class="courentWeek" wx:if="{{accountInfo.week <= 0}}">(未开学)</text>
-  </view></view>
+  <view class="navBar">
+    <view class="navBar_title">
+      <view>教务信息</view> 
+      <text class="courentWeek" wx:if="{{accountInfo.week > 0}}">(第{{accountInfo.week}}周)</text>
+      <text class="courentWeek" wx:if="{{accountInfo.week <= 0}}">(未开学)</text>
+    </view>
+  </view>
 </view>
 <scroll-view class="container" scroll-y="true" style="height: {{contentHeight}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
@@ -25,19 +27,19 @@
   </view>
   <!-- 常用功能区 -->
   <view class="usefulWrap">
-    <view class="usefulWrap_box" bindtap="navTo" data-url="schoolCalendar">
-      <image src="/images/office/infomation.png" class="usefulWrap_icon" style="background: rgba(106,91,241,0.5)"></image>
-      <view class="usefulWrap_text">教学校历</view>
-    </view>
-    <view class="usefulWrap_box" bindtap="navTo" data-url="note">
-      <image src="/images/office/note.png" class="usefulWrap_icon" style="background: rgba(252,212,48,0.5)"></image>
-      <view class="usefulWrap_text">课堂笔记</view>
-    </view>
     <view class="usefulWrap_box" bindtap="navTo" data-url="testify">
       <image src="/images/office/photo.png" class="usefulWrap_icon" style="background: rgba(107,219,246,0.5)"></image>
       <view class="usefulWrap_text">加分证明</view>
     </view>
-    <view class="usefulWrap_box" bindtap="navTo" data-url="target" style="margin:0;">
+    <view class="usefulWrap_box" bindtap="sorryTap">
+      <image src="/images/office/infomation.png" class="usefulWrap_icon" style="background: rgba(106,91,241,0.5)"></image>
+      <view class="usefulWrap_text">培养计划</view>
+    </view>
+    <view class="usefulWrap_box" bindtap="sorryTap">
+      <image src="/images/office/note.png" class="usefulWrap_icon" style="background: rgba(252,212,48,0.5)"></image>
+      <view class="usefulWrap_text">课堂笔记</view>
+    </view>
+    <view class="usefulWrap_box" bindtap="sorryTap" style="margin:0;">
       <image src="/images/office/target.png" class="usefulWrap_icon" style="background: rgba(122,122,252,0.5)"></image>
       <view class="usefulWrap_text">学期目标</view>
     </view>

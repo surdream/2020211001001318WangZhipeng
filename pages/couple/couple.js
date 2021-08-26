@@ -15,6 +15,8 @@ Page({
     alter: false
   },
   onLoad: function (options) {
+    let from = options.from;
+    this.setData({ from: from })
     request({
       url: "api/user/profile?", 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
@@ -62,7 +64,6 @@ Page({
         })
       }
     })
-
   },
   onShow: function () {
     var timestamp = Date.parse(new Date());
@@ -192,6 +193,7 @@ Page({
     this.setData({
       alter: true,
       hasLoveDate: false,
+      pageTitle: '修改相恋日'
     })
   },
   writeTap(){
@@ -204,6 +206,18 @@ Page({
       title: 'enjoy~🥰',
       icon: 'none'
     })
+  },
+  BackCouple(){
+    this.setData({
+      alter: false,
+      pageTitle: '情侣空间',
+      hasLoveDate: true
+    })
+  },
+  BackHome(){
+    wx.navigateBack({
+      delta: 1,
+    });
   },
   BackPage() {
     wx.switchTab({

@@ -33,14 +33,14 @@
         <text class="usefulBox_text">情侣空间&绑定情侣</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="aboutTo" data-url="official">
-        <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
-        <text class="usefulBox_text">校园公众号&原创推文</text>
-        <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
-      </view>
       <view class="usefulBox" bindtap="aboutTo" data-url="update">
         <image class="usefulBox_img" src="/images/mine/idea.png"></image>
         <text class="usefulBox_text">查看帮助&功能更新</text>
+        <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
+      </view>
+      <view class="usefulBox" bindtap="aboutTo" data-url="official">
+        <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
+        <text class="usefulBox_text">校园公众号&万能表白墙</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
     </view>
@@ -55,6 +55,5 @@
         <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="aboutTo" data-url="link"/>
       </van-grid>
     </view>
-  <!-- <official-account></official-account> -->
   </view>
 </view>

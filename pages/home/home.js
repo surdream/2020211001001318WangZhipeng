@@ -126,9 +126,20 @@ Page({
       })
     }
   },
+  sorryTap(){
+    wx.showToast({
+      title: '该功能正在全力开发中，敬请期待',
+      icon: 'none'
+    })
+  },
   navToMsg(){
     wx.navigateTo({
       url: '/pages/couple/msgboard/msgboard',
+    })
+  },
+  navToCouple(){
+    wx.navigateTo({
+      url: '/pages/couple/couple?from=home',
     })
   },
   swiperChange(e) {

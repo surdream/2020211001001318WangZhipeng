@@ -35,7 +35,7 @@ page{
   color: #F97390;
   font-weight: 700;
 }
-.subBtn_add{
+.subBtn_add ,.subBtn_new{
   text-align: center;
   margin-left: 27.5%;
   width: 45%;

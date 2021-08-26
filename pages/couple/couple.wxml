@@ -3,8 +3,15 @@
 <image class="heartWrap" src="/images/couple/manyHearts.png" wx:if="{{hasLoveDate}}" bindtap="heartTap"></image>
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
-  <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{hasLoveDate}}"></image>
-  <image class="navBarButton_bold" src="../../images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{!hasLoveDate}}"></image>
+  <block wx:if="{{!alter}}">
+    <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{hasLoveDate}}"></image>
+    <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackHome" wx:if="{{hasLoveDate}}"></image>
+    <image class="navBarButton_bold" src="../../images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{!hasLoveDate}}"></image>
+  </block>
+  <block wx:if="{{alter}}">
+    <image class="navBarButton_bold" src="../../images/conmon/close-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackCouple" wx:if="{{!hasLoveDate}}"></image>
+  </block>
+
   <view class="navBar"><text class="navBar_title {{!hasLoveDate?'white95':'textPink'}}">{{pageTitle}}</text></view>
 </view>
 <!-- 内容区域 -->

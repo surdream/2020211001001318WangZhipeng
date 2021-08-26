@@ -95,6 +95,12 @@
           "pathName": "pages/home/home",
           "query": "",
           "scene": 1047
+        },
+        {
+          "name": "pages/schoolCalendar/schoolCalendar",
+          "pathName": "pages/schoolCalendar/schoolCalendar",
+          "query": "",
+          "scene": null
         }
       ]
     }

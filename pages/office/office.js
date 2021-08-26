@@ -33,7 +33,7 @@ Page({
       {name: '2018.1'},
     ],
     officeColorList: [
-      '#7BDEE8','#EE7785','#E3C160','#C1E965'
+      '#C1E965','#E3C160','#EE7785','#7BDEE8'
     ],
     userInfo: {
       schUrl: '/images/conmon/ecjtu.jpg'
@@ -194,6 +194,12 @@ Page({
         url: '../guide/guide?from=import',
       })
     }
+  },
+  sorryTap(){
+    wx.showToast({
+      title: '该功能正在全力开发中，敬请期待',
+      icon: 'none'
+    })
   },
   switchBtn(e){
     let firstUse = wx.getStorageSync('firstUse');

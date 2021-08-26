@@ -128,8 +128,8 @@ Page({
     }
   },
   BackPage() {
-    wx.navigateTo({
-      url: '../couple',
-    })
+    wx.navigateBack({
+      delta: 1,
+    });
   },
 })

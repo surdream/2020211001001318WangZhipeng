@@ -73,11 +73,62 @@ Page({
     let dayTitle = this.data.dayTitle;
     let selectedDay = this.data.selectedDay;
     let type = this.data.type;
+    let dayid = this.data.dayid;
     console.log(type)
     if(selectedDay != '点击选择日期' && dayTitle != ''){
-      if (type == 'new' || type == 'alterNew') {
+      if (type == 'new') {
         request({
           url: "api/lover/createday?content=" + dayTitle + "&date=" + selectedDay + '&type=1', 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res)
+          if(res.data.code == 200){
+            wx.navigateTo({
+              url: '../anniversary/anniversary',
+            })
+            wx.showToast({
+              title: '添加成功',
+            })
+          } else if(res.data.code == 205){
+            wx.showToast({
+              title: '无法添加纪念日',
+              icon: 'error'
+            })
+          } else if(res.data.code == 400){
+            wx.showToast({
+              title: '登录失效请重试',
+              icon: 'error'
+            })
+          }
+        })
+      } else if (type == 'alterNew') {
+        request({
+          url: "api/lover/editday?content=" + dayTitle + "&date=" + selectedDay + '&dayid=' + dayid + '&type=1', 
+          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res)
+          if(res.data.code == 200){
+            wx.navigateTo({
+              url: '../anniversary/anniversary',
+            })
+            wx.showToast({
+              title: '添加成功',
+            })
+          } else if(res.data.code == 205){
+            wx.showToast({
+              title: '无法添加纪念日',
+              icon: 'error'
+            })
+          } else if(res.data.code == 400){
+            wx.showToast({
+              title: '登录失效请重试',
+              icon: 'error'
+            })
+          }
+        })
+      } else if (type == 'alter') {
+        request({
+          url: "api/lover/editday?content=" + dayTitle + "&date=" + selectedDay + '&dayid=' + dayid + 'type=0', 
           method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
         }).then(res =>{
           console.log(res)
