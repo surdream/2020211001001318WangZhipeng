@@ -161,7 +161,7 @@ Page({
             let userInfo = {account: account,password: password};
             wx.removeStorageSync('sessionid');
             wx.setStorageSync("sessionid", res.cookies[0]);
-            if(res.data.code == 200){
+            if(res.data.code == 210){ //用户注册
               wx.showToast({
                 title: '认证成功！',
               })
@@ -194,7 +194,7 @@ Page({
                     })
                   } else{
                     wx.showToast({
-                      title: '已取消授权，设置为默认昵称和头像',
+                      title: '已取消授权，昵称和头像维持不变',
                       icon: 'none'
                     })
                   }
@@ -220,7 +220,7 @@ Page({
                         })
                     })
                     wx.showToast({
-                      title: '导入成功，如信息显示不正常请重新进入小程序',
+                      title: '导入成功，如信息显示不正常请尝试重新进入小程序',
                       icon: 'none'
                     })
                     setTimeout(function() {
@@ -232,10 +232,57 @@ Page({
                   } else{
                     this.setData({
                       swiperCurrent: 2,
+                      nextBtn: '下一步'
                     })
                   }
                 }
               })
+              }
+            } else if(res.data.code == 200){ //用户登录
+              wx.showToast({
+                title: '登录成功！',
+              })
+              wx.setStorageSync('userInfo', userInfo);
+              this.setData({
+                isLoading: false,
+              })
+              if(!hasUserInfo){
+                let from = this.data.from;
+                if(from == 'import'){
+                  this.setData({
+                    nextBtn: '完成'
+                  })
+                  // 用户登录
+                  let userInfo = wx.getStorageSync('userInfo');
+                  request({
+                    url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+                  }).then(res => {
+                      wx.removeStorageSync('sessionid');
+                      wx.setStorageSync("sessionid", res.cookies[0]);
+                      request({
+                        url: "api/user/profile?", 
+                        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                      }).then(res =>{
+                        let accountInfo = res.data.data;
+                        wx.setStorageSync('accountInfo', accountInfo);
+                      })
+                  })
+                  wx.showToast({
+                    title: '导入成功，如信息显示不正常请重新进入小程序',
+                    icon: 'none'
+                  })
+                  setTimeout(function() {
+                    wx.setStorageSync('firstUse', 'not');
+                    wx.redirectTo({
+                      url: '../blank/blank',
+                    });
+                  }, 1250);
+                } else{
+                  this.setData({
+                    swiperCurrent: 2,
+                    nextBtn: '下一步'
+                  })
+                }
               }
             } else if(res.data.code == 401){
               wx.showToast({
@@ -386,10 +433,19 @@ Page({
     })
   },
   skipTap(){
-    wx.setStorageSync('isSkip', true)
-    wx.switchTab({
-      url: '/pages/home/home',
-    })
+    let from = this.data.from;
+    let swiperCurrent = this.data.swiperCurrent;
+    if (swiperCurrent < 2 && from != 'import') {
+      wx.setStorageSync('isSkip', true)
+      wx.switchTab({
+        url: '/pages/home/home',
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1,
+    }); 
+    }
+
   },
   onClose() {
     this.setData({
