@@ -16,7 +16,7 @@
           <view>无需线下上交打印件即可完成学分认证</view>
         </view>
         <view class="infoBox_btn" style="background: linear-gradient(-120deg, #FF5130 30%,#FC5330 60%,#E74E2D 100%);">开始提交</view>
-        <image class="infoBox_img" src="/images/office/data.png"></image>
+        <image class="infoBox_img" src="/images/testify/data.png"></image>
       </view>
       <view class="infoBox" style="background: linear-gradient(150deg,#DDECFC 20%,#C3DCF8 40%,#A5C7EC 100%);" bindtap="navToManagement">
         <view class="infoBox_title">
@@ -28,7 +28,7 @@
           <view>内测阶段，至多上传 6 张证明</view>
         </view>
         <view class="infoBox_btn" style="background: linear-gradient(-120deg, #559FEF 30%,#3E97F5 60%,#3E97F4 100%);">点击管理</view>
-        <image class="infoBox_img" src="/images/office/file.png"></image>
+        <image class="infoBox_img" src="/images/testify/file.png"></image>
       </view>
       <view class="infoBox" style="background: linear-gradient(150deg,#F1ECFE 25%,#E3DBFA 50%,#D6CCF3 75%);">
         <view class="infoBox_title">
@@ -39,7 +39,7 @@
           <view>敬请期待</view>
           <view>欢迎大家加入我们</view>
         </view>
-        <image class="infoBox_img" style="height:200rpx;width:188rpx;" src="/images/office/plan.png"></image>
+        <image class="infoBox_img" style="height:200rpx;width:188rpx;" src="/images/testify/plan.png"></image>
       </view>
     </scroll-view>
   </view>

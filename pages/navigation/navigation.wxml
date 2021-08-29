@@ -3,5 +3,9 @@
   <view class="navBar"><text class="navBar_title black95">校园地图</text></view>
 </view>
 <!-- 内容区域 -->
-<view class="container">
+<view class="container" style="height: {{contentHeight}}px;">
+  <map id="mapp" latitude="28.743342" longitude="115.86853" scale="16" 
+	 show-compass="true"
+	 markers="{{markers}}">
+  </map>
 </view>

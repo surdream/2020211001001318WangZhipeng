@@ -23,17 +23,10 @@ Page({
     arrange_list: [],
     repair_list: [],
     grade_actions: [
-      {name: '2021.2'},
-      {name: '2021.1'},
-      {name: '2020.2'},
-      {name: '2020.1'},
-      {name: '2019.2'},
-      {name: '2019.1'},
-      {name: '2018.2'},
-      {name: '2018.1'},
+
     ],
     officeColorList: [
-      '#C1E965','#E3C160','#EE7785','#7BDEE8'
+      '#67D5B5','#EE7785','#C89EC4','#84B1ED'
     ],
     userInfo: {
       schUrl: '/images/conmon/ecjtu.jpg'
@@ -41,20 +34,21 @@ Page({
     infoListTitle: [
       {name: '我的课表'},{name: '查询成绩'},{name: '考试安排'}
     ],
-    courseList: [
-      {title: '高等数学Ⅰ',teacher: '刘二根',address: '31栋218',class: '2020-2小二班',microNum: '23'},
-      {title: '高等数学Ⅰ',teacher: '刘二根',address: '31栋218',class: '2020-2小二班',microNum: '23'},
-      {title: '高等数学Ⅰ',teacher: '刘二根',address: '31栋218',class: '2020-2小二班',microNum: '23'},
-      {title: '高等数学Ⅰ',teacher: '刘二根',address: '31栋218',class: '2020-2小二班',microNum: '23'},
-    ],
   },
   onLoad: function (options) {
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       let accountInfo = wx.getStorageSync('accountInfo');
       this.setData({
-        accountInfo: accountInfo
+        accountInfo: accountInfo,
+        grade_term: accountInfo.oldterm[accountInfo.oldterm.length-2]
       })
+      for(let i=0;i<accountInfo.oldterm.length;i++){
+        let term_list_str = 'grade_actions[' + i + '].name';
+        this.setData({
+          [term_list_str]: accountInfo.oldterm[i],
+        })
+      }
       // 查询课表
       request({
         url: "api/edu/today?", 

@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/blank/blank",
-    "pages/office/office",
     "pages/home/home",
+    "pages/office/office",
     "pages/guide/guide",
     "pages/userStatus/userStatus",
     "pages/schoolCalendar/schoolCalendar",
@@ -65,6 +65,12 @@
         "text": "教务",
         "iconPath": "/images/tabbar/office_not.png",
         "selectedIconPath": "/images/tabbar/office.png"
+      },
+      {
+        "pagePath": "pages/navigation/navigation",
+        "text": "地图",
+        "iconPath": "/images/tabbar/navigation_not.png",
+        "selectedIconPath": "/images/tabbar/navigation.png"
       },
       {
         "pagePath": "pages/mine/mine",

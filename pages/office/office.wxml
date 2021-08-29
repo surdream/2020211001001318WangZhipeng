@@ -28,20 +28,20 @@
   <!-- 常用功能区 -->
   <view class="usefulWrap">
     <view class="usefulWrap_box" bindtap="navTo" data-url="testify">
-      <image src="/images/office/photo.png" class="usefulWrap_icon" style="background: rgba(107,219,246,0.5)"></image>
+      <image src="/images/office/photo.png" class="usefulWrap_icon" style="background: rgba(128,183,249,0.5)"></image>
       <view class="usefulWrap_text">加分证明</view>
     </view>
     <view class="usefulWrap_box" bindtap="sorryTap">
-      <image src="/images/office/infomation.png" class="usefulWrap_icon" style="background: rgba(106,91,241,0.5)"></image>
+      <image src="/images/office/infomation.png" class="usefulWrap_icon" style="background: rgba(255,208,92,0.5)"></image>
       <view class="usefulWrap_text">培养计划</view>
     </view>
     <view class="usefulWrap_box" bindtap="sorryTap">
-      <image src="/images/office/note.png" class="usefulWrap_icon" style="background: rgba(252,212,48,0.5)"></image>
+      <image src="/images/office/note.png" class="usefulWrap_icon" style="background: rgba(165,173,246,0.5)"></image>
       <view class="usefulWrap_text">课堂笔记</view>
     </view>
     <view class="usefulWrap_box" bindtap="sorryTap" style="margin:0;">
-      <image src="/images/office/target.png" class="usefulWrap_icon" style="background: rgba(122,122,252,0.5)"></image>
-      <view class="usefulWrap_text">学期目标</view>
+      <image src="/images/office/skill.png" class="usefulWrap_icon" style="background: rgba(248,95,105,0.5)"></image>
+      <view class="usefulWrap_text">学习攻略</view>
     </view>
   </view>
   <!-- 底部信息区 -->
@@ -49,14 +49,14 @@
     <!-- 信息控制栏 -->
     <view class="infoControlWrap">
       <view class="infoControlBar" wx:if="{{titleTarget == 0}}">
-          <image src="/images/office/calendar.png" class="infoControlBar_img" style="background: rgba(112,132,252, 0.5);"></image>
+          <image src="/images/office/calendar.png" class="infoControlBar_img" style="background: rgba(128,183,249, 0.5);"></image>
           <view class="infoControlBar_title">课程信息 {{courentDay}}</view>
           <view class="infoControlBar_detail">你今天共有 {{chart_list.length}} 堂课</view>
-          <view class="bfBtn" bindtap="switchBtn" data-type="before">前一天</view>
-          <view class="afBtn" bindtap="switchBtn" data-type="after">后一天</view>
+          <view class="switchBtn bfBtn" bindtap="switchBtn" data-type="before">前一天</view>
+          <view class="switchBtn afBtn" bindtap="switchBtn" data-type="after">后一天</view>
       </view>
       <view class="infoControlBar" wx:if="{{titleTarget == 1}}">
-          <image src="/images/office/grade.png" class="infoControlBar_img" style="background: rgba(228,72,66, 0.5);"></image>
+          <image src="/images/office/grade.png" class="infoControlBar_img" style="background: rgba(255,172,62, 0.5);"></image>
           <view class="infoControlBar_title">成绩详情</view>
           <view class="infoControlBar_detail">绩点:{{accountInfo.gpa}}|素拓:{{accountInfo.credit_art}}|科创:{{accountInfo.credit_vo}}</view>
           <view class="infoControlBar_picker">
@@ -67,7 +67,7 @@
           </view>
       </view>
       <view class="infoControlBar" wx:if="{{titleTarget == 2}}">
-          <image src="/images/office/schedule.png" class="infoControlBar_img" style="background: rgba(64,88,226, 0.5);"></image>
+          <image src="/images/office/schedule.png" class="infoControlBar_img" style="background: rgba(165,173,246, 0.5);"></image>
           <view class="infoControlBar_title">考试信息</view>
           <view class="infoControlBar_detail">最近你有 {{arrange_list.length}} 门考试</view>
       </view>
@@ -100,7 +100,7 @@
           </view> -->
         </view>
         <view class="defaultWrap" wx:if="{{chart_list.length == 0}}">
-          <image class="defaultImg" src="/images/office/noChart.png"></image>
+          <image class="defaultImg" src="/images/office/no_chart.png"></image>
           <view class="defaultNotice">今天没有课哦</view>
         </view>
       </block>
@@ -117,7 +117,7 @@
           <view class="infoBox_detail">{{gradeItem.method}} {{gradeItem.course_require}} 学分:{{gradeItem.credit}}</view>
         </view>
         <view class="defaultWrap" wx:if="{{grade_list.length == 0}}">
-          <image class="defaultImg" src="/images/office/noChart.png"></image>
+          <image class="defaultImg" src="/images/office/no_grade.png"></image>
           <view class="defaultNotice">当前无成绩</view>
         </view>
       </block>
@@ -141,7 +141,7 @@
           </view>
         </block>
         <view class="defaultWrap" wx:if="{{chart_list.length == 0 && repair_list.length == 0}}">
-            <image class="defaultImg" src="/images/office/noChart.png"></image>
+            <image class="defaultImg" src="/images/office/no_exam.png"></image>
             <view class="defaultNotice">当前没有考试安排</view>
         </view>
       </block>

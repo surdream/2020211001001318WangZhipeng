@@ -101,6 +101,12 @@
           "pathName": "pages/schoolCalendar/schoolCalendar",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/navigation/navigation",
+          "pathName": "pages/navigation/navigation",
+          "query": "",
+          "scene": null
         }
       ]
     }

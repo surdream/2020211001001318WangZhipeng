@@ -15,7 +15,6 @@ page{
   position: absolute;
   right: 30rpx;
   border-radius: 50%;
-  box-shadow:  0rpx 0rpx 4rpx #96A3EA;
 }
 .topTitle{
   font-weight: 900;
@@ -114,27 +113,21 @@ page{
   font-size: 25rpx;
   color: rgba(0, 0, 0, 0.6);
 }
-.bfBtn{
+.switchBtn{
   position: absolute;
   margin: 26rpx 0 0 0;
-  right: 150rpx;
   padding: 10rpx 14rpx 14rpx 14rpx;
   border-radius: 16rpx;
   font-size: 24rpx;
   font-weight: 700;
-  border: 4rpx solid rgba(64,88,226, 0.5);
-  box-shadow:  0rpx 0rpx 6rpx #B4C7FA;
+  border: 4rpx solid #80B7F9;
+  box-shadow:  0rpx 0rpx 6rpx #B7D3F4;
+}
+.bfBtn{
+  right: 150rpx;
 }
 .afBtn{
-  position: absolute;
-  margin: 26rpx 0 0 0;
   right: 30rpx;
-  padding: 10rpx 14rpx 14rpx 14rpx;
-  border-radius: 16rpx;
-  font-size: 22rpx;
-  font-weight: 700;
-  border: 4rpx solid rgba(64,88,226, 0.5);
-  box-shadow:  0rpx 0rpx 6rpx #B4C7FA;
 }
 .infoControlBar_picker{
   position: absolute;
@@ -143,8 +136,8 @@ page{
   border-radius: 16rpx;
   font-size: 24rpx;
   font-weight: 700;
-  border: 4rpx solid rgba(64,88,226, 0.5);
-  box-shadow:  0rpx 0rpx 8rpx #B4C7FA;
+  border: 4rpx solid #FFAC3E;
+  box-shadow:  0rpx 0rpx 6rpx #F7DFA5;
 }
 .pickerImg{
   margin: 6rpx 0 0 0;
@@ -174,13 +167,13 @@ page{
 }
 .infoListTitle_border{
   width: 60rpx;
-  border-bottom: 8rpx solid rgba(64,88,226, 0.5);
+  border-bottom: 8rpx solid #3E8BF8;
   margin: auto;
   margin-top: 8rpx;
   border-radius: 50rpx;
 }
 .infoListTitle_unBorder{
-  width: 30rpx;
+  width: 20rpx;
   border-bottom: 8rpx solid rgba(0, 0, 0, 0.25);
   margin: auto;
   margin-top: 8rpx;
@@ -259,9 +252,9 @@ page{
   text-align: center
 }
 .defaultImg{
-  margin: 128rpx 0 12rpx 0;
-  width: 180rpx;
-  height: 192rpx;
+  margin-top: 30rpx;
+  width: 360rpx;
+  height: 360rpx;
 }
 .defaultNotice{
   font-weight: 800;
