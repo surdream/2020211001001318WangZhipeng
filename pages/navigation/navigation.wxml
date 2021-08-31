@@ -1,11 +1,58 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
-  <view class="navBar"><text class="navBar_title black95">校园地图</text></view>
+  <image class="navBarImg" src="{{accountInfo.avatar}}" style="height:{{menuButtonHeight}}px;width: {{menuButtonHeight}}px;"></image>
+  <view class="navBar"><text class="navBar_title black80">校园地图</text></view>
 </view>
 <!-- 内容区域 -->
 <view class="container" style="height: {{contentHeight}}px;">
+  <van-tabs active="{{ active }}" bind:change="onChange" color="#2C2C2C">
+    <van-tab title="教学实验"></van-tab>
+    <van-tab title="生活便民"></van-tab>
+    <van-tab title="快递物流"></van-tab>
+    <van-tab title="社团部门"></van-tab>
+  </van-tabs>
   <map id="mapp" latitude="28.743342" longitude="115.86853" scale="16" 
-	 show-compass="true"
-	 markers="{{markers}}">
+	 show-compass="true" markers="{{markers}}" show-compass="{{false}}" bindmarkertap="bindmarkertap">
   </map>
 </view>
+<!-- 弹出框 -->
+<van-popup
+    description=""
+    show="{{ showPopup }}"
+    bind:close="popClose"
+    close-on-click-overlay="{{ true }}"
+    position="bottom"
+    custom-style="background:#F4F7F7;border-radius:50rpx 50rpx 0 0;"
+>
+  <view class="popWrap">
+    <image class="popWrap_look" src="/images/navigation/cainiao.png" mode="aspectFill"></image>
+    <view class="popWrap_title">
+      <image src="/images/navigation/{{currMaker.address_type}}.png"></image>
+      <text>{{currMaker.address_name}}</text>
+    </view>
+    <view class="popWrap_detail">
+      <view class="popWrap_detailBox walk_bg">
+        <image class="walk" src="/images/navigation/walk.png"></image>
+        <text>{{distance}}</text>
+      </view>
+      <view class="popWrap_detailBox time_bg">
+        <image class="time" src="/images/navigation/time.png"></image>
+        <text>{{takeTime}}分</text>
+      </view>
+    </view>
+    <view class="popWrap_openTime">
+      <image src="/images/navigation/location.png"></image>
+      <text>{{currMaker.open_time}}</text>
+    </view>
+    <view class="popWrap_btnBar">
+      <view class="btnBar_navBox" bindtap="gomapiftion">
+        <image src="/images/navigation/arrow.png"></image>
+        <text>到这去</text>
+      </view>
+      <view class="btnBar_navBox about">
+        <image src="/images/navigation/about.png"></image>
+        <text>点击查看</text>
+      </view>
+    </view>
+  </view>
+</van-popup>

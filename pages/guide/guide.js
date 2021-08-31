@@ -91,17 +91,17 @@ Page({
       method: 'GET', 
     }).then(res => {
       console.log(res);
-      if(res.statusCode === 200){
+      if(res.data.code === 200){
         this.setData({
           connectStatus: '认证通道畅通',
           status_color: '#3AC569',
         })
-      } else if(res.statusCode === 202){
+      } else if(res.data.code === 202){
         this.setData({
           connectStatus: '认证通道异常',
-          status_color: '#E3E36A',
+          status_color: '#f9d423',
         })
-      } else if(res.statusCode === 307){
+      } else if(res.data.code === 307){
         this.setData({
           connectStatus: '认证系统升级',
           status_color: '#F1948A',

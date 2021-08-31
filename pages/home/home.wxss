@@ -1,5 +1,5 @@
 page{
-  background: #EFEFEF;
+  background: #F4F7F7;
 }
 swiper{
   width: 92%;
@@ -127,6 +127,10 @@ swiper image {
   font-size: 30rpx;
   display: inline-flex;
   font-weight: 800;
+  max-width: 480rpx;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .infoBox_detail{
   font-size: 28rpx;
@@ -134,11 +138,23 @@ swiper image {
   color: rgba(0, 0, 0, 0.8);
 }
 .courseStatus{
-  padding: 6rpx 10rpx 0 10rpx;
+  padding: 6rpx 12rpx 0 12rpx;
   font-size: 18rpx;
   border-radius: 25rpx;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 5rpx;
+  color: rgba(255, 255, 255, 1.0);
+  margin: 2rpx 0 0 6rpx;
+}
+.end{
+  background: #7f9eb2;
+}
+.now{
+  background: #3b8686;
+}
+.next{
+  background: #2b90d9;
+}
+.remark{
+  background: #f9c00c;
 }
 .writeBtn{
   text-align: center;
@@ -174,18 +190,6 @@ swiper image {
   margin-top: 5rpx;
   position: absolute;
   right: 5%;
-}
-.end{
-  background: #8283a7;
-}
-.now{
-  background: #2b90d9;
-}
-.next{
-  background: #41D3BD;
-}
-.remark{
-  background: #f9c00c;
 }
 .viewAll{
   position: absolute;

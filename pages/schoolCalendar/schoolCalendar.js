@@ -5,7 +5,7 @@ Page({
     loading: true,
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
-    startDate: '2021/8/28',
+    startDate: '2021/9/1',
     endDate: '2022/2/18',
     formatter(day) {
       const month = day.date.getMonth() + 1;
@@ -20,24 +20,17 @@ Page({
       } else if(day.type === 'end'){
         day.bottomInfo = ''
       }
-      if (month === 8) {
-        if (date === 28) {
-          day.topInfo = '返校';
-          day.type = 'start';
-          day.bottomInfo = '老生'
-        } else if (date > 28 && date <= 31) {
-          day.type = 'middle';
-        }
-      }
       if (month === 9) {
         if (date === 1) {
           day.topInfo = '开学';
           day.type = 'start';
           day.bottomInfo = '正式上课'
+        } else if (date === 2) {
+          day.type = '';
         } else if (date === 3) {
           day.topInfo = '新生';
           day.type = 'start';
-          day.bottomInfo = '2021级'
+          day.bottomInfo = '21级'
         } else if (date === 4) {
           day.type = 'middle';
         } else if (date === 5) {
@@ -48,7 +41,7 @@ Page({
         } else if (date === 13) {
           day.topInfo = '开学典礼';
           day.type = 'end';
-          day.bottomInfo = '2021级';
+          day.bottomInfo = '21级';
         } else if (date === 19) {
           day.topInfo = '校庆';
           day.type = 'start';

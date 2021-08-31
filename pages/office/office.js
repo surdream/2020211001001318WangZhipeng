@@ -102,11 +102,10 @@ Page({
           method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
         }).then(res =>{
           console.log(res.data)
-          let arrange_list = res.data.data.normal;
+          let normal_list = res.data.data.normal;
           let repair_list = res.data.data.re;
           this.setData({
-            arrange_list: arrange_list,
-            repair_list: repair_list
+            arrange_list: normal_list.concat(repair_list)
           })
           this.setData({
             loading: false

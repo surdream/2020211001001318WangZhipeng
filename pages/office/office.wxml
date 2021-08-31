@@ -126,21 +126,12 @@
           <view class="infoBox" wx:for="{{arrange_list}}" wx:key="index" data-id="{{index}}" wx:for-item="arrangeItem">
             <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
             <image class="infoBox_notice" src=""></image>
-            <view class="infoBox_top">{{arrangeItem.date}} {{arrangeItem.time}}</view>
-            <view class="infoBox_title">{{arrangeItem.title}} {{arrangeItem.teacher}}</view>
-            <view class="infoBox_detail">{{arrangeItem.address}} {{arrangeItem.type}} 学分:{{arrangeItem.credit}}</view>
+            <view class="infoBox_top">{{arrangeItem.exam_time_raw}}</view>
+            <view class="infoBox_title">{{arrangeItem.course_name}}</view>
+            <view class="infoBox_detail">{{arrangeItem.place}} {{'序号:' + arrangeItem.exam_id}}</view>
           </view>
         </block>
-        <block wx:if="repair_list.length != 0">
-          <view class="infoBox" wx:for="{{repair_list}}" wx:key="index" data-id="{{index}}" wx:for-item="arrangeItem">
-            <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
-            <image class="infoBox_notice" src=""></image>
-            <view class="infoBox_top">{{arrangeItem.date}} {{arrangeItem.time}}</view>
-            <view class="infoBox_title">{{arrangeItem.title}} {{arrangeItem.teacher}}</view>
-            <view class="infoBox_detail">{{arrangeItem.address}} {{arrangeItem.type}} 学分:{{arrangeItem.credit}}</view>
-          </view>
-        </block>
-        <view class="defaultWrap" wx:if="{{chart_list.length == 0 && repair_list.length == 0}}">
+        <view class="defaultWrap" wx:if="{{arrange_list.length == 0 && repair_list.length == 0}}">
             <image class="defaultImg" src="/images/office/no_exam.png"></image>
             <view class="defaultNotice">当前没有考试安排</view>
         </view>

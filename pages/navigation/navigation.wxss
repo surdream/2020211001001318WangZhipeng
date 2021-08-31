@@ -1,4 +1,118 @@
+.navBarImg{
+	border-radius: 50%;
+	margin-left: 20rpx;
+	position: absolute;
+}
 #mapp {
 	height: 100%; 
 	width: 100%;
+}
+.popWrap{
+	border-radius: 40rpx 40rpx 0 0;
+}
+.popWrap_title{
+	margin: 20rpx 0 0 24rpx;
+	font-size: 32rpx;
+	font-weight: 800;
+}
+.popWrap_title image{
+	position: absolute;
+	width: 50rpx;
+	height: 50rpx;
+}
+.popWrap_title text{
+	margin-left: 60rpx;
+}
+.popWrap_detail{
+	display: inline-block;
+}
+.popWrap_detailBox{
+	display: inline-flex;
+	border-radius: 50rpx;
+	background: #EEF1F4;
+	padding: 10rpx;
+	margin: 50rpx 0 0 15rpx;
+}
+.walk_bg{
+	background: rgba(200,158,196,0.2);
+	color: #C89EC4;
+}
+.time_bg{
+	background: rgba(132,177,237,0.2);
+	color: #84B1ED;
+}
+.popWrap_detailBox text{
+	font-size: 25rpx;
+	margin: 8rpx 15rpx 0 20rpx;
+	font-weight: 700;
+}
+.popWrap_detailBox image{
+	width: 30rpx;
+	height: 30rpx;
+	padding: 10rpx;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.4);
+}
+/* .walk{
+	background: #00C5A4;
+} */
+/* .time{
+	background: #B170D8;
+} */
+.popWrap_openTime{
+	margin: 20rpx 0 0 28rpx;
+}
+.popWrap_openTime image{
+	position: absolute;
+	width: 45rpx;
+	height: 45rpx;
+}
+.popWrap_openTime text{
+	margin: 0rpx 0 0 66rpx;
+	font-size: 26rpx;
+	font-weight: 700;
+	color: rgba(0,0,0,0.8);
+}
+.popWrap_look{
+	position: absolute;
+	right: 20rpx;
+	width: 250rpx;
+	height: 250rpx;
+	border-radius: 50rpx;
+}
+.popWrap_btnBar{
+	display: inline-flex;
+	margin: 75rpx 0 0 25rpx;
+}
+.btnBar_navBox{
+	width: 330rpx;
+	border-radius: 50rpx;
+	padding: 25rpx 0 20rpx 0;
+	font-size: 30rpx;
+	font-weight: 700;
+	background: rgba(0,0,0,0.05);
+}
+.btnBar_navBox image{
+	width: 42rpx;
+	height: 42rpx;
+	margin-left: 92rpx;
+}
+.btnBar_navBox text{
+	color: #2C2C2C;
+	margin: 4rpx 0 0 12rpx;
+	position: absolute;
+}
+.about{
+	margin-left: 40rpx;
+	background: #2C2C2C;
+}
+.about image{
+	width: 48rpx;
+	height: 48rpx;
+	margin-left: 78rpx;
+}
+.about text{
+	color: #fff;
+	margin: 4rpx 0 0 12rpx;
+	position: absolute;
 }

@@ -32,6 +32,12 @@
     "navigationBarTextStyle":"black",
     "navigationStyle": "custom"
   },
+  "plugins": {
+    "routePlan": {
+    "version": "1.0.13",
+    "provider": "wx50b5593e81dd937a"
+    }
+  },
   "usingComponents": {
     "van-button": "miniprogram_npm/vant-weapp/button/index",
     "van-calendar": "@vant/weapp/calendar/index",
@@ -49,9 +55,9 @@
     "van-field": "@vant/weapp/field/index"
   },
   "tabBar": {
-    "color": "#8a8a8a",
-    "selectedColor": "#42D3AD",
-    "backgroundColor":"#EFEFEF",
+    "color": "#BFBFBF",
+    "selectedColor": "#7A7AF9",
+    "backgroundColor":"#F4F7F7",
     "borderStyle": "white",
     "list": [
       {

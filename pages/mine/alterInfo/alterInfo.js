@@ -72,14 +72,32 @@ Page({
     })
   },
   cancelTap(){
-    request({
-      url: "api/user/cancel?",method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-    }).then(res => {
-      console.log(res)
-      wx.clearStorageSync();
-      wx.redirectTo({
-        url: '/pages/blank/blank',
-      })
+    wx.showModal({
+      title: '提示',
+      content: '你要进行账号注销吗？',
+      success (res) {
+        if (res.confirm) {
+          wx.showModal({
+            title: '再次确认',
+            content: '注销后，你关联的一目校园及一问Event论坛账户信息将会全部抹除',
+            success (res) {
+              if (res.confirm) {
+                request({
+                  url: "api/user/cancel?",method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                }).then(res => {
+                  console.log(res)
+                  wx.clearStorageSync();
+                  wx.redirectTo({
+                    url: '/pages/blank/blank',
+                  })
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+        } else if (res.cancel) {
+        }
+      }
     })
   },
   BackPage() {

@@ -1,6 +1,6 @@
 @import "./office.skeleton.wxss";
 page{
-  background: #EFEFEF;
+  background: #F4F7F7;
 }
 .courentWeek{
   font-size: 24rpx;
@@ -136,8 +136,8 @@ page{
   border-radius: 16rpx;
   font-size: 24rpx;
   font-weight: 700;
-  border: 4rpx solid #FFAC3E;
-  box-shadow:  0rpx 0rpx 6rpx #F7DFA5;
+  border: 4rpx solid #80B7F9;
+  box-shadow:  0rpx 0rpx 6rpx #B7D3F4;
 }
 .pickerImg{
   margin: 6rpx 0 0 0;
@@ -252,7 +252,6 @@ page{
   text-align: center
 }
 .defaultImg{
-  margin-top: 30rpx;
   width: 360rpx;
   height: 360rpx;
 }

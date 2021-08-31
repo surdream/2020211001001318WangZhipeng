@@ -10,14 +10,10 @@ Page({
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
-    chart_list: [
-      {time: '08:00-09:40',name: '高等数学Ⅰ',background: '#74b9ff',status: 'now',remark: 'has'},
-      {time: '10:30-12:10',name: '大学物理Ⅰ',background: '#55efc4',status: 'next'},
-      {time: '14:30-16:10',name: '大学英语Ⅰ',background: '#ffeaa7',status: 'none',remark: 'has'}
-    ],
-    link_list: [
-      {time: '10:30-12:10',name: '大学物理Ⅰ',background: '#55efc4',status: 'next'},
-      {time: '14:30-16:10',name: '大学英语Ⅰ',background: '#ffeaa7',status: 'none',remark: 'has'}
+    bg_list: [
+      {color: '#e3dede'},
+      {color: '#55efc4'},
+      {color: '#80d4f6'}
     ],
     news_list: [
       {title: '第12届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'2364'},
@@ -45,6 +41,7 @@ Page({
   onLoad: function (options) {
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
+      // 获取个人信息
       request({
         url: "api/user/profile?", 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
@@ -58,11 +55,13 @@ Page({
             accountInfo: accountInfo,
             lover_status: lover_status
           })
+          // 判断留言状态
           if(accountInfo.lover.msg.length != 0){
             this.setData({
               hasMsg: true
             })
           }
+          // 判断情侣状态
           if(lover_status == 2){
             this.setData({
               popShow: true
@@ -77,6 +76,19 @@ Page({
           wx.showToast({
             title: '系统正在维护',
             icon: 'error'
+          })
+        }
+      })
+      // 获取今日课表
+      request({
+        url: "api/edu/todayMain", 
+        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res.data.data)
+        if (res.data.code == 200) {
+          this.setData({
+            chart_list: res.data.data.me,
+            bind_list: res.data.data.lover
           })
         }
       })
@@ -120,8 +132,11 @@ Page({
     if(lover_status == 1){
       this.setData({ actionShow: true })
     } else{
+      wx.navigateTo({
+        url: '../guide/guide?from=couple',
+      })
       wx.showToast({
-        title: '你还没有绑定情侣',
+        title: '绑定一位用户之后才能给对方留言哦',
         icon: 'none'
       })
     }

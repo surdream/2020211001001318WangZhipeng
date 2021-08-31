@@ -77,3 +77,6 @@ page {
 .black95{
   color: rgba(0, 0, 0, 0.95);
 }
+.black80{
+  color: rgba(0, 0, 0, 0.8);
+}
