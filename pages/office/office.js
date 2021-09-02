@@ -22,6 +22,7 @@ Page({
     grade_list: [],
     arrange_list: [],
     repair_list: [],
+    weekDayLits: ['一','二','三','四','五','六','七',],
     grade_actions: [
 
     ],
@@ -36,6 +37,12 @@ Page({
     ],
   },
   onLoad: function (options) {
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    this.setData({
+      courentTime: timestamp,
+      courentDay: time.formatTimeRev(timestamp,'M/D')
+    })
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       let accountInfo = wx.getStorageSync('accountInfo');
@@ -123,12 +130,6 @@ Page({
     }
   },
   onShow: function () {
-    var timestamp = Date.parse(new Date());
-    timestamp = timestamp / 1000;
-    this.setData({
-      courentTime: timestamp,
-      courentDay: time.formatTimeRev(timestamp,'M/D')
-    })
   },
   BackPage() {
     wx.navigateBack({

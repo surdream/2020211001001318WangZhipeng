@@ -87,7 +87,7 @@
         <view class="infoBox" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}" wx:for-item="chartItem">
           <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
           <!-- <image class="infoBox_notice" src="../../images/office/notice.png"></image> -->
-          <view class="infoBox_top">{{chartItem.startTime}} - {{chartItem.endTime}}</view>
+          <view class="infoBox_top">{{chartItem.startTime}} - {{chartItem.endTime}} 周{{weekDayLits[chartItem.weekDay-1]}}</view>
           <view class="infoBox_title">{{chartItem.course}}</view>
           <view class="infoBox_detail">{{chartItem.classRoom}} {{chartItem.teacherName}} {{chartItem.courseRequire}} {{chartItem.weekSpan}}周</view>
           <!-- 相同的人 -->

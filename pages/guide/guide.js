@@ -440,6 +440,12 @@ Page({
       wx.switchTab({
         url: '/pages/home/home',
       })
+    } else if (swiperCurrent >= 2 && from != 'import') {
+      wx.removeStorageSync('isSkip');
+      wx.setStorageSync('firstUse', 'not');
+      wx.redirectTo({
+        url: '/pages/blank/blank',
+      })
     } else {
       wx.navigateBack({
         delta: 1,
