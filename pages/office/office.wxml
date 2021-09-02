@@ -10,10 +10,10 @@
     </view>
   </view>
 </view>
-<scroll-view class="container" scroll-y="true" style="height: {{contentHeight}}px;" wx-if="{{!loading}}">
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-75}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
-    <view class="topTitle">选择课程</view>
+    <view class="topTitle">已选课程</view>
   </view>
   <!-- 课程列表 -->
   <view class="course_list">
@@ -21,7 +21,7 @@
       <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}"  style="background:{{officeColorList[index%4]}}">
         <text class="courseBox_title">{{item.course_name}}</text>
         <text class="courseBox_class">{{item.class_name_fix}}</text>
-        <text class="courseBox_microNum">{{item.class_number}}</text>
+        <text class="courseBox_microNum">{{item.method}} {{item.class_number}}号</text>
       </view>
     </scroll-view>
   </view>
@@ -132,8 +132,8 @@
           </view>
         </block>
         <view class="defaultWrap" wx:if="{{arrange_list.length == 0 && repair_list.length == 0}}">
-            <image class="defaultImg" src="/images/office/no_exam.png"></image>
-            <view class="defaultNotice">当前没有考试安排</view>
+          <image class="defaultImg" src="/images/office/no_exam.png"></image>
+          <view class="defaultNotice">当前没有考试安排</view>
         </view>
       </block>
       </scroll-view>

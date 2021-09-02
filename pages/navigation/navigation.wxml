@@ -5,14 +5,13 @@
 </view>
 <!-- 内容区域 -->
 <view class="container" style="height: {{contentHeight}}px;">
-  <van-tabs active="{{ active }}" bind:change="onChange" color="#2C2C2C">
+  <van-tabs active="{{ active }}" bind:change="onChange" color="#67D5B5">
     <van-tab title="教学实验"></van-tab>
     <van-tab title="生活便民"></van-tab>
     <van-tab title="快递物流"></van-tab>
-    <van-tab title="社团部门"></van-tab>
   </van-tabs>
   <map id="mapp" latitude="28.743342" longitude="115.86853" scale="16" 
-	 show-compass="true" markers="{{markers}}" show-compass="{{false}}" bindmarkertap="bindmarkertap">
+	 show-compass="true" markers="{{markers}}" show-compass="{{true}}" bindmarkertap="bindmarkertap" layer-style="1" show-location subkey="{{key}}" enable-rotate="{{enablerotat}}" skew="{{skew}}" enable-overlooking="{{enableoverlooking}}" enable-poi="{{false}}">
   </map>
 </view>
 <!-- 弹出框 -->
@@ -22,10 +21,10 @@
     bind:close="popClose"
     close-on-click-overlay="{{ true }}"
     position="bottom"
-    custom-style="background:#F4F7F7;border-radius:50rpx 50rpx 0 0;"
+    custom-style="background:#F8F5F8;border-radius:50rpx 50rpx 0 0;"
 >
   <view class="popWrap">
-    <image class="popWrap_look" src="/images/navigation/cainiao.png" mode="aspectFill"></image>
+    <image class="popWrap_look" src="/images/navigation/sorry.png" mode="aspectFill"></image>
     <view class="popWrap_title">
       <image src="/images/navigation/{{currMaker.address_type}}.png"></image>
       <text>{{currMaker.address_name}}</text>

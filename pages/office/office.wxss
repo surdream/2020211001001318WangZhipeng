@@ -1,6 +1,6 @@
 @import "./office.skeleton.wxss";
 page{
-  background: #F4F7F7;
+  background: #F8F5F8;
 }
 .courentWeek{
   font-size: 24rpx;
@@ -62,7 +62,7 @@ page{
   color: rgba(0, 0, 0, 1.0);
   font-weight: 900;
   font-size: 28rpx;
-  margin: 16rpx 0 0 160rpx;
+  margin: 24rpx 0 0 16rpx;
   position: absolute;
 }
 .usefulWrap{

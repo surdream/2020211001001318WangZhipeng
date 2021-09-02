@@ -1,5 +1,5 @@
 page{
-  background: #F4F7F7;
+  background: #F8F5F8;
 }
 swiper{
   width: 92%;
@@ -32,7 +32,7 @@ swiper{
   transition: all .8s; 
 } 
 .dots .dot.active{ 
-  width: 32rpx; 
+  width: 36rpx; 
   background: rgba(255, 255, 255, 0.8);
 }
  
@@ -81,8 +81,13 @@ swiper image {
 }
 .switchBar image{
   position: absolute;
-  width: 46rpx;
-  height: 46rpx;
+  margin-top: 4rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.switchBar text{
+  margin-left: 42rpx;
+  font-size: 32rpx;
 }
 .msgDot{
   position: absolute;
@@ -96,19 +101,14 @@ swiper image {
 .msgText{
   color: #F06D71;
 }
-.switchBar text{
-  margin-left: 52rpx;
-}
 .infoListTitleUnCheck{
   margin-right: 20rpx;
   font-weight: 800;
-  font-size: 34rpx;
   color: rgba(0, 0, 0, 0.4);
 }
 .infoListTitleChecked{
   margin-right: 20rpx;
   font-weight: 800;
-  font-size: 34rpx;
 }
 /* 课程、留言模块 */
 .infoBox{
@@ -124,16 +124,18 @@ swiper image {
   color: rgba(0, 0, 0, 0.6);
 }
 .infoBox_title{
-  font-size: 30rpx;
+  font-size: 28rpx;
   display: inline-flex;
   font-weight: 800;
-  max-width: 480rpx;
-  white-space:nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+.infoBox_course{
+  max-width: 400rpx;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
 }
 .infoBox_detail{
-  font-size: 28rpx;
+  font-size: 26rpx;
   margin-top: 8rpx;
   color: rgba(0, 0, 0, 0.8);
 }
@@ -142,19 +144,17 @@ swiper image {
   font-size: 18rpx;
   border-radius: 25rpx;
   color: rgba(255, 255, 255, 1.0);
-  margin: 2rpx 0 0 6rpx;
+  margin: 2rpx 0 0 8rpx;
+  height: 32rpx;
 }
 .end{
-  background: #7f9eb2;
+  background: rgba(110,119,131,0.8);
 }
 .now{
-  background: #3b8686;
+  background: rgba(66,211,173,0.8);
 }
 .next{
-  background: #2b90d9;
-}
-.remark{
-  background: #f9c00c;
+  background: rgba(1,190,255,0.8);
 }
 .writeBtn{
   text-align: center;
@@ -207,21 +207,23 @@ swiper image {
   width: 92%;
   margin: 5rpx auto;
   padding: 20rpx 0;
-  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
 }
 .newsBox_title{
   font-size: 28rpx;
   white-space:nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.8);
 }
 .newsBox_detail{
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 26rpx;
-  margin-top: 8rpx;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 24rpx;
+  margin-top: 16rpx;
 }
 .newsBox text{
-  margin-left: 20rpx;
+  margin-left: 12rpx;
 }
 .popTitle{
   font-weight: 900;

@@ -5,7 +5,7 @@
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <block wx:if="{{!alter}}">
     <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{hasLoveDate}}"></image>
-    <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackHome" wx:if="{{hasLoveDate}}"></image>
+    <image class="navBarButton" src="../../images/conmon/left-pink.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackHome" wx:if="{{from == 'home'}}"></image>
     <image class="navBarButton_bold" src="../../images/conmon/left-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage" wx:if="{{!hasLoveDate}}"></image>
   </block>
   <block wx:if="{{alter}}">

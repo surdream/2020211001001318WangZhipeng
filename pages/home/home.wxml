@@ -12,7 +12,7 @@
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
         <block wx:for="{{imgUrls}}" wx:key="index">
           <swiper-item>
-            <image src="{{item}}" class="slide-image" mode="aspectFull"/>
+            <image src="{{item}}" class="slide-image" mode="aspectFill"/>
           </swiper-item>
         </block>
       </swiper>
@@ -28,7 +28,7 @@
       left-icon="/images/home/notice.png" 
       scrollable text="一目校园Beta1.0版本内测上线啦，目前适配了华东交通大学，感谢大家使用，也欢迎大家为我们提供宝贵的意见和想法，或者想加入我们，一起为同学们带来更好用的校园学习生活平台，都可以与我们进行联系哦~" 
       color="rgba(0,0,0,0.4)" 
-      background="linear-gradient(90deg, #DDF2ED 0%,#F4F7F7 100%);"
+      background="linear-gradient(90deg, #DDF2ED 0%,#F8F5F8 100%);"
       speed="100"
       />
     </view>
@@ -79,7 +79,7 @@
         <view class="infoBox" style="--background--:{{bg_list[item.status].color}}" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}">
           <view class="infoBox_time">{{item.startTime}}-{{item.endTime}}</view>
           <view class="infoBox_title">
-            <view>{{item.course}}</view>
+            <view class="infoBox_course">{{item.course}}</view>
             <view class="courseStatus end" wx:if="{{item.status === 0}}">已结束</view>
             <view class="courseStatus now" wx:if="{{item.status === 1}}">上课中</view>
             <view class="courseStatus next" wx:if="{{item.status === 2}}">即将开始</view>
@@ -91,7 +91,7 @@
         <view class="infoBox" style="--background--:{{bg_list[item.status].color}}" wx:for="{{bind_list}}" wx:key="index" data-id="{{index}}">
           <view class="infoBox_time">{{item.startTime}}-{{item.endTime}}</view>
           <view class="infoBox_title">
-            <view>{{item.course}}</view>
+            <view class="infoBox_course">{{item.course}}</view>
             <view class="courseStatus end" wx:if="{{item.status === 0}}">已结束</view>
             <view class="courseStatus now" wx:if="{{item.status === 1}}">上课中</view>
             <view class="courseStatus next" wx:if="{{item.status === 2}}">即将开始</view>
@@ -111,7 +111,7 @@
   <view class="switchBar">
     <view class="infoListTitleChecked">
       <image src="/images/home/news.png"></image>
-      <text>校园动态</text>
+      <text>交大动态</text>
       <!-- <text class="viewAll">查看更多></text> -->
     </view>
   </view>

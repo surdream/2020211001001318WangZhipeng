@@ -163,7 +163,9 @@ Page({
     let endDate = this.data.endDate.replace(/-/g,'/');
     let bfDiff = ((Date.parse(courentDay))-(Date.parse(startDate)))/86400000;
     let afDiff = ((Date.parse(endDate))-(Date.parse(courentDay)))/86400000;
-    if (bfDiff > 0 && afDiff >0) {
+    console.log(bfDiff)
+    console.log(afDiff)
+    if (bfDiff >= 0 && afDiff >=0) {
       this.setData({
         courentDay: courentDay,
         bfDiff: bfDiff + '天',

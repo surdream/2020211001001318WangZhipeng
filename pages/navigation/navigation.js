@@ -1,4 +1,5 @@
 var app = getApp();
+const { request } = require("../../utils/request/request");
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 const qqmapsdk = new QQMapWX({
 	key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM' // 必填
@@ -10,6 +11,9 @@ Page({
     contentHeight: app.globalData.contentHeight,
     showPopup: false,
     active: 0,
+    key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM',
+    enablerotat:true,
+    skew: 0,
     markers0: [
       {
         iconPath: "/images/navigation/cainiao.png",
@@ -74,11 +78,29 @@ Page({
   },
   onLoad: function (options) {
     let accountInfo = wx.getStorageSync('accountInfo');
-    let markers0 = this.data.markers0;
-    this.setData({
-      accountInfo: accountInfo,
-      markers: markers0
+    request({
+      url: "api/map/address", 
+      method: 'GET',
+    }).then(res =>{
+      console.log(res);
+      let arrList = res.data;
+      for(let i=0;i<arrList.length;i++){
+        for(let j=0;j<arrList[i].length;j++){
+          arrList[i][j].iconPath = "https://v.powerv.top/static/img/address/" + res.data[i][j].iconPath + ".png";
+        }
+      }
+      this.setData({
+        markers0: res.data[0],
+        markers1: res.data[1],
+        markers2: res.data[2],
+        markers3: res.data[3],
+      })
+      this.setData({
+        accountInfo: accountInfo,
+        markers: res.data[0]
+      })
     })
+
   },
   onShow: function () {
 

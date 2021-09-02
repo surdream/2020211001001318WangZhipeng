@@ -40,7 +40,7 @@ page{
   text-overflow: ellipsis;
 }
 .mainContent{
-  background: linear-gradient(180deg,#fff 0%,#F4F7F7 75%);
+  background: linear-gradient(180deg,#fff 0%,#F8F5F8 75%);
   border-radius: 72rpx 72rpx 0 0;
   height: 1500rpx;
   margin-top: 50rpx;

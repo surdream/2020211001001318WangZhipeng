@@ -11,21 +11,22 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
     bg_list: [
-      {color: '#e3dede'},
-      {color: '#55efc4'},
-      {color: '#80d4f6'}
+      {color: 'rgba(110,119,131,0.2)'},
+      {color: 'rgba(66,211,173,0.2)'},
+      {color: 'rgba(1,190,255,0.2)'},
+      {color: 'rgba(1,190,255,0.2)'}
     ],
     news_list: [
-      {title: '第12届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'2364'},
-      {title: '第13届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'6589'},
-      {title: '第14届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'23'},
-      {title: '第15届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'982'},
-      {title: '第16届校花校草评选大赛开启帷幕了，有兴趣的过来看看吧~',from: '华东交通大学表白墙',time: '2021-7-28',count :'982'},
+      {title: '测试内容1',from: '一目校园',time: '2021-7-28',count :'2364'},
+      {title: '测试内容2',from: '花椒树洞',time: '2021-7-28',count :'6589'},
+      {title: '测试内容3',from: '华东交通大学官微',time: '2021-7-28',count :'23'},
+      {title: '测试内容4',from: '花椒先锋',time: '2021-7-28',count :'482'},
+      {title: '测试内容5',from: '华东交通大学表白墙',time: '2021-7-28',count :'983'},
     ],
     imgUrls: [
-      '/images/home/show.png',
-      '/images/home/show.png',
-      '/images/home/show.png'
+      '/images/home/60.png',
+      '/images/home/40.png',
+      '/images/home/20.png'
     ],
     msgValue: '',
     hasMsg: false,
@@ -133,7 +134,7 @@ Page({
       this.setData({ actionShow: true })
     } else{
       wx.navigateTo({
-        url: '../guide/guide?from=couple',
+        url: '../guide/guide?from=home',
       })
       wx.showToast({
         title: '绑定一位用户之后才能给对方留言哦',
