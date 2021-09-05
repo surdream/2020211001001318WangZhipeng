@@ -20,8 +20,8 @@
     <scroll-view scroll-x="true" style="height:152rpx;white-space:nowrap;">
       <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}"  style="background:{{officeColorList[index%4]}}">
         <text class="courseBox_title">{{item.course_name}}</text>
-        <text class="courseBox_class">{{item.class_name_fix}}</text>
-        <text class="courseBox_microNum">{{item.method}} {{item.class_number}}号</text>
+        <text class="courseBox_class">{{item.class_name_fix}} {{item.class_number}}号</text>
+        <text class="courseBox_microNum">{{item.method}}课 {{item.credit}}学分</text>
       </view>
     </scroll-view>
   </view>

@@ -17,11 +17,7 @@ Page({
       {color: 'rgba(1,190,255,0.2)'}
     ],
     news_list: [
-      {title: '测试内容1',from: '一目校园',time: '2021-7-28',count :'2364'},
-      {title: '测试内容2',from: '花椒树洞',time: '2021-7-28',count :'6589'},
-      {title: '测试内容3',from: '华东交通大学官微',time: '2021-7-28',count :'23'},
-      {title: '测试内容4',from: '花椒先锋',time: '2021-7-28',count :'482'},
-      {title: '测试内容5',from: '华东交通大学表白墙',time: '2021-7-28',count :'983'},
+      {title: '简介',from: '一目校园',time: '2021-9-5',count: '132',url: 'https://mp.weixin.qq.com/s?__biz=MzkyMjI3Nzk4Nw==&mid=2247483865&idx=1&sn=e7713390823e057c27e1970470ee6714&chksm=c1f780d5f68009c3bfbe4de08c46093afb8e3b126ae2f0a543fa2165f10a2f1627034e4583ab&token=590067764&lang=zh_CN#rd'}
     ],
     imgUrls: [
       '/images/home/60.png',
@@ -74,9 +70,12 @@ Page({
             this.onLoad()
           }
         } else if(res.data.code == 400){
-          wx.showToast({
-            title: '系统正在维护',
-            icon: 'error'
+          request({
+            url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+          }).then(res => {
+            wx.removeStorageSync('sessionid');
+            wx.setStorageSync("sessionid", res.cookies[0]);
+            this.onLoad();
           })
         }
       })
@@ -156,6 +155,13 @@ Page({
   navToCouple(){
     wx.navigateTo({
       url: '/pages/couple/couple?from=home',
+    })
+  },
+  navPublic(e){
+    let url = e.currentTarget.dataset.url;
+    console.log(url);
+    wx.navigateTo({
+      url: '../publicPage/publicPage?url=' + encodeURIComponent(JSON.stringify(url)),
     })
   },
   swiperChange(e) {

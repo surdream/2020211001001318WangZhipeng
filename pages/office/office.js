@@ -86,6 +86,12 @@ Page({
           console.log(res)
           if(res.data.code == 200){
             let courseList = res.data.data
+            for(let i=0;i<courseList.length;i++){
+              var str = courseList[i].class_name_fix;
+              var result1 = str.replace(/【/g,'[');
+              var result2 = result1.replace(/】/g,']');
+              courseList[i].class_name_fix = result2;
+            }
             this.setData({
               courseList: courseList
             })

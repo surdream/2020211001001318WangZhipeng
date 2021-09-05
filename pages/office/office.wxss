@@ -38,7 +38,7 @@ page{
 }
 .courseBox_title{
   color: rgba(0, 0, 0, 0.8);
-  font-weight: 800; 
+  font-weight: 700; 
   font-size: 20rpx;
   margin: 75rpx 0 0 15rpx;
   position: absolute;
@@ -49,7 +49,7 @@ page{
 }
 .courseBox_class{
   color: rgba(0, 0, 0, 0.8);
-  font-weight: 800; 
+  font-weight: 700; 
   font-size: 20rpx;
   margin: 105rpx 0 0 15rpx;
   position: absolute;

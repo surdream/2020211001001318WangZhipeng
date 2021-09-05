@@ -63,7 +63,6 @@ Page({
       '/images/guide/run.png'
     ],
     indicatorDots: false,
-    autoplay: true,
     interval: 2400,
     duration: 800,
     swiperCurrent: 0,

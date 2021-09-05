@@ -11,7 +11,7 @@
     <view class="swiper-box">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
         <block wx:for="{{imgUrls}}" wx:key="index">
-          <swiper-item>
+          <swiper-item data-url="">
             <image src="{{item}}" class="slide-image" mode="aspectFill"/>
           </swiper-item>
         </block>
@@ -43,16 +43,16 @@
       <text>馆藏查询</text>
     </view>
     <view class="useful-box" bindtap="sorryTap">
-      <image src="/images/home/phoneNumber.png"></image>
-      <text>常用电话</text>
-    </view>
-    <view class="useful-box" bindtap="sorryTap">
       <image src="/images/home/club.png"></image>
       <text>认识社团</text>
     </view>
     <view class="useful-box" bindtap="sorryTap">
-      <image src="/images/home/confess.png"></image>
-      <text>校园表白墙</text>
+      <image src="/images/home/phoneNumber.png"></image>
+      <text>常用电话</text>
+    </view>
+    <view class="useful-box" bindtap="sorryTap">
+      <image src="/images/home/note.png"></image>
+      <text>课堂笔记</text>
     </view>
   </view>
   <view class="switchBar">
@@ -86,6 +86,7 @@
           </view>
           <view class="infoBox_detail">@{{item.classRoom}}</view>
         </view>
+        <view class="infoBox_notice" wx:if="{{chart_list.length === 0}}">今天没有课哦</view>
       </block>
       <block wx:if="{{titleTarget == 1}}">
         <view class="infoBox" style="--background--:{{bg_list[item.status].color}}" wx:for="{{bind_list}}" wx:key="index" data-id="{{index}}">
@@ -98,6 +99,8 @@
           </view>
           <view class="infoBox_detail">@{{item.classRoom}}</view>
         </view>
+        <view class="infoBox_notice" wx:if="{{bind_list.length === 0 && lover_status === 1}}">今天Ta没有课哦</view>
+        <view class="infoBox_notice" wx:if="{{lover_status != 1}}">你还没有绑定一位同学的课表</view>
       </block>
       <block wx:if="{{titleTarget == 2}}">
         <view class="writeBtn" bindtap="writeTap">+ 给Ta留言</view>
@@ -116,7 +119,7 @@
     </view>
   </view>
   <view class="newsWrap">
-    <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-id="{{index}}">
+    <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-url="{{item.url}}" bindtap="navPublic">
       <view class="newsBox_title">{{item.title}}</view>
       <view class="newsBox_detail">
         {{item.from}}

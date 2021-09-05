@@ -5,6 +5,11 @@ swiper{
   width: 92%;
   border-radius: 25rpx;
 }
+swiper image {
+  width: 100%;
+  height: 250rpx;
+  border-radius: 25rpx;
+}
 .topWrap{
   width: 100%;
   padding: 20rpx 4%;
@@ -34,12 +39,6 @@ swiper{
 .dots .dot.active{ 
   width: 36rpx; 
   background: rgba(255, 255, 255, 0.8);
-}
- 
-swiper image {
-  width: 100%;
-  height: 250rpx;
-  border-radius: 25rpx;
 }
 .notice-box{
   margin-top: 15rpx;
@@ -138,6 +137,14 @@ swiper image {
   font-size: 26rpx;
   margin-top: 8rpx;
   color: rgba(0, 0, 0, 0.8);
+}
+.infoBox_notice{
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-size: 26rpx;
+  margin-top: 100rpx;
+  letter-spacing: 1rpx;
 }
 .courseStatus{
   padding: 6rpx 12rpx 0 12rpx;

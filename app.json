@@ -2,6 +2,7 @@
   "pages":[
     "pages/blank/blank",
     "pages/home/home",
+    "pages/publicPage/publicPage",
     "pages/office/office",
     "pages/guide/guide",
     "pages/userStatus/userStatus",
