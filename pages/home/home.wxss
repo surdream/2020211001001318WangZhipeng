@@ -128,7 +128,7 @@ swiper image {
   font-weight: 800;
 }
 .infoBox_course{
-  max-width: 400rpx;
+  max-width: 360rpx;
   height: auto;
   white-space: normal !important;
   word-break: break-all;
@@ -151,7 +151,7 @@ swiper image {
   font-size: 18rpx;
   border-radius: 25rpx;
   color: rgba(255, 255, 255, 1.0);
-  margin: 2rpx 0 0 8rpx;
+  margin: 0 0 0 8rpx;
   height: 32rpx;
 }
 .end{

@@ -107,6 +107,12 @@
           "pathName": "pages/navigation/navigation",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/navigation/details/details",
+          "pathName": "pages/navigation/details/details",
+          "query": "",
+          "scene": null
         }
       ]
     }

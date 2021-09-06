@@ -1,0 +1,44 @@
+.topbg{
+  position: absolute;
+  text-align: center;
+  width: 750rpx;
+  height: 500rpx;
+  background: #E7E6E6;
+  z-index: -1;
+}
+.topbg image{
+  width: 100%;
+  height: 100%;
+  height: 100%;
+}
+.introduce{
+  margin: 400rpx 40rpx 0 40rpx;
+}
+.introduce_box{
+  display: inline-block;
+}
+.title{
+  font-weight: 700;
+  color: #0080ff;
+  font-size: 40rpx;
+}
+.titleBorder {
+  border-radius: 50rpx;
+  margin-top: 4rpx;
+  height: 12rpx;
+  background: linear-gradient(90deg, #03a6ff 0%,#1ec0ff 50%,#a3daff 100%);
+}
+.detailBorder{
+  border-radius: 50rpx;
+  height: 35rpx;
+  background: linear-gradient(90deg,#1ec0ff 0%,#a3daff 100%);
+  margin-top: -30rpx;
+}
+.content{
+  word-wrap:break-word;
+  word-break:normal; 
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-top: 8rpx;
+}

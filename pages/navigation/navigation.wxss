@@ -12,8 +12,12 @@
 }
 .popWrap_title{
 	margin: 20rpx 0 0 24rpx;
-	font-size: 32rpx;
+	font-size: 30rpx;
 	font-weight: 800;
+	width: 450rpx;
+	height: auto;
+  white-space: normal !important;
+  word-break: break-all;
 }
 .popWrap_title image{
 	margin-top: -4rpx;
@@ -23,6 +27,7 @@
 }
 .popWrap_title text{
 	margin-left: 60rpx;
+
 }
 .popWrap_detail{
 	display: inline-block;
@@ -117,4 +122,28 @@
 	color: #fff;
 	margin: 4rpx 0 0 12rpx;
 	position: absolute;
+}
+.exchange{
+	position: absolute;
+	top: 300rpx;
+	left: 250rpx;
+	width: 250rpx;
+	height: 100rpx;
+	background-color: rgba(255,255,255,0.75);
+	border-radius: 60rpx;
+}
+.exchange text {
+	position: absolute;
+	left: 70rpx;
+	top: 30rpx;
+	font-size: 32rpx;
+	font-weight: 700;
+	color: rgba(0,0,0,0.8);
+}
+.exchange image {
+	position: absolute;
+	top: 16rpx;
+	left: 140rpx;
+	width: 50rpx;
+	height: 60rpx;
 }

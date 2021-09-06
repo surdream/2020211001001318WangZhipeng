@@ -66,11 +66,11 @@
       <view wx:if="{{swiperCurrent == 1}}">
         <view class="inputAccount">
           <view class="pointer_account"><text class="pointer_{{account.length == 16?'right':'wrong'}}">{{account.length}}</text>/16</view>
-          <input class="inputBox" placeholder="请输入智慧交大账号" value="{{account}}" bindinput="detailInput" type="number" data-name="account"></input>
+          <input class="inputBox" placeholder="请输入智慧交大账号" value="{{account}}" bindinput="detailInput" type="number" data-name="account" disabled="{{!canConnect}}" bindtap="inputTap"></input>
         </view>
         <view class="inputPassword">
           <image src="/images/guide/eye_{{passwordType}}.png" bindtap="passwordTap"></image>
-          <input class="inputBox" placeholder="请输入智慧交大密码" value="{{password}}" bindinput="detailInput" type="{{inputType}}" data-name="password"></input>
+          <input class="inputBox" placeholder="请输入智慧交大密码" value="{{password}}" bindinput="detailInput" type="{{inputType}}" data-name="password" disabled="{{!canConnect}}" bindtap="inputTap"></input>
         </view>
       </view>
       <!-- 关联好友 -->

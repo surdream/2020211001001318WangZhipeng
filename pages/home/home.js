@@ -75,7 +75,36 @@ Page({
           }).then(res => {
             wx.removeStorageSync('sessionid');
             wx.setStorageSync("sessionid", res.cookies[0]);
-            this.onLoad();
+            // 获取个人信息
+            request({
+              url: "api/user/profile?", 
+              method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+            }).then(res =>{
+              let accountInfo = res.data.data;
+              let lover_status = accountInfo.lover_status;
+              wx.setStorageSync('accountInfo', accountInfo);
+              this.setData({
+                accountInfo: accountInfo,
+                lover_status: lover_status
+              })
+              // 判断留言状态
+              if(accountInfo.lover.msg.length != 0){
+                this.setData({
+                  hasMsg: true
+                })
+              }
+              // 判断情侣状态
+              if(lover_status == 2){
+                this.setData({
+                  popShow: true
+                })
+                wx.showToast({
+                  title: '有一条绑定申请',
+                  icon: 'none'
+                })
+                this.onLoad();
+              }
+            })
           })
         }
       })

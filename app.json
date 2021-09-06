@@ -11,6 +11,7 @@
     "pages/testify/testify",
     "pages/testify/management/management",
     "pages/navigation/navigation",
+    "pages/navigation/details/details",
     "pages/mine/mine",
     "pages/mine/alterInfo/alterInfo",
     "pages/mine/update/update",

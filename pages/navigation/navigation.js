@@ -10,71 +10,105 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
     showPopup: false,
+    position: 0,
+    latitude: 28.746064,  
+    longitude:115.86865,
     active: 0,
     key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM',
     enablerotat:true,
     skew: 0,
-    markers0: [
-      {
-        iconPath: "/images/navigation/cainiao.png",
-        id: 0,
-        address_name: '北区教-31栋',
-        address_type: 'life',
-        open_time: '06:00-22:00·周一到周日',
-        latitude: 28.744614,
-        longitude: 115.867065,
-        width: 25,
-        height: 25
-      }
-    ],
-    markers1: [
-      {
-        iconPath: "/images/navigation/cainiao.png",
-        id: 0,
-        address_name: '北区超市',
-        address_type: 'store',
-        open_time: '07:00-22:00·周一到周日',
-        latitude: 28.746858,
-        longitude: 115.867778,
-        width: 25,
-        height: 25
-      },
-      {
-        iconPath: "/images/navigation/cainiao.png",
-        id: 1,
-        address_name: '南区菜鸟驿站',
-        address_type: 'express',
-        open_time: '08:00-22:00·周一到周日',
-        latitude: 28.744672,
-        longitude: 115.869837,
-        width: 25,
-        height: 25
-      },
-      {
-        iconPath: "/images/navigation/cainiao.png",
-        id: 2,
-        address_name: '北区教-31栋',
-        address_type: 'life',
-        open_time: '06:00-22:00·周一到周日',
-        latitude: 28.744614,
-        longitude: 115.867065,
-        width: 25,
-        height: 25
-      }
-    ],
-    markers2: [
-      {
-        iconPath: "/images/navigation/cainiao.png",
-        id: 0,
-        address_name: '南区菜鸟驿站',
-        address_type: 'express',
-        open_time: '08:00-22:00·周一到周日',
-        latitude: 28.744672,
-        longitude: 115.869837,
-        width: 25,
-        height: 25
-      }
-    ]
+    polyline: [{
+      color: '#709E8D',
+      dottedLine: false,
+      width: 5,
+      zIndex: 10,
+      points: [
+        {latitude:28.75408,longitude:115.86877},
+        {latitude:28.754094,longitude:115.868871},
+        {latitude:28.752911,longitude:115.87185},
+        {latitude:28.752848,longitude:115.871882},
+        {latitude:28.752428,longitude:115.871689},
+        {latitude:28.752263,longitude:115.872247},
+        {latitude:28.752059,longitude:115.872297},
+        {latitude:28.752061,longitude:115.872661},
+        {latitude:28.743558,longitude:115.87263},
+        {latitude:28.743125,longitude:115.872682},
+        {latitude:28.743091,longitude:115.874133},
+        {latitude:28.742234,longitude:115.874135},
+        {latitude:28.741682,longitude:115.874024},
+        {latitude:28.741612,longitude:115.873448},
+        {latitude:28.74008,longitude:115.873458},
+        {latitude:28.740072,longitude:115.874105},
+        {latitude:28.739842,longitude:115.874234},
+        {latitude:28.737691,longitude:115.875359},
+        {latitude:28.7378,longitude:115.876508},
+        {latitude:28.737803,longitude:115.876593},
+        {latitude:28.737027,longitude:115.877172},
+        {latitude:28.737008,longitude:115.877669},
+        {latitude:28.737264,longitude:115.87798},
+        {latitude:28.737397,longitude:115.878152},
+        {latitude:28.737745,longitude:115.878212},
+        {latitude:28.737879,longitude:115.878369},
+        {latitude:28.73842,longitude:115.878513},
+        {latitude:28.738477,longitude:115.878568},
+        {latitude:28.738503,longitude:115.87871},
+        {latitude:28.737835,longitude:115.87923},
+        {latitude:28.737339,longitude:115.879417},
+        {latitude:28.737253,longitude:115.879396},
+        {latitude:28.736295,longitude:115.878808},
+        {latitude:28.735878,longitude:115.87806},
+        {latitude:28.734983,longitude:115.877331},
+        {latitude:28.734297,longitude:115.877029},
+        {latitude:28.733389,longitude:115.876813},
+        {latitude:28.733362,longitude:115.876815},
+        {latitude:28.73244,longitude:115.876869},
+        {latitude:28.732213,longitude:115.876882},
+        {latitude:28.731996,longitude:115.87684},
+        {latitude:28.731593,longitude:115.876812},
+        {latitude:28.73147,longitude:115.876786},
+        {latitude:28.731206,longitude:115.876591},
+        {latitude:28.730931,longitude:115.876499},
+        {latitude:28.730989,longitude:115.875221},
+        {latitude:28.73106,longitude:115.874516},
+        {latitude:28.731205,longitude:115.874021},
+        {latitude:28.73145,longitude:115.873578},
+        {latitude:28.731466,longitude:115.873242},
+        {latitude:28.731705,longitude:115.872496},
+        {latitude:28.731953,longitude:115.871826},
+        {latitude:28.732194,longitude:115.871461},
+        {latitude:28.732469,longitude:115.87117},
+        {latitude:28.732603,longitude:115.871064},
+        {latitude:28.733336,longitude:115.870136},
+        {latitude:28.733011,longitude:115.869655},
+        {latitude:28.732916,longitude:115.869205},
+        {latitude:28.733011,longitude:115.86871},
+        {latitude:28.732936,longitude:115.868585},
+        {latitude:28.732909,longitude:115.86849},
+        {latitude:28.732877,longitude:115.868001},
+        {latitude:28.732919,longitude:115.867927},
+        {latitude:28.732938,longitude:115.86791},
+        {latitude:28.733554,longitude:115.867761},
+        {latitude:28.73429,longitude:115.867593},
+        {latitude:28.735024,longitude:115.867468},
+        {latitude:28.735571,longitude:115.867351},
+        {latitude:28.736162,longitude:115.867228},
+        {latitude:28.736996,longitude:115.867067},
+        {latitude:28.73818,longitude:115.866761},
+        {latitude:28.740018,longitude:115.8663},
+        {latitude:28.743882,longitude:115.865764},
+        {latitude:28.744992,longitude:115.865589},
+        {latitude:28.745106,longitude:115.865567},
+        {latitude:28.748041,longitude:115.865088},
+        {latitude:28.749533,longitude:115.865866},
+        {latitude:28.753141,longitude:115.867691},
+        {latitude:28.753147,longitude:115.867728},
+        {latitude:28.753174,longitude:115.867806},
+        {latitude:28.753163,longitude:115.867909},
+        {latitude:28.753046,longitude:115.868189},
+        {latitude:28.754055,longitude:115.868709},
+        {latitude:28.75408,longitude:115.86877}
+      ]
+    }]
   },
   onLoad: function (options) {
     let accountInfo = wx.getStorageSync('accountInfo');
@@ -104,6 +138,23 @@ Page({
   },
   onShow: function () {
 
+  },
+  changePositon(e){
+    let that = this
+    let position = that.data.position;
+    if(position==0){
+      that.setData({
+        position:1,
+        latitude: 28.739046,  
+        longitude:115.870186,
+      })
+    }else{
+      that.setData({
+        position:0,
+        latitude: 28.746064,  
+        longitude:115.86865,
+      })
+    }
   },
   bindmarkertap(e){
     let that = this;
@@ -179,6 +230,12 @@ Page({
         url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint +'&mode=' + mode
     });
     console.log(this.data.currMakerctname)
+  },
+  // 跳转到详情页
+  godetails(e){
+    wx.navigateTo({
+      url: '/pages/navigation/details/details?data='+JSON.stringify(this.data.currMaker),
+    })
   },
   onChange(event) {
     let active = event.detail.name;

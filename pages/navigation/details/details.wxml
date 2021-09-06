@@ -1,0 +1,27 @@
+
+<view class="topbg">
+  <image mode="aspectFit" src="/images/navigation/sorry.png"></image>
+</view>
+<!-- 状态栏 -->
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+  <image class="navBarButton" src="/images/conmon/close.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">介绍</text></view>
+</view>
+<!-- 内容区域 -->
+<view class="introduce">
+  <view class="introduce_box">
+    <text class="title">{{currMaker.address_name}}</text>
+    <view class="titleBorder"></view>
+  </view>
+  <view class="content">
+      <text decode="{{true}}">&emsp;&emsp;</text>
+  </view>
+  <view class="introduce_box">
+    <text class="title">进入须知</text>
+    <view class="detailBorder"></view>
+  </view>
+  <view class="content">
+      <text decode="{{true}}">[开放时间]{{currMaker.open_time}}</text>
+  </view>
+</view>
+ 

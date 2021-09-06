@@ -4,7 +4,7 @@
   <view class="navBar"><text class="navBar_title white95">隐私政策</text></view>
 </view>
 <!-- 内容区域 -->
-<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-10}}px;">
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-30}}px;">
   <view class="topWrap">
     <view class="topWrap_title">一目校园隐私保护政策</view>
     <view class="topWrap_detail">版本：1.0 修订与生效时间：2021年9月1日</view>

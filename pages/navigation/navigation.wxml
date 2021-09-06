@@ -5,18 +5,27 @@
 </view>
 <!-- 内容区域 -->
 <view class="container" style="height: {{contentHeight}}px;">
-  <van-tabs active="{{ active }}" bind:change="onChange" color="#67D5B5">
+  <van-tabs active="{{ active }}" bind:change="onChange" color="#709E8D">
     <van-tab title="教学实验"></van-tab>
     <van-tab title="生活便民"></van-tab>
     <van-tab title="快递物流"></van-tab>
   </van-tabs>
-  <map id="mapp" latitude="28.743342" longitude="115.86853" scale="16" 
-	 show-compass="true" markers="{{markers}}" show-compass="{{true}}" bindmarkertap="bindmarkertap" layer-style="1" show-location subkey="{{key}}" enable-rotate="{{enablerotat}}" skew="{{skew}}" enable-overlooking="{{enableoverlooking}}" enable-poi="{{false}}">
+  <map id="mapp" latitude="{{latitude}}" longitude="{{longitude}}" scale="16" 
+	 show-compass="{{false}}" markers="{{markers}}" bindmarkertap="bindmarkertap" layer-style="1" show-location subkey="{{key}}" enable-rotate="{{enablerotat}}" skew="{{skew}}" enable-overlooking="{{enableoverlooking}}" enable-poi="{{false}}" polyline="{{polyline}}">
   </map>
+</view>
+<!-- 南北区切换 -->
+<view class="exchange" wx:if="{{position==0}}" bindtap="changePositon">
+  <text>北区</text>
+  <image src="/images/navigation/north.png"></image>
+</view>
+<view class="exchange" wx:else bindtap="changePositon">
+  <text>南区</text>
+  <image src="/images/navigation/south.png"></image>
 </view>
 <!-- 弹出框 -->
 <van-popup
-    description=""
+    description="" 
     show="{{ showPopup }}"
     bind:close="popClose"
     close-on-click-overlay="{{ true }}"
@@ -48,7 +57,7 @@
         <image src="/images/navigation/arrow.png"></image>
         <text>到这去</text>
       </view>
-      <view class="btnBar_navBox about">
+      <view class="btnBar_navBox about" bindtap="godetails">
         <image src="/images/navigation/about.png"></image>
         <text>点击查看</text>
       </view>

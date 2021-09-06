@@ -11,6 +11,7 @@ Page({
     isLoading: false,
     haveResult: false,
     hasUserInfo: false,
+    canConnect: false,
     from: '',
     account: '',
     password: '',
@@ -85,33 +86,6 @@ Page({
         icon: 'none'
       })
     }
-    request({
-      url: "api/edu/isconnect",
-      method: 'GET', 
-    }).then(res => {
-      console.log(res);
-      if(res.data.code === 200){
-        this.setData({
-          connectStatus: '认证通道畅通',
-          status_color: '#3AC569',
-        })
-      } else if(res.data.code === 202){
-        this.setData({
-          connectStatus: '认证通道异常',
-          status_color: '#f9d423',
-        })
-      } else if(res.data.code === 307){
-        this.setData({
-          connectStatus: '认证系统升级',
-          status_color: '#F1948A',
-        })
-      } else {
-        this.setData({
-          connectStatus: '系统正在维护',
-          status_color: '#C9D6DE',
-        })
-      }
-    })
   },
   onShow: function () {
 
@@ -132,6 +106,37 @@ Page({
     let swiperCurrent = this.data.swiperCurrent;
     let account = this.data.account;
     let password = this.data.password;
+    request({
+      url: "api/edu/isconnect",
+      method: 'GET', 
+    }).then(res => {
+      console.log(res);
+      if(res.data.code === 200){
+        this.setData({
+          connectStatus: '认证通道畅通',
+          status_color: '#3AC569',
+          canConnect: true
+        })
+      } else if(res.data.code === 202){
+        this.setData({
+          connectStatus: '认证通道异常',
+          status_color: '#f1c40f',
+          canConnect: false
+        })
+      } else if(res.data.code === 307){
+        this.setData({
+          connectStatus: '认证系统升级',
+          status_color: '#F1948A',
+          canConnect: false
+        })
+      } else {
+        this.setData({
+          connectStatus: '系统正在维护',
+          status_color: '#C9D6DE',
+          canConnect: false
+        })
+      }
+    })
     if(swiperCurrent == 0){
       let school = this.data.school
       wx.showToast({
@@ -360,6 +365,15 @@ Page({
       this.setData({
         passwordType: 'open',
         inputType: 'password'
+      })
+    }
+  },
+  inputTap(){
+    let canConnect = this.data.canConnect;
+    if (!canConnect) {
+      wx.showToast({
+        title: '智慧交大登录通道或服务器升级中,请稍后重试',
+        icon: 'none'
       })
     }
   },
