@@ -17,7 +17,10 @@ Page({
       {color: 'rgba(1,190,255,0.2)'}
     ],
     news_list: [
-      {title: '简介',from: '一目校园',time: '2021-9-5',count: '132',url: 'https://mp.weixin.qq.com/s?__biz=MzkyMjI3Nzk4Nw==&mid=2247483865&idx=1&sn=e7713390823e057c27e1970470ee6714&chksm=c1f780d5f68009c3bfbe4de08c46093afb8e3b126ae2f0a543fa2165f10a2f1627034e4583ab&token=590067764&lang=zh_CN#rd'}
+      {title: '小程序简介',from: '一目校园',time: '2021-9-5',count: '0',url: 'https://mp.weixin.qq.com/s?__biz=MzkyMjI3Nzk4Nw==&mid=2247483865&idx=1&sn=e7713390823e057c27e1970470ee6714&chksm=c1f780d5f68009c3bfbe4de08c46093afb8e3b126ae2f0a543fa2165f10a2f1627034e4583ab&token=590067764&lang=zh_CN#rd'},
+      {title: '新生攻略|交大入学指南',from: '一目校园',time: '2021-9-11',count: '0',url: 'https://mp.weixin.qq.com/s/q6iJiBK9_lSpu9beGF0BZw'},
+      {title: '新生指南|军训宝典',from: '一目校园',time: '2021-9-12',count: '0',url: 'https://mp.weixin.qq.com/s/L2azadnVDq9r5LcldlRG6g'},
+      {title: '新生指南|开学必备物品清单',from: '一目校园',time: '2021-9-13',count: '0',url: 'https://mp.weixin.qq.com/s/FK-8yq1Z3u4FduLvsivFKg'},
     ],
     imgUrls: [
       '/images/home/60.png',
@@ -177,6 +180,7 @@ Page({
     })
   },
   navToMsg(){
+    this.setData({ actionShow:false });
     wx.navigateTo({
       url: '/pages/couple/msgboard/msgboard',
     })

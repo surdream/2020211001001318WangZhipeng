@@ -147,3 +147,18 @@
 	width: 50rpx;
 	height: 60rpx;
 }
+.floatBar{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: inline-flex;
+}
+.floatBox{
+	background: rgba(255,255,255,0.8);
+	border-radius: 50rpx;
+	height: 80rpx;
+	width: 100rpx;
+}
+.floatBox_title{
+	padding: 20rpx;
+}

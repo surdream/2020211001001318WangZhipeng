@@ -1,4 +1,5 @@
 var app = getApp();
+import Notify from '@vant/weapp/notify/notify';
 const { request } = require("../../utils/request/request");
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 const qqmapsdk = new QQMapWX({
@@ -9,19 +10,24 @@ Page({
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
+    activeColor: '#EEC174',
     showPopup: false,
     position: 0,
-    latitude: 28.746064,  
-    longitude:115.86865,
+    latitude: 28.746301,
+    longitude: 115.86862,
     active: 0,
     key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM',
-    enablerotat:true,
     skew: 0,
     polyline: [{
-      color: '#709E8D',
+      color: '#EEC174',
       dottedLine: false,
       width: 5,
       zIndex: 10,
+      float_list: [
+        {name: '北31栋'},
+        {name: '北32栋'},
+        {name: '北33栋'},
+      ],
       points: [
         {latitude:28.75408,longitude:115.86877},
         {latitude:28.754094,longitude:115.868871},
@@ -117,6 +123,12 @@ Page({
       method: 'GET',
     }).then(res =>{
       console.log(res);
+      Notify({
+        message: '获取位置点成功,双指缩放查看地图',
+        duration: 1200,
+        safeAreaInsetTop: true,
+        type: 'warning'
+      });
       let arrList = res.data;
       for(let i=0;i<arrList.length;i++){
         for(let j=0;j<arrList[i].length;j++){
@@ -129,9 +141,11 @@ Page({
         markers2: res.data[2],
         markers3: res.data[3],
       })
+      let str = "polyline[0].color";
       this.setData({
         accountInfo: accountInfo,
-        markers: res.data[0]
+        markers: res.data[1],
+        [str]: '#EEC174'
       })
     })
 
@@ -142,17 +156,35 @@ Page({
   changePositon(e){
     let that = this
     let position = that.data.position;
+    let active = that.data.active;
+    if (active == 1) {
+      var type = 'success';
+    } else {
+      var type = 'warning';
+    }
     if(position==0){
+      Notify({
+        message: '切换南区',
+        safeAreaInsetTop: true,
+        duration: 600,
+        type: type
+      });
       that.setData({
-        position:1,
-        latitude: 28.739046,  
-        longitude:115.870186,
+        position: 1,
+        latitude: 28.737734,  
+        longitude: 115.870206,
       })
     }else{
+      Notify({
+        message: '切换北区',
+        safeAreaInsetTop: true,
+        duration: 600,
+        type: type
+      });
       that.setData({
-        position:0,
-        latitude: 28.746064,  
-        longitude:115.86865,
+        position: 0,
+        latitude: 28.746301,
+        longitude: 115.86862,
       })
     }
   },
@@ -165,9 +197,9 @@ Page({
     let active = this.data.active;
     let markerId = e.detail.markerId;
     if (active == 0) {
-      var currMaker = markers0[markerId];
-    } else if (active == 1) {
       var currMaker = markers1[markerId];
+    } else if (active == 1) {
+      var currMaker = markers0[markerId];
     } else if (active == 2) {
       var currMaker = markers2[markerId];
     } else if (active == 3) {
@@ -233,6 +265,7 @@ Page({
   },
   // 跳转到详情页
   godetails(e){
+    this.setData({ showPopup: false})
     wx.navigateTo({
       url: '/pages/navigation/details/details?data='+JSON.stringify(this.data.currMaker),
     })
@@ -243,11 +276,38 @@ Page({
     let markers1 = this.data.markers1;
     let markers2 = this.data.markers2;
     let markers3 = this.data.markers3;
+    let str = "polyline[0].color";
     if (active == 0) {
-      this.setData({markers:markers0})
+      Notify({
+        message: '宿舍、超市、饮食、便民',
+        safeAreaInsetTop: true,
+        duration: 800,
+        type: 'warning'
+      });
+      this.setData({
+        markers: markers1,
+        [str]: '#EEC174',
+        activeColor: '#EEC174'
+      })
     } else if (active == 1) {
-      this.setData({markers:markers1})
+      Notify({
+        message: '教学、实验、学院',
+        safeAreaInsetTop: true,
+        duration: 800,
+        type: 'success'
+      });
+      this.setData({
+        markers: markers0,
+        [str]: '#709E8D',
+        activeColor: '#709E8D'
+      })
     } else if (active == 2) {
+      Notify({
+        message: '菜鸟、顺丰、京东、其他快递',
+        safeAreaInsetTop: true,
+        duration: 800,
+        type: 'primary'
+      });
       this.setData({markers:markers2})
     } else if (active == 3) {
       this.setData({markers:markers3})

@@ -73,4 +73,16 @@ Page({
       url: './' + url + '/' + url,
     })
   },
+  navApp(){
+    wx.showToast({
+      title: '一问Event论坛将在近期上线，敬请期待~',
+      icon: 'none'
+    })
+  },
+  navTreehole(){
+    wx.showToast({
+      title: '花椒树洞将在近期上线，敬请期待~',
+      icon: 'none'
+    })
+  }
 })

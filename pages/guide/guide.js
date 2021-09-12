@@ -478,6 +478,11 @@ Page({
     let name = event.detail.name;
     this.setData({ school: name})
   },
+  navTo(){
+    wx.navigateTo({
+      url: './subscribe/subscribe',
+    })
+  },
   BackPage() {
     wx.navigateBack({
         delta: 1,

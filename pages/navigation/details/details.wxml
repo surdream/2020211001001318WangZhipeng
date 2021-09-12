@@ -14,7 +14,8 @@
     <view class="titleBorder"></view>
   </view>
   <view class="content">
-      <text decode="{{true}}">&emsp;&emsp;</text>
+      <text wx:if="{{currMaker.context == null}}">暂无关于该地点的介绍</text>
+      <text wx:else>{{currMaker.context}}</text>
   </view>
   <view class="introduce_box">
     <text class="title">进入须知</text>

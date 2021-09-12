@@ -1,3 +1,5 @@
+<!-- 顶部提示区 -->
+<van-notify id="van-notify"/>
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <image class="navBarImg" src="{{accountInfo.avatar}}" style="height:{{menuButtonHeight}}px;width: {{menuButtonHeight}}px;"></image>
@@ -5,23 +7,29 @@
 </view>
 <!-- 内容区域 -->
 <view class="container" style="height: {{contentHeight}}px;">
-  <van-tabs active="{{ active }}" bind:change="onChange" color="#709E8D">
-    <van-tab title="教学实验"></van-tab>
-    <van-tab title="生活便民"></van-tab>
-    <van-tab title="快递物流"></van-tab>
+  <van-tabs active="{{ active }}" bind:change="onChange" color="{{activeColor}}">
+    <van-tab title="生活区"></van-tab>
+    <van-tab title="教学区"></van-tab>
   </van-tabs>
+  <view class="floatBar">
+    <scroll-view scroll-x="true" style="height:150rpx;white-space:nowrap;">
+      <view class="floatBox" wx:for="{{float_list}}" wx:key="index">
+        <view class="floatBox_title">{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
   <map id="mapp" latitude="{{latitude}}" longitude="{{longitude}}" scale="16" 
-	 show-compass="{{false}}" markers="{{markers}}" bindmarkertap="bindmarkertap" layer-style="1" show-location subkey="{{key}}" enable-rotate="{{enablerotat}}" skew="{{skew}}" enable-overlooking="{{enableoverlooking}}" enable-poi="{{false}}" polyline="{{polyline}}">
+	 show-compass="{{false}}" markers="{{markers}}" bindmarkertap="bindmarkertap" layer-style="1" show-location subkey="{{key}}" skew="{{skew}}" enable-overlooking="{{true}}" enable-poi="{{false}}" polyline="{{polyline}}" show-scale="{{true}}" enable-3D="{{true}}">
   </map>
 </view>
 <!-- 南北区切换 -->
 <view class="exchange" wx:if="{{position==0}}" bindtap="changePositon">
   <text>北区</text>
-  <image src="/images/navigation/north.png"></image>
+  <image src="/images/navigation/south.png"></image>
 </view>
 <view class="exchange" wx:else bindtap="changePositon">
   <text>南区</text>
-  <image src="/images/navigation/south.png"></image>
+  <image src="/images/navigation/north.png"></image>
 </view>
 <!-- 弹出框 -->
 <van-popup
@@ -32,7 +40,7 @@
     position="bottom"
     custom-style="background:#F8F5F8;border-radius:50rpx 50rpx 0 0;"
 >
-  <view class="popWrap">
+  <view class="popWrap" wx:if="{{currMaker}}">
     <image class="popWrap_look" src="/images/navigation/sorry.png" mode="aspectFill"></image>
     <view class="popWrap_title">
       <image src="/images/navigation/{{currMaker.address_type}}.png"></image>

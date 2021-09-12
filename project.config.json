@@ -38,7 +38,7 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.2",
+  "libVersion": "2.19.4",
   "appid": "wx0039159c9e7dacc1",
   "projectname": "%E4%B8%80%E7%9B%AE%E6%A0%A1%E5%9B%AD",
   "cloudfunctionTemplateRoot": "",

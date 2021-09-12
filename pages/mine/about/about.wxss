@@ -50,6 +50,15 @@
   background: rgba(0,0,0,0.05);
   letter-spacing: 1rpx;
 }
+.groupBox{
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+.groupBox text{
+  color: #709E8D;
+}
 .bottomWrap{
   width: 100%;
   position: absolute;

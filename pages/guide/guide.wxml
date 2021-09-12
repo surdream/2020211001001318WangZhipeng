@@ -92,7 +92,7 @@
         </view>
       </view>
     </view>
-    <view class="helpWrap" wx:if="{{swiperCurrent == 3}}">
+    <view class="helpWrap" wx:if="{{swiperCurrent == 3}}" bindtap="navTo">
       关注我们
     </view>
     <!-- 指示器区域 -->

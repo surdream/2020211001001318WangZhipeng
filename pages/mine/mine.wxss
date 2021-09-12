@@ -109,3 +109,11 @@ page{
 .aboutLink{
   border-radius: 16rpx;
 }
+.supportBtn{
+  position: absolute;
+  opacity: 0;
+  width: 45%;
+  margin-top: 163rpx;
+  z-index: 999;
+  height: 163rpx;
+}

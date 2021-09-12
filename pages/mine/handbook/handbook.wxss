@@ -1,0 +1,81 @@
+page{
+  background: #F4F6F7;
+}
+.safeBox{
+  height: env(safe-area-inset-bottom);
+  padding-bottom: 30rpx;
+}
+.newsBox{
+  margin: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+.newsBox_title{
+  color: rgba(0, 0, 0, 1.0);
+  font-weight: 700;
+  letter-spacing: 3rpx;
+  font-size: 30rpx;
+}
+.newsBox_time{
+  margin-top: 5rpx;
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1rpx;
+}
+.newsBox_content{
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 2rpx;
+  font-weight: 700;
+}
+.honorTitle{
+  margin: 30rpx 0 0 60rpx;
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+.honorWrap{
+  text-align: center;
+}
+.honorBox{
+  width: 320rpx;
+  height: 180rpx;
+  background: #fff;
+  display: inline-block;
+  margin: 15rpx 20rpx;
+  border-radius: 16rpx;
+}
+.honorBox_title{
+  border-radius: 16rpx 16rpx 0 0;
+  width: 100%;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.6);
+  background: #EAEAEA;
+  padding: 12rpx 0;
+  letter-spacing: 2rpx;
+}
+.honorBox_img{
+  position: absolute;
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx 0 0 -128rpx;
+}
+.honorBox_name{
+  position: absolute;
+  color: #218380;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  margin: 24rpx 0 0 128rpx;
+  font-size: 30rpx;
+}
+.honorBox_job{
+  position: absolute;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 700;
+  font-size: 22rpx;
+  margin: 64rpx 0 0 128rpx;
+}

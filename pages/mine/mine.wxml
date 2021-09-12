@@ -2,6 +2,7 @@
 <view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
   <view class="navBar-Left32"><text class="navBar_title white95">{{loginStatus}}</text></view>
 </view>
+<!-- 主要内容区 -->
 <view class="container">
   <view class="topWrap">
     <block wx:if="{{firstUse}}">
@@ -18,13 +19,13 @@
   </view>
   <view class="mainContent">
     <view class="alterBar">
-      <view class="alterBox alterBox_border" bindtap="navTo" data-url="guide">
-        <image class="alterBox_img" src="/images/mine/import.png"></image>
-        <text class="alterBox_text">导入课表</text>
-      </view>
       <view class="alterBox" bindtap="navTo" data-url="alterInfo">
-        <image class="alterBox_img" src="/images/mine/alter.png"></image>
+        <image class="alterBox_img" src="/images/mine/import.png"></image>
         <text class="alterBox_text">个人信息</text>
+      </view>
+      <view class="alterBox alterBox_border" bindtap="navTo" data-url="guide">
+        <image class="alterBox_img" src="/images/mine/alter.png"></image>
+        <text class="alterBox_text">认证登录</text>
       </view>
     </view>
     <view class="midWrap">
@@ -33,26 +34,28 @@
         <text class="usefulBox_text">情侣空间&绑定情侣</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="aboutTo" data-url="update">
+      <view class="usefulBox" bindtap="aboutTo" data-url="handbook">
         <image class="usefulBox_img" src="/images/mine/idea.png"></image>
-        <text class="usefulBox_text">查看帮助&功能更新</text>
+        <text class="usefulBox_text">用户指南&功能更新</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="aboutTo" data-url="official">
+      <view class="usefulBox" bindtap="navTreehole">
         <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
-        <text class="usefulBox_text">校园公众号&万能表白墙</text>
+        <text class="usefulBox_text">一目校园&花椒树洞</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
     </view>
     <view class="aboutWrap">
+      <!-- 客服消息按钮 -->
+      <button class="supportBtn" open-type="contact"></button>
       <van-grid column-num="2" custom-class="aboutLink" clickable="true" border="{{ false }}" icon-size="24">
         <van-grid-item icon="/images/mine/team.png" text="关于我们" bindtap="aboutTo" data-url="about"/>
         <van-grid-item icon="/images/mine/privacy.png" text="安全&隐私" bindtap="aboutTo" data-url="privacy"/>
       </van-grid>
       <van-grid column-num="2" custom-class="aboutLink" clickable="true" border="{{ false }}"
       icon-size="24">
-        <van-grid-item icon="/images/mine/chat.png" text="反馈&聊天" bindtap="aboutTo" data-url="feedback"/>
-        <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="aboutTo" data-url="link"/>
+        <van-grid-item icon="/images/mine/chat.png" text="客服&反馈"/>
+        <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="navApp"/>
       </van-grid>
     </view>
   </view>

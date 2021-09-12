@@ -180,7 +180,6 @@ Page({
     }
   },
   onShow: function () {
-
   },
   BackPage() {
     wx.navigateBack({

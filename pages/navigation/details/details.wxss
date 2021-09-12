@@ -19,20 +19,20 @@
 }
 .title{
   font-weight: 700;
-  color: #0080ff;
-  font-size: 40rpx;
+  color: #3b8686;
+  font-size: 36rpx;
 }
 .titleBorder {
   border-radius: 50rpx;
-  margin-top: 4rpx;
+  margin-top: 2rpx;
   height: 12rpx;
-  background: linear-gradient(90deg, #03a6ff 0%,#1ec0ff 50%,#a3daff 100%);
+  background: linear-gradient(90deg, #3b8686 0%,#79bd9a 50%,#a8dba8 100%);
 }
 .detailBorder{
   border-radius: 50rpx;
-  height: 35rpx;
-  background: linear-gradient(90deg,#1ec0ff 0%,#a3daff 100%);
-  margin-top: -30rpx;
+  height: 32rpx;
+  background: linear-gradient(90deg,#79bd9a 0%,#a8dba8 100%);
+  margin-top: -28rpx;
 }
 .content{
   word-wrap:break-word;
@@ -40,5 +40,5 @@
   color: rgba(0, 0, 0, 0.5);
   font-size: 28rpx;
   font-weight: 700;
-  margin-top: 8rpx;
+  margin: 20rpx 0;
 }

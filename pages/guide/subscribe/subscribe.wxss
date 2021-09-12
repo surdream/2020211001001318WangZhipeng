@@ -1,0 +1,15 @@
+.container{
+  text-align: center;
+}
+.topTitle{
+  font-weight: 700;
+  font-size: 30rpx;
+  margin-top: 30rpx;
+  letter-spacing: 2rpx;
+}
+.img{
+  margin-top: 30rpx;
+  width: 690rpx;
+  height: 1440rpx;
+  border-radius: 25rpx;
+}

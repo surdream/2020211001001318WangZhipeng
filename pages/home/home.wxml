@@ -5,7 +5,8 @@
   <view class="navBar-Left35"><text class="navBar_title">一目校园</text></view>
 </view>
 <!-- 内容区域 -->
-<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height: {{contentHeight-25}}px;">
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-80}}px;">
+<!-- <scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height: {{contentHeight-25}}px;"> -->
   <view class="topWrap">
     <!-- 轮播图 -->
     <view class="swiper-box">
@@ -106,7 +107,7 @@
         <view class="writeBtn" bindtap="writeTap">+ 给Ta留言</view>
         <view class="msgWrap" wx:for="{{accountInfo.lover.msg}}" wx:key="index" bindtap="navToMsg">
           <view class="msgWrap_detail">{{item.content}}</view>
-          <view class="msgWrap_time">{{item.createtime}}</view>
+          <view class="msgWrap_time">{{item.date}} {{item.createtime}}</view>
         </view>
       </block>
     </scroll-view>

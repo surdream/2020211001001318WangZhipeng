@@ -1,5 +1,6 @@
 page{
   background: #F8F5F8;
+  overflow: scroll;
 }
 swiper{
   width: 92%;

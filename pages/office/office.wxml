@@ -10,7 +10,7 @@
     </view>
   </view>
 </view>
-<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-75}}px;" wx-if="{{!loading}}">
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-100}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
     <view class="topTitle">已选课程</view>

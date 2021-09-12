@@ -113,6 +113,18 @@
           "pathName": "pages/navigation/details/details",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/mine/handbook/handbook",
+          "pathName": "pages/mine/handbook/handbook",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/guide/subscribe/subscribe",
+          "pathName": "pages/guide/subscribe/subscribe",
+          "query": "",
+          "scene": null
         }
       ]
     }
