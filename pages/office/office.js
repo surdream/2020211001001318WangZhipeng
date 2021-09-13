@@ -46,8 +46,10 @@ Page({
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       let accountInfo = wx.getStorageSync('accountInfo');
+      let credit = parseFloat(accountInfo.credit_art)+parseFloat(accountInfo.credit_vo)+parseFloat(accountInfo.credit_work);
       this.setData({
         accountInfo: accountInfo,
+        credit: credit,
         grade_term: accountInfo.oldterm[accountInfo.oldterm.length-2]
       })
       for(let i=0;i<accountInfo.oldterm.length;i++){

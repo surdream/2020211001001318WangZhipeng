@@ -58,7 +58,7 @@
       <view class="infoControlBar" wx:if="{{titleTarget == 1}}">
           <image src="/images/office/grade.png" class="infoControlBar_img" style="background: rgba(255,172,62, 0.5);"></image>
           <view class="infoControlBar_title">成绩详情</view>
-          <view class="infoControlBar_detail">绩点:{{accountInfo.gpa}}|素拓:{{accountInfo.credit_art}}|科创:{{accountInfo.credit_vo}}</view>
+          <view class="infoControlBar_detail">绩点:{{accountInfo.gpa}} | 素拓:{{credit}}</view>
           <view class="infoControlBar_picker">
             <view class="picker" bindtap="pickerTap">
               <image src="{{pickerImg}}" class="pickerImg"></image>

@@ -82,7 +82,7 @@
         <view class="inputSearch">
           <image class="searchImg" src="/images/guide/search.png" bindtap="searchTap"></image>
           <view class="inputBox">
-            <text class="sentApply" bindtap="sentTap">发送申请</text>
+            <text wx:if="{{haveResult}}" class="sentApply" bindtap="sentTap">发送申请</text>
             <text wx:if="{{!haveResult}}">点击放大镜进行搜索</text>
             <view wx:if="{{haveResult}}">
               <text>{{searchResult.openname}}</text>

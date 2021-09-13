@@ -7,7 +7,10 @@ Page({
     fileList: [],
   },
   onLoad: function (options) {
-
+    wx.showToast({
+      title: '上传功能正在调试，即将开放使用',
+      icon: 'none'
+    })
   },
   onShow: function () {
 

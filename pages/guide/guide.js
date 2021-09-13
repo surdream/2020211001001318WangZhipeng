@@ -427,6 +427,10 @@ Page({
           title: res.data.msg,
           icon: 'none'
         })
+        wx.showModal({
+          title: '提示',
+          content: '发送绑定申请后，需要对方重新打开小程序才能弹出申请'
+        })
       } else if(res.data.code == 206){
         wx.showToast({
           title: res.data.msg,
