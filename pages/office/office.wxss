@@ -40,7 +40,7 @@ page{
   color: rgba(0, 0, 0, 0.8);
   font-weight: 700; 
   font-size: 20rpx;
-  margin: 75rpx 0 0 15rpx;
+  margin: 72rpx 0 0 15rpx;
   position: absolute;
   width: 200rpx;
   white-space:nowrap;
@@ -51,18 +51,18 @@ page{
   color: rgba(0, 0, 0, 0.8);
   font-weight: 700; 
   font-size: 20rpx;
-  margin: 105rpx 0 0 15rpx;
+  margin: 100rpx 0 0 15rpx;
   position: absolute;
   width: 200rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
 }
 .courseBox_microNum{
   color: rgba(0, 0, 0, 1.0);
   font-weight: 900;
   font-size: 28rpx;
-  margin: 24rpx 0 0 16rpx;
+  margin: 20rpx 0 0 16rpx;
   position: absolute;
 }
 .usefulWrap{

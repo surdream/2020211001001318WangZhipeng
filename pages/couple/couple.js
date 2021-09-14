@@ -224,4 +224,10 @@ Page({
       url: '../mine/mine',
     })
   },
+  onShareAppMessage: function (res) {
+    return {
+      title: '大学查课表成绩选课，还有更多功能等你探索',
+      path: '/pages/blank/blank',
+    }
+  }
 })

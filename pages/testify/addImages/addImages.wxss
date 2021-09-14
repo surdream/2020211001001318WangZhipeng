@@ -1,0 +1,241 @@
+.topWrap{
+  padding: 20rpx 0 0 25rpx;
+}
+.topWrapTitle{
+  font-weight: 800;
+  font-size: 32rpx;
+}
+page {
+  background-color: hsla(0,0%,89.8%,.25);
+  background: hsla(0,0%,89.8%,.25);
+  backdrop-filter: blur(25rpx);
+}
+
+.addMaterial {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  width: 88vw;
+  height: 7vh;
+  /* border: 1px solid red; */
+  margin: 30rpx auto;
+  padding: 2vw;
+  border-radius: 50rpx;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 15rpx 5rpx hsla(0,0%,89.8%,.25);
+}
+
+.addMaterial .innerMain {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 88vw;
+  height: 7vh;
+  /* border: 1px solid red; */
+  font-size: 34rpx;
+}
+
+.innerMain .pickerBox {
+  margin-left: 30rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+.innerMain .pickerBox .picker .typeTitle {
+  color: rgb(128, 168, 164); 
+}
+.innerMain .pickerBox .picker .type {
+  color: grey;
+  font-size: 32rpx;
+}
+.addMaterial .add {
+  font-size: 36rpx;
+  font-weight: 600;
+  padding: 10rpx 20rpx;
+  border: 1px solid #E7E6EA;
+  margin-right: 50rpx;
+  border-radius: 35rpx;
+  color: rgb(128, 168, 164);
+}
+
+.addMaterial .innerChoosed {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  color: gray;
+  margin-left: 30rpx;
+}
+
+.addMaterial .innerChoosed .cancel {
+  margin-left: 30rpx;
+}
+.addMaterial .innerChoosed .choosed-maxChoose {
+  color: rgb(154, 247, 250);
+}
+
+
+.showImageOuterbox {
+  display: flex;
+  flex-flow: column;
+  justify-content: top;
+  width: 90vw;
+  height: 73vh;
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  padding: 2vw;
+  border-radius: 50rpx;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10rpx 15rpx hsla(0,0%,89.8%,.25);
+}
+
+.showImageOuterbox .latelyAdd .latelyAddContent .valueNull {
+  position: absolute;
+  top: 7vh;
+  left: 20vw;
+  color: grey;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.showImageOuterbox .latelyAdd {
+  display: flex;
+  flex-flow: column;
+  justify-content: top;
+  /* align-items: center; */
+  width: 90vw;
+  height: 30vh;
+  /* font-size: 36rpx;
+  font-weight: 600;
+  color: rgb(128, 168, 164); */
+}
+.latelyAdd .latelyText {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 5vh;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: rgb(128, 168, 164);
+}
+.latelyAdd .latelyAddContent {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  align-items: center;
+  width: 90vw;
+  height: 24vh;
+  /* border-top: 1rpx solid rgb(238, 236, 236); */
+  border-bottom: 1rpx solid rgb(238, 236, 236);
+  margin: 1vh 0;
+  overflow: scroll;
+}
+.latelyAddContent .content {
+  display: flex;
+  flex-flow: column;
+  justify-content: top;
+  align-items: center;
+  margin: 0 10rpx;
+  width: 29vw;
+  height: 23vh;
+  padding: 0 10rpx;
+  /* border: 1px solid red; */
+}
+
+.latelyAddContent .content .imgBox {
+  width: 29vw;
+  height: 17vh;
+  border-radius: 25rpx;
+  overflow: hidden;
+  box-shadow: 0 0 5rpx 5rpx rgba(218, 214, 214, 0.7);
+  margin: 10rpx 0;
+}
+.latelyAddContent .content image {
+  width: 29vw;
+  height: 20vh;
+  /* margin: 20rpx 0; */
+}
+.latelyAddContent .content .title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: grey;
+  margin-top: 5rpx;
+}
+
+.showImageOuterbox .allMaterial {
+  display: flex;
+  flex-flow: column;
+  justify-content: top;
+  width: 90vw;
+  height: 43vh;
+  /* border: 1px solid red; */
+}
+
+.allMaterial .title_chooseType {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  height: 3vh;
+  /* border: 1px solid red; */
+  font-size: 33rpx;
+  font-weight: 600;
+  color: rgb(128, 168, 164);
+}
+.title_chooseType .pickerBox {
+  /* margin-right: 20rpx; */
+}
+.pickerBox .picker {
+  position: relative;
+}
+.pickerBox .picker .type {
+  color: grey;
+  font-size: 30rpx;
+  padding-right: 45rpx;
+}
+.pickerBox .picker image {
+  position: absolute;
+  top: 10rpx;
+  right: 0;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.allMaterial .materials {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+  align-items: top;
+  width: 90vw;
+  height: 38vh;
+  /* border: 1px solid red; */
+  margin: 2vh 0 0 0;
+  overflow: scroll;
+}
+.materials .item {
+  width: 28vw;
+  height: 17vh;
+  /* border: 1px solid red; */
+  margin: 1vh 8rpx;
+  border-radius: 25rpx;
+  overflow: hidden;
+  box-shadow: 0 0 5rpx 5rpx rgba(218, 214, 214, 0.7);
+}
+.materials .item image {
+  width: 28vw;
+  height: 17vh;
+}
+
+.materials .valueNull2 {
+  left: 20vw;
+  top: 10vh;
+  position: absolute;
+  color: grey;
+  font-size: 32rpx;
+  font-weight: 600;
+}

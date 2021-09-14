@@ -151,7 +151,50 @@ Page({
 
   },
   onShow: function () {
-
+    const that = this;
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true)                     {
+          wx.showModal({
+            title: '请求授权当前位置信息',
+            content: '使用校园定位、导航、路线规划等功能需要授权位置信息',
+            success: function (res) {
+              if (res.cancel) {
+                wx.showToast({
+                  title: '拒绝授权',
+                  icon: 'none',
+                  duration: 1000
+                })
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function (res) {
+                    if (res.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      that.goAddress();
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+          that.goAddress();
+        }
+        else {
+          that.goAddress();
+        }
+      }
+    })
   },
   changePositon(e){
     let that = this
@@ -324,4 +367,10 @@ Page({
         delta: 1,
     }); 
   },
+  onShareAppMessage: function (res) {
+    return {
+      title: '大学查课表成绩选课，还有更多功能等你探索',
+      path: '/pages/blank/blank',
+    }
+  }
 })

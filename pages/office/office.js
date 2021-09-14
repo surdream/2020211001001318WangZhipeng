@@ -46,7 +46,7 @@ Page({
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       let accountInfo = wx.getStorageSync('accountInfo');
-      let credit = parseFloat(accountInfo.credit_art)+parseFloat(accountInfo.credit_vo)+parseFloat(accountInfo.credit_work);
+      let credit = (parseFloat(accountInfo.credit_art)+parseFloat(accountInfo.credit_vo)+parseFloat(accountInfo.credit_work)).toFixed(1);
       this.setData({
         accountInfo: accountInfo,
         credit: credit,
@@ -328,4 +328,10 @@ Page({
     clearInterval(interval);
     touchTime = 0;
   },
+  onShareAppMessage: function (res) {
+    return {
+      title: '大学查课表成绩选课，还有更多功能等你探索',
+      path: '/pages/blank/blank',
+    }
+  }
 })

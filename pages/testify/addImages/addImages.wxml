@@ -1,0 +1,87 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+  <image class="navBarButton" src="/images/conmon/close.png" style="padding:{{(menuButtonHeight-20)/2}}px;"
+    bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">管理证明</text></view>
+</view>
+
+<!-- 添加 图片 选择类别 -->
+<view class="addMaterial">
+  <view class="innerMain">
+    <!-- 选择类别 -->
+    <picker class="pickerBox" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        <image mode="widthFix" src="{{pullDownUrl}}"></image>
+
+        <text class="typeTitle" space="emsp">证明类别 <text class="type">{{array[index]}}</text></text>
+      </view>
+    </picker>
+    <!-- 添加 -->
+    <view class="add" bindtap="addMaterial">
+      {{addText}}
+    </view>
+  </view>
+  <!-- 已选 / 可选   取消 -->
+  <!-- <view class="innerChoosed"> -->
+  <!-- 已选 / 可选 -->
+  <!-- <view> -->
+  <!-- 已选 <text class="choosed-maxChoose">{{choosed}}/{{maxChoose}}</text>  -->
+  <!-- </view> -->
+  <!-- 取消 -->
+  <!-- <view wx:if="{{cancel}}" class="cancel" bindtap="cancel"> -->
+  <!-- {{cancelText}}  -->
+  <!-- </view> -->
+  <!-- <view wx:if="{{cancel}}" class="cancel" bindtap="confirm"> -->
+  <!-- {{ok}} -->
+  <!-- </view> -->
+  <!-- </view> -->
+</view>
+
+<!-- 证书展示 -->
+<view class="showImageOuterbox">
+  <!-- 最近添加 -->
+  <view class="latelyAdd">
+    <view class="latelyText">
+      {{latelyText}}
+    </view>
+    <view class="latelyAddContent">
+      <view class="valueNull" wx:if="{{latelyImageList == 0}}">
+        {{valueNullContent1}}
+      </view>
+      <view class="content" wx:for="{{latelyImageList}}" wx:key="id">
+        <view class="imgBox">
+          <image bindlongpress="deleteImg" bindtap="previewlatelyImage" data-id="{{item.id}}"
+            data-src="{{item.photoUrl}}" mode="aspectFill" src="{{item.photoUrl}}"></image>
+        </view>
+        <text class="title">{{item.type}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 全部证明 -->
+  <view class="allMaterial">
+    <!-- 标题 + 选择类型 -->
+    <view class="title_chooseType">
+      <view class="alMaterialText">
+        {{alMaterialText}}
+      </view>
+      <!-- 选择类别 -->
+      <picker class="pickerBox" bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
+        <view class="picker">
+          <image mode="widthFix" src="{{pullDownUrl}}"></image>
+
+          <text class="typeTitle" space="emsp">证明类别 <text class="type">{{array2[index2]}}</text></text>
+        </view>
+      </picker>
+    </view>
+    <!-- 全部证书 -->
+    <view class="materials">
+      <view class="valueNull2" wx:if="{{materials == 0}}">
+        {{valueNullContent2}}
+      </view>
+      <view class="item" wx:for="{{materials}}" wx:key="id">
+        <image bindlongpress="deleteImg" bindtap="previewAllImage" mode="aspectFill" data-src="{{item.photoUrl}}"
+          data-id="{{item.id}}" src="{{item.photoUrl}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -17,9 +17,9 @@ Page({
         delta: 1,
     });
   },
-  navToManagement(){
+  navToAddImages(){
     wx.navigateTo({
-      url: './management/management',
+      url: './addImages/addImages',
     })
   }
 })

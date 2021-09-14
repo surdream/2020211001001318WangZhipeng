@@ -147,6 +147,31 @@
 	width: 50rpx;
 	height: 60rpx;
 }
+.feedback{
+	height: 100rpx;
+	width: 100rpx;
+	position: absolute;
+	right: 30rpx;
+	bottom: 50rpx;
+	background: rgba(255,255,255,0.75);
+	border-radius: 50%;
+	text-align: center;
+	font-size: 25rpx;
+	color: rgba(0,0,0,0.5);
+}
+.feedback image{
+	width: 40rpx;
+	height: 40rpx;
+	border-radius: 50%;
+	margin-top: 10rpx;
+}
+.feedbackBtn{
+	position: absolute;
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
 .floatBar{
 	position: absolute;
 	bottom: 0;

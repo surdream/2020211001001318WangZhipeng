@@ -4,10 +4,8 @@ Page({
 
   },
   onLoad: function (options) {
-    console.log(options.url)
-    let url = JSON.parse(decodeURIComponent(options.url));
-    console.log(url)
-    this.setData({ url: url})
+    let link = JSON.parse(decodeURIComponent(options.link));
+    this.setData({ link: link})
   },
   onShow: function () {
 

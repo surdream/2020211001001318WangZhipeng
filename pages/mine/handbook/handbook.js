@@ -9,7 +9,7 @@ Page({
     developer_list: [
       {
         name: '屁屁威',
-        url: 'https://v.powerv.top/static/img/avatar/zzw.jpg',
+        url: 'https://v.powerv.top/static/img/avatar/ZZW.jpg',
         job: '开发&设计'
       },
       {
@@ -55,7 +55,7 @@ Page({
         job: '设计&运营'
       },
       {
-        name: '依然',
+        name: '图图兔毛',
         url: 'https://v.powerv.top/static/img/avatar/yyr.jpg',
         job: '设计&运营'
       }

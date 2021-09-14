@@ -84,5 +84,11 @@ Page({
       title: '花椒树洞将在近期上线，敬请期待~',
       icon: 'none'
     })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '大学查课表成绩选课，还有更多功能等你探索',
+      path: '/pages/blank/blank',
+    }
   }
 })

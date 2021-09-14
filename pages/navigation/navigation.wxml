@@ -31,6 +31,13 @@
   <text>南区</text>
   <image src="/images/navigation/north.png"></image>
 </view>
+
+<!-- 反馈按钮 -->
+<view class="feedback">
+  <button class="feedbackBtn" open-type="contact"></button>
+  <view><image src="/images/navigation/feedback.png"></image></view>
+  <view>反馈</view>
+</view>
 <!-- 弹出框 -->
 <van-popup
     description="" 
@@ -53,7 +60,7 @@
       </view>
       <view class="popWrap_detailBox time_bg">
         <image class="time" src="/images/navigation/time.png"></image>
-        <text>{{takeTime}}分</text>
+        <text>{{takeTime}}分钟</text>
       </view>
     </view>
     <view class="popWrap_openTime">

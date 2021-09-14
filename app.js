@@ -31,13 +31,13 @@ App({
         this.globalData.menuButtonHeight = menuButtonHeight;
         this.globalData.windowHeight = windowHeight;
         this.globalData.contentHeight = contentHeight;
-        // console.log(e);
+        console.log(e);
         // console.log(displayScale)
         // console.log(menuButtonObject);
       },
     })
   },
   globalData: {
-    version: '内测 1.0.0（210911）'
-  }
+    version: '内测 1.0.0（210911）',
+  },
 })

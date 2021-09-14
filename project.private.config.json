@@ -125,6 +125,12 @@
           "pathName": "pages/guide/subscribe/subscribe",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/testify/addImages/addImages",
+          "pathName": "pages/testify/addImages/addImages",
+          "query": "",
+          "scene": null
         }
       ]
     }

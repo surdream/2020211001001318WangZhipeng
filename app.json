@@ -10,7 +10,7 @@
     "pages/schoolCalendar/schoolCalendar",
     "pages/target/target",
     "pages/testify/testify",
-    "pages/testify/management/management",
+    "pages/testify/addImages/addImages",
     "pages/navigation/navigation",
     "pages/navigation/details/details",
     "pages/mine/mine",
@@ -30,7 +30,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "",
+    "navigationBarTitleText": "一目校园",
     "navigationBarTextStyle":"black",
     "navigationStyle": "custom"
   },

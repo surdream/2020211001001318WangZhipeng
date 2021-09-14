@@ -104,12 +104,18 @@
   </view>
   <!-- 底部按钮区域 -->
   <view class="bottomWrap">
+    <view class="mustRead" wx:if="{{swiperCurrent == 1}}">
+      <!-- <image src="/images/guide/{{checkStatus}}.png" bindtap="checkBtn"></image> -->
+      <view class="mustRead_title">
+        <view>进行认证即代表您已阅读并同意</view>
+        <view class="privacy" bindtap="navPrivacy">《隐私保护政策》</view>
+      </view>
+    </view>
     <view class="nextBtn" bindtap="nextStep">
       <text wx:if="{{!isLoading}}">{{nextBtn}}</text>
       <van-loading size="16px" text-size="12px" wx:if="{{isLoading}}">认证中...</van-loading>
     </view>
     <view class="skipBtn" bindtap="skipTap">跳过</view>
-
   </view>
   <van-action-sheet
     title="学校列表"

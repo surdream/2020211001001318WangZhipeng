@@ -16,18 +16,16 @@ Page({
       {color: 'rgba(1,190,255,0.2)'},
       {color: 'rgba(1,190,255,0.2)'}
     ],
-    news_list: [
-      {title: '小程序简介',from: '一目校园',time: '2021-9-5',count: '0',url: 'https://mp.weixin.qq.com/s?__biz=MzkyMjI3Nzk4Nw==&mid=2247483865&idx=1&sn=e7713390823e057c27e1970470ee6714&chksm=c1f780d5f68009c3bfbe4de08c46093afb8e3b126ae2f0a543fa2165f10a2f1627034e4583ab&token=590067764&lang=zh_CN#rd'},
-      {title: '新生攻略|交大入学指南',from: '一目校园',time: '2021-9-11',count: '0',url: 'https://mp.weixin.qq.com/s/q6iJiBK9_lSpu9beGF0BZw'},
-      {title: '新生指南|军训宝典',from: '一目校园',time: '2021-9-12',count: '0',url: 'https://mp.weixin.qq.com/s/L2azadnVDq9r5LcldlRG6g'},
-      {title: '新生指南|开学必备物品清单',from: '一目校园',time: '2021-9-13',count: '0',url: 'https://mp.weixin.qq.com/s/FK-8yq1Z3u4FduLvsivFKg'},
-    ],
+    news_list: [],
     imgUrls: [
       '/images/home/60.png',
       '/images/home/40.png',
       '/images/home/20.png'
     ],
     msgValue: '',
+    newsPage: 1,
+    newsLoading: true,
+    newsEnd: false,
     hasMsg: false,
     popShow: false,
     actionShow: false,
@@ -125,9 +123,24 @@ Page({
         }
       })
     }
+    request({
+      url: "api/article/list?page=0" , 
+      method: 'GET'
+    }).then(res =>{
+      console.log(res.data)
+      this.setData({
+        news_list: res.data,
+        newsLoading: false
+      })
+      Notify({
+        message: '获取到 ' + res.data.length + ' 条动态',
+        type: 'success ',
+        safeAreaInsetTop: true,
+        duration: '600'
+      });
+    })
   },
   onShow: function () {
-
   },
   navTo(e){
     let firstUse = wx.getStorageSync('firstUse');
@@ -191,10 +204,16 @@ Page({
     })
   },
   navPublic(e){
-    let url = e.currentTarget.dataset.url;
-    console.log(url);
+    let link = e.currentTarget.dataset.link;
+    let id = e.currentTarget.dataset.id;
+    console.log(id)
+    request({
+      url: "api/article/click?id=" + id, 
+      method: 'GET'
+    }).then(res =>{
+    })
     wx.navigateTo({
-      url: '../publicPage/publicPage?url=' + encodeURIComponent(JSON.stringify(url)),
+      url: '../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link)),
     })
   },
   swiperChange(e) {
@@ -319,19 +338,50 @@ Page({
     time = 0;
   },
   pullUpLoad: function(){
-    var that = this;
     console.log("====下拉====");
-    let arr = that.data.news_list;
-    let newArr = arr.concat(arr);
-    console.log(newArr);
-    this.setData({
-      news_list: newArr
+    var that = this;
+    let news_list = that.data.news_list;
+    let newsPage = that.data.newsPage + 1;
+    console.log(newsPage)
+    that.setData({
+      newsLoading: true,
+      newsPage: newsPage
     })
-    Notify({
-      message: '获取到 5 条动态',
-      type: 'success ',
-      safeAreaInsetTop: true,
-      duration: '600'
-    });
+    request({
+      url: "api/article/list?page=" + newsPage, 
+      method: 'GET'
+    }).then(res =>{
+      console.log(res.data)
+      let arr = res.data;
+      let newArr = news_list.concat(arr);
+      this.setData({
+        news_list: newArr,
+        newsLoading: false
+      })
+      if (res.data.length > 0) {
+        Notify({
+          message: '获取到 ' + res.data.length + ' 条动态',
+          type: 'success ',
+          safeAreaInsetTop: true,
+          duration: '600'
+        });
+      } else{
+        Notify({
+          message: '没有更多动态了哦',
+          type: 'warning ',
+          safeAreaInsetTop: true,
+          duration: '600'
+        });
+        this.setData({
+          newsEnd: true
+        })
+      }
+    })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '大学查课表成绩选课，还有更多功能等你探索',
+      path: '/pages/blank/blank',
+    }
   }
 })

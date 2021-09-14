@@ -164,3 +164,22 @@ swiper image {
   font-weight: 800;
   letter-spacing: 3rpx;
 }
+.mustRead{
+  margin-top: 20rpx;
+  color: #D6EAF8;
+  font-size: 24rpx;
+  letter-spacing: 1rpx;
+}
+.mustRead_title{
+  text-align: center;
+}
+.mustRead image{
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+}
+.privacy{
+  margin-top: 5rpx;
+  color: #E8E8E6;
+}

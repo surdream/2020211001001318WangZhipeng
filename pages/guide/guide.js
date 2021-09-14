@@ -7,11 +7,13 @@ Page({
     windowHeight: app.globalData.windowHeight,
     school: '华东交通大学',
     connectStatus: '认证通道畅通',
+    checkStatus: 'checked',
     show: false,
     isLoading: false,
     haveResult: false,
     hasUserInfo: false,
     canConnect: false,
+    checked: false,
     from: '',
     account: '',
     password: '',
@@ -482,9 +484,36 @@ Page({
     let name = event.detail.name;
     this.setData({ school: name})
   },
+  checkChange(event){
+    console.log(11)
+    this.setData({
+      checked: event.detail,
+    });
+  },
+  checkBtn(){
+    let checkStatus = this.data.checkStatus;
+    if (checkStatus == 'checked') {
+      this.setData({
+        checkStatus: 'uncheck'
+      })
+    } else {
+      this.setData({
+        checkStatus: 'checked'
+      })
+    }
+  },
   navTo(){
     wx.navigateTo({
       url: './subscribe/subscribe',
+    })
+  },
+  navPrivacy(){
+    wx.navigateTo({
+      url: '/pages/mine/privacy/privacy',
+    })
+    wx.showToast({
+      title: '请务必仔细阅读,同时我们会严格保护您的信息',
+      icon: 'none'
     })
   },
   BackPage() {

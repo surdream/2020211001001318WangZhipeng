@@ -5,8 +5,7 @@
   <view class="navBar-Left35"><text class="navBar_title">一目校园</text></view>
 </view>
 <!-- 内容区域 -->
-<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-80}}px;">
-<!-- <scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height: {{contentHeight-25}}px;"> -->
+<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height: {{contentHeight-75}}px;">
   <view class="topWrap">
     <!-- 轮播图 -->
     <view class="swiper-box">
@@ -106,7 +105,7 @@
       <block wx:if="{{titleTarget == 2}}">
         <view class="writeBtn" bindtap="writeTap">+ 给Ta留言</view>
         <view class="msgWrap" wx:for="{{accountInfo.lover.msg}}" wx:key="index" bindtap="navToMsg">
-          <view class="msgWrap_detail">{{item.content}}</view>
+          <view class="msgWrap_detail">{{item.content+' '}}</view>
           <view class="msgWrap_time">{{item.date}} {{item.createtime}}</view>
         </view>
       </block>
@@ -115,19 +114,21 @@
   <view class="switchBar">
     <view class="infoListTitleChecked">
       <image src="/images/home/news.png"></image>
-      <text>交大动态</text>
+      <text>校园动态</text>
       <!-- <text class="viewAll">查看更多></text> -->
     </view>
   </view>
   <view class="newsWrap">
-    <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-url="{{item.url}}" bindtap="navPublic">
+    <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-link="{{item.link}}" data-id="{{item.article_id}}" bindtap="navPublic">
       <view class="newsBox_title">{{item.title}}</view>
       <view class="newsBox_detail">
-        {{item.from}}
-        <text>{{item.time}}</text>
+        {{item.source}}
+        <text>{{item.createtime}}</text>
         <text>阅读量：{{item.count}}</text>
       </view>
     </view>
+    <view class="loadingBar" wx:if="{{newsLoading}}"><van-loading size="24px">加载中...</van-loading></view>
+    <view class="newsEndBar" wx:if="{{newsEnd}}">——— 暂无更多了哦 ———</view>
   </view>
 </scroll-view>
 <!-- 情侣弹窗 -->
