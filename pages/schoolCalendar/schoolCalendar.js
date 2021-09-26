@@ -46,6 +46,8 @@ Page({
           day.topInfo = '校庆';
           day.type = 'start';
           day.bottomInfo = '50周年';
+        } else if (date === 20) {
+          day.type = '';
         } else if (date === 21) {
           day.topInfo = '中秋节';
           day.type = 'start';

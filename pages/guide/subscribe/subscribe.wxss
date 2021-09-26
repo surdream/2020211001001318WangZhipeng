@@ -1,15 +1,18 @@
+page{
+  background:#EEEEEE;
+}
 .container{
   text-align: center;
 }
 .topTitle{
   font-weight: 700;
   font-size: 30rpx;
-  margin-top: 30rpx;
+  padding: 30rpx 0;
   letter-spacing: 2rpx;
+  background: #FFFFFF;
 }
 .img{
-  margin-top: 30rpx;
-  width: 690rpx;
-  height: 1440rpx;
+  width: 750rpx;
+  height: 1797rpx;
   border-radius: 25rpx;
 }

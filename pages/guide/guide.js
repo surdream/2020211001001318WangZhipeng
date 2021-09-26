@@ -1,4 +1,6 @@
 var app = getApp();
+var base = require("../../utils/base64.js") 
+var base64 = new base.Base64();
 const { request } = require("../../utils/request/request");
 Page({
   data: {
@@ -8,6 +10,7 @@ Page({
     school: '华东交通大学',
     connectStatus: '认证通道畅通',
     checkStatus: 'checked',
+    popShow: false,
     show: false,
     isLoading: false,
     haveResult: false,
@@ -147,7 +150,8 @@ Page({
       })
       this.setData({
         nextBtn: '开始验证',
-        swiperCurrent: this.data.swiperCurrent + 1
+        swiperCurrent: this.data.swiperCurrent + 1,
+        popShow: true
       })
     }
     if(swiperCurrent == 1){
@@ -182,12 +186,13 @@ Page({
                 success: (res) => {
                   console.log(res)
                   let userInfo = res.userInfo;
+                  let openname = base64.encode(userInfo.nickName);
                   this.setData({
                     userInfo: userInfo,
                     hasUserInfo: true
                   })
                   request({
-                    url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + userInfo.nickName,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                    url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
                   }).then(res => {
                     console.log(res)
                   })
@@ -316,8 +321,8 @@ Page({
         }
       } else{
         wx.showToast({
-          title: '账号输入不规范',
-          icon: 'error'
+          title: '请正确输入学号密码',
+          icon: 'none'
         })
       }
     }
@@ -341,6 +346,18 @@ Page({
         url: '/pages/blank/blank',
       })
     }
+  },
+  // 同意协议
+  acceptTap(){
+    this.setData({ popShow: false})
+  },
+  // 拒绝协议
+  cancelTap(){
+    this.setData({ popShow: false});
+    wx.setStorageSync('isSkip', false);
+    wx.switchTab({
+      url: '/pages/home/home',
+    })
   },
   // 返回键
   backStep() {
@@ -412,7 +429,7 @@ Page({
       })
     } else{
       wx.showToast({
-        title: '学号输入不规范',
+        title: 'id输入不规范',
         icon: 'error'
       })
     }
@@ -468,7 +485,7 @@ Page({
     } else {
       wx.navigateBack({
         delta: 1,
-    }); 
+      }); 
     }
 
   },

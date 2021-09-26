@@ -88,11 +88,15 @@ Page({
           console.log(res)
           if(res.data.code == 200){
             let courseList = res.data.data
-            for(let i=0;i<courseList.length;i++){
-              var str = courseList[i].class_name_fix;
-              var result1 = str.replace(/【/g,'[');
+            for(let i=0;i<courseList.length;i++){ //规范化名称
+              var classStr = courseList[i].class_name_fix;
+              var nameStr = courseList[i].course_name;
+              var result1 = classStr.replace(/【/g,'[');
               var result2 = result1.replace(/】/g,']');
+              var result3 = nameStr.replace(/（/g,'(');
+              var result4 = result3.replace(/）/g,')');
               courseList[i].class_name_fix = result2;
+              courseList[i].course_name = result4;
             }
             this.setData({
               courseList: courseList
@@ -129,7 +133,37 @@ Page({
       })
     } else{
       this.setData({
-        loading: false
+        loading: false,
+        courseList: [
+          {
+            course_name: '高等数学Ⅰ(示例)',
+            class_name_fix: '2021-10班',
+            class_number: '1',
+            method: '考试',
+            credit: '6'
+          },
+          {
+            course_name: '大学军事(示例)',
+            class_name_fix: '2021-12班',
+            class_number: '3',
+            method: '考察',
+            credit: '3'
+          },
+          {
+            course_name: '大学英语Ⅰ(示例)',
+            class_name_fix: '2021-11班',
+            class_number: '2',
+            method: '考试',
+            credit: '2'
+          },
+          {
+            course_name: '大学体育Ⅰ(示例)',
+            class_name_fix: '2021-13班',
+            class_number: '4',
+            method: '考察',
+            credit: '1'
+          },
+        ]
       })
       wx.showToast({
         title: '请先导入课表',

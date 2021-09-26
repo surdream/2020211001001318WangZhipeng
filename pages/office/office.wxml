@@ -18,10 +18,11 @@
   <!-- 课程列表 -->
   <view class="course_list">
     <scroll-view scroll-x="true" style="height:152rpx;white-space:nowrap;">
-      <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}"  style="background:{{officeColorList[index%4]}}">
+      <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}">
+        <image class="courseBox_img" src="/images/office/course{{index%4}}.png"></image>
         <text class="courseBox_title">{{item.course_name}}</text>
         <text class="courseBox_class">{{item.class_name_fix}} {{item.class_number}}号</text>
-        <text class="courseBox_microNum">{{item.method}}课 {{item.credit}}学分</text>
+        <text class="courseBox_detail">{{item.method}}课 {{item.credit}}学分</text>
       </view>
     </scroll-view>
   </view>

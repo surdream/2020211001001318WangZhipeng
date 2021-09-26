@@ -132,7 +132,7 @@ Page({
       let arrList = res.data;
       for(let i=0;i<arrList.length;i++){
         for(let j=0;j<arrList[i].length;j++){
-          arrList[i][j].iconPath = "https://v.powerv.top/static/img/address/" + res.data[i][j].iconPath + ".png";
+          arrList[i][j].iconPath = "https://static.powerv.top/static/img/address/" + res.data[i][j].iconPath + ".png";
         }
       }
       this.setData({

@@ -66,11 +66,11 @@
       <view wx:if="{{swiperCurrent == 1}}">
         <view class="inputAccount">
           <view class="pointer_account"><text class="pointer_{{account.length == 16?'right':'wrong'}}">{{account.length}}</text>/16</view>
-          <input class="inputBox" placeholder="请输入智慧交大账号" value="{{account}}" bindinput="detailInput" type="number" data-name="account" disabled="{{!canConnect}}" bindtap="inputTap"></input>
+          <input class="inputBox" placeholder="请输入你的学号" value="{{account}}" bindinput="detailInput" type="number" data-name="account" disabled="{{!canConnect}}" bindtap="inputTap"></input>
         </view>
         <view class="inputPassword">
           <image src="/images/guide/eye_{{passwordType}}.png" bindtap="passwordTap"></image>
-          <input class="inputBox" placeholder="请输入智慧交大密码" value="{{password}}" bindinput="detailInput" type="{{inputType}}" data-name="password" disabled="{{!canConnect}}" bindtap="inputTap"></input>
+          <input class="inputBox" placeholder="请输入你的密码" value="{{password}}" bindinput="detailInput" type="{{inputType}}" data-name="password" disabled="{{!canConnect}}" bindtap="inputTap"></input>
         </view>
       </view>
       <!-- 关联好友 -->
@@ -117,6 +117,23 @@
     </view>
     <view class="skipBtn" bindtap="skipTap">跳过</view>
   </view>
+  <van-popup
+    show="{{ popShow }}"
+    position="bottom"
+    safe-area-inset-bottom="true"
+    round
+  >
+    <view class="agreementWrap">
+      <view class="agreementWrap_title">声明</view>
+      <view class="agreementWrap_detail">当您使用一目校园查课表、成绩、选课、考试安排等信息时，需要您填写相关系统的账号和密码，并授权给本平台临时使用，以方便您查询课表等信息。</view>
+      <view class="agreementWrap_detail">我们非常重视保护您的隐私，也深知隐私信息对您的重要性。一目校园不会以任何方式储存您的账号、密码及相关课程、成绩等信息，并保证不会对任何机构或第三方开放，所有的信息将被缓存于您的手机本地，以提高数据查询的速度，您也可以随时清除缓存数据，清除的开关在[我的]页面；或者注销账户，在[我的]-[个人信息]点击下方注销按钮即可完成注销（不可逆），我们在数据传输过程中均采取加密算法，尽我们所能保证您隐私的安全。</view>
+      <view class="agreementWrap_detail">特此声明。</view>
+      <view class="btnBar">
+        <view class="cancelBtn" bindtap="cancelTap">不使用并跳过</view>
+        <view class="acceptBtn" bindtap="acceptTap">同意并继续</view>
+      </view>
+    </view>
+  </van-popup>
   <van-action-sheet
     title="学校列表"
     description="目前仅适配部分高校"

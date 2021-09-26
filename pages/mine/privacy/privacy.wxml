@@ -20,19 +20,17 @@
     <view class="midWrap_title">三、我们如何收集和使用您的个人信息，以及哪些业务功能需要您的哪些个人信息</view>
     <view class="midWrap_detail">我们会遵循正当、合法、必要的原则，出于本政策所述的以下目的，收集和使用您在使用服务过程中主动提供或因使用一目校园产品和/或服务而产生的个人信息。如果我们要将您的个人信息用于本政策未载明的其它用途，或基于特定目的将收集而来的信息用于其他目的，我们将以合理的方式向您告知，并在使用前再次征得您的同意。</view>
     <view class="midWrap_subTitle">3.1 对您的在校身份进行认证</view>
-    <view class="midWrap_detail">您可自愿填写您可用于验证在校身份的信息，用于我们对您的身份进行认证，这是我们帮助您查询信息的基础，您也可以选择跳过认证，使用我们的其他服务。</view>
+    <view class="midWrap_detail">您可自愿填写您可用于验证在校身份的信息，用于我们临时对您的身份进行认证，这是我们帮助您查询信息的基础，您也可以选择跳过认证，使用我们的其他服务。</view>
     <view class="midWrap_subTitle">3.2 同步您的微信头像、昵称等个性化信息</view>
     <view class="midWrap_detail">您可自愿授权同步您的微信头像、昵称等个性化信息，用于提升您的使用体验以及提高用户之间的辨识度。</view>
     <view class="midWrap_subTitle">3.3 获取您基于手机、或其他辅助GPS的定位信息</view>
     <view class="midWrap_detail">您可自愿授权您当前的定位信息，用作校园地图相对坐标点的确定，以及导航、路线规划等功能。</view>
-    <view class="midWrap_subTitle">3.4 获取您参加的在校各类部门、社团的信息</view>
-    <view class="midWrap_detail">您可自愿填写参加的在校各类部门、社团的信息，用于为您提升相应集体的相关服务。</view>
-    <view class="midWrap_subTitle">3.5 征得授权同意的例外情况</view>
+    <view class="midWrap_subTitle">3.4 征得授权同意的例外情况</view>
     <view class="midWrap_subTitle">根据相关法律法规的规定，在以下情形中，我们可以在不征得您的授权同意的情况下收集、使用一些必要的个人信息：</view>
     <view class="midWrap_detail">与国家安全、国防安全直接相关的；与公共安全、公共卫生、重大公共利益直接相关的；与犯罪侦查、起诉、审判和判决执行等直接相关的；出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；所收集的个人信息是您自行向社会公众公开的；从合法公开披露的信息中收集到您的个人信息，如从合法的新闻报道、政府信息公开等渠道；根据您的要求签订和履行合同所必需的；用于维护一目校园的产品和/或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；法律法规规定的其他情形。</view>
     <view class="midWrap_title">四、我们如何保护您的个人信息</view>
     <view class="midWrap_detail">您的个人信息安全对于我们至关重要。我们将遵守相关法律法规，采取合理可行的措施，保护您的个人信息。防止信息遭到未经授权的访问、披露、使用、修改，避免信息损坏或丢失。</view>
     <view class="midWrap_title">五、如何联系我们</view>
-    <view class="midWrap_detail">当您对本政策有任何疑问，可以发送邮件至 <text class="linkText" bindtap="getLink">ziv_zhou@foxmail.com</text> 咨询，我们将及时解决您的问题。一般情况下，我们将在15天内回复。</view>
+    <view class="midWrap_detail">当您对本政策有任何疑问，可以与我们的客服进行联系，也可以发送邮件至 <text class="linkText" bindtap="getLink">ziv_zhou@foxmail.com</text> 咨询，我们将及时解决您的问题。一般情况下，我们将在15天内回复。</view>
   </view>
 </scroll-view>

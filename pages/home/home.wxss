@@ -8,7 +8,7 @@ swiper{
 }
 swiper image {
   width: 100%;
-  height: 250rpx;
+  height: 275rpx;
   border-radius: 25rpx;
 }
 .topWrap{
@@ -18,7 +18,7 @@ swiper image {
 .swiper-box{
   position: relative;
   border-radius: 25rpx;
-  height: 250rpx;
+  height: 275rpx;
 }
 .dots{
   width: 92%;
@@ -30,7 +30,7 @@ swiper image {
   justify-content: center; 
 } 
 .dots .dot{ 
-  margin: 0 6rpx; 
+  margin: 0 5rpx; 
   width: 14rpx; 
   height: 14rpx; 
   background: rgba(255, 255, 255, 0.6);
@@ -38,7 +38,7 @@ swiper image {
   transition: all .8s; 
 } 
 .dots .dot.active{ 
-  width: 36rpx; 
+  width: 32rpx; 
   background: rgba(255, 255, 255, 0.8);
 }
 .notice-box{
@@ -61,6 +61,12 @@ swiper image {
   color: rgba(0, 0, 0, 0.5);
   letter-spacing: 1rpx;
   margin-right: 24rpx;
+}
+.navApp{
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
 }
 .useful-box image{
   margin: 0 15rpx;

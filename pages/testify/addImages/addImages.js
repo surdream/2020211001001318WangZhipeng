@@ -8,6 +8,43 @@ Page({
     fileList: [],
     userInfo: {},
     array: ['暂未选择', '思政学习', '技能水平', '文体活动' , '双学位' , '文体竞赛' , '科创活动' , '体育竞赛' , '文体活动' , '社会实践' , '学团评比' , '优秀表彰'],
+    actions: [
+      {name:"思政学习"},
+      {name:"技能水平"},
+      {name:"文体活动"},
+      {name:"双学位"},
+      {name:"科创活动"},
+      {name:"体育竞赛"},
+      {name:"文体活动"},
+      {name:"社会实践"},
+      {name:"学团评比"},
+      {name:"优秀表彰"},
+    ],
+    actions2: [
+      {name:"思政学习"},
+      {name:"技能水平"},
+      {name:"文体活动"},
+      {name:"双学位"},
+      {name:"科创活动"},
+      {name:"体育竞赛"},
+      {name:"文体活动"},
+      {name:"社会实践"},
+      {name:"学团评比"},
+      {name:"优秀表彰"},
+    ],
+    actions3: [
+      {name:"全部证明"},
+      {name:"思政学习"},
+      {name:"技能水平"},
+      {name:"文体活动"},
+      {name:"双学位"},
+      {name:"科创活动"},
+      {name:"体育竞赛"},
+      {name:"文体活动"},
+      {name:"社会实践"},
+      {name:"学团评比"},
+      {name:"优秀表彰"},
+    ],
     array2: ['全部证明', '思政学习', '技能水平', '文体活动' , '双学位' , '文体竞赛' , '科创活动' , '体育竞赛' , '文体活动' , '社会实践' , '学团评比' , '优秀表彰'],
     index: 0,
     index2: 0,
@@ -26,7 +63,12 @@ Page({
     valueNull1: "",
     valueNullContent1: "你最近还没有添加证明~",
     valueNull2: "",
-    valueNullContent2: "你暂时还没有添加证明~"
+    valueNullContent2: "你暂时还没有添加证明~",
+    show: false,
+    show2: false,
+    addSelectName: "暂未选择",
+    allName: "暂未选择"
+
   },
   onLoad: function (options) {
     let userInfo = wx.getStorageSync('userInfo')
@@ -105,287 +147,15 @@ Page({
       index: e.detail.value
     })
   },
-    // ['全部证明', '思政学习', '技能水平', '文体活动' , '双学位' , '文体竞赛' , '科创活动' , '体育竞赛' , '文体活动' , '社会实践' , '学团评比' , '优秀表彰']
-  bindPickerChange2: function(e) {
-    let that = this
-    console.log('picker发送选择改变，携带值为', this.data.array2[this.data.index2])
-    this.setData({
-      index2: e.detail.value
-    })
-    // 判断赛选出相应类别图片证书
-    switch(this.data.array2[this.data.index2]) {
-      case "思政学习" : {
-        // console.log("思政学习")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
 
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "技能水平" : {
-        // console.log("技能水平")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "文体活动" : {
-        // console.log("文体活动")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "双学位" : {
-        // console.log("双学位")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "文体竞赛" : {
-        // console.log("文体竞赛")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "科创活动" : {
-        // console.log("科创活动")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "体育竞赛" : {
-        // console.log("体育竞赛")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "文体活动" : {
-        // console.log("文体活动")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "社会实践" : {
-        // console.log("社会实践")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "学团评比" : {
-        // console.log("学团评比")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "优秀表彰" : {
-        // console.log("优秀表彰")
-        request({
-          url: "photos/all/" + that.data.array2[this.data.index2] + "/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-
-      case "全部证明" : {
-        // console.log("优秀表彰")
-        request({
-          url: "photos/all/" + that.data.userInfo.account , method : "POST",
-
-        }).then( res => {
-          console.log(res)
-          this.data.materials = []
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials.unshift(res.data.data[i])
-          }
-          for(let i=0 ; i<res.data.data.length ; i++) {
-            this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
-          }
-          console.log(this.data.materials)
-          this.setData({
-            materials: this.data.materials
-          })
-        })
-      }
-      break
-    }
-  },
   // 添加证书
   addMaterial: function(e) {
-    if(this.data.index == 0) {
-      wx.showToast({
-        title: '请添加一个类别',
-        icon: 'none'
-      })
+    let that = this
+    if(this.data.addSelectName == "暂未选择") {
+      this.data.show2 = true
+      this.setData({
+      show2: this.data.show2
+    })
     } else {
       let that = this
       wx.chooseImage({
@@ -413,7 +183,7 @@ Page({
           // console.log(that.data.array[that.data.index])
           for(let i=0 ; i<that.data.choosedImgList.length ; i++) {
             wx.uploadFile({
-              url: 'https://nandu.xyz:9090/photos/add/' + that.data.userInfo.account + "/" + that.data.array[that.data.index],
+              url: 'https://nandu.xyz:9090/photos/add/' + that.data.userInfo.account + "/" + that.data.addSelectName,
               filePath: that.data.choosedImgList[i],
               name: 'file',
               success (res) {
@@ -563,7 +333,389 @@ Page({
       current: e.target.dataset.src,
       urls: array
     })
-  }
+  },
+  onClose: function(e) {
+    this.setData({
+      show: false
+    })
+  },
+  onSelect: function(e) {
+    console.log(e)
+    this.data.addSelectName = e.detail.name
+    this.setData({
+      addSelectName: this.data.addSelectName
+    })
+  },
+  onClose2: function(e) {
+    this.setData({
+      show2: false
+    })
+  },
+  onSelect2: function(e) {
+    console.log(e)
+    this.data.addSelectName = e.detail.name
+    this.setData({
+      addSelectName: this.data.addSelectName
+    })
+    if(this.data.addSelectName !="暂未选择") {
+      let that = this
+      wx.chooseImage({
+        count: 3,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success: (res) => {
+          console.log(res)
+          for(let i=0 ; i<res.tempFilePaths.length ; i++) {
+            this.data.choosedImgList.push(res.tempFilePaths[i])
+          }
+          this.data.choosed = res.tempFilePaths.length
+          console.log(this.data.choosedImgList)
+          if(this.data.choosed == 0) {
+            this.data.cancel = false
+          } else {
+            this.data.cancel = true
+          }
+          this.setData({
+            choosedImgList: this.data.choosedImgList,
+            choosed: this.data.choosed,
+            cancel: this.data.cancel
+          })
+          // 上传图片
+          // console.log(that.data.array[that.data.index])
+          for(let i=0 ; i<that.data.choosedImgList.length ; i++) {
+            wx.uploadFile({
+              url: 'https://nandu.xyz:9090/photos/add/' + that.data.userInfo.account + "/" + that.data.addSelectName,
+              filePath: that.data.choosedImgList[i],
+              name: 'file',
+              success (res) {
+                console.log(res)
+                that.data.choosedImgList = []
+                that.data.addSelectName = "暂未选择"
+                that.setData({
+                  choosedImgList: that.data.choosedImgList,
+                  addSelectName: that.data.addSelectName
+                })
+                // 获取最近添加的图片
+                request({
+                  url: "photos/lately/" + that.data.userInfo.account , method: "GET",
+                }).then( res=> {
+                  console.log(res)
+                  that.data.latelyImageList = []
+                  for(let i=0 ; i<res.data.data.length ; i++) {
+                    that.data.latelyImageList.unshift(res.data.data[i])
+                  }
+                  // let e = res
+                  for(let i=0 ; i<res.data.data.length ; i++) {
+                    that.data.latelyImageList[i].photoUrl = "https://nandu.xyz:9090" + that.data.latelyImageList[i].photoUrl
+                  }
+                  console.log(that.data.latelyImageList)
+                  that.setData({
+                    latelyImageList: that.data.latelyImageList
+                  })
+                })
+                // 获取全部图片
+                request({
+                  url: "photos/all/" + that.data.userInfo.account, method: "POST",
+
+                }).then( res => {
+                  console.log(res)
+                  that.data.materials = []
+                  for(let i=0 ; i<res.data.data.length ; i++) {
+                    that.data.materials.unshift(res.data.data[i])
+                  }
+                  for(let i=0 ; i<res.data.data.length ; i++) {
+                    that.data.materials[i].photoUrl = "https://nandu.xyz:9090" + that.data.materials[i].photoUrl
+                  }
+                  console.log(that.data.materials)
+                  that.setData({
+                    materials: that.data.materials
+                  })
+                })
+
+                wx.showToast({
+                  title: '添加成功,长按图片可删除',
+                  icon: 'none'
+                })
+              }
+            })
+          } 
+        },
+        fail: (res) => {
+  
+        },
+      })
+    }
+  },
+  popup: function(e) {
+    this.data.show = true
+    this.setData({
+      show: this.data.show
+    })
+  },
+  popup3: function(e) {
+    this.data.show3 = true
+    this.setData({
+      show3: this.data.show3
+    })
+  },
+  onSelect3: function(e) {
+    let that = this
+    console.log(e)
+    this.data.allName = e.detail.name
+    this.setData({
+      allName: this.data.allName
+    })
+    if(this.data.allName != "暂无数据") {
+      switch(this.data.allName) {
+        case "思政学习" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "技能水平" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "文体活动" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "双学位" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "科创活动" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "体育竞赛" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "文体活动" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "社会实践" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "学团评比" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "优秀表彰" : {
+          // console.log("思政学习")
+          request({
+            url: "photos/all/" + that.data.allName + "/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+
+        case "全部证明" : {
+          // console.log("优秀表彰")
+          request({
+            url: "photos/all/" + that.data.userInfo.account , method : "POST",
+  
+          }).then( res => {
+            console.log(res)
+            this.data.materials = []
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials.unshift(res.data.data[i])
+            }
+            for(let i=0 ; i<res.data.data.length ; i++) {
+              this.data.materials[i].photoUrl = "https://nandu.xyz:9090" + this.data.materials[i].photoUrl
+            }
+            console.log(this.data.materials)
+            this.setData({
+              materials: this.data.materials
+            })
+          })
+        }
+        break
+      }
+    }
+  },
+  onClose3: function(e) {
+    this.setData({
+      show3: false
+    })
+  },
   // 取消上传
   // confirm: function(e) {
   //   wx.uploadFile({

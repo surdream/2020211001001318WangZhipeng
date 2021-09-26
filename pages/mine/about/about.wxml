@@ -18,6 +18,6 @@
     </view>
   </view>
   <view class="subBtn" bindtap="navTo">关注我们</view>
-  <view class="groupBox">交流&反馈 QQ群:<text bindtap="getNumber">892301328</text></view>
+  <view class="groupBox">交流&反馈 QQ群:<text bindtap="getNumber"> 892301328</text></view>
   <view class="bottomWrap">© 2021-2022 v.powerv.top All rights reserved.</view>
 </view>

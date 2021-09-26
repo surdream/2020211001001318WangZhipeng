@@ -3,6 +3,7 @@ Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
+    contentHeight: app.globalData.contentHeight,
     loginStatus: '我的',
   },
   onLoad: function (options) {
@@ -90,5 +91,14 @@ Page({
       title: '大学查课表成绩选课，还有更多功能等你探索',
       path: '/pages/blank/blank',
     }
+  },
+  clearStorage(){
+    wx.clearStorageSync();
+    wx.redirectTo({
+      url: '/pages/guide/guide',
+    })
+    wx.showToast({
+      title: '已成功清除缓存',
+    })
   }
 })

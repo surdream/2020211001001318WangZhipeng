@@ -1,5 +1,7 @@
 import Notify from '@vant/weapp/notify/notify';
 var app = getApp();
+var base = require("../../utils/base64.js") 
+var base64 = new base.Base64();
 const { request } = require("../../utils/request/request");
 let touchDotX = 0;
 let touchDotY = 0;
@@ -16,12 +18,9 @@ Page({
       {color: 'rgba(1,190,255,0.2)'},
       {color: 'rgba(1,190,255,0.2)'}
     ],
+    hasImport: false,
     news_list: [],
-    imgUrls: [
-      '/images/home/60.png',
-      '/images/home/40.png',
-      '/images/home/20.png'
-    ],
+    imgUrls: [],
     msgValue: '',
     newsPage: 1,
     newsLoading: true,
@@ -39,6 +38,7 @@ Page({
   onLoad: function (options) {
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
+      this.setData({ hasImport: true })
       // 获取个人信息
       request({
         url: "api/user/profile?", 
@@ -47,6 +47,9 @@ Page({
         if(res.data.code == 200){
           console.log(res.data.data);
           let accountInfo = res.data.data;
+          let openname = base64.decode(accountInfo.openname);
+              accountInfo.openname = openname;
+              console.log(openname)
           let lover_status = accountInfo.lover_status;
           wx.setStorageSync('accountInfo', accountInfo);
           this.setData({
@@ -123,6 +126,21 @@ Page({
         }
       })
     }
+    // 获取轮播图
+    request({
+      url: "api/Article/pictureList" , 
+      method: 'GET'
+    }).then(res =>{
+      console.log(res.data);
+      let arrList = res.data;
+      for(let i=0;i<arrList.length;i++){
+        arrList[i].plink = "https://static.powerv.top/static/img/home/" + res.data[i].plink + ".png";
+      }
+      this.setData({
+        imgUrls: res.data
+      })
+    })
+    // 获取新闻列表
     request({
       url: "api/article/list?page=0" , 
       method: 'GET'
@@ -188,7 +206,7 @@ Page({
   },
   sorryTap(){
     wx.showToast({
-      title: '该功能正在全力开发中，敬请期待',
+      title: '更多功能正在秃头开发中',
       icon: 'none'
     })
   },
@@ -206,6 +224,7 @@ Page({
   navPublic(e){
     let link = e.currentTarget.dataset.link;
     let id = e.currentTarget.dataset.id;
+    console.log(e)
     console.log(id)
     request({
       url: "api/article/click?id=" + id, 
@@ -216,6 +235,12 @@ Page({
       url: '../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link)),
     })
   },
+  // navApp(e){
+  //   console.log(e.currentTarget.dataset);
+  //   let id = e.currentTarget.dataset.id;
+  //   let path = e.currentTarget.dataset.path;
+    
+  // },
   swiperChange(e) {
     let current = e.detail.current;
     let that = this;
@@ -340,43 +365,53 @@ Page({
   pullUpLoad: function(){
     console.log("====下拉====");
     var that = this;
-    let news_list = that.data.news_list;
-    let newsPage = that.data.newsPage + 1;
-    console.log(newsPage)
-    that.setData({
-      newsLoading: true,
-      newsPage: newsPage
-    })
-    request({
-      url: "api/article/list?page=" + newsPage, 
-      method: 'GET'
-    }).then(res =>{
-      console.log(res.data)
-      let arr = res.data;
-      let newArr = news_list.concat(arr);
-      this.setData({
-        news_list: newArr,
-        newsLoading: false
+    let newsEnd = that.data.newsEnd;
+      if (!newsEnd) {
+      let news_list = that.data.news_list;
+      let newsPage = that.data.newsPage + 1;
+      console.log(newsPage)
+      that.setData({
+        newsLoading: true,
+        newsPage: newsPage
       })
-      if (res.data.length > 0) {
-        Notify({
-          message: '获取到 ' + res.data.length + ' 条动态',
-          type: 'success ',
-          safeAreaInsetTop: true,
-          duration: '600'
-        });
-      } else{
-        Notify({
-          message: '没有更多动态了哦',
-          type: 'warning ',
-          safeAreaInsetTop: true,
-          duration: '600'
-        });
-        this.setData({
-          newsEnd: true
+      request({
+        url: "api/article/list?page=" + newsPage, 
+        method: 'GET'
+      }).then(res =>{
+        console.log(res.data)
+        let arr = res.data;
+        let newArr = news_list.concat(arr);
+        that.setData({
+          news_list: newArr,
+          newsLoading: false
         })
-      }
-    })
+        if (res.data.length > 0) {
+          Notify({
+            message: '获取到 ' + res.data.length + ' 条动态',
+            type: 'success ',
+            safeAreaInsetTop: true,
+            duration: '600'
+          });
+        } else{
+          Notify({
+            message: '没有更多动态了哦',
+            type: 'warning ',
+            safeAreaInsetTop: true,
+            duration: '600'
+          });
+          that.setData({
+            newsEnd: true
+          })
+        }
+      })
+    } else{
+      Notify({
+        message: '没有更多动态了哦',
+        type: 'warning ',
+        safeAreaInsetTop: true,
+        duration: '600'
+      });
+    }
   },
   onShareAppMessage: function (res) {
     return {

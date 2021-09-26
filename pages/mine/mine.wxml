@@ -17,7 +17,7 @@
       <view class="topWrap_detail">华东交通大学 {{accountInfo.class}}</view>
     </block>
   </view>
-  <view class="mainContent">
+  <scroll-view class="mainContent" scroll-y="true">
     <view class="alterBar">
       <view class="alterBox" bindtap="navTo" data-url="alterInfo">
         <image class="alterBox_img" src="/images/mine/import.png"></image>
@@ -39,9 +39,9 @@
         <text class="usefulBox_text">用户指南&功能更新</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
-      <view class="usefulBox" bindtap="navTreehole">
+      <view class="usefulBox" bindtap="clearStorage">
         <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
-        <text class="usefulBox_text">一目校园&花椒树洞</text>
+        <text class="usefulBox_text">清除缓存&进入引导</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
     </view>
@@ -58,5 +58,5 @@
         <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="navApp"/>
       </van-grid>
     </view>
-  </view>
+  </scroll-view>
 </view>

@@ -5,17 +5,16 @@
   <view class="navBar"><text class="navBar_title black95">管理证明</text></view>
 </view>
 
+
 <!-- 添加 图片 选择类别 -->
 <view class="addMaterial">
   <view class="innerMain">
     <!-- 选择类别 -->
-    <picker class="pickerBox" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-      <view class="picker">
-        <image mode="widthFix" src="{{pullDownUrl}}"></image>
-
-        <text class="typeTitle" space="emsp">证明类别 <text class="type">{{array[index]}}</text></text>
-      </view>
-    </picker>
+    <view class="picker">
+      <text class="typeTitle" space="emsp">证明类别</text>
+      <text class="selectContent" space="emsp">{{addSelectName}}</text>
+      <image bindtap="popup" mode="widthFix" src="{{pullDownUrl}}"></image>
+    </view>
     <!-- 添加 -->
     <view class="add" bindtap="addMaterial">
       {{addText}}
@@ -65,13 +64,11 @@
         {{alMaterialText}}
       </view>
       <!-- 选择类别 -->
-      <picker class="pickerBox" bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
-        <view class="picker">
-          <image mode="widthFix" src="{{pullDownUrl}}"></image>
-
-          <text class="typeTitle" space="emsp">证明类别 <text class="type">{{array2[index2]}}</text></text>
-        </view>
-      </picker>
+      <view class="picker">
+        <text class="typeTitle" space="emsp">证明类别</text>
+        <text class="selectContent" space="emsp">{{allName}}</text>
+        <image bindtap="popup3" mode="widthFix" src="{{pullDownUrl}}"></image>
+      </view>
     </view>
     <!-- 全部证书 -->
     <view class="materials">
@@ -85,3 +82,28 @@
     </view>
   </view>
 </view>
+
+
+<van-action-sheet
+  title="证明类别"
+  show="{{ show }}"
+  actions="{{ actions }}"
+  bind:close="onClose"
+  bind:select="onSelect"
+/>
+
+<van-action-sheet
+  title="证明类别"
+  show="{{ show2 }}"
+  actions="{{ actions2 }}"
+  bind:close="onClose2"
+  bind:select="onSelect2"
+/>
+
+<van-action-sheet
+  title="证明类别"
+  show="{{ show3 }}"
+  actions="{{ actions3 }}"
+  bind:close="onClose3"
+  bind:select="onSelect3"
+/>

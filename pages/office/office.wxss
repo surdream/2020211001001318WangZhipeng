@@ -30,26 +30,39 @@ page{
   border-radius: 25rpx;
 }
 .courseBox{
-  margin-left: 25rpx;
+  margin-left: 22rpx;
+  width: 216rpx;
   height: 152rpx;
-  width: 215rpx;
   display: inline-flex;
+  border-radius: 25rpx;
+}
+.courseBox_img{
+  position: absolute;
+  width: 216rpx;
+  height: 152rpx;
   border-radius: 25rpx;
 }
 .courseBox_title{
   color: rgba(0, 0, 0, 0.8);
-  font-weight: 700; 
-  font-size: 20rpx;
-  margin: 72rpx 0 0 15rpx;
+  font-weight: 800;
+  line-height: 27rpx;
+  font-size: 22rpx;
+  margin: 20rpx 0 0 15rpx;
   position: absolute;
   width: 200rpx;
-  white-space:nowrap;
+  height: 54rpx;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal !important;
+  word-break: break-all;
+}
+.courseBox_detail{
+  color: rgba(0, 0, 0, 1.0);
+  font-size: 20rpx;
+  margin: 76rpx 0 0 15rpx;
+  position: absolute;
 }
 .courseBox_class{
   color: rgba(0, 0, 0, 0.8);
-  font-weight: 700; 
   font-size: 20rpx;
   margin: 100rpx 0 0 15rpx;
   position: absolute;
@@ -57,13 +70,6 @@ page{
   height: auto;
   white-space: normal !important;
   word-break: break-all;
-}
-.courseBox_microNum{
-  color: rgba(0, 0, 0, 1.0);
-  font-weight: 900;
-  font-size: 28rpx;
-  margin: 20rpx 0 0 16rpx;
-  position: absolute;
 }
 .usefulWrap{
   margin: 18rpx 0 0 30rpx;
@@ -167,7 +173,7 @@ page{
 }
 .infoListTitle_border{
   width: 60rpx;
-  border-bottom: 8rpx solid #3E8BF8;
+  border-bottom: 8rpx solid #B4B5E9;
   margin: auto;
   margin-top: 8rpx;
   border-radius: 50rpx;
