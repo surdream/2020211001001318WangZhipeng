@@ -39,7 +39,7 @@ Page({
       success: (res) => {
         console.log(res)
         let userInfo = res.userInfo;
-        let openname = base64.encode(userInfo.nickName);
+        let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
         request({
           url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
         }).then(res => {

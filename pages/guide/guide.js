@@ -111,37 +111,7 @@ Page({
     let swiperCurrent = this.data.swiperCurrent;
     let account = this.data.account;
     let password = this.data.password;
-    request({
-      url: "api/edu/isconnect",
-      method: 'GET', 
-    }).then(res => {
-      console.log(res);
-      if(res.data.code === 200){
-        this.setData({
-          connectStatus: '认证通道畅通',
-          status_color: '#3AC569',
-          canConnect: true
-        })
-      } else if(res.data.code === 202){
-        this.setData({
-          connectStatus: '认证通道异常',
-          status_color: '#f1c40f',
-          canConnect: false
-        })
-      } else if(res.data.code === 307){
-        this.setData({
-          connectStatus: '认证系统升级',
-          status_color: '#F1948A',
-          canConnect: false
-        })
-      } else {
-        this.setData({
-          connectStatus: '系统正在维护',
-          status_color: '#C9D6DE',
-          canConnect: false
-        })
-      }
-    })
+    // 监测接口状态
     if(swiperCurrent == 0){
       let school = this.data.school
       wx.showToast({
@@ -152,6 +122,37 @@ Page({
         nextBtn: '开始验证',
         swiperCurrent: this.data.swiperCurrent + 1,
         popShow: true
+      })
+      request({
+        url: "api/edu/isconnect",
+        method: 'GET', 
+      }).then(res => {
+        console.log(res);
+        if(res.data.code === 200){
+          this.setData({
+            connectStatus: '认证通道畅通',
+            status_color: '#3AC569',
+            canConnect: true
+          })
+        } else if(res.data.code === 202){
+          this.setData({
+            connectStatus: '认证通道异常',
+            status_color: '#f1c40f',
+            canConnect: false
+          })
+        } else if(res.data.code === 307){
+          this.setData({
+            connectStatus: '认证系统升级',
+            status_color: '#F1948A',
+            canConnect: false
+          })
+        } else {
+          this.setData({
+            connectStatus: '系统正在维护',
+            status_color: '#C9D6DE',
+            canConnect: false
+          })
+        }
       })
     }
     if(swiperCurrent == 1){
@@ -171,6 +172,8 @@ Page({
             let userInfo = {account: account,password: password};
             wx.removeStorageSync('sessionid');
             wx.setStorageSync("sessionid", res.cookies[0]);
+            wx.removeStorageSync('isSkip');
+            wx.setStorageSync('firstUse', 'not');
             if(res.data.code == 210){ //用户注册
               wx.showToast({
                 title: '认证成功！',
@@ -186,7 +189,7 @@ Page({
                 success: (res) => {
                   console.log(res)
                   let userInfo = res.userInfo;
-                  let openname = base64.encode(userInfo.nickName);
+                  let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
                   this.setData({
                     userInfo: userInfo,
                     hasUserInfo: true
@@ -194,7 +197,23 @@ Page({
                   request({
                     url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
                   }).then(res => {
-                    console.log(res)
+                    console.log(res);
+                    wx.login({
+                      success: function(res) {
+                        if (res.code) {
+                          console.log(res)
+                          //发起网络请求
+                          wx.request({
+                            url: 'https://test.com/onLogin',
+                            data: {
+                              code: res.code
+                            }
+                          })
+                        } else {
+                          console.log('获取用户登录态失败！' + res.errMsg)
+                        }
+                      }
+                    });     
                   })
                 },
                 fail: () => {
@@ -228,6 +247,22 @@ Page({
                         }).then(res =>{
                           let accountInfo = res.data.data;
                           wx.setStorageSync('accountInfo', accountInfo);
+                          //根据code获取openid等信息
+                          wx.login({
+                            success: function(res) {
+                              if (res.code) {
+                                //发起网络请求
+                                wx.request({
+                                  url: 'https://test.com/onLogin',
+                                  data: {
+                                    code: res.code
+                                  }
+                                })
+                              } else {
+                                console.log('获取用户登录态失败！' + res.errMsg)
+                              }
+                            }
+                          });
                         })
                     })
                     wx.showToast({
@@ -250,6 +285,23 @@ Page({
               })
               }
             } else if(res.data.code == 200){ //用户登录
+              //根据code获取openid等信息
+              wx.login({
+                success: function(res) {
+                  if (res.code) {
+                    console.log(res)
+                    //发起网络请求
+                    request({
+                      url: "api/user/wxbind?code=" + res.code, 
+                      method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                    }).then(res =>{
+                      console.log(res);
+                    })
+                  } else {
+                    console.log('获取用户登录态失败！' + res.errMsg)
+                  }
+                }
+              });
               wx.showToast({
                 title: '登录成功！',
               })
@@ -275,7 +327,7 @@ Page({
                         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
                       }).then(res =>{
                         let accountInfo = res.data.data;
-                        wx.setStorageSync('accountInfo', accountInfo);
+                        wx.setStorageSync('accountInfo', accountInfo);  
                       })
                   })
                   wx.showToast({

@@ -3,7 +3,6 @@ Page({
 
   },
   onLoad: function (options) {
-
   },
   onShow: function () {
     let firstUse = wx.getStorageSync('firstUse');

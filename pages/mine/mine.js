@@ -93,12 +93,19 @@ Page({
     }
   },
   clearStorage(){
-    wx.clearStorageSync();
-    wx.redirectTo({
-      url: '/pages/guide/guide',
+    wx.showModal({
+      title: '提示',
+      content: '确定要清除全部缓存吗？',
+      success (res) {
+        wx.clearStorageSync();
+        wx.redirectTo({
+          url: '/pages/guide/guide',
+        })
+        wx.showToast({
+          title: '已成功清除缓存',
+        })
+      }
     })
-    wx.showToast({
-      title: '已成功清除缓存',
-    })
+
   }
 })

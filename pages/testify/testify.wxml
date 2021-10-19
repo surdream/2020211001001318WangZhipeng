@@ -1,8 +1,9 @@
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
   <view class="navBar"><text class="navBar_title black95">加分证明</text></view>
 </view>
+<!-- 内容区域 -->
 <view class="container">
   <view class="swiperView">
     <scroll-view scroll-y="ture" style="height:{{contentHeight}}px;">

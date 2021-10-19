@@ -2,6 +2,7 @@
   "pages":[
     "pages/blank/blank",
     "pages/home/home",
+    "pages/QAPost/QAPost",
     "pages/publicPage/publicPage",
     "pages/office/office",
     "pages/guide/guide",
@@ -57,7 +58,9 @@
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-field": "@vant/weapp/field/index"
+    "van-field": "@vant/weapp/field/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-share-sheet": "@vant/weapp/share-sheet/index"
   },
   "tabBar": {
     "color": "#BFBFBF",

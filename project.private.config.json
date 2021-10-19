@@ -131,6 +131,12 @@
           "pathName": "pages/testify/addImages/addImages",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/QAPost/QAPost",
+          "pathName": "pages/QAPost/QAPost",
+          "query": "",
+          "scene": null
         }
       ]
     }

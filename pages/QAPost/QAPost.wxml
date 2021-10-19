@@ -1,0 +1,139 @@
+<!-- 弹出提示 -->
+<van-toast id="van-toast" />
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background:{{content.color}};">
+  <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">问答详情</text></view>
+</view>
+<!-- 内容区域 -->
+<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height:{{contentHeight-85}}px;">
+  <view class="topWrap">
+    <view class="askName">{{content.openname}}</view>
+    <view class="askTime">{{content.createtime}}</view>
+    <view class="postTag" style="background:{{content.color}};">
+      <view class="postTag_icon"></view>
+      <view class="postTag_type" bindtap="tagTap">{{content.type}}墙</view>
+    </view>
+    <image class="topMoreBtn" src="/images/QA/more.png" bindtap="topMoreBtn"></image>
+    <image class="askAvatar" src="{{content.avatar}}"></image>
+  </view>
+  <view class="contentWrap">
+    <view class="contentWrap_detail">{{content.content}}</view>
+    <view class="contentWrap_imgBox">
+      <van-image custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{content.picture1}}" bindtap="checkImg" data-id="0" wx:if="{{content.picture1}}"/>
+      <van-image custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{content.picture2}}" bindtap="checkImg" data-id="1" wx:if="{{content.picture2}}"/>
+    </view>
+  </view>
+  <view class="spaceBar"></view>
+  <view class="answerWrap" wx:if="{{answerList.length != 0}}">
+    <block wx:if="{{selfList.length != 0}}">
+      <view class="answerTitle">我的回答</view>
+      <view class="answerBox" wx:for="{{selfList}}" wx:key="index">
+        <image class="midMoreBtn" src="/images/QA/more.png" bindtap="midMoreBtn" data-id="{{item.reply_id}}"></image>
+        <view class="answerBox_top">
+          <image class="answerBox_avatar" src="{{item.avatar}}"></image>
+          <text class="answerBox_name" style="color:{{content.color}};">{{item.openname}}</text>
+        </view>
+        <view class="answerBox_detail">{{item.content}}</view>
+        <view class="answerBox_info">
+          <view class="answerBox_agree" bindtap="selfAgree">
+            <image src="/images/QA/agree{{item.islike}}.png"></image>
+            <text>{{item.likes}}</text>
+          </view>
+          <view class="answerBox_agree disagree" bindtap="selfAgree">
+            <image src="/images/QA/disagree{{item.isnotlike}}.png"></image>
+            <text>{{item.notlikes}}</text>
+          </view>
+          <view class="answerBox_time">{{item.time}}</view>
+        </view>
+      </view>
+      <view class="spaceBar"></view>
+    </block>
+    <view class="answerTitle">热门回答</view>
+    <view class="answerBox" wx:if="{{item.show}}" wx:for="{{answerList}}" wx:key="index">
+      <image class="midMoreBtn" src="/images/QA/more.png" bindtap="btmMoreBtn"></image>
+      <view class="answerBox_top">
+        <image class="answerBox_avatar" src="{{item.avatar}}"></image>
+        <text class="answerBox_name" style="color:{{content.color}};">{{item.openname}}</text>
+      </view>
+      <view class="answerBox_detail">{{item.content}}</view>
+      <view class="answerBox_info">
+        <view class="answerBox_agree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="agree">
+          <image src="/images/QA/agree{{item.islike}}.png"></image>
+          <text>{{item.likes}}</text>
+        </view>
+        <view class="answerBox_agree disagree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="disagree">
+          <image src="/images/QA/disagree{{item.isnotlike}}.png"></image>
+          <text>{{item.notlikes}}</text>
+        </view>
+        <view class="answerBox_time">{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="answerWrap" wx:if="{{answerList.length == 0}}">
+    <view class="noticeTxt">还没有人回答，快来抢占沙发</view>
+  </view>
+  <view class="sentBar">
+    <van-cell-group>
+      <van-field
+        value="{{ msgValue }}"
+        placeholder="写回答"
+        border="{{ false }}"
+        bind:change="onChange"
+        clearable="true"
+        custom-style="border-radius:20rpx;height:40px;width:57.5%;margin-left:3.5%;padding: 7px 15px 5px 15px;font-size:13px;background:rgba(0,0,0,0.05);color:rgba(0,0,0,0.5);"
+        placeholder-style="color:rgba(0,0,0,0.5);"
+      />
+      <view class="postIconBox">
+        <image class="postIcon" src="/images/QA/agree{{content.islike}}.png" bindtap="agreeTap"></image>
+        <text class="likesTxt">{{content.likes}}</text>
+      </view>
+      <view class="postIconBox shareBox">
+        <image class="postIcon share" src="/images/QA/share.png" bindtap="showShare"></image>
+        <text class="shareTxt"></text>
+      </view>
+      <view class="sentBtn" bindtap="sentTap" style="background:{{content.color}};">发送</view>
+      <view class="safeArea"></view>
+    </van-cell-group>
+  </view>
+  <!-- 底部提示 -->
+  <view>
+    <view class="loadingBar" wx:if="{{QALoading}}"><van-loading size="24px">加载中...</van-loading></view>
+    <view class="QAEndBar" wx:if="{{!QALoading && QAEnd}}">—— 暂时没有了 ——</view>
+  </view>
+</scroll-view>
+<van-share-sheet
+  show="{{ showShare }}"
+  title="分享给你的好友"
+  options="{{ options }}"
+  bind:select="onShareSelect"
+  bind:close="onShareClose"
+  cancel-text=""
+/>
+<van-action-sheet
+  show="{{ topActionShow }}"
+  actions="{{ topActions }}"
+  bind:close="onTopClose"
+  bind:select="onTopSelect"
+  close-on-click-action="{{false}}"
+>
+  <view class="spaceBox"></view>
+</van-action-sheet>
+<van-action-sheet
+  show="{{ midActionShow }}"
+  actions="{{ midActions }}"
+  bind:close="onMidClose"
+  bind:select="onMidSelect"
+  close-on-click-action="{{false}}"
+>
+  <view class="spaceBox"></view>
+</van-action-sheet>
+<van-action-sheet
+  show="{{ btmActionShow }}"
+  actions="{{ btmActions }}"
+  bind:close="onBtmClose"
+  bind:select="onBtmSelect"
+  close-on-click-action="{{false}}"
+>
+  <view class="spaceBox"></view>
+</van-action-sheet>

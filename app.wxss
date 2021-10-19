@@ -56,6 +56,37 @@ page {
 .container{
   font-size: 28rpx;
 }
+/* 胶囊提示 */
+.pillNotice{
+  margin-top: -2px;
+  position: fixed;
+  right: 16rpx;
+  z-index: 1;
+}
+.pillNotice_box{
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 8px;
+  padding: 8rpx 16rpx;
+  max-width: 300rpx;
+  text-align: center;
+  border-radius: 25rpx;
+  background: #DBDBDB;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
+}
+.pillNotice_triangle{
+  position: fixed;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
 /* 阴影效果 */
 
 .glassShadow{

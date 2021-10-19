@@ -1,0 +1,202 @@
+.askAvatar{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 25rpx 0 0 25rpx;
+  border-radius: 50%;
+}
+.askName{
+  position: absolute;
+  margin: 28rpx 0 0 125rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+.askTime{
+  position: absolute;
+  margin: 64rpx 0 0 125rpx;
+  font-size: 24rpx;
+  color: rgba(0,0,0,0.8);
+}
+/* 问答标签 */
+.postTag{
+  position: absolute;
+  right: 100rpx;
+  margin-top: 35rpx;
+  border-radius: 20rpx;
+  padding: 12rpx 20rpx 12rpx 48rpx;
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+.postTag_icon{
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  margin: 9rpx 0 0 -26rpx;
+  width: 16rpx;
+  height: 16rpx;
+}
+.topMoreBtn{
+  margin-top: 40rpx;
+  right: 25rpx;
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+}
+.contentWrap{
+  margin: 25rpx 0;
+  padding: 0 25rpx;
+}
+.contentWrap_detail{
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+.contentWrap_imgBox{
+  display: inline-flex;
+  margin-top: 20rpx;
+}
+.contentWrap_img{
+  margin-right: 20rpx;
+  width: 340rpx;
+  border-radius: 25rpx;
+}
+.spaceBar{
+  background: #F7F7F7;
+  height: 25rpx;
+}
+.answerBox{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20rpx;
+}
+.midMoreBtn{
+  position: absolute;
+  margin-top: 25rpx;
+  width: 40rpx;
+  height: 40rpx;
+  right: 25rpx;
+}
+.answerTitle{
+  margin: 15rpx 0 10rpx 25rpx;
+  font-weight: 700;
+  font-size: 28rpx;
+}
+.answerBox_top{
+  width: 100%;
+}
+.answerBox_avatar{
+  position: absolute;
+  border-radius: 50%;
+  width: 70rpx;
+  height: 70rpx;
+  margin: 25rpx 0 0 25rpx;
+}
+.answerBox_name{
+  position: absolute;
+  margin: 28rpx 0 0 108rpx;
+  font-weight: 700;
+  font-size: 26rpx;
+}
+.answerBox_detail{
+  margin: 68rpx 0 0 108rpx;
+  font-weight: 700;
+  font-size: 26rpx;
+  color: rgba(0,0,0,0.8);
+}
+.answerBox_time{
+  margin: 24rpx 0 0 108rpx;
+  font-size: 24rpx;
+  color: rgba(0,0,0,0.6);
+}
+.answerBox_agree{
+  margin-top: -2rpx;
+  position: absolute;
+  right: 180rpx;
+}
+.disagree{
+  right: 80rpx;
+}
+.answerBox_agree image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.answerBox_agree text{
+  position: absolute;
+  font-size: 24rpx;
+  color: rgba(0,0,0,0.8);
+  margin: 4rpx 0 0 2rpx;
+}
+.sentBar{
+  width: 100%;
+  padding: 8px 0 24px 0;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  border-radius: 30rpx 30rpx 0 0;
+}
+.inputCount{
+  position: absolute;
+  font-size: 25rpx;
+  color: rgba(0,0,0,0.5);
+  right: 25%;
+  margin-top: -26px;
+}
+.postIconBox{
+  position: absolute;
+  margin-top: -30px;
+  right: 30%;
+}
+.postIcon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.likesTxt{
+  position: absolute;
+  font-size: 20rpx;
+  color: #515151;
+}
+.shareBox{
+  right: 21%;
+  margin-top: -29px;
+}
+.share{
+  width: 37rpx;
+  height: 37rpx;
+}
+.sentBtn{
+  position: absolute;
+  font-size: 24rpx;
+  right: 3.5%;
+  margin-top: -34px;
+  background: #747d8c;
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 12rpx;
+}
+.safeArea{
+  height: 0;
+}
+.spaceBox{
+  height: 10rpx;
+  background: #fff;
+}
+.noticeTxt{
+  text-align: center;
+  color: rgba(0,0,0,0.5);
+  font-weight: 700;
+  letter-spacing: 1rpx;
+  font-size: 24rpx;
+  padding-top: 140rpx;
+}
+.loadingBar{
+  text-align: center;
+  margin: 20rpx 0;
+}
+.QAEndBar{
+  font-weight: 700;
+  font-size: 25rpx;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  margin: 40rpx 0 60rpx 0;
+}

@@ -1,6 +1,12 @@
 page{
+  background: #F8F5F8;
+}
+.background{
+  position: absolute;
   background: #B6B6B6;
-  overflow: scroll;
+  z-index: -1;
+  height: 50%;
+  width: 100%;
 }
 .topWrap{
   display: inline-flex;
@@ -28,6 +34,10 @@ page{
   color: rgba(255, 255, 255, 1.0);
   font-weight: 800;
   font-size: 28rpx;
+}
+.idInfo{
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 26rpx;
 }
 .topWrap_detail{
   position: absolute;

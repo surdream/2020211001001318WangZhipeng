@@ -1,5 +1,6 @@
+<view class="background"></view>
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar-Left32"><text class="navBar_title white95">{{loginStatus}}</text></view>
 </view>
 <!-- 主要内容区 -->
@@ -13,11 +14,11 @@
     <block wx:if="{{!firstUse}}">
       <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
       <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
-      <text class="topWrap_openname">{{accountInfo.openname}}</text>
+      <text class="topWrap_openname">{{accountInfo.openname}} <text class="idInfo">id:{{accountInfo.userid_show}}</text></text>
       <view class="topWrap_detail">华东交通大学 {{accountInfo.class}}</view>
     </block>
   </view>
-  <scroll-view class="mainContent" scroll-y="true">
+  <scroll-view class="mainContent" scroll-y="true" style="height:60vh;">
     <view class="alterBar">
       <view class="alterBox" bindtap="navTo" data-url="alterInfo">
         <image class="alterBox_img" src="/images/mine/import.png"></image>
