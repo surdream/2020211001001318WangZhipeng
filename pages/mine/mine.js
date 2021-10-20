@@ -16,11 +16,9 @@ Page({
   },
   onShow: function () {
     let accountInfo = wx.getStorageSync('accountInfo');
-    console.log(accountInfo)
+    console.log(accountInfo);
     if(accountInfo == undefined || accountInfo == ''){
-      this.setData({
-        loginStatus: '未登录'
-      })
+      this.setData({ loginStatus: '未登录' })
     } else{
       this.setData({
         loginStatus: '个人信息',
@@ -35,13 +33,9 @@ Page({
       let status = this.data.accountInfo.lover_status;
       console.log(status)
       if(url == 'guide'){
-        wx.navigateTo({
-          url: '../guide/guide?from=import',
-        })
+        wx.navigateTo({ url: '../guide/guide?from=import' })
       } else if(status == 0 && url== 'couple'){
-        wx.navigateTo({
-          url: '../guide/guide?from=couple',
-        })
+        wx.navigateTo({ url: '../guide/guide?from=couple' })
       } else if(status == 2 && url== 'couple'){
         wx.showToast({
           title: '你还有一条绑定申请未处理',
@@ -53,26 +47,18 @@ Page({
           icon: 'none'
         })
       } else if(url == 'alterInfo'){
-        wx.navigateTo({
-          url: './alterInfo/alterInfo',
-        })
+        wx.navigateTo({ url: './alterInfo/alterInfo' })
       } else if(url == 'official'){
       }else{
-        wx.navigateTo({
-          url: '/pages/' + url + '/' + url,
-        })
+        wx.navigateTo({ url: '/pages/' + url + '/' + url })
       }
     } else{
-      wx.navigateTo({
-        url: '../guide/guide?from=import',
-      })
+      wx.navigateTo({ url: '../guide/guide?from=import' })
     }
   },
   aboutTo(e){
     let url = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: './' + url + '/' + url,
-    })
+    wx.navigateTo({ url: './' + url + '/' + url })
   },
   navApp(){
     wx.showToast({
@@ -98,14 +84,9 @@ Page({
       content: '确定要清除全部缓存吗？',
       success (res) {
         wx.clearStorageSync();
-        wx.redirectTo({
-          url: '/pages/guide/guide',
-        })
-        wx.showToast({
-          title: '已成功清除缓存',
-        })
+        wx.redirectTo({ url: '/pages/guide/guide' })
+        wx.showToast({ title: '已成功清除缓存' })
       }
     })
-
   }
 })

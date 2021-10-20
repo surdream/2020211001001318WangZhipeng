@@ -19,7 +19,7 @@
   <view class="topWrap">
     <!-- 轮播图 -->
     <view class="swiper-box">
-      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
+      <swiper circular="true" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
         <block wx:for="{{imgUrls}}" wx:key="index">
           <swiper-item data-link="{{item.link}}" bindtap="navPublic">
             <image src="{{item.plink}}" class="slide-image" mode="aspectFill"/>

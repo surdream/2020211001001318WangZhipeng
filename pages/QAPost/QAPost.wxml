@@ -25,7 +25,7 @@
     </view>
   </view>
   <view class="spaceBar"></view>
-  <view class="answerWrap" wx:if="{{answerList.length != 0}}">
+  <view class="answerWrap" wx:if="{{answerList.length != 0|| selfList.length != 0}}">
     <block wx:if="{{selfList.length != 0}}">
       <view class="answerTitle">我的回答</view>
       <view class="answerBox" wx:for="{{selfList}}" wx:key="index">
@@ -70,7 +70,7 @@
       </view>
     </view>
   </view>
-  <view class="answerWrap" wx:if="{{answerList.length == 0}}">
+  <view class="answerWrap" wx:if="{{answerList.length == 0 && selfList.length == 0}}">
     <view class="noticeTxt">还没有人回答，快来抢占沙发</view>
   </view>
   <view class="sentBar">

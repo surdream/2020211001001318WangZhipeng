@@ -65,7 +65,7 @@
       <!-- 身份验证 -->
       <view wx:if="{{swiperCurrent == 1}}">
         <view class="inputAccount">
-          <view class="pointer_account"><text class="pointer_{{account.length == 16?'right':'wrong'}}">{{account.length}}</text>/16</view>
+          <view class="pointer_account"><text class="pointer_{{(account.length == 14||account.length == 16)?'right':'wrong'}}">{{account.length}}</text> (14/16)</view>
           <input class="inputBox" placeholder="请输入你的学号" value="{{account}}" bindinput="detailInput" type="number" data-name="account" disabled="{{!canConnect}}" bindtap="inputTap"></input>
         </view>
         <view class="inputPassword">

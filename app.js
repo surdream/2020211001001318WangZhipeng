@@ -2,18 +2,19 @@ var app = getApp();// 获取app实例
 const { request } = require("./utils/request/request");
 App({
   onLaunch() {
-    // 用户登录
-    let userInfo = wx.getStorageSync('userInfo');
-    if (userInfo == undefined || userInfo == ''){
-      console.log('未登录');
-    } else{
-      request({
-        url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
-      }).then(res => {
-        wx.removeStorageSync('sessionid');// 移除旧cookie
-        wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
-      })
-    }
+    // // 用户登录
+    // let userInfo = wx.getStorageSync('userInfo');
+    // if (userInfo == undefined || userInfo == ''){
+    //   console.log('未登录');
+    // } else{
+    //   request({
+    //     url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+    //   }).then(res => {
+    //     console.log(res)
+    //     wx.removeStorageSync('sessionid');// 移除旧cookie
+    //     wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
+    //   })
+    // }
     wx.getSystemInfo({
       success: (e) => {
         // 定位状态栏、胶囊等显示区域

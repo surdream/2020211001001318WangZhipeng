@@ -23,9 +23,7 @@ Page({
     arrange_list: [],
     repair_list: [],
     weekDayLits: ['一','二','三','四','五','六','七',],
-    grade_actions: [
-
-    ],
+    grade_actions: [],
     officeColorList: [
       '#67D5B5','#EE7785','#C89EC4','#84B1ED'
     ],
@@ -54,9 +52,7 @@ Page({
       })
       for(let i=0;i<accountInfo.oldterm.length;i++){
         let term_list_str = 'grade_actions[' + i + '].name';
-        this.setData({
-          [term_list_str]: accountInfo.oldterm[i],
-        })
+        this.setData({ [term_list_str]: accountInfo.oldterm[i] })
       }
       // 查询课表
       request({
@@ -66,9 +62,7 @@ Page({
         console.log(res)
         if(res.data.code == 200){
           let chart_list = res.data.data
-          this.setData({
-            chart_list: chart_list
-          })
+          this.setData({ chart_list: chart_list })
           Notify({
             message: '查询到当天共有' + chart_list.length + '门课',
             type: 'primary',
@@ -98,9 +92,7 @@ Page({
               courseList[i].class_name_fix = result2;
               courseList[i].course_name = result4;
             }
-            this.setData({
-              courseList: courseList
-            })
+            this.setData({ courseList: courseList })
           } else if(res.data.code == 400){
           }
         })
@@ -112,9 +104,7 @@ Page({
       }).then(res =>{
         console.log(res.data)
         let grade_list = res.data.data;
-        this.setData({
-          grade_list: grade_list
-        })
+        this.setData({ grade_list: grade_list })
         // 考试安排
         request({
           url: "api/edu/exam", 
@@ -123,12 +113,8 @@ Page({
           console.log(res.data)
           let normal_list = res.data.data.normal;
           let repair_list = res.data.data.re;
-          this.setData({
-            arrange_list: normal_list.concat(repair_list)
-          })
-          this.setData({
-            loading: false
-          })
+          this.setData({ arrange_list: normal_list.concat(repair_list) })
+          this.setData({ loading: false })
         })
       })
     } else{
@@ -174,9 +160,7 @@ Page({
   onShow: function () {
   },
   BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    });
+    wx.navigateBack({ delta: 1 });
   },
   infoListTap: function(e){
     let titleTarget = e.currentTarget.dataset.id;
@@ -207,9 +191,7 @@ Page({
       console.log(res.data)
       let grade_list = res.data.data;
       let grade_term = this.data.grade_term;
-      this.setData({
-        grade_list: grade_list
-      })
+      this.setData({ grade_list: grade_list })
       Notify({
         message: '查询到' + grade_term + '学期共有' + grade_list.length + '门成绩',
         type: 'warning',
@@ -222,13 +204,9 @@ Page({
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       let url = e.currentTarget.dataset.url;
-      wx.navigateTo({
-        url: '/pages/' + url + '/' + url,
-      })
+      wx.navigateTo({ url: '/pages/' + url + '/' + url })
     } else{
-      wx.navigateTo({
-        url: '../guide/guide?from=import',
-      })
+      wx.navigateTo({ url: '../guide/guide?from=import' })
     }
   },
   sorryTap(){

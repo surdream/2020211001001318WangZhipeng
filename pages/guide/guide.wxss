@@ -103,12 +103,15 @@ swiper image {
   color: rgba(0, 0, 0, 0.5);
   right: 12%;
   margin-top: 35rpx;
+  font-size: 24rpx;
 }
 .pointer_right{
   color: #3AC569;
+  font-size: 26rpx;
 }
 .pointer_wrong{
-  color: #F1948A;
+  color: #EE7785;
+  font-size: 26rpx;
 }
 .inputPassword image{
   width: 45rpx;

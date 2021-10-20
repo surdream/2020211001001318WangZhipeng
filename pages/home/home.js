@@ -41,15 +41,30 @@ Page({
   },
   onLoad: function (options) {
     let firstUse = wx.getStorageSync('firstUse');
+    console.log(wx.getStorageSync('sessionid'));
     if(firstUse == 'not'){
       this.setData({ hasImport: true })
+      // 用户登录
+      let userInfo = wx.getStorageSync('userInfo');
+      if (userInfo == undefined || userInfo == ''){
+        console.log('未登录');
+      } else{
+        request({
+          url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+        }).then(res => {
+          console.log(res)
+          wx.removeStorageSync('sessionid');// 移除旧cookie
+          wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
+        })
+      }
       // 获取个人信息
       request({
         url: "api/user/profile?", 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
+        console.log(res.data);
+        console.log('code=' + res.data.code);
         if(res.data.code == 200){
-          console.log(res.data.data);
           let accountInfo = res.data.data;
           let openname = base64.decode(accountInfo.openname);
               accountInfo.openname = openname;
@@ -60,21 +75,17 @@ Page({
             lover_status: lover_status
           })
           // 判断留言状态
-          if(accountInfo.lover.msg.length != 0){
-            this.setData({
-              hasMsg: true
-            })
+          if (accountInfo.lover) {
+            console.log(111)
+            if (accountInfo.lover.msg.length != 0) {
+              this.setData({ hasMsg: true });
+            }
           }
           // 判断情侣状态
           if(lover_status == 2){
-            this.setData({
-              popShow: true
-            })
-            wx.showToast({
-              title: '有一条绑定申请',
-              icon: 'none'
-            })
-            this.onLoad();           
+            this.setData({ popShow: true });
+            Toast('有一条绑定申请');
+            this.onLoad();
           }
           // 获取今日课表
           request({
@@ -88,51 +99,52 @@ Page({
                 bind_list: res.data.data.lover
               })
             }
-          })
-          // 获取问答列表
-          request({
-            url: "api/qa/list?page=1" , 
-            method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-          }).then(res =>{
-            console.log(res.data);
-            let QA_list = res.data;
-            for(let i=0;i<QA_list.length;i++){
-              let type = QA_list[i].type;
-              switch(type){
-                case '闲聊': {QA_list[i].color = '#747d8c'} break;
-                case '情感': {QA_list[i].color = '#ff6b81'} break;
-                case '学习': {QA_list[i].color = '#1e90ff'} break;
-                case '生活': {QA_list[i].color = '#eccc68'} break;
+            // 获取问答列表
+            request({
+              url: "api/qa/list?page=1" , 
+              method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+            }).then(res =>{
+              console.log(res.data);
+              let QA_list = res.data;
+              for(let i=0;i<QA_list.length;i++){
+                let type = QA_list[i].type;
+                switch(type){
+                  case '闲聊': {QA_list[i].color = '#747d8c'} break;
+                  case '情感': {QA_list[i].color = '#ff6b81'} break;
+                  case '学习': {QA_list[i].color = '#1e90ff'} break;
+                  case '生活': {QA_list[i].color = '#eccc68'} break;
+                }
+                if(QA_list[i].reply_content != null){
+                  let reply_content = base64.decode(QA_list[i].reply_content);
+                  QA_list[i].reply_content = reply_content;
+                }
+                if(QA_list[i].openname != null){
+                  let openname = base64.decode(QA_list[i].openname);
+                  QA_list[i].openname = openname;
+                }
+                let picture1 = QA_list[i].picture1;
+                let picture2 = QA_list[i].picture2;
+                if (picture1 != null) {
+                  QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+                }
+                if (picture2 != null) {
+                  QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+                }
               }
-              if(QA_list[i].reply_content != null){
-                let reply_content = base64.decode(QA_list[i].reply_content);
-                QA_list[i].reply_content = reply_content;
-              }
-              if(QA_list[i].openname != null){
-                let openname = base64.decode(QA_list[i].openname);
-                QA_list[i].openname = openname;
-              }
-              let picture1 = QA_list[i].picture1;
-              let picture2 = QA_list[i].picture2;
-              if (picture1 != null) {
-                QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
-              }
-              if (picture2 != null) {
-                QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
-              }
-            }
-            this.setData({
-              QA_list: QA_list,
-              QALoading: false
+              this.setData({
+                QA_list: QA_list,
+                QALoading: false
+              })
+              Notify({
+                message: '获取到 ' + res.data.length + ' 条问答',
+                type: 'success ',
+                safeAreaInsetTop: true,
+                duration: '600'
+              });
             })
-            Notify({
-              message: '获取到 ' + res.data.length + ' 条问答',
-              type: 'success ',
-              safeAreaInsetTop: true,
-              duration: '600'
-            });
           })
-        } else if(res.data.code == 400){
+        } 
+        else if(res.data.code == 400){
           request({
             url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
           }).then(res => {
@@ -179,49 +191,49 @@ Page({
                     bind_list: res.data.data.lover
                   })
                 }
-              })
-              // 获取问答列表
-              request({
-                url: "api/qa/list?page=1" , 
-                method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-              }).then(res =>{
-                console.log(res.data);
-                let QA_list = res.data;
-                for(let i=0;i<QA_list.length;i++){
-                  let type = QA_list[i].type;
-                  switch(type){
-                    case '闲聊': {QA_list[i].color = '#747d8c'} break;
-                    case '情感': {QA_list[i].color = '#ff6b81'} break;
-                    case '学习': {QA_list[i].color = '#1e90ff'} break;
-                    case '生活': {QA_list[i].color = '#eccc68'} break;
+                // 获取问答列表
+                request({
+                  url: "api/qa/list?page=1" , 
+                  method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                }).then(res =>{
+                  console.log(res.data);
+                  let QA_list = res.data;
+                  for(let i=0;i<QA_list.length;i++){
+                    let type = QA_list[i].type;
+                    switch(type){
+                      case '闲聊': {QA_list[i].color = '#747d8c'} break;
+                      case '情感': {QA_list[i].color = '#ff6b81'} break;
+                      case '学习': {QA_list[i].color = '#1e90ff'} break;
+                      case '生活': {QA_list[i].color = '#eccc68'} break;
+                    }
+                    if(QA_list[i].reply_content != null){
+                      let reply_content = base64.decode(QA_list[i].reply_content);
+                      QA_list[i].reply_content = reply_content;
+                    }
+                    if(QA_list[i].openname != null){
+                      let openname = base64.decode(QA_list[i].openname);
+                      QA_list[i].openname = openname;
+                    }
+                    let picture1 = QA_list[i].picture1;
+                    let picture2 = QA_list[i].picture2;
+                    if (picture1 != null) {
+                      QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+                    }
+                    if (picture2 != null) {
+                      QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+                    }
                   }
-                  if(QA_list[i].reply_content != null){
-                    let reply_content = base64.decode(QA_list[i].reply_content);
-                    QA_list[i].reply_content = reply_content;
-                  }
-                  if(QA_list[i].openname != null){
-                    let openname = base64.decode(QA_list[i].openname);
-                    QA_list[i].openname = openname;
-                  }
-                  let picture1 = QA_list[i].picture1;
-                  let picture2 = QA_list[i].picture2;
-                  if (picture1 != null) {
-                    QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
-                  }
-                  if (picture2 != null) {
-                    QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
-                  }
-                }
-                this.setData({
-                  QA_list: QA_list,
-                  QALoading: false
+                  this.setData({
+                    QA_list: QA_list,
+                    QALoading: false
+                  })
+                  Notify({
+                    message: '获取到 ' + res.data.length + ' 条问答',
+                    type: 'success ',
+                    safeAreaInsetTop: true,
+                    duration: '600'
+                  });
                 })
-                Notify({
-                  message: '获取到 ' + res.data.length + ' 条问答',
-                  type: 'success ',
-                  safeAreaInsetTop: true,
-                  duration: '600'
-                });
               })
             })
           })

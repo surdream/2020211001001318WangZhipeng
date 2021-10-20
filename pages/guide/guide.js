@@ -156,165 +156,74 @@ Page({
       })
     }
     if(swiperCurrent == 1){
-      if(account.length === 16){
-        if(password.length != 0){
-        let hasUserInfo = this.data.hasUserInfo;
-          this.setData({
-            isLoading: true
-          })
-          let account = this.data.account;
-          let password = this.data.password;
-          request({
-            url: "api/user/login?" + "account=" + account + "&password=" + password, 
-            method: 'GET', 
-          }).then(res => {
-            console.log(res);
-            let userInfo = {account: account,password: password};
-            wx.removeStorageSync('sessionid');
-            wx.setStorageSync("sessionid", res.cookies[0]);
-            wx.removeStorageSync('isSkip');
-            wx.setStorageSync('firstUse', 'not');
-            if(res.data.code == 210){ //用户注册
-              wx.showToast({
-                title: '认证成功！',
-              })
-              wx.setStorageSync('userInfo', userInfo);
-              this.setData({
-                isLoading: false,
-              })
-              if(!hasUserInfo){
-                let from = this.data.from;
-                wx.getUserProfile({
-                desc: '获取用户昵称、头像',
-                success: (res) => {
-                  console.log(res)
-                  let userInfo = res.userInfo;
-                  let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
-                  this.setData({
-                    userInfo: userInfo,
-                    hasUserInfo: true
-                  })
-                  request({
-                    url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-                  }).then(res => {
-                    console.log(res);
-                    wx.login({
-                      success: function(res) {
-                        if (res.code) {
-                          console.log(res)
-                          //发起网络请求
-                          wx.request({
-                            url: 'https://test.com/onLogin',
-                            data: {
-                              code: res.code
-                            }
-                          })
-                        } else {
-                          console.log('获取用户登录态失败！' + res.errMsg)
-                        }
-                      }
-                    });     
-                  })
-                },
-                fail: () => {
-                  if(from == 'import'){
-                    wx.showToast({
-                      title: '已取消授权，昵称和头像维持不变',
-                      icon: 'none'
-                    })
-                  } else{
-                    wx.showToast({
-                      title: '已取消授权，昵称和头像维持不变',
-                      icon: 'none'
-                    })
-                  }
-                },
-                complete: () => {
-                  if(from == 'import'){
-                    this.setData({
-                      nextBtn: '完成'
-                    })
-                    // 用户登录
-                    let userInfo = wx.getStorageSync('userInfo');
-                    request({
-                      url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
-                    }).then(res => {
-                        wx.removeStorageSync('sessionid');
-                        wx.setStorageSync("sessionid", res.cookies[0]);
-                        request({
-                          url: "api/user/profile?", 
-                          method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-                        }).then(res =>{
-                          let accountInfo = res.data.data;
-                          wx.setStorageSync('accountInfo', accountInfo);
-                          //根据code获取openid等信息
-                          wx.login({
-                            success: function(res) {
-                              if (res.code) {
-                                //发起网络请求
-                                wx.request({
-                                  url: 'https://test.com/onLogin',
-                                  data: {
-                                    code: res.code
-                                  }
-                                })
-                              } else {
-                                console.log('获取用户登录态失败！' + res.errMsg)
-                              }
-                            }
-                          });
+      if(password.length != 0){
+      let hasUserInfo = this.data.hasUserInfo;
+        this.setData({ isLoading: true });
+        let account = this.data.account;
+        let password = this.data.password;
+        request({
+          url: "api/user/login?" + "account=" + account + "&password=" + password, 
+          method: 'GET', 
+        }).then(res => {
+          console.log(res);
+          let userInfo = {account: account,password: password};
+          wx.removeStorageSync('sessionid');
+          wx.setStorageSync("sessionid", res.cookies[0]);
+          wx.removeStorageSync('isSkip');
+          wx.setStorageSync('firstUse', 'not');
+          if(res.data.code == 210){ //用户注册
+            wx.showToast({ title: '认证成功！' });
+            wx.setStorageSync('userInfo', userInfo);
+            this.setData({ isLoading: false });
+            if(!hasUserInfo){
+              let from = this.data.from;
+              wx.getUserProfile({
+              desc: '获取用户昵称、头像',
+              success: (res) => {
+                console.log(res)
+                let userInfo = res.userInfo;
+                let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
+                this.setData({
+                  userInfo: userInfo,
+                  hasUserInfo: true
+                })
+                request({
+                  url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                }).then(res => {
+                  console.log(res);
+                  wx.login({
+                    success: function(res) {
+                      wx.setStorageSync('firstGetInfo', 'not');
+                      if (res.code) {
+                        console.log(res)
+                        //发起网络请求
+                        wx.request({
+                          url: 'https://test.com/onLogin',
+                          data: { code: res.code }
                         })
-                    })
-                    wx.showToast({
-                      title: '导入成功，如信息显示不正常请尝试重新进入小程序',
-                      icon: 'none'
-                    })
-                    setTimeout(function() {
-                      wx.setStorageSync('firstUse', 'not');
-                      wx.redirectTo({
-                        url: '../blank/blank',
-                      });
-                    }, 1250);
-                  } else{
-                    this.setData({
-                      swiperCurrent: 2,
-                      nextBtn: '下一步'
-                    })
-                  }
-                }
-              })
-              }
-            } else if(res.data.code == 200){ //用户登录
-              //根据code获取openid等信息
-              wx.login({
-                success: function(res) {
-                  if (res.code) {
-                    console.log(res)
-                    //发起网络请求
-                    request({
-                      url: "api/user/wxbind?code=" + res.code, 
-                      method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-                    }).then(res =>{
-                      console.log(res);
-                    })
-                  } else {
-                    console.log('获取用户登录态失败！' + res.errMsg)
-                  }
-                }
-              });
-              wx.showToast({
-                title: '登录成功！',
-              })
-              wx.setStorageSync('userInfo', userInfo);
-              this.setData({
-                isLoading: false,
-              })
-              if(!hasUserInfo){
-                let from = this.data.from;
+                      } else {
+                        console.log('获取用户登录态失败！' + res.errMsg);
+                      }
+                    }
+                  });     
+                })
+              },
+              fail: () => {
                 if(from == 'import'){
-                  this.setData({
-                    nextBtn: '完成'
+                  wx.showToast({
+                    title: '已取消授权，昵称和头像维持不变',
+                    icon: 'none'
                   })
+                } else{
+                  wx.showToast({
+                    title: '已取消授权，昵称和头像维持不变',
+                    icon: 'none'
+                  })
+                }
+              },
+              complete: () => {
+                if(from == 'import'){
+                  this.setData({ nextBtn: '完成' })
                   // 用户登录
                   let userInfo = wx.getStorageSync('userInfo');
                   request({
@@ -327,18 +236,30 @@ Page({
                         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
                       }).then(res =>{
                         let accountInfo = res.data.data;
-                        wx.setStorageSync('accountInfo', accountInfo);  
+                        wx.setStorageSync('accountInfo', accountInfo);
+                        //根据code获取openid等信息
+                        wx.login({
+                          success: function(res) {
+                            if (res.code) {
+                              //发起网络请求
+                              wx.request({
+                                url: 'https://test.com/onLogin',
+                                data: { code: res.code }
+                              })
+                            } else {
+                              console.log('获取用户登录态失败！' + res.errMsg);
+                            }
+                          }
+                        });
                       })
                   })
                   wx.showToast({
-                    title: '导入成功，如信息显示不正常请重新进入小程序',
+                    title: '导入成功，如信息显示不正常请尝试重新进入小程序',
                     icon: 'none'
                   })
                   setTimeout(function() {
                     wx.setStorageSync('firstUse', 'not');
-                    wx.redirectTo({
-                      url: '../blank/blank',
-                    });
+                    wx.redirectTo({ url: '../blank/blank' });
                   }, 1250);
                 } else{
                   this.setData({
@@ -347,43 +268,92 @@ Page({
                   })
                 }
               }
-            } else if(res.data.code == 401){
-              wx.showToast({
-                title: '账号或密码有误,请重新检查后输入',
-                icon: 'none'
-              })
-              this.setData({
-                isLoading: false
-              })
-            } else if(res.data.code == 205){
-              wx.showToast({
-                title: '账号或密码有误,请重新检查后输入',
-                icon: 'none'
-              })
-              this.setData({
-                isLoading: false
-              })
+            })
             }
-          })
-        } else{
-          wx.showToast({
-            title: '请输入你的密码',
-            icon: 'error'
-          })
-        }
+          } else if(res.data.code == 200){ //用户登录
+            //根据code获取openid等信息
+            wx.login({
+              success: function(res) {
+                if (res.code) {
+                  console.log(res);
+                  //发起网络请求
+                  request({
+                    url: "api/user/wxbind?code=" + res.code, 
+                    method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                  }).then(res =>{
+                    console.log(res);
+                  })
+                } else {
+                  console.log('获取用户登录态失败！' + res.errMsg);
+                }
+              }
+            });
+            wx.showToast({ title: '登录成功！' })
+            wx.setStorageSync('userInfo', userInfo);
+            this.setData({ isLoading: false })
+            if(!hasUserInfo){
+              let from = this.data.from;
+              if(from == 'import'){
+                this.setData({ nextBtn: '完成' });
+                // 用户登录
+                let userInfo = wx.getStorageSync('userInfo');
+                request({
+                  url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+                }).then(res => {
+                    wx.removeStorageSync('sessionid');
+                    wx.setStorageSync("sessionid", res.cookies[0]);
+                    request({
+                      url: "api/user/profile?", 
+                      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                    }).then(res =>{
+                      let accountInfo = res.data.data;
+                      wx.setStorageSync('accountInfo', accountInfo);  
+                    })
+                })
+                wx.showToast({
+                  title: '导入成功，如信息显示不正常请重新进入小程序',
+                  icon: 'none'
+                })
+                setTimeout(function() {
+                  wx.setStorageSync('firstUse', 'not');
+                  wx.redirectTo({ url: '../blank/blank' });
+                }, 1250);
+              } else{
+                this.setData({
+                  swiperCurrent: 2,
+                  nextBtn: '下一步'
+                })
+              }
+            }
+          } else if(res.data.code == 401){
+            wx.showToast({
+              title: '账号或密码有误,请重新检查后输入',
+              icon: 'none'
+            })
+            this.setData({
+              isLoading: false
+            })
+          } else if(res.data.code == 205){
+            wx.showToast({
+              title: '账号或密码有误,请重新检查后输入',
+              icon: 'none'
+            })
+            this.setData({
+              isLoading: false
+            })
+          }
+        })
       } else{
         wx.showToast({
-          title: '请正确输入学号密码',
-          icon: 'none'
+          title: '请输入你的密码',
+          icon: 'error'
         })
       }
     }
     if(swiperCurrent == 2){
       let from = this.data.from;
       if(from == 'couple'){
-        wx.switchTab({
-          url: '/pages/mine/mine',
-        })
+        wx.switchTab({ url: '/pages/mine/mine' })
       } else{
         this.setData({
           swiperCurrent: 3,
@@ -394,34 +364,30 @@ Page({
     if(swiperCurrent == 3){
       wx.removeStorageSync('isSkip');
       wx.setStorageSync('firstUse', 'not');
-      wx.redirectTo({
-        url: '/pages/blank/blank',
-      })
+      wx.redirectTo({ url: '/pages/blank/blank' })
     }
   },
   // 同意协议
   acceptTap(){
-    this.setData({ popShow: false})
+    this.setData({ popShow: false })
   },
   // 拒绝协议
   cancelTap(){
     this.setData({ popShow: false});
     wx.setStorageSync('isSkip', false);
-    wx.switchTab({
-      url: '/pages/home/home',
-    })
+    wx.switchTab({ url: '/pages/home/home' })
   },
   // 返回键
   backStep() {
     let swiperCurrent = this.data.swiperCurrent;
-    if(swiperCurrent = 1){
+    if(swiperCurrent == 1){
       this.setData({
         nextBtn: '下一步',
         swiperCurrent: 0,
         isLoading: false,
         account: '',
         password: ''
-      }) 
+      })
     }
   },
   // 密码可视
@@ -465,9 +431,7 @@ Page({
       }).then(res =>{
         console.log(res);
         if(res.data.code == 200){
-          wx.showToast({
-            title: '匹配到一位用户',
-          })
+          wx.showToast({ title: '匹配到一位用户' })
           this.setData({
             searchResult: res.data,
             haveResult: true
@@ -524,29 +488,19 @@ Page({
     let from = this.data.from;
     let swiperCurrent = this.data.swiperCurrent;
     if (swiperCurrent < 2 && from != 'import') {
-      wx.setStorageSync('isSkip', true)
-      wx.switchTab({
-        url: '/pages/home/home',
-      })
+      wx.setStorageSync('isSkip', true);
+      wx.switchTab({ url: '/pages/home/home' });
     } else if (swiperCurrent >= 2 && from != 'import') {
       wx.removeStorageSync('isSkip');
       wx.setStorageSync('firstUse', 'not');
-      wx.redirectTo({
-        url: '/pages/blank/blank',
-      })
-    } else {
-      wx.navigateBack({
-        delta: 1,
-      }); 
-    }
-
+      wx.redirectTo({ url: '/pages/blank/blank' });
+    } else { wx.navigateBack({ delta: 1 }); }
   },
   onClose() {
     this.setData({
       show: false,
       pickerImg:'/images/conmon/down-tri.png'
     });
-
   },
   onSelect(event) {
     console.log(event.detail);
@@ -554,40 +508,24 @@ Page({
     this.setData({ school: name})
   },
   checkChange(event){
-    console.log(11)
-    this.setData({
-      checked: event.detail,
-    });
+    this.setData({ checked: event.detail });
   },
   checkBtn(){
     let checkStatus = this.data.checkStatus;
-    if (checkStatus == 'checked') {
-      this.setData({
-        checkStatus: 'uncheck'
-      })
-    } else {
-      this.setData({
-        checkStatus: 'checked'
-      })
-    }
+    if (checkStatus == 'checked') { this.setData({ checkStatus: 'uncheck' }); } 
+    else { this.setData({ checkStatus: 'checked' }); }
   },
   navTo(){
-    wx.navigateTo({
-      url: './subscribe/subscribe',
-    })
+    wx.navigateTo({ url: './subscribe/subscribe' });
   },
   navPrivacy(){
-    wx.navigateTo({
-      url: '/pages/mine/privacy/privacy',
-    })
+    wx.navigateTo({ url: '/pages/mine/privacy/privacy' })
     wx.showToast({
       title: '请务必仔细阅读,同时我们会严格保护您的信息',
       icon: 'none'
     })
   },
   BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    }); 
+    wx.navigateBack({ delta: 1 }); 
   },
 })
