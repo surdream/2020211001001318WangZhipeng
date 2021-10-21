@@ -60,12 +60,8 @@ Page({
   },
   onLoad: function (options) {
     let from = options.from;
-    if(from == 'share'){
-      this.setData({ backHome: true })
-    }
     let content = JSON.parse(decodeURIComponent(options.content));
     let imgUrl = [content.picture1].concat([content.picture2])
-    console.log(content);
     this.setData({
       content: content,
       imgUrl: imgUrl
@@ -113,6 +109,19 @@ Page({
         selfList: selfList
       })
     })
+    if(from == 'share'){this.setData({ backHome: true })}
+    if(from == 'checkImg') {
+      let imgUrl = this.data.imgUrl;
+      console.log(imgUrl)
+      let id = parseInt(options.id) - 1;
+      wx.previewImage({
+        urls: imgUrl,
+        current: imgUrl[id],
+        success: function (res) { console.log(res) },
+        fail: function (res) { console.log(res) },
+        complete: function (res) { console.log(res) },
+      })
+    }
   },
   onShow: function () {
   },
@@ -171,6 +180,7 @@ Page({
                     accountInfo.openname = openname;
                 wx.setStorageSync('accountInfo', accountInfo);
                 that.setData({ accountInfo: accountInfo })
+                Toast('同步成功，接下来可以正常使用啦')
               } else if(res.data.code == 400){ Toast('服务器开小猜了QAQ'); }
             })
           }
@@ -228,7 +238,7 @@ Page({
               that.setData({ msgValue: '' })
             }
           })
-        }        
+        }
       }
     } else {
       Toast('校园问答功能需登录后使用')

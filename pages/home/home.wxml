@@ -4,7 +4,10 @@
 <van-toast id="van-toast" />
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
-  <view class="navBar-Left35"><text class="navBar_title">一目校园</text></view>
+  <view class="navBar-Left35 navBar_title">
+    <text class="gradient_title">一目校园</text>
+    <text style="color:rgba(0,0,0,0.25);font-size:30rpx;"> (众测版)</text>
+  </view>
 </view>
 <!-- 胶囊提示 -->
 <view class="pillNotice" bindtap="pillNoticeTap" wx:if="{{pillNoticeShow}}">
@@ -147,7 +150,7 @@
   </view> -->
   <view class="QAWrap">
     <view class="QABox" wx:for="{{QA_list}}" wx:key="index">
-      <view class="QABoxTop" style="background:{{item.color}};">
+      <view class="QABoxTop" style="--background--:{{item.color}}">
         <view class="QABoxData">
           <image class="QABoxData_img" src="/images/QA/data.png"></image>
           <text>{{item.heat}}人在讨论</text>
@@ -160,12 +163,20 @@
             <view class="QABoxContent_nameTxt">{{item.openname}}</view> 
             <view class="QABoxContent_from" style="border: 2rpx solid {{item.color}};color:{{item.color}};">{{item.source}}</view>
           </view>
-          <view class="QABoxContent_count" wx:if="{{item.limittime == '长期可用'}}">长期有效</view>
-          <view class="QABoxContent_count" wx:if="{{item.limittime != '长期可用'}}">讨论剩余：{{item.limittime}}</view>
+          <view class="QABoxContent_count">
+            <text>发布于:{{item.createtime}} / </text>
+            <text wx:if="{{item.limittime == '长期可用'}}">长期有效</text>
+            <text wx:if="{{item.limittime != '长期可用'}}">讨论剩余：{{item.limittime}}</text>
+          </view>
           <view class="QABoxContent_enterBtn" bindtap="navQAPost" data-content="{{item}}">进入问答</view>
           <image class="QABoxContent_avatar" src="{{item.avatar}}"></image>
         </view>
         <view class="QABoxContent_title" bindtap="navQAPost" data-content="{{item}}">{{item.title}}</view>
+        <view class="contentWrap_imgBox">
+          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1}}"/>
+          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2}}"/>
+        </view>
+        <!-- 最新回答 -->
         <view class="QABoxContent_answer" wx:if="{{item.replys != 0}}">
           <view class="QABoxContent_answerTitle" bindtap="navQAPost" data-content="{{item}}">
             <text>最新回答: </text>
@@ -174,6 +185,7 @@
             <text class="QABoxContent_answerTime">{{item.replytime}}</text>
           </view>
         </view>
+        <!-- 点赞评论 -->
         <view class="QABoxInfo">
           <view class="QABoxInfo_agree QABoxInfoBox" bindtap="agreeTap" data-id="{{item.question_id}}" data-index="{{index}}">
             <image src="/images/QA/agree{{item.islike}}.png"></image>

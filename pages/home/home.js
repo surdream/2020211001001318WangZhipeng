@@ -55,107 +55,17 @@ Page({
           console.log(res)
           wx.removeStorageSync('sessionid');// 移除旧cookie
           wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
-        })
-      }
-      // 获取个人信息
-      request({
-        url: "api/user/profile?", 
-        method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res.data);
-        console.log('code=' + res.data.code);
-        if(res.data.code == 200){
-          let accountInfo = res.data.data;
-          let openname = base64.decode(accountInfo.openname);
-              accountInfo.openname = openname;
-          let lover_status = accountInfo.lover_status;
-          wx.setStorageSync('accountInfo', accountInfo);
-          this.setData({
-            accountInfo: accountInfo,
-            lover_status: lover_status
-          })
-          // 判断留言状态
-          if (accountInfo.lover) {
-            console.log(111)
-            if (accountInfo.lover.msg.length != 0) {
-              this.setData({ hasMsg: true });
-            }
-          }
-          // 判断情侣状态
-          if(lover_status == 2){
-            this.setData({ popShow: true });
-            Toast('有一条绑定申请');
-            this.onLoad();
-          }
-          // 获取今日课表
+          // 获取个人信息
           request({
-            url: "api/edu/todayMain", 
+            url: "api/user/profile?", 
             method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
           }).then(res =>{
-            console.log(res.data.data)
-            if (res.data.code == 200) {
-              this.setData({
-                chart_list: res.data.data.me,
-                bind_list: res.data.data.lover
-              })
-            }
-            // 获取问答列表
-            request({
-              url: "api/qa/list?page=1" , 
-              method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-            }).then(res =>{
-              console.log(res.data);
-              let QA_list = res.data;
-              for(let i=0;i<QA_list.length;i++){
-                let type = QA_list[i].type;
-                switch(type){
-                  case '闲聊': {QA_list[i].color = '#747d8c'} break;
-                  case '情感': {QA_list[i].color = '#ff6b81'} break;
-                  case '学习': {QA_list[i].color = '#1e90ff'} break;
-                  case '生活': {QA_list[i].color = '#eccc68'} break;
-                }
-                if(QA_list[i].reply_content != null){
-                  let reply_content = base64.decode(QA_list[i].reply_content);
-                  QA_list[i].reply_content = reply_content;
-                }
-                if(QA_list[i].openname != null){
-                  let openname = base64.decode(QA_list[i].openname);
-                  QA_list[i].openname = openname;
-                }
-                let picture1 = QA_list[i].picture1;
-                let picture2 = QA_list[i].picture2;
-                if (picture1 != null) {
-                  QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
-                }
-                if (picture2 != null) {
-                  QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
-                }
-              }
-              this.setData({
-                QA_list: QA_list,
-                QALoading: false
-              })
-              Notify({
-                message: '获取到 ' + res.data.length + ' 条问答',
-                type: 'success ',
-                safeAreaInsetTop: true,
-                duration: '600'
-              });
-            })
-          })
-        } 
-        else if(res.data.code == 400){
-          request({
-            url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
-          }).then(res => {
-            wx.removeStorageSync('sessionid');
-            wx.setStorageSync("sessionid", res.cookies[0]);
-            // 获取个人信息
-            request({
-              url: "api/user/profile?", 
-              method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-            }).then(res =>{
+            console.log(res.data);
+            console.log('code=' + res.data.code);
+            if(res.data.code == 200){
               let accountInfo = res.data.data;
+              let openname = base64.decode(accountInfo.openname);
+                  accountInfo.openname = openname;
               let lover_status = accountInfo.lover_status;
               wx.setStorageSync('accountInfo', accountInfo);
               this.setData({
@@ -163,20 +73,16 @@ Page({
                 lover_status: lover_status
               })
               // 判断留言状态
-              if(accountInfo.lover.msg.length != 0){
-                this.setData({
-                  hasMsg: true
-                })
+              if (accountInfo.lover) {
+                console.log(111)
+                if (accountInfo.lover.msg.length != 0) {
+                  this.setData({ hasMsg: true });
+                }
               }
               // 判断情侣状态
               if(lover_status == 2){
-                this.setData({
-                  popShow: true
-                })
-                wx.showToast({
-                  title: '有一条绑定申请',
-                  icon: 'none'
-                })
+                this.setData({ popShow: true });
+                Toast('有一条绑定申请');
                 this.onLoad();
               }
               // 获取今日课表
@@ -201,10 +107,11 @@ Page({
                   for(let i=0;i<QA_list.length;i++){
                     let type = QA_list[i].type;
                     switch(type){
-                      case '闲聊': {QA_list[i].color = '#747d8c'} break;
-                      case '情感': {QA_list[i].color = '#ff6b81'} break;
-                      case '学习': {QA_list[i].color = '#1e90ff'} break;
-                      case '生活': {QA_list[i].color = '#eccc68'} break;
+                      case '闲聊': {QA_list[i].color = '#666699'} break;
+                      case '情感': {QA_list[i].color = '#FF6666'} break;
+                      case '学习': {QA_list[i].color = '#003399'} break;
+                      case '生活': {QA_list[i].color = '#FFCC99'} break;
+                      case '求购': {QA_list[i].color = '#339999'} break;
                     }
                     if(QA_list[i].reply_content != null){
                       let reply_content = base64.decode(QA_list[i].reply_content);
@@ -235,10 +142,104 @@ Page({
                   });
                 })
               })
-            })
+            } 
+            else if(res.data.code == 400){
+              request({
+                url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+              }).then(res => {
+                wx.removeStorageSync('sessionid');
+                wx.setStorageSync("sessionid", res.cookies[0]);
+                // 获取个人信息
+                request({
+                  url: "api/user/profile?", 
+                  method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                }).then(res =>{
+                  let accountInfo = res.data.data;
+                  let lover_status = accountInfo.lover_status;
+                  wx.setStorageSync('accountInfo', accountInfo);
+                  this.setData({
+                    accountInfo: accountInfo,
+                    lover_status: lover_status
+                  })
+                  // 判断留言状态
+                  if(accountInfo.lover.msg.length != 0){
+                    this.setData({
+                      hasMsg: true
+                    })
+                  }
+                  // 判断情侣状态
+                  if(lover_status == 2){
+                    this.setData({
+                      popShow: true
+                    })
+                    wx.showToast({
+                      title: '有一条绑定申请',
+                      icon: 'none'
+                    })
+                    this.onLoad();
+                  }
+                  // 获取今日课表
+                  request({
+                    url: "api/edu/todayMain", 
+                    method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                  }).then(res =>{
+                    console.log(res.data.data)
+                    if (res.data.code == 200) {
+                      this.setData({
+                        chart_list: res.data.data.me,
+                        bind_list: res.data.data.lover
+                      })
+                    }
+                    // 获取问答列表
+                    request({
+                      url: "api/qa/list?page=1" , 
+                      method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                    }).then(res =>{
+                      console.log(res.data);
+                      let QA_list = res.data;
+                      for(let i=0;i<QA_list.length;i++){
+                        let type = QA_list[i].type;
+                        switch(type){
+                          case '闲聊': {QA_list[i].color = '#747d8c'} break;
+                          case '情感': {QA_list[i].color = '#ff6b81'} break;
+                          case '学习': {QA_list[i].color = '#1e90ff'} break;
+                          case '生活': {QA_list[i].color = '#eccc68'} break;
+                        }
+                        if(QA_list[i].reply_content != null){
+                          let reply_content = base64.decode(QA_list[i].reply_content);
+                          QA_list[i].reply_content = reply_content;
+                        }
+                        if(QA_list[i].openname != null){
+                          let openname = base64.decode(QA_list[i].openname);
+                          QA_list[i].openname = openname;
+                        }
+                        let picture1 = QA_list[i].picture1;
+                        let picture2 = QA_list[i].picture2;
+                        if (picture1 != null) {
+                          QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+                        }
+                        if (picture2 != null) {
+                          QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+                        }
+                      }
+                      this.setData({
+                        QA_list: QA_list,
+                        QALoading: false
+                      })
+                      Notify({
+                        message: '获取到 ' + res.data.length + ' 条问答',
+                        type: 'success ',
+                        safeAreaInsetTop: true,
+                        duration: '600'
+                      });
+                    })
+                  })
+                })
+              })
+            }
           })
-        }
-      })
+        })
+      }
     }
     // 获取轮播图
     request({
@@ -347,11 +348,19 @@ Page({
   },
   // 跳转问答详情
   navQAPost(e){
-    console.log(e)
+    console.log(e);
     let content = e.currentTarget.dataset.content;
-    wx.navigateTo({
-      url: '/pages/QAPost/QAPost?content=' + encodeURIComponent(JSON.stringify(content)),
-    })
+    let from = e.currentTarget.dataset.from;
+    let id = e.currentTarget.dataset.id;
+    if (from == 'checkImg') {
+      wx.navigateTo({
+        url: '/pages/QAPost/QAPost?from=checkImg&content=' + encodeURIComponent(JSON.stringify(content)) + '&id=' + id
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/QAPost/QAPost?content=' + encodeURIComponent(JSON.stringify(content))
+      })
+    }
   },
   // 轮播图切换
   swiperChange(e) {
