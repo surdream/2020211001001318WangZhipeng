@@ -2,7 +2,7 @@ page{
   background: #F8F5F8;
 }
 .gradient_title {
-  background: linear-gradient(to right, #62DABA, #009CE7);
+  background: linear-gradient(to right, #1ae8c8, #4a8aff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

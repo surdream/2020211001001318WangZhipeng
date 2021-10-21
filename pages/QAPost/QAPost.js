@@ -52,10 +52,7 @@ Page({
     ],
     options: [
       { name: '微信', icon: 'wechat', openType: 'share' },
-      { name: '微博', icon: 'weibo' },
       { name: '复制链接', icon: 'link' },
-      { name: '分享海报', icon: 'poster' },
-      { name: '二维码', icon: 'qrcode' },
     ],
   },
   onLoad: function (options) {
@@ -128,7 +125,7 @@ Page({
   // 标签相关
   tagTap(){
     let type = this.data.content.type;
-    Toast('一篇' + type + '墙');
+    Toast(type + '墙');
   },
   // 输入相关
   onChange(e){
@@ -540,6 +537,15 @@ Page({
   },
   // 分享选择
   onShareSelect(event) {
+    let name = event.detail.name;
+    if (name == '复制链接') {
+      wx.setClipboardData({
+        data: '#小程序://一目校园/一目校园/QjaJ59zOxdja9Ct',
+        success(){
+          wx.showModal({title: '将链接复制在微信中发送给小伙伴就能打开啦'})
+        }
+      })
+    }
     this.onShareClose();
   },
   // 查看大图

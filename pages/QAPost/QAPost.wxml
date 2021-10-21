@@ -3,7 +3,7 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background:{{content.color}};">
   <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
-  <view class="navBar"><text class="navBar_title black95">问答详情</text></view>
+  <view class="navBar"><text class="navBar_title white95">问答详情</text></view>
 </view>
 <!-- 内容区域 -->
 <scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height:{{contentHeight-85}}px;">
@@ -20,8 +20,8 @@
   <view class="contentWrap">
     <view class="contentWrap_detail">{{content.content}}</view>
     <view class="contentWrap_imgBox">
-      <van-image custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{content.picture1}}" bindtap="checkImg" data-id="0" wx:if="{{content.picture1}}"/>
-      <van-image custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{content.picture2}}" bindtap="checkImg" data-id="1" wx:if="{{content.picture2}}"/>
+      <van-image custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{content.picture1}}" bindtap="checkImg" data-id="0" wx:if="{{content.picture1 != null}}"/>
+      <van-image custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{content.picture2}}" bindtap="checkImg" data-id="1" wx:if="{{content.picture2 != null}}"/>
     </view>
   </view>
   <view class="spaceBar"></view>

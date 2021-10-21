@@ -105,6 +105,9 @@ page {
 .white95{
   color: rgba(255, 255, 255, 0.95);
 }
+.white80{
+  color: rgba(255, 255, 255, 0.8);
+}
 .black95{
   color: rgba(0, 0, 0, 0.95);
 }

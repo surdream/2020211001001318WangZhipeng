@@ -41,8 +41,8 @@
       left-icon="/images/home/notice.png" 
       scrollable text="{{noticeContent}}" 
       color="rgba(0,0,0,0.4)" 
-      background="linear-gradient(90deg, #DDF2ED 0%,#F8F5F8 100%);"
-      speed="100"
+      background="linear-gradient(90deg, #DDF2ED 0%,#F8F5F8 120%);"
+      speed="80"
       />
     </view>
   </view>
@@ -173,8 +173,8 @@
         </view>
         <view class="QABoxContent_title" bindtap="navQAPost" data-content="{{item}}">{{item.title}}</view>
         <view class="contentWrap_imgBox">
-          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1}}"/>
-          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2}}"/>
+          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1 != null}}"/>
+          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2 != null}}"/>
         </view>
         <!-- 最新回答 -->
         <view class="QABoxContent_answer" wx:if="{{item.replys != 0}}">
