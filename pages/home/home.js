@@ -2,8 +2,7 @@ import Notify from '@vant/weapp/notify/notify';// 通知
 import Toast from '@vant/weapp/toast/toast';// Toast
 
 var app = getApp();
-var base = require("../../utils/base64.js") 
-var base64 = new base.Base64();
+var myBase64 = require("../../utils/mybase64.js");
 const { request } = require("../../utils/request/request");
 let touchDotX = 0;
 let touchDotY = 0;
@@ -41,7 +40,6 @@ Page({
   },
   onLoad: function (options) {
     let firstUse = wx.getStorageSync('firstUse');
-    console.log(wx.getStorageSync('sessionid'));
     if(firstUse == 'not'){
       this.setData({ hasImport: true })
       // 用户登录
@@ -64,7 +62,7 @@ Page({
             console.log('code=' + res.data.code);
             if(res.data.code == 200){
               let accountInfo = res.data.data;
-              let openname = base64.decode(accountInfo.openname);
+              let openname = myBase64.decode(accountInfo.openname);
                   accountInfo.openname = openname;
               let lover_status = accountInfo.lover_status;
               wx.setStorageSync('accountInfo', accountInfo);
@@ -114,11 +112,11 @@ Page({
                       case '求购': {QA_list[i].color = '#339999'} break;
                     }
                     if(QA_list[i].reply_content != null){
-                      let reply_content = base64.decode(QA_list[i].reply_content);
+                      let reply_content = myBase64.decode(QA_list[i].reply_content);
                       QA_list[i].reply_content = reply_content;
                     }
                     if(QA_list[i].openname != null){
-                      let openname = base64.decode(QA_list[i].openname);
+                      let openname = myBase64.decode(QA_list[i].openname);
                       QA_list[i].openname = openname;
                     }
                     let picture1 = QA_list[i].picture1;
@@ -206,11 +204,11 @@ Page({
                           case '生活': {QA_list[i].color = '#eccc68'} break;
                         }
                         if(QA_list[i].reply_content != null){
-                          let reply_content = base64.decode(QA_list[i].reply_content);
+                          let reply_content = myBase64.decode(QA_list[i].reply_content);
                           QA_list[i].reply_content = reply_content;
                         }
                         if(QA_list[i].openname != null){
-                          let openname = base64.decode(QA_list[i].openname);
+                          let openname = myBase64.decode(QA_list[i].openname);
                           QA_list[i].openname = openname;
                         }
                         let picture1 = QA_list[i].picture1;
@@ -565,11 +563,11 @@ Page({
             case '生活': {arr[i].color = '#eccc68'} break;
           }
           if(arr[i].reply_content != null){
-            let reply_content = base64.decode(arr[i].reply_content);
+            let reply_content = myBase64.decode(arr[i].reply_content);
             arr[i].reply_content = reply_content;
           }
           if(arr[i].openname != null){
-            let openname = base64.decode(arr[i].openname);
+            let openname = myBase64.decode(arr[i].openname);
             arr[i].openname = openname;
           }
           let picture1 = arr[i].picture1;

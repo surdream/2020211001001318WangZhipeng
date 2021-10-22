@@ -1,6 +1,5 @@
 var app = getApp();
-var base = require("../../../utils/base64.js") 
-var base64 = new base.Base64();
+var myBase64 = require("../../../utils/mybase64.js");
 const { request } = require("../../../utils/request/request");
 Page({
   data: {
@@ -39,7 +38,7 @@ Page({
       success: (res) => {
         console.log(res)
         let userInfo = res.userInfo;
-        let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
+        let openname = myBase64.encode(userInfo.nickName).replace(/\+/g, "%2B");
         request({
           url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
         }).then(res => {
@@ -60,7 +59,7 @@ Page({
           if(res.data.code == 200){
             console.log(res.data.data);
             let accountInfo = res.data.data;
-            let openname = base64.decode(accountInfo.openname);
+            let openname = myBase64.decode(accountInfo.openname);
                 accountInfo.openname = openname;
             wx.setStorageSync('accountInfo', accountInfo);
             this.setData({

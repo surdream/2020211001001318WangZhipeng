@@ -1,6 +1,5 @@
 var app = getApp();
-var base = require("../../utils/base64.js") 
-var base64 = new base.Base64();
+var myBase64 = require("../../utils/mybase64.js");
 const { request } = require("../../utils/request/request");
 Page({
   data: {
@@ -182,7 +181,7 @@ Page({
               success: (res) => {
                 console.log(res)
                 let userInfo = res.userInfo;
-                let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
+                let openname = myBase64.encode(userInfo.nickName).replace(/\+/g, "%2B");
                 this.setData({
                   userInfo: userInfo,
                   hasUserInfo: true

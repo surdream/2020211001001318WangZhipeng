@@ -31,7 +31,6 @@
   <text>南区</text>
   <image src="/images/navigation/north.png"></image>
 </view>
-
 <!-- 反馈按钮 -->
 <view class="feedback">
   <button class="feedbackBtn" open-type="contact"></button>

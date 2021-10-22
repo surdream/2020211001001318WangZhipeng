@@ -1,8 +1,7 @@
 import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast';
 var app = getApp();
-var base = require("../../utils/base64.js");
-var base64 = new base.Base64();
+var myBase64 = require("../../utils/mybase64.js");
 const { request } = require("../../utils/request/request");
 Page({
   data: {
@@ -75,8 +74,8 @@ Page({
         if (answerList[i].userid == userid) {
           answerList[i].show = false;
         } else {
-          let content = base64.decode(answerList[i].content);
-          let openname = base64.decode(answerList[i].openname);
+          let content = myBase64.decode(answerList[i].content);
+          let openname = myBase64.decode(answerList[i].openname);
           answerList[i].content = content;
           answerList[i].openname = openname;
           answerList[i].show = true;
@@ -96,8 +95,8 @@ Page({
       console.log(res.data);
       let selfList = res.data;
       for(let i=0;i<selfList.length;i++){
-        let content = base64.decode(selfList[i].content);
-        let openname = base64.decode(selfList[i].openname);
+        let content = myBase64.decode(selfList[i].content);
+        let openname = myBase64.decode(selfList[i].openname);
             selfList[i].content = content;
             selfList[i].openname = openname;
       }
@@ -158,7 +157,7 @@ Page({
           success: (res) => {
             console.log(res)
             let userInfo = res.userInfo;
-            let openname = base64.encode(userInfo.nickName).replace(/\+/g, "%2B");
+            let openname = myBase64.encode(userInfo.nickName).replace(/\+/g, "%2B");
             request({
               url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
             }).then(res => { console.log(res) })
@@ -173,7 +172,7 @@ Page({
               if(res.data.code == 200){
                 console.log(res.data.data);
                 let accountInfo = res.data.data;
-                let openname = base64.decode(accountInfo.openname);
+                let openname = myBase64.decode(accountInfo.openname);
                     accountInfo.openname = openname;
                 wx.setStorageSync('accountInfo', accountInfo);
                 that.setData({ accountInfo: accountInfo })
@@ -185,9 +184,10 @@ Page({
       } else if(firstGetInfo == 'not'){
         let that = this;
         let content = this.data.content;
-        let msgValue = base64.encode(this.data.msgValue).replace(/\+/g, "%2B");
+        let msgValue = myBase64.encode(this.data.msgValue).replace(/\+/g, "%2B");
+        console.log(msgValue)
         if(msgValue.length == 0){
-          Toast('请输入你的回答')
+          Toast('请输入你的回答');
         } else{
           request({
             url: "api/qa/reply?id=" + content.question_id + "&content=" + msgValue, 
@@ -209,8 +209,8 @@ Page({
                   console.log(res.data);
                   let selfList = res.data;
                   for(let i=0;i<selfList.length;i++){
-                    let content = base64.decode(selfList[i].content);
-                    let openname = base64.decode(selfList[i].openname);
+                    let content = myBase64.decode(selfList[i].content);
+                    let openname = myBase64.decode(selfList[i].openname);
                         selfList[i].content = content;
                         selfList[i].openname = openname;
                   }
@@ -228,7 +228,7 @@ Page({
               }).then(res => {
                 wx.removeStorageSync('sessionid');
                 wx.setStorageSync("sessionid", res.cookies[0]);
-                Toast('服务器开小猜了，请重试')
+                Toast('十分抱歉，微信内容审查接口异常，可向开发者反馈')
               })
             } else if(res.data.code == 500){
               Toast('回答太频繁了，最多三条哦')
@@ -476,8 +476,8 @@ Page({
                   console.log(res.data);
                   let selfList = res.data;
                   for(let i=0;i<selfList.length;i++){
-                    let content = base64.decode(selfList[i].content);
-                    let openname = base64.decode(selfList[i].openname);
+                    let content = myBase64.decode(selfList[i].content);
+                    let openname = myBase64.decode(selfList[i].openname);
                         selfList[i].content = content;
                         selfList[i].openname = openname;
                   }
@@ -581,8 +581,8 @@ Page({
           if (arr[i].userid == userid) {
             arr.splice(i, 1)
           } else {
-            let content = base64.decode(arr[i].content);
-            let openname = base64.decode(arr[i].openname);
+            let content = myBase64.decode(arr[i].content);
+            let openname = myBase64.decode(arr[i].openname);
             arr[i].content = content;
             arr[i].openname = openname;
           }

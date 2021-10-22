@@ -2,7 +2,7 @@ page{
   background: #F8F5F8;
 }
 .gradient_title {
-  background: linear-gradient(to right, #1ae8c8, #4a8aff);
+  background: linear-gradient(to right, #3AC569, #1e90ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -335,7 +335,7 @@ swiper image {
 }
 .QABoxContent_count{
   position: absolute;
-  margin: 36rpx 0 0 76rpx;
+  margin: 37rpx 0 0 75rpx;
   font-size: 22rpx;
   color: rgba(0, 0, 0, 0.4);
 }
@@ -397,13 +397,15 @@ swiper image {
 .QABoxInfo image{
   width: 40rpx;
   height: 40rpx;
+  opacity: 0.8;
+  box-shadow: #fff 0px 0px 1rpx 1rpx inset;
 }
 .QABoxInfoBox{
   display: inline-block;
   margin-bottom: 15rpx;
 }
 .QABoxInfo_flip{
-  margin: 0 31%;
+  margin: 0 30%;
 }
 .QABoxInfoBox text{
   position: absolute;

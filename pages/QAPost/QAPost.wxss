@@ -120,6 +120,8 @@
 .answerBox_agree image{
   width: 36rpx;
   height: 36rpx;
+  opacity: 0.8;
+  box-shadow: #fff 0px 0px 1rpx 1rpx inset;
 }
 .answerBox_agree text{
   position: absolute;
@@ -150,6 +152,7 @@
 .postIcon{
   width: 40rpx;
   height: 40rpx;
+  box-shadow: #fff 0px 0px 1rpx 1rpx inset;
 }
 .likesTxt{
   position: absolute;
@@ -157,12 +160,12 @@
   color: #515151;
 }
 .shareBox{
-  right: 21%;
-  margin-top: -29px;
+  right: 21.2%;
+  margin-top: -28px;
 }
 .share{
-  width: 37rpx;
-  height: 37rpx;
+  width: 36rpx;
+  height: 36rpx;
 }
 .sentBtn{
   position: absolute;
@@ -186,7 +189,7 @@
   color: rgba(0,0,0,0.5);
   font-weight: 700;
   letter-spacing: 1rpx;
-  font-size: 24rpx;
+  font-size: 22rpx;
   padding-top: 140rpx;
 }
 .loadingBar{

@@ -148,6 +148,7 @@
       </view>
     </view>
   </view> -->
+  <!-- 校园问答 -->
   <view class="QAWrap">
     <view class="QABox" wx:for="{{QA_list}}" wx:key="index">
       <view class="QABoxTop" style="--background--:{{item.color}}">
@@ -172,6 +173,7 @@
           <image class="QABoxContent_avatar" src="{{item.avatar}}"></image>
         </view>
         <view class="QABoxContent_title" bindtap="navQAPost" data-content="{{item}}">{{item.title}}</view>
+        <!-- 预览图显示 -->
         <view class="contentWrap_imgBox">
           <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1 != null}}"/>
           <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2 != null}}"/>
@@ -188,12 +190,19 @@
         <!-- 点赞评论 -->
         <view class="QABoxInfo">
           <view class="QABoxInfo_agree QABoxInfoBox" bindtap="agreeTap" data-id="{{item.question_id}}" data-index="{{index}}">
-            <image src="/images/QA/agree{{item.islike}}.png"></image>
-            <text>{{item.likes}}</text>
+            <block wx:if="{{item.islike == 0}}">
+              <image src="/images/QA/agree{{item.islike}}.png"></image>
+              <text>{{item.likes}}</text>
+            </block>
+            <block wx:if="{{item.islike == 1}}">
+              <image src="/images/QA/agree{{item.islike}}.png" style="background:{{item.color}};"></image>
+              <text style="color:{{item.color}};">{{item.likes}}</text>
+            </block>
           </view>
           <view class="QABoxInfo_flip QABoxInfoBox" bindtap="flipTap" data-id="{{item.question_id}}" data-index="{{index}}" data-name="{{item.openname}}">
-            <image src="/images/QA/flip{{item.isapplaud}}.png"></image>
-            <text>{{item.applaud}}</text>
+            <image src="/images/QA/flip{{item.isapplaud}}.png" style="background:{{item.color}};"></image>
+            <text wx:if="{{item.isapplaud == 0}}">{{item.applaud}}</text>
+            <text wx:if="{{item.isapplaud == 1}}" style="color:{{item.color}};">{{item.applaud}}</text>
           </view>
           <view class="QABoxInfo_msg QABoxInfoBox" bindtap="navQAPost" data-content="{{item}}">
             <image src="/images/QA/remark0.png"></image>
