@@ -2,9 +2,7 @@ var app = getApp();
 import Notify from '@vant/weapp/notify/notify';
 const { request } = require("../../utils/request/request");
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
-const qqmapsdk = new QQMapWX({
-	key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM' // 必填
-});
+const qqmapsdk = new QQMapWX({key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM'});
 Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,

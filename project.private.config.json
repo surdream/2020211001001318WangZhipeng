@@ -137,6 +137,12 @@
           "pathName": "pages/QAPost/QAPost",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/QAPost/mineQA/mineQA",
+          "pathName": "pages/QAPost/mineQA/mineQA",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -70,11 +70,11 @@
         </view>
         <view class="answerBox_agree disagree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="disagree">
           <view wx:if="{{item.isnotlike == 0}}">
-            <image src="/images/QA/agree{{item.isnotlike}}.png"></image>
+            <image src="/images/QA/disagree{{item.isnotlike}}.png"></image>
             <text>{{item.notlikes}}</text>
           </view>
           <view wx:if="{{item.isnotlike == 1}}">
-            <image src="/images/QA/agree{{item.isnotlike}}.png" style="background:{{content.color}};"></image>
+            <image src="/images/QA/disagree{{item.isnotlike}}.png" style="background:{{content.color}};"></image>
             <text style="color:{{content.color}};">{{item.notlikes}}</text>
           </view>
         </view>

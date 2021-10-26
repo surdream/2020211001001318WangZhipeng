@@ -1,6 +1,5 @@
-import Notify from '@vant/weapp/notify/notify';// 通知
-import Toast from '@vant/weapp/toast/toast';// Toast
-
+import Notify from '@vant/weapp/notify/notify'; // 通知
+import Toast from '@vant/weapp/toast/toast'; // Toast
 var app = getApp();
 var myBase64 = require("../../utils/mybase64.js");
 const { request } = require("../../utils/request/request");
@@ -14,7 +13,8 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
     menuButtonMore: app.globalData.menuButtonMore,
-    QA_list: [],
+    QA_all: [],
+    QA_mine: [],
     imgUrls: [],
     bg_list: [ // 状态背景
       {color: 'rgba(110,119,131,0.2)'},
@@ -22,21 +22,25 @@ Page({
       {color: 'rgba(1,190,255,0.2)'},
       {color: 'rgba(1,190,255,0.2)'}
     ],
-    msgValue: '',// 文本输入值
-    QAPage: 1,// 问答分页数
-    QAEnd: false,// 问答列表状态
-    hasMsg: false,// 新留言状态
-    popShow: false,// 绑定申请状态
-    hasImport: false,// 导入状态
-    QALoading: true,// 问答加载状态
-    actionShow: false,// 留言弹出状态
-    indicatorDots: false,// 轮播图点状态
-    pillNoticeShow: false,// 胶囊提示状态
-    autoplay: true,// 轮播图显示状态
-    interval: 2400,// 轮播图切换间隔
-    duration: 800,// 轮播图动画时长
-    titleTarget: 0,// 当前选项卡
-    swiperCurrent: 0,// 当前轮播图
+    msgValue: '', // 文本输入值
+    pwdValue: '', // 更新输入值
+    QAPage: 1, // 问答分页数
+    QAEnd: false, // 问答列表状态
+    hasMsg: false, // 新留言状态
+    isUpdate: false, // 密码更新
+    popShow: false, // 绑定申请状态
+    pwdPopShow: false, // 密码异常
+    hasImport: false, // 导入状态
+    QALoading: true, // 问答加载状态
+    actionShow: false, // 留言弹出状态
+    indicatorDots: false, // 轮播图点状态
+    pillNoticeShow: false, // 胶囊提示状态
+    autoplay: true, // 轮播图显示状态
+    interval: 2400, // 轮播图切换间隔
+    duration: 800, // 轮播图动画时长
+    QATarget: 0, // 当前问答选项卡
+    titleTarget: 0, // 当前选项卡
+    swiperCurrent: 0, // 当前轮播图
   },
   onLoad: function (options) {
     let firstUse = wx.getStorageSync('firstUse');
@@ -50,192 +54,200 @@ Page({
         request({
           url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
         }).then(res => {
-          console.log(res)
-          wx.removeStorageSync('sessionid');// 移除旧cookie
-          wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
-          // 获取个人信息
-          request({
-            url: "api/user/profile?", 
-            method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-          }).then(res =>{
-            console.log(res.data);
-            console.log('code=' + res.data.code);
-            if(res.data.code == 200){
-              let accountInfo = res.data.data;
-              let openname = myBase64.decode(accountInfo.openname);
-                  accountInfo.openname = openname;
-              let lover_status = accountInfo.lover_status;
-              wx.setStorageSync('accountInfo', accountInfo);
-              this.setData({
-                accountInfo: accountInfo,
-                lover_status: lover_status
-              })
-              // 判断留言状态
-              if (accountInfo.lover) {
-                console.log(111)
-                if (accountInfo.lover.msg.length != 0) {
-                  this.setData({ hasMsg: true });
-                }
-              }
-              // 判断情侣状态
-              if(lover_status == 2){
-                this.setData({ popShow: true });
-                Toast('有一条绑定申请');
-                this.onLoad();
-              }
-              // 获取今日课表
-              request({
-                url: "api/edu/todayMain", 
-                method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-              }).then(res =>{
-                console.log(res.data.data)
-                if (res.data.code == 200) {
-                  this.setData({
-                    chart_list: res.data.data.me,
-                    bind_list: res.data.data.lover
-                  })
-                }
-                // 获取问答列表
-                request({
-                  url: "api/qa/list?page=1" , 
-                  method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-                }).then(res =>{
-                  console.log(res.data);
-                  let QA_list = res.data;
-                  for(let i=0;i<QA_list.length;i++){
-                    let type = QA_list[i].type;
-                    switch(type){
-                      case '闲聊': {QA_list[i].color = '#666699'} break;
-                      case '情感': {QA_list[i].color = '#FF6666'} break;
-                      case '学习': {QA_list[i].color = '#003399'} break;
-                      case '生活': {QA_list[i].color = '#FFCC99'} break;
-                      case '求购': {QA_list[i].color = '#339999'} break;
-                    }
-                    if(QA_list[i].reply_content != null){
-                      let reply_content = myBase64.decode(QA_list[i].reply_content);
-                      QA_list[i].reply_content = reply_content;
-                    }
-                    if(QA_list[i].openname != null){
-                      let openname = myBase64.decode(QA_list[i].openname);
-                      QA_list[i].openname = openname;
-                    }
-                    let picture1 = QA_list[i].picture1;
-                    let picture2 = QA_list[i].picture2;
-                    if (picture1 != null) {
-                      QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
-                    }
-                    if (picture2 != null) {
-                      QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
-                    }
-                  }
-                  this.setData({
-                    QA_list: QA_list,
-                    QALoading: false
-                  })
-                  Notify({
-                    message: '获取到 ' + res.data.length + ' 条问答',
-                    type: 'success ',
-                    safeAreaInsetTop: true,
-                    duration: '600'
-                  });
+          console.log(res);
+          if (res.data.code == 401) {
+            wx.clearStorageSync();
+            wx.redirectTo({ url: '/pages/guide/guide' })
+          } else {
+            wx.removeStorageSync('sessionid');// 移除旧cookie
+            wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
+            // 获取个人信息
+            request({
+              url: "api/user/profile?", 
+              method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+            }).then(res =>{
+              console.log(res.data);
+              console.log('code=' + res.data.code);
+              if(res.data.code == 200){
+                let accountInfo = res.data.data;
+                let openname = myBase64.decode(accountInfo.openname);
+                    accountInfo.openname = openname;
+                let edu_status = accountInfo.edu_status;
+                let lover_status = accountInfo.lover_status;
+                wx.setStorageSync('accountInfo', accountInfo);
+                this.setData({
+                  accountInfo: accountInfo,
+                  lover_status: lover_status
                 })
-              })
-            } 
-            else if(res.data.code == 400){
-              request({
-                url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
-              }).then(res => {
-                wx.removeStorageSync('sessionid');
-                wx.setStorageSync("sessionid", res.cookies[0]);
-                // 获取个人信息
+                // 判断留言状态
+                if (accountInfo.lover) {
+                  if (accountInfo.lover.msg.length != 0) {
+                    this.setData({ hasMsg: true });
+                  }
+                }
+                // 判断情侣状态
+                if (lover_status == 2) {
+                  this.setData({ popShow: true });
+                  Toast('有一条绑定申请');
+                  this.onLoad();
+                }
+                // 判断密码状态
+                if (edu_status == 2) {
+                  this.setData({ pwdPopShow: true });
+                }
+                // 获取今日课表
                 request({
-                  url: "api/user/profile?", 
+                  url: "api/edu/todayMain", 
                   method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
                 }).then(res =>{
-                  let accountInfo = res.data.data;
-                  let lover_status = accountInfo.lover_status;
-                  wx.setStorageSync('accountInfo', accountInfo);
-                  this.setData({
-                    accountInfo: accountInfo,
-                    lover_status: lover_status
-                  })
-                  // 判断留言状态
-                  if(accountInfo.lover.msg.length != 0){
+                  console.log(res.data.data)
+                  if (res.data.code == 200) {
                     this.setData({
-                      hasMsg: true
+                      chart_list: res.data.data.me,
+                      bind_list: res.data.data.lover
                     })
                   }
-                  // 判断情侣状态
-                  if(lover_status == 2){
-                    this.setData({
-                      popShow: true
-                    })
-                    wx.showToast({
-                      title: '有一条绑定申请',
-                      icon: 'none'
-                    })
-                    this.onLoad();
-                  }
-                  // 获取今日课表
+                  // 获取问答列表
                   request({
-                    url: "api/edu/todayMain", 
+                    url: "api/qa/list?page=1" , 
+                    method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                  }).then(res =>{
+                    console.log(res.data);
+                    let QA_all = res.data;
+                    for(let i=0;i<QA_all.length;i++){
+                      let type = QA_all[i].type;
+                      switch(type){
+                        case '闲聊': {QA_all[i].color = '#666699'} break;
+                        case '情感': {QA_all[i].color = '#FF6666'} break;
+                        case '学习': {QA_all[i].color = '#003399'} break;
+                        case '生活': {QA_all[i].color = '#FFCC99'} break;
+                        case '求购': {QA_all[i].color = '#339999'} break;
+                      }
+                      if(QA_all[i].reply_content != null){
+                        let reply_content = myBase64.decode(QA_all[i].reply_content);
+                        QA_all[i].reply_content = reply_content;
+                      }
+                      if(QA_all[i].openname != null){
+                        let openname = myBase64.decode(QA_all[i].openname);
+                        QA_all[i].openname = openname;
+                      }
+                      let picture1 = QA_all[i].picture1;
+                      let picture2 = QA_all[i].picture2;
+                      if (picture1 != null) {
+                        QA_all[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+                      }
+                      if (picture2 != null) {
+                        QA_all[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+                      }
+                    }
+                    this.setData({
+                      QA_all: QA_all,
+                      QALoading: false
+                    })
+                    Notify({
+                      message: '获取到 ' + res.data.length + ' 条问答',
+                      type: 'success ',
+                      safeAreaInsetTop: true,
+                      duration: '600'
+                    });
+                  })
+                })
+              } else if(res.data.code == 400){
+                request({
+                  url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+                }).then(res => {
+                  wx.removeStorageSync('sessionid');
+                  wx.setStorageSync("sessionid", res.cookies[0]);
+                  // 获取个人信息
+                  request({
+                    url: "api/user/profile?", 
                     method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
                   }).then(res =>{
-                    console.log(res.data.data)
-                    if (res.data.code == 200) {
+                    let accountInfo = res.data.data;
+                    let lover_status = accountInfo.lover_status;
+                    wx.setStorageSync('accountInfo', accountInfo);
+                    this.setData({
+                      accountInfo: accountInfo,
+                      lover_status: lover_status
+                    })
+                    // 判断留言状态
+                    if(accountInfo.lover.msg.length != 0){
                       this.setData({
-                        chart_list: res.data.data.me,
-                        bind_list: res.data.data.lover
+                        hasMsg: true
                       })
                     }
-                    // 获取问答列表
-                    request({
-                      url: "api/qa/list?page=1" , 
-                      method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-                    }).then(res =>{
-                      console.log(res.data);
-                      let QA_list = res.data;
-                      for(let i=0;i<QA_list.length;i++){
-                        let type = QA_list[i].type;
-                        switch(type){
-                          case '闲聊': {QA_list[i].color = '#747d8c'} break;
-                          case '情感': {QA_list[i].color = '#ff6b81'} break;
-                          case '学习': {QA_list[i].color = '#1e90ff'} break;
-                          case '生活': {QA_list[i].color = '#eccc68'} break;
-                        }
-                        if(QA_list[i].reply_content != null){
-                          let reply_content = myBase64.decode(QA_list[i].reply_content);
-                          QA_list[i].reply_content = reply_content;
-                        }
-                        if(QA_list[i].openname != null){
-                          let openname = myBase64.decode(QA_list[i].openname);
-                          QA_list[i].openname = openname;
-                        }
-                        let picture1 = QA_list[i].picture1;
-                        let picture2 = QA_list[i].picture2;
-                        if (picture1 != null) {
-                          QA_list[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
-                        }
-                        if (picture2 != null) {
-                          QA_list[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
-                        }
-                      }
+                    // 判断情侣状态
+                    if(lover_status == 2){
                       this.setData({
-                        QA_list: QA_list,
-                        QALoading: false
+                        popShow: true
                       })
-                      Notify({
-                        message: '获取到 ' + res.data.length + ' 条问答',
-                        type: 'success ',
-                        safeAreaInsetTop: true,
-                        duration: '600'
-                      });
+                      wx.showToast({
+                        title: '有一条绑定申请',
+                        icon: 'none'
+                      })
+                      this.onLoad();
+                    }
+                    // 获取今日课表
+                    request({
+                      url: "api/edu/todayMain", 
+                      method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                    }).then(res =>{
+                      console.log(res.data.data)
+                      if (res.data.code == 200) {
+                        this.setData({
+                          chart_list: res.data.data.me,
+                          bind_list: res.data.data.lover
+                        })
+                      }
+                      // 获取问答列表
+                      request({
+                        url: "api/qa/list?page=1" , 
+                        method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                      }).then(res =>{
+                        console.log(res.data);
+                        let QA_all = res.data;
+                        for(let i=0;i<QA_all.length;i++){
+                          let type = QA_all[i].type;
+                          switch(type){
+                            case '闲聊': {QA_all[i].color = '#747d8c'} break;
+                            case '情感': {QA_all[i].color = '#ff6b81'} break;
+                            case '学习': {QA_all[i].color = '#1e90ff'} break;
+                            case '生活': {QA_all[i].color = '#eccc68'} break;
+                          }
+                          if(QA_all[i].reply_content != null){
+                            let reply_content = myBase64.decode(QA_all[i].reply_content);
+                            QA_all[i].reply_content = reply_content;
+                          }
+                          if(QA_all[i].openname != null){
+                            let openname = myBase64.decode(QA_all[i].openname);
+                            QA_all[i].openname = openname;
+                          }
+                          let picture1 = QA_all[i].picture1;
+                          let picture2 = QA_all[i].picture2;
+                          if (picture1 != null) {
+                            QA_all[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+                          }
+                          if (picture2 != null) {
+                            QA_all[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+                          }
+                        }
+                        this.setData({
+                          QA_all: QA_all,
+                          QALoading: false
+                        })
+                        Notify({
+                          message: '获取到 ' + res.data.length + ' 条问答',
+                          type: 'success ',
+                          safeAreaInsetTop: true,
+                          duration: '600'
+                        });
+                      })
                     })
                   })
                 })
-              })
-            }
-          })
+              }
+            })
+          }
         })
       }
     }
@@ -295,6 +307,7 @@ Page({
       this.setData({ popShow: false });
     })
   },
+  // 情侣相关
   popLinkTap(){
     Toast('抱歉，个人主页暂未开放');
   },
@@ -366,33 +379,126 @@ Page({
     let current = e.detail.current;
     that.setData({ swiperCurrent: current })
   },
-  // 新留言状态
+  // 选项卡切换
   infoListTap(e){
     let titleTarget = e.currentTarget.dataset.id;
-    this.setData({ titleTarget:titleTarget })
+    this.setData({ titleTarget: titleTarget })
     if(titleTarget == 2){ this.setData({ hasMsg: false }) }
+  },
+  // 问答选项卡
+  QAListTap(e){
+    let QATarget = e.currentTarget.dataset.id;
+    this.setData({ QATarget: QATarget })
+    if(QATarget == 1){
+      // 获取我的问答
+      request({
+        url: "api/qa/mylist?" , 
+        method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+      }).then(res =>{
+        console.log(res.data);
+        let QA_mine = res.data;
+        for(let i=0;i<QA_mine.length;i++){
+          let type = QA_mine[i].type;
+          switch(type){
+            case '闲聊': {QA_mine[i].color = '#666699'} break;
+            case '情感': {QA_mine[i].color = '#FF6666'} break;
+            case '学习': {QA_mine[i].color = '#003399'} break;
+            case '生活': {QA_mine[i].color = '#FFCC99'} break;
+            case '求购': {QA_mine[i].color = '#339999'} break;
+          }
+          if(QA_mine[i].reply_content != null){
+            let reply_content = myBase64.decode(QA_mine[i].reply_content);
+            QA_mine[i].reply_content = reply_content;
+          }
+          if(QA_mine[i].openname != null){
+            let openname = myBase64.decode(QA_mine[i].openname);
+            QA_mine[i].openname = openname;
+          }
+          let picture1 = QA_mine[i].picture1;
+          let picture2 = QA_mine[i].picture2;
+          if (picture1 != null) {
+            QA_mine[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+          }
+          if (picture2 != null) {
+            QA_mine[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+          }
+        }
+        this.setData({
+          QA_mine: QA_mine,
+          QALoading: false
+        })
+        Notify({
+          message: '获取到 ' + res.data.length + ' 条问答',
+          type: 'success ',
+          safeAreaInsetTop: true,
+          duration: '600'
+        });
+      })
+    }
+  },
+  // 密码更新相关
+  pwdSetTap(){
+    let password = this.data.pwdValue;
+    this.setData({ isUpdate: true });
+    request({
+      url: "api/user/changePassword?password=" + password, method: 'GET',
+      header: {'cookie':wx.getStorageSync('sessionid')} 
+    }).then(res => {
+      console.log(res)
+      let code = res.data.code;
+      if (code == 200) {
+        let userInfo = {account: wx.getStorageSync('userInfo').account,password: password};
+        wx.setStorageSync('userInfo', userInfo);
+        Toast('密码更新成功！');
+        this.setData({ 
+          isUpdate: false,
+          pwdPopShow: false,
+          pwdValue: ''
+        })
+        this.onLoad();
+      } else if (code == 205) {
+        Toast('密码错误，请重新输入');
+        this.setData({ 
+          isUpdate: false,
+          pwdValue: ''
+        })
+      } else if (code == 206) {
+        Toast('密码重复，请输入新密码');
+        this.setData({ 
+          isUpdate: false,
+          pwdValue: ''
+        })
+      } else {
+        Toast('教务正在维护，请稍后重试');
+        this.setData({ 
+          isUpdate: false,
+          pwdPopShow: false,
+          pwdValue: ''
+        })
+      }
+    })
   },
   // 点赞
   agreeTap(e){
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
-    let QA_list = this.data.QA_list;
-    let likes = QA_list[index].likes;
+    let QA_all = this.data.QA_all;
+    let likes = QA_all[index].likes;
     request({
       url: "api/qa/likes?id=" + id, 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
       console.log(res)
       if (res.data.code == 200) {
-        let str1 = "QA_list[" + index + "].islike";
-        let str2 = "QA_list[" + index + "].likes";
+        let str1 = "QA_all[" + index + "].islike";
+        let str2 = "QA_all[" + index + "].likes";
         this.setData({ 
           [str1]: 1,
           [str2]: likes + 1
         })
       } else if (res.data.code == 300) {
-        let str1 = "QA_list[" + index + "].islike";
-        let str2 = "QA_list[" + index + "].likes";
+        let str1 = "QA_all[" + index + "].islike";
+        let str2 = "QA_all[" + index + "].likes";
         this.setData({ 
           [str1]: 0,
           [str2]: likes - 1
@@ -406,24 +512,24 @@ Page({
     let id = e.currentTarget.dataset.id;
     let name = e.currentTarget.dataset.name;
     let index = e.currentTarget.dataset.index;
-    let QA_list = this.data.QA_list;
-    let applaud = QA_list[index].applaud;
+    let QA_all = this.data.QA_all;
+    let applaud = QA_all[index].applaud;
     request({
       url: "api/qa/applaud?id=" + id, 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
       console.log(res)
       if (res.data.code == 200) {
-        let str1 = "QA_list[" + index + "].isapplaud";
-        let str2 = "QA_list[" + index + "].applaud";
+        let str1 = "QA_all[" + index + "].isapplaud";
+        let str2 = "QA_all[" + index + "].applaud";
         this.setData({ 
           [str1]: 1,
           [str2]: applaud + 1
         })
         Toast('你拍了拍@' + name)
       } else if (res.data.code == 300) {
-        let str1 = "QA_list[" + index + "].isapplaud";
-        let str2 = "QA_list[" + index + "].applaud";
+        let str1 = "QA_all[" + index + "].isapplaud";
+        let str2 = "QA_all[" + index + "].applaud";
         this.setData({ 
           [str1]: 0,
           [str2]: applaud - 1
@@ -432,16 +538,29 @@ Page({
       }
     })
   },
+  // 打开留言面板
   showPopup() {
     this.setData({ popShow: true });
   },
-  onClose() {
-    this.setData({ popShow: false });
-  },
+  // 留言输入
   onChange(e){
     let value = e.detail;
     this.setData({ msgValue: value })
   },
+  // 密码更新
+  pwdOnChange(e){
+    let value = e.detail;
+    this.setData({ pwdValue: value })
+  },
+  // 留言面板关闭
+  onClose() {
+    this.setData({ popShow: false });
+  },
+  // 更新面板关闭
+  pwdOnClose() {
+    this.setData({ pwdPopShow: false });
+  },
+  // 情侣面板关闭
   actionClose() {
     this.setData({ actionShow: false });
   },
@@ -541,7 +660,7 @@ Page({
     let that = this;
     let QAEnd = that.data.QAEnd;
       if (!QAEnd) {
-      let QA_list = that.data.QA_list;
+      let QA_all = that.data.QA_all;
       let QAPage = that.data.QAPage + 1;
       console.log(QAPage)
       that.setData({
@@ -579,9 +698,9 @@ Page({
             arr[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
           }
         }
-        let newArr = QA_list.concat(arr);
+        let newArr = QA_all.concat(arr);
         that.setData({
-          QA_list: newArr,
+          QA_all: newArr,
           QALoading: false
         })
         if (res.data.length > 0) {

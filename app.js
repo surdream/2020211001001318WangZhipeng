@@ -1,6 +1,7 @@
 var app = getApp();// 获取app实例
 App({
   onLaunch() {
+    wx.setStorageSync('QAMsgValue', '')
     wx.getSystemInfo({
       success: (e) => {
         // 定位状态栏、胶囊等显示区域
@@ -16,7 +17,7 @@ App({
         let screenHeight = e.screenHeight;// 屏幕高度
         let contentHeight = windowHeight - menuButtonTop - menuButtonHeight - 2;// 显示区域
         
-        this.globalData.menuButtonTop = menuButtonTop + 2;
+        this.globalData.menuButtonTop = menuButtonTop;
         this.globalData.menuButtonMore = menuButtonLeft + (menuButtonWidth / 4) - 7;
         this.globalData.menuButtonHeight = menuButtonHeight;
         this.globalData.windowHeight = windowHeight;
@@ -28,6 +29,6 @@ App({
     })
   },
   globalData: {
-    version: '公测 1.2.5（211025）',// 小程序版本号
+    version: '公测 1.2.6（211026）',// 小程序版本号
   },
 })

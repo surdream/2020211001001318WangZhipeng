@@ -22,8 +22,9 @@ Page({
     })
   },
   navTo(){
+    let link = 'https://mp.weixin.qq.com/s/W7f7Y53jtKBu5TwRXUY4gw';
     wx.navigateTo({
-      url: '/pages/guide/subscribe/subscribe',
+      url: '../../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link)),
     })
   },
   BackPage() {

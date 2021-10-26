@@ -46,6 +46,7 @@
       />
     </view>
   </view>
+  <!-- 常用功能 -->
   <view class="midWrap">
     <view class="useful-box" bindtap="navTo" data-url="schoolCalendar">
       <image src="/images/home/calendar.png"></image>
@@ -89,6 +90,7 @@
         <text class="{{titleTarget == 2? 'msgText':''}}">留言板</text>
       </view>
   </view>
+  <!-- 课表留言 -->
   <view class="courseWrap">
     <scroll-view scroll-y="ture" style="height:270rpx;" bindtouchstart="touchStart" bindtouchend="touchEnd">
       <block wx:if="{{titleTarget == 0}}">
@@ -133,24 +135,20 @@
       <text>如何发布问题</text>
       <image src="/images/QA/help.png"></image>
     </view>
-    <view class="infoListTitleChecked">
-      <image src="/images/home/news.png"></image>
+    <view class="infoListTitle{{QATarget == 0?'Checked':'UnCheck'}}" bindtap="QAListTap" data-id="0">
+      <image src="/images/home/allQA.png" wx:if="{{QATarget == 0}}"></image>
+      <image src="/images/home/allQA_not.png" wx:if="{{QATarget != 0}}"></image>
       <text>校园问答</text>
     </view>
-  </view>
-  <!-- <view class="newsWrap">
-    <view class="newsBox" wx:for="{{news_list}}" wx:key="index" data-link="{{item.link}}" data-id="{{item.article_id}}" bindtap="navPublic">
-      <view class="newsBox_title">{{item.title}}</view>
-      <view class="newsBox_detail">
-        {{item.source}}
-        <text>{{item.createtime}}</text>
-        <text>阅读量：{{item.count}}</text>
-      </view>
+    <view class="infoListTitle{{QATarget == 1?'Checked':'UnCheck'}}" bindtap="QAListTap" data-id="1">
+      <image src="/images/home/mineQA.png" wx:if="{{QATarget == 1}}"></image>
+      <image src="/images/home/mineQA_not.png" wx:if="{{QATarget != 1}}"></image>
+      <text>我的发布</text>
     </view>
-  </view> -->
+  </view>
   <!-- 校园问答 -->
   <view class="QAWrap">
-    <view class="QABox" wx:for="{{QA_list}}" wx:key="index">
+    <view class="QABox" wx:for="{{QA_all}}" wx:key="index" wx:if="{{QATarget == 0}}">
       <view class="QABoxTop" style="--background--:{{item.color}}">
         <view class="QABoxData">
           <image class="QABoxData_img" src="/images/QA/data.png"></image>
@@ -211,6 +209,68 @@
         </view>
       </view>
     </view>
+    <view class="QABox" wx:for="{{QA_mine}}" wx:key="index" wx:if="{{QATarget == 1}}">
+      <view class="QABoxTop" style="--background--:{{item.color}}">
+        <view class="QABoxData">
+          <image class="QABoxData_img" src="/images/QA/data.png"></image>
+          <text>{{item.heat}}人在讨论</text>
+        </view>
+        <view class="QABoxTop_title"># {{item.type}}</view>
+      </view>
+      <view class="QABoxContent">
+        <view class="QABoxContent_topBar">
+          <view class="QABoxContent_name">
+            <view class="QABoxContent_nameTxt">{{item.openname}}</view> 
+            <view class="QABoxContent_from" style="border: 2rpx solid {{item.color}};color:{{item.color}};">{{item.source}}</view>
+          </view>
+          <view class="QABoxContent_count">
+            <text>发布于:{{item.createtime}} / </text>
+            <text wx:if="{{item.limittime == '长期可用'}}">长期有效</text>
+            <text wx:if="{{item.limittime != '长期可用'}}">讨论剩余：{{item.limittime}}</text>
+          </view>
+          <view class="QABoxContent_enterBtn" bindtap="navQAPost" data-content="{{item}}">进入问答</view>
+          <image class="QABoxContent_avatar" src="{{item.avatar}}"></image>
+        </view>
+        <view class="QABoxContent_title" bindtap="navQAPost" data-content="{{item}}">{{item.title}}</view>
+        <!-- 预览图显示 -->
+        <view class="contentWrap_imgBox">
+          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1 != null}}"/>
+          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2 != null}}"/>
+        </view>
+        <!-- 最新回答 -->
+        <view class="QABoxContent_answer" wx:if="{{item.replys != 0}}">
+          <view class="QABoxContent_answerTitle" bindtap="navQAPost" data-content="{{item}}">
+            <text>最新回答: </text>
+            <image src="{{item.reply_avatar}}"></image>
+            <text class="QABoxContent_answerDetail">{{item.reply_content}}</text>
+            <text class="QABoxContent_answerTime">{{item.replytime}}</text>
+          </view>
+        </view>
+        <!-- 点赞评论 -->
+        <view class="QABoxInfo">
+          <view class="QABoxInfo_agree QABoxInfoBox">
+            <block wx:if="{{item.islike == 0}}">
+              <image src="/images/QA/agree{{item.islike}}.png"></image>
+              <text>{{item.likes}}</text>
+            </block>
+            <block wx:if="{{item.islike == 1}}">
+              <image src="/images/QA/agree{{item.islike}}.png" style="background:{{item.color}};"></image>
+              <text style="color:{{item.color}};">{{item.likes}}</text>
+            </block>
+          </view>
+          <view class="QABoxInfo_flip QABoxInfoBox">
+            <image src="/images/QA/flip{{item.isapplaud}}.png" style="background:{{item.color}};"></image>
+            <text wx:if="{{item.isapplaud == 0}}">{{item.applaud}}</text>
+            <text wx:if="{{item.isapplaud == 1}}" style="color:{{item.color}};">{{item.applaud}}</text>
+          </view>
+          <view class="QABoxInfo_msg QABoxInfoBox" bindtap="navQAPost" data-content="{{item}}">
+            <image src="/images/QA/remark0.png"></image>
+            <text>{{item.replys}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="QABox_noData" wx:if="{{QA_mine.length == 0 && QATarget == 1}}">没有我发布的问答</view>
   </view>
   <!-- 底部提示 -->
   <view>
@@ -258,7 +318,6 @@
       </view>
       <text>编辑留言</text>
     </view>
-    <van-cell-group>
       <van-field
         value="{{ msgValue }}"
         placeholder="输入想说的话..."
@@ -269,7 +328,35 @@
         maxlength="50"
         custom-style="border-radius:25rpx;height:275rpx;"
       />
-    </van-cell-group>
     <view class="sentMsg" bindtap="sentMsg">发送留言</view>
   </view>
 </van-action-sheet>
+<!-- 密码更新 -->
+<van-popup
+  show="{{ pwdPopShow }}"
+  bind:close="pwdOnClose"
+  safe-area-inset-bottom="true"
+  position="bottom"
+  custom-style="padding:0;"
+  round
+>
+  <view class="pwdSetWrap">
+    <view class="pwdSetWrap_title">您是否在最近更改过智慧交大的密码</view>
+    <view class="pwdSetWrap_subTitle">如继续使用每日课表功能，请在下方更新</view>
+    <view class="pwdSetWrap_input">
+      <van-field
+        value="{{ pwdValue }}"
+        placeholder="输入你要更新的密码..."
+        border="{{ false }}"
+        bind:change="pwdOnChange"
+        clearable="true"
+        type="password"
+        custom-style="border-radius:20rpx;"
+      />
+    </view>
+    <view class="pwdSetWrap_btn">
+      <view wx:if="{{!isUpdate}}" bindtap="pwdSetTap">更新</view>
+      <van-loading size="16px" text-size="12px" color="#0A1F14" wx:if="{{isUpdate}}"><text style="color:rgba(0,0,0,0.8);">验证中...</text></van-loading>
+    </view>
+  </view>
+</van-popup>

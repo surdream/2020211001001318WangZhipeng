@@ -103,6 +103,10 @@
   font-weight: 700;
   font-size: 26rpx;
   color: rgba(0,0,0,0.8);
+  width: 600rpx;
+  height: auto;
+  white-space: normal !important;
+  word-break: break-all;
 }
 .answerBox_time{
   margin: 24rpx 0 0 108rpx;
@@ -189,7 +193,7 @@
   color: rgba(0,0,0,0.5);
   font-weight: 700;
   letter-spacing: 1rpx;
-  font-size: 22rpx;
+  font-size: 24rpx;
   padding-top: 140rpx;
 }
 .loadingBar{

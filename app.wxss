@@ -31,7 +31,7 @@ page {
 }
 .navBar_title{
   color: rgba(0, 0, 0, 0.8);
-  margin-top: 6rpx;
+  padding-top: 8rpx;
 }
 .navBar_subtitle{
   font-size: 28rpx;

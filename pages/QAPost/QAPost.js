@@ -5,11 +5,11 @@ var myBase64 = require("../../utils/mybase64.js");
 const { request } = require("../../utils/request/request");
 Page({
   data: {
-    loading: true,
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
     msgValue: '',
+    loading: true,
     backHome: false,
     showShare: false,
     topActionShow: false,
@@ -57,10 +57,15 @@ Page({
   onLoad: function (options) {
     let from = options.from;
     let content = JSON.parse(decodeURIComponent(options.content));
-    let imgUrl = [content.picture1].concat([content.picture2])
+    let imgUrl = [content.picture1].concat([content.picture2]);
+    let QAMsgValue = wx.getStorageSync('QAMsgValue');
+    if (QAMsgValue != '') {
+      Toast('检测到有正在编辑的内容，已为您自动恢复');
+    }
     this.setData({
       content: content,
-      imgUrl: imgUrl
+      imgUrl: imgUrl,
+      msgValue: QAMsgValue
     })
     // 热门回答
     request({
@@ -129,7 +134,8 @@ Page({
   // 输入相关
   onChange(e){
     let value = e.detail;
-    this.setData({ msgValue: value })
+    this.setData({ msgValue: value });
+    wx.setStorageSync('QAMsgValue', value);
   },
   topMoreBtn(){
     this.setData({ topActionShow: true })
@@ -149,93 +155,124 @@ Page({
   sentTap(){
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
-      let firstGetInfo = wx.getStorageSync('firstGetInfo');
-      if(firstGetInfo == undefined || firstGetInfo == ''){
-        Toast('数据存储方式调整，请重新同步昵称等个性化信息以正常使用各项功能');
-        wx.getUserProfile({
-          desc: '获取用户昵称、头像',
-          success: (res) => {
-            console.log(res)
-            let userInfo = res.userInfo;
-            let openname = myBase64.encode(userInfo.nickName).replace(/\+/g, "%2B");
-            request({
-              url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-            }).then(res => { console.log(res) })
-          },
-          fail: () => { Toast('已取消微信个性化授权，后续如有功能使用异常，请于/我的/个人信息/进行同步微信用户信息'); },
-          complete: () => {
-            wx.setStorageSync('firstGetInfo', 'not');
-            request({
-              url: "api/user/profile?", 
-              method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
-            }).then(res =>{
-              if(res.data.code == 200){
-                console.log(res.data.data);
-                let accountInfo = res.data.data;
-                let openname = myBase64.decode(accountInfo.openname);
-                    accountInfo.openname = openname;
-                wx.setStorageSync('accountInfo', accountInfo);
-                that.setData({ accountInfo: accountInfo })
-                Toast('同步成功，接下来可以正常使用啦')
-              } else if(res.data.code == 400){ Toast('服务器开小猜了QAQ'); }
+      let that = this;
+      let content = this.data.content;
+      let msgValue = myBase64.encode(wx.getStorageSync('QAMsgValue')).replace(/\+/g, "%2B");
+      console.log(msgValue)
+      if(msgValue.length == 0){
+        Toast('请输入你的回答');
+      } else{
+        request({
+          url: "api/qa/reply?id=" + content.question_id + "&content=" + msgValue, 
+          method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+        }).then(res =>{
+          console.log(res.data);
+          if(res.data.code == 200){
+            wx.showToast({ title: '回答成功！' })
+            that.setData({
+              msgValue: '',
+              QAEnd: false
             })
-          }
-        })      
-      } else if(firstGetInfo == 'not'){
-        let that = this;
-        let content = this.data.content;
-        let msgValue = myBase64.encode(this.data.msgValue).replace(/\+/g, "%2B");
-        console.log(msgValue)
-        if(msgValue.length == 0){
-          Toast('请输入你的回答');
-        } else{
-          request({
-            url: "api/qa/reply?id=" + content.question_id + "&content=" + msgValue, 
-            method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-          }).then(res =>{
-            console.log(res.data);
-            if(res.data.code == 200){
-              wx.showToast({ title: '回答成功！' })
-              that.setData({
-                msgValue: '',
-                QAEnd: false
-              })
-              wx.showLoading({ title: '加载中...' });
-              setTimeout(function() {
-                request({
-                  url: "api/qa/question?id=" + content.question_id + "&have=-1", 
-                  method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-                }).then(res =>{
-                  console.log(res.data);
-                  let selfList = res.data;
-                  for(let i=0;i<selfList.length;i++){
-                    let content = myBase64.decode(selfList[i].content);
-                    let openname = myBase64.decode(selfList[i].openname);
-                        selfList[i].content = content;
-                        selfList[i].openname = openname;
-                  }
-                  that.setData({ selfList: selfList })
-                })
-                wx.hideLoading();
-              }, 2000);
-            } else if (res.data.code == 401) {
-              Toast('内容可能包含不当词汇，请重试')
-              that.setData({ msgValue: '' });
-            } else if (res.data.code == 402) {
-              let userInfo = wx.getStorageSync('userInfo');
+            wx.removeStorageSync('QAMsgValue');
+            wx.showLoading({ title: '加载中...' });
+            setTimeout(function() {
               request({
-                url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
-              }).then(res => {
-                wx.removeStorageSync('sessionid');
-                wx.setStorageSync("sessionid", res.cookies[0]);
-                Toast('十分抱歉，微信内容审查接口异常，可向开发者反馈')
+                url: "api/qa/question?id=" + content.question_id + "&have=-1", 
+                method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+              }).then(res =>{
+                console.log(res.data);
+                let selfList = res.data;
+                for(let i=0;i<selfList.length;i++){
+                  let content = myBase64.decode(selfList[i].content);
+                  let openname = myBase64.decode(selfList[i].openname);
+                      selfList[i].content = content;
+                      selfList[i].openname = openname;
+                }
+                that.setData({ selfList: selfList })
               })
-            } else if(res.data.code == 500){
-              Toast('回答太频繁了，最多三条哦')
-              that.setData({ msgValue: '' })
-            }
-          })
-        }
+              wx.hideLoading();
+            }, 2000);
+          } else if (res.data.code == 401) {
+            Toast('内容可能包含不当词汇，请重试')
+            that.setData({ msgValue: '' });
+            wx.removeStorageSync('QAMsgValue');
+          } else if (res.data.code == 402) {
+            let userInfo = wx.getStorageSync('userInfo');
+            request({
+              url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+            }).then(res => {
+              wx.removeStorageSync('sessionid');
+              wx.setStorageSync("sessionid", res.cookies[0]);
+              Toast('十分抱歉，微信内容审查接口异常，请重试')
+            })
+          } else if (res.data.code == 405) {
+            wx.login({
+              success: function(res) {
+                if (res.code) {
+                  console.log(res);
+                  //发起网络请求
+                  request({
+                    url: "api/user/wxbind?code=" + res.code, 
+                    method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                  }).then(res =>{
+                    console.log(res);
+                    request({
+                      url: "api/qa/reply?id=" + content.question_id + "&content=" + msgValue, 
+                      method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                    }).then(res =>{
+                      console.log(res.data);
+                      if(res.data.code == 200){
+                        wx.showToast({ title: '回答成功！' })
+                        that.setData({
+                          msgValue: '',
+                          QAEnd: false
+                        })
+                        wx.removeStorageSync('QAMsgValue');
+                        wx.showLoading({ title: '加载中...' });
+                        setTimeout(function() {
+                          request({
+                            url: "api/qa/question?id=" + content.question_id + "&have=-1", 
+                            method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                          }).then(res =>{
+                            console.log(res.data);
+                            let selfList = res.data;
+                            for(let i=0;i<selfList.length;i++){
+                              let content = myBase64.decode(selfList[i].content);
+                              let openname = myBase64.decode(selfList[i].openname);
+                                  selfList[i].content = content;
+                                  selfList[i].openname = openname;
+                            }
+                            that.setData({ selfList: selfList })
+                          })
+                          wx.hideLoading();
+                        }, 2000);
+                      } else if (res.data.code == 401) {
+                        Toast('内容可能包含不当词汇，请重试')
+                        that.setData({ msgValue: '' });
+                        wx.removeStorageSync('QAMsgValue');
+                      } else if (res.data.code == 402) {
+                        let userInfo = wx.getStorageSync('userInfo');
+                        request({
+                          url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
+                        }).then(res => {
+                          wx.removeStorageSync('sessionid');
+                          wx.setStorageSync("sessionid", res.cookies[0]);
+                          Toast('十分抱歉，微信内容审查接口异常，可向开发者反馈')
+                        })
+                      }                     
+                  })
+                  })
+                } else {
+                  console.log('获取用户登录态失败！' + res.errMsg);
+                }
+              }
+            });
+          } else if(res.data.code == 500){
+            Toast('回答太频繁了，最多三条哦');
+            that.setData({ msgValue: '' });
+            wx.removeStorageSync('QAMsgValue');
+          }
+        })
       }
     } else {
       Toast('校园问答功能需登录后使用')

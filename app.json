@@ -6,7 +6,6 @@
     "pages/publicPage/publicPage",
     "pages/office/office",
     "pages/guide/guide",
-    "pages/guide/subscribe/subscribe",
     "pages/userStatus/userStatus",
     "pages/schoolCalendar/schoolCalendar",
     "pages/target/target",
@@ -63,8 +62,8 @@
     "van-share-sheet": "@vant/weapp/share-sheet/index"
   },
   "tabBar": {
-    "color": "#BFBFBF",
-    "selectedColor": "#3ac569",
+    "color": "#A1A1A1",
+    "selectedColor": "#42D3AD",
     "backgroundColor":"#F8F5F8",
     "borderStyle": "white",
     "list": [

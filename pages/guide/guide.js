@@ -168,9 +168,9 @@ Page({
           let userInfo = {account: account,password: password};
           wx.removeStorageSync('sessionid');
           wx.setStorageSync("sessionid", res.cookies[0]);
-          wx.removeStorageSync('isSkip');
-          wx.setStorageSync('firstUse', 'not');
           if(res.data.code == 210){ //用户注册
+            wx.removeStorageSync('isSkip');
+            wx.setStorageSync('firstUse', 'not');
             wx.showToast({ title: '认证成功！' });
             wx.setStorageSync('userInfo', userInfo);
             this.setData({ isLoading: false });
@@ -190,21 +190,23 @@ Page({
                   url: "api/user/change?" + "avatar=" + userInfo.avatarUrl + "&openname=" + openname,method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
                 }).then(res => {
                   console.log(res);
+                  //根据code获取openid等信息
                   wx.login({
                     success: function(res) {
-                      wx.setStorageSync('firstGetInfo', 'not');
                       if (res.code) {
-                        console.log(res)
+                        console.log(res);
                         //发起网络请求
-                        wx.request({
-                          url: 'https://test.com/onLogin',
-                          data: { code: res.code }
+                        request({
+                          url: "api/user/wxbind?code=" + res.code, 
+                          method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
+                        }).then(res =>{
+                          console.log(res);
                         })
                       } else {
                         console.log('获取用户登录态失败！' + res.errMsg);
                       }
                     }
-                  });     
+                  });
                 })
               },
               fail: () => {
@@ -267,9 +269,13 @@ Page({
                   })
                 }
               }
-            })
+              })
             }
+            wx.removeStorageSync('isSkip');
+            wx.setStorageSync('firstUse', 'not');
           } else if(res.data.code == 200){ //用户登录
+            wx.removeStorageSync('isSkip');
+            wx.setStorageSync('firstUse', 'not');
             //根据code获取openid等信息
             wx.login({
               success: function(res) {
@@ -301,6 +307,8 @@ Page({
                 }).then(res => {
                     wx.removeStorageSync('sessionid');
                     wx.setStorageSync("sessionid", res.cookies[0]);
+                    wx.removeStorageSync('isSkip');
+                    wx.setStorageSync('firstUse', 'not');
                     request({
                       url: "api/user/profile?", 
                       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
@@ -318,9 +326,21 @@ Page({
                   wx.redirectTo({ url: '../blank/blank' });
                 }, 1250);
               } else{
-                this.setData({
-                  swiperCurrent: 2,
-                  nextBtn: '下一步'
+                request({
+                  url: "api/user/profile?", 
+                  method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
+                }).then(res =>{
+                  if (res.data.data.lover_status == 0) {
+                    this.setData({
+                      swiperCurrent: 2,
+                      nextBtn: '下一步'
+                    })
+                  } else {
+                    this.setData({
+                      swiperCurrent: 3,
+                      nextBtn: '开始使用'
+                    })
+                  }
                 })
               }
             }
@@ -515,7 +535,10 @@ Page({
     else { this.setData({ checkStatus: 'checked' }); }
   },
   navTo(){
-    wx.navigateTo({ url: './subscribe/subscribe' });
+    let link = 'https://mp.weixin.qq.com/s/W7f7Y53jtKBu5TwRXUY4gw';
+    wx.navigateTo({
+      url: '../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link)),
+    })
   },
   navPrivacy(){
     wx.navigateTo({ url: '/pages/mine/privacy/privacy' })
