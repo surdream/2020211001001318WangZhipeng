@@ -29,7 +29,7 @@ Page({
   },
   BackPage() {
     wx.navigateBack({
-        delta: 1,
+      delta: 1,
     }); 
   },
 })

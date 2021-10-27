@@ -9,6 +9,7 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
     msgValue: '',
+    focus: false,
     loading: true,
     backHome: false,
     showShare: false,
@@ -150,6 +151,12 @@ Page({
   },
   btmMoreBtn(e){
     this.setData({ btmActionShow: true })
+  },
+  inputFocus(){
+    this.setData({ focus: true })
+  },
+  inputBlur(){
+    this.setData({ focus: false })
   },
   // 发送回答相关
   sentTap(){

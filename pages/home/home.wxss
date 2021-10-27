@@ -393,12 +393,14 @@ swiper image {
 }
 .QABoxContent_answer image{
   position: absolute;
-  width: 38rpx;
-  height: 38rpx;
+  width: 36rpx;
+  height: 36rpx;
   border-radius: 50%;
+  margin-left: 112rpx;
 }
 .QABoxContent_answerDetail{
-  margin-left: 48rpx;
+  margin-left: 152rpx;
+  width: 388rpx;
 }
 .QABoxContent_answerTime{
   position: absolute;

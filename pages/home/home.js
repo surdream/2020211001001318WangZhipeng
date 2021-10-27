@@ -538,6 +538,11 @@ Page({
       }
     })
   },
+  // 来源相关
+  sourceTap(e){
+    let name = e.currentTarget.dataset.name;
+    Toast('投稿自 @' + name + ' 公众号');
+  },
   // 打开留言面板
   showPopup() {
     this.setData({ popShow: true });

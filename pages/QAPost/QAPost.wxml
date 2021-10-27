@@ -26,6 +26,7 @@
   </view>
   <view class="spaceBar"></view>
   <view class="answerWrap" wx:if="{{answerList.length != 0|| selfList.length != 0}}">
+    <!-- 我的回答 -->
     <block wx:if="{{selfList.length != 0}}">
       <view class="answerTitle">我的回答</view>
       <view class="answerBox" wx:for="{{selfList}}" wx:key="index">
@@ -49,75 +50,83 @@
       </view>
       <view class="spaceBar"></view>
     </block>
-    <view class="answerTitle">热门回答</view>
-    <view class="answerBox" wx:if="{{item.show}}" wx:for="{{answerList}}" wx:key="index">
-      <image class="midMoreBtn" src="/images/QA/more.png" bindtap="btmMoreBtn"></image>
-      <view class="answerBox_top">
-        <image class="answerBox_avatar" src="{{item.avatar}}"></image>
-        <text class="answerBox_name" style="color:{{content.color}};">{{item.openname}}</text>
-      </view>
-      <view class="answerBox_detail">{{item.content}}</view>
-      <view class="answerBox_info">
-        <view class="answerBox_agree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="agree">
-          <view wx:if="{{item.islike == 0}}">
-            <image src="/images/QA/agree{{item.islike}}.png"></image>
-            <text>{{item.likes}}</text>
-          </view>
-          <view wx:if="{{item.islike == 1}}">
-            <image src="/images/QA/agree{{item.islike}}.png" style="background:{{content.color}};"></image>
-            <text style="color:{{content.color}};">{{item.likes}}</text>
-          </view>
+    <!-- 热门回答 -->
+    <block>
+      <view class="answerTitle">热门回答</view>
+      <view class="answerBox" wx:if="{{item.show}}" wx:for="{{answerList}}" wx:key="index">
+        <image class="midMoreBtn" src="/images/QA/more.png" bindtap="btmMoreBtn"></image>
+        <view class="answerBox_top">
+          <image class="answerBox_avatar" src="{{item.avatar}}"></image>
+          <text class="answerBox_name" style="color:{{content.color}};">{{item.openname}}</text>
         </view>
-        <view class="answerBox_agree disagree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="disagree">
-          <view wx:if="{{item.isnotlike == 0}}">
-            <image src="/images/QA/disagree{{item.isnotlike}}.png"></image>
-            <text>{{item.notlikes}}</text>
+        <view class="answerBox_detail">{{item.content}}</view>
+        <view class="answerBox_info">
+          <view class="answerBox_agree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="agree">
+            <view wx:if="{{item.islike == 0}}">
+              <image src="/images/QA/agree{{item.islike}}.png"></image>
+              <text>{{item.likes}}</text>
+            </view>
+            <view wx:if="{{item.islike == 1}}">
+              <image src="/images/QA/agree{{item.islike}}.png" style="background:{{content.color}};"></image>
+              <text style="color:{{content.color}};">{{item.likes}}</text>
+            </view>
           </view>
-          <view wx:if="{{item.isnotlike == 1}}">
-            <image src="/images/QA/disagree{{item.isnotlike}}.png" style="background:{{content.color}};"></image>
-            <text style="color:{{content.color}};">{{item.notlikes}}</text>
+          <view class="answerBox_agree disagree" bindtap="replyTap" data-id="{{item.reply_id}}" data-index="{{index}}" data-type="disagree">
+            <view wx:if="{{item.isnotlike == 0}}">
+              <image src="/images/QA/disagree{{item.isnotlike}}.png"></image>
+              <text>{{item.notlikes}}</text>
+            </view>
+            <view wx:if="{{item.isnotlike == 1}}">
+              <image src="/images/QA/disagree{{item.isnotlike}}.png" style="background:{{content.color}};"></image>
+              <text style="color:{{content.color}};">{{item.notlikes}}</text>
+            </view>
           </view>
+          <view class="answerBox_time">{{item.time}}</view>
         </view>
-        <view class="answerBox_time">{{item.time}}</view>
       </view>
-    </view>
+    </block>
   </view>
   <view class="answerWrap" wx:if="{{answerList.length == 0 && selfList.length == 0}}">
     <view class="noticeTxt" style="color:{{content.color}};">还没有人来回答，你会是第一个吗</view>
-  </view>
-  <view class="sentBar">
-    <van-field
-      value="{{ msgValue }}"
-      placeholder="写回答"
-      border="{{ false }}"
-      bind:change="onChange"
-      clearable="true"
-      custom-style="border-radius:20rpx;height:40px;width:57.5%;margin-left:3.5%;padding: 7px 15px 5px 15px;font-size:13px;background:rgba(0,0,0,0.05);color:rgba(0,0,0,0.5);"
-      placeholder-style="color:rgba(0,0,0,0.5);"
-    />
-    <view class="postIconBox">
-      <view wx:if="{{content.islike == 0}}" bindtap="agreeTap">
-        <image class="postIcon" src="/images/QA/agree{{content.islike}}.png"></image>
-        <text class="likesTxt">{{content.likes}}</text>
-      </view>
-      <view wx:if="{{content.islike == 1}}" bindtap="agreeTap">
-        <image class="postIcon" src="/images/QA/agree{{content.islike}}.png" style="background:{{content.color}};"></image>
-        <text class="likesTxt" style="color:{{content.color}};">{{content.likes}}</text>
-      </view>
-    </view>
-    <view class="postIconBox shareBox">
-      <image class="postIcon share" src="/images/QA/share.png" bindtap="showShare"></image>
-      <text class="shareTxt"></text>
-    </view>
-    <view class="sentBtn" bindtap="sentTap" style="background:{{content.color}};">发送</view>
-    <view class="safeArea"></view>
   </view>
   <!-- 底部提示 -->
   <view>
     <view class="loadingBar" wx:if="{{QALoading}}"><van-loading size="24px">加载中...</van-loading></view>
     <view class="QAEndBar" wx:if="{{!QALoading && QAEnd}}">—— 暂时没有了 ——</view>
   </view>
+  <view class="sentBar">
+  <van-field
+    value="{{ msgValue }}"
+    placeholder="写回答"
+    border="{{ false }}"
+    bind:change="onChange"
+    clearable="true"
+    clickable="true"
+    autosize="true"
+    custom-style="border-radius:20rpx;height:40px;width:57.5%;margin-left:3.5%;padding: 7px 15px 5px 15px;font-size:13px;background:rgba(0,0,0,0.05);color:rgba(0,0,0,0.5);"
+    placeholder-style="color:rgba(0,0,0,0.5);"
+    bind:focus="inputFocus"
+    bind:blur="inputBlur"
+  />
+  <view class="postIconBox">
+    <view wx:if="{{content.islike == 0}}" bindtap="agreeTap">
+      <image class="postIcon" src="/images/QA/agree{{content.islike}}.png"></image>
+      <text class="likesTxt">{{content.likes}}</text>
+    </view>
+    <view wx:if="{{content.islike == 1}}" bindtap="agreeTap">
+      <image class="postIcon" src="/images/QA/agree{{content.islike}}.png" style="background:{{content.color}};"></image>
+      <text class="likesTxt" style="color:{{content.color}};">{{content.likes}}</text>
+    </view>
+  </view>
+  <view class="postIconBox shareBox">
+    <image class="postIcon share" src="/images/QA/share.png" bindtap="showShare"></image>
+    <text class="shareTxt"></text>
+  </view>
+  <view class="sentBtn" bindtap="sentTap" style="background:{{content.color}};">发送</view>
+  <view class="safeArea"></view>
+  </view>
 </scroll-view>
+
 <van-share-sheet
   show="{{ showShare }}"
   title="分享给你的好友"

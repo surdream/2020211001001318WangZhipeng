@@ -160,7 +160,7 @@
         <view class="QABoxContent_topBar">
           <view class="QABoxContent_name">
             <view class="QABoxContent_nameTxt">{{item.openname}}</view> 
-            <view class="QABoxContent_from" style="border: 2rpx solid {{item.color}};color:{{item.color}};">{{item.source}}</view>
+            <view class="QABoxContent_from" style="border: 2rpx solid {{item.color}};color:{{item.color}};" bindtap="sourceTap" data-name="{{item.source}}">{{item.source}}</view>
           </view>
           <view class="QABoxContent_count">
             <text>发布于:{{item.createtime}} / </text>
@@ -179,10 +179,10 @@
         <!-- 最新回答 -->
         <view class="QABoxContent_answer" wx:if="{{item.replys != 0}}">
           <view class="QABoxContent_answerTitle" bindtap="navQAPost" data-content="{{item}}">
-            <text>最新回答: </text>
+            <text style="position:absolute;">最新回答: </text>
             <image src="{{item.reply_avatar}}"></image>
-            <text class="QABoxContent_answerDetail">{{item.reply_content}}</text>
             <text class="QABoxContent_answerTime">{{item.replytime}}</text>
+            <view class="QABoxContent_answerDetail">{{item.reply_content}}</view>
           </view>
         </view>
         <!-- 点赞评论 -->
@@ -275,7 +275,7 @@
   <!-- 底部提示 -->
   <view>
     <view class="loadingBar" wx:if="{{QALoading}}"><van-loading size="24px">加载中...</van-loading></view>
-    <view class="QAEndBar" wx:if="{{!QALoading && QAEnd}}">—— 暂时没有了 ——</view>
+    <view class="QAEndBar" wx:if="{{!QALoading && QAEnd && QATarget == 0}}">—— 暂时没有了 ——</view>
   </view>
 </scroll-view>
 <!-- 情侣弹窗 -->

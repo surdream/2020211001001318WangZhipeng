@@ -19,10 +19,10 @@
         <view class="infoBox_btn" style="background: linear-gradient(-120deg, #FF5130 30%,#FC5330 60%,#E74E2D 100%);">开始提交</view>
         <image class="infoBox_img" src="/images/testify/data.png"></image>
       </view>
-      <view class="infoBox" style="background: linear-gradient(150deg,#DDECFC 20%,#C3DCF8 40%,#A5C7EC 100%);" bindtap="">
+      <view class="infoBox" style="background: linear-gradient(150deg,#DDECFC 20%,#C3DCF8 40%,#A5C7EC 100%);" bindtap="sorryTap">
         <view class="infoBox_title">
           <view>管理证明</view>
-          <view class="infoBox_titleRep">已上传 (0/6)</view>
+          <view class="infoBox_titleRep">已上传 (0/12)</view>
         </view>
         <view class="infoBox_detail">
           <view>上传你的加分证明，体验便捷云端管理</view>

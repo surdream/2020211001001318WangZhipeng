@@ -12,6 +12,12 @@ Page({
   onShow: function () {
 
   },
+  sorryTap(){
+    wx.showToast({
+      title: '管理证明功能正在协调上线中,敬请期待',
+      icon: 'none'
+    })
+  },
   BackPage() {
     wx.navigateBack({
         delta: 1,
