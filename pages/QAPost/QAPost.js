@@ -1,5 +1,6 @@
 import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast';
+import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp();
 var myBase64 = require("../../utils/mybase64.js");
 const { request } = require("../../utils/request/request");
@@ -125,8 +126,6 @@ Page({
       })
     }
   },
-  onShow: function () {
-  },
   // 标签相关
   tagTap(){
     let type = this.data.content.type;
@@ -143,7 +142,6 @@ Page({
   },
   midMoreBtn(e){
     let id = e.currentTarget.dataset.id;
-    console.log(id);
     this.setData({
       selectId: id,
       midActionShow: true
@@ -165,7 +163,6 @@ Page({
       let that = this;
       let content = this.data.content;
       let msgValue = myBase64.encode(wx.getStorageSync('QAMsgValue')).replace(/\+/g, "%2B");
-      console.log(msgValue)
       if(msgValue.length == 0){
         Toast('请输入你的回答');
       } else{
@@ -174,7 +171,7 @@ Page({
           method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
         }).then(res =>{
           console.log(res.data);
-          if(res.data.code == 200){
+          if (res.data.code == 200) { // 成功回调
             wx.showToast({ title: '回答成功！' })
             that.setData({
               msgValue: '',
@@ -195,24 +192,36 @@ Page({
                       selfList[i].content = content;
                       selfList[i].openname = openname;
                 }
-                that.setData({ selfList: selfList })
+                that.setData({ selfList: selfList });
+                // 提示弹框
+                let firstSent = wx.getStorageSync('firstSent');
+                if(firstSent != 'not'){
+                  Dialog.alert({
+                    title: '温馨提示',
+                    message: '由于政策限制，一目校园小程序暂无私聊功能，如需单独沟通请自行附带联系方式',
+                    theme: 'round-button',
+                    confirmButtonText: '我了解了'
+                  }).then(() => {
+                    wx.setStorageSync('firstSent', 'not');
+                  });
+                }
               })
               wx.hideLoading();
             }, 2000);
-          } else if (res.data.code == 401) {
+          } else if (res.data.code == 401) { // 内容违规
             Toast('内容可能包含不当词汇，请重试')
             that.setData({ msgValue: '' });
             wx.removeStorageSync('QAMsgValue');
-          } else if (res.data.code == 402) {
+          } else if (res.data.code == 402) { // 接口异常
             let userInfo = wx.getStorageSync('userInfo');
             request({
               url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
             }).then(res => {
               wx.removeStorageSync('sessionid');
               wx.setStorageSync("sessionid", res.cookies[0]);
-              Toast('十分抱歉，微信内容审查接口异常，请重试')
+              Toast('十分抱歉，微信内容审查接口无反馈，请重试')
             })
-          } else if (res.data.code == 405) {
+          } else if (res.data.code == 405) { // 用户登录
             wx.login({
               success: function(res) {
                 if (res.code) {
@@ -274,7 +283,7 @@ Page({
                 }
               }
             });
-          } else if(res.data.code == 500){
+          } else if (res.data.code == 500) { // 数量超限
             Toast('回答太频繁了，最多三条哦');
             that.setData({ msgValue: '' });
             wx.removeStorageSync('QAMsgValue');
@@ -282,7 +291,7 @@ Page({
         })
       }
     } else {
-      Toast('校园问答功能需登录后使用')
+      Toast('校园问答功能需登录后使用');
     }
   },
   // 回复相关

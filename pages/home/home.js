@@ -16,16 +16,26 @@ Page({
     QA_all: [],
     QA_mine: [],
     imgUrls: [],
-    bg_list: [ // 状态背景
+    course_bg: [ // 状态背景
       {color: 'rgba(110,119,131,0.2)'},
       {color: 'rgba(66,211,173,0.2)'},
       {color: 'rgba(1,190,255,0.2)'},
       {color: 'rgba(1,190,255,0.2)'}
     ],
+    QA_bg: [ // 问答背景
+      {color: '#666699',type: '闲聊'},
+      {color: '#FF6666',type: '情感'},
+      {color: '#003399',type: '学习'},
+      {color: '#FFCC99',type: '生活'},
+      {color: '#339999',type: '求购'},
+      {color: '#E76A8D',type: '表白'},
+      {color: '#66CC99',type: '求助'},
+    ],
     msgValue: '', // 文本输入值
     pwdValue: '', // 更新输入值
     QAPage: 1, // 问答分页数
     QAEnd: false, // 问答列表状态
+    QA_show: false, // 问答显示状态
     hasMsg: false, // 新留言状态
     isUpdate: false, // 密码更新
     popShow: false, // 绑定申请状态
@@ -36,8 +46,8 @@ Page({
     indicatorDots: false, // 轮播图点状态
     pillNoticeShow: false, // 胶囊提示状态
     autoplay: true, // 轮播图显示状态
-    interval: 2400, // 轮播图切换间隔
-    duration: 800, // 轮播图动画时长
+    interval: 3000, // 轮播图切换间隔
+    duration: 1000, // 轮播图动画时长
     QATarget: 0, // 当前问答选项卡
     titleTarget: 0, // 当前选项卡
     swiperCurrent: 0, // 当前轮播图
@@ -115,13 +125,11 @@ Page({
                     console.log(res.data);
                     let QA_all = res.data;
                     for(let i=0;i<QA_all.length;i++){
-                      let type = QA_all[i].type;
-                      switch(type){
-                        case '闲聊': {QA_all[i].color = '#666699'} break;
-                        case '情感': {QA_all[i].color = '#FF6666'} break;
-                        case '学习': {QA_all[i].color = '#003399'} break;
-                        case '生活': {QA_all[i].color = '#FFCC99'} break;
-                        case '求购': {QA_all[i].color = '#339999'} break;
+                      let QA_bg = this.data.QA_bg;
+                      for(let j=0;j<QA_bg.length;j++){
+                        if (QA_all[i].type == QA_bg[j].type) {
+                          QA_all[i].color = QA_bg[j].color;
+                        }
                       }
                       if(QA_all[i].reply_content != null){
                         let reply_content = myBase64.decode(QA_all[i].reply_content);
@@ -152,6 +160,7 @@ Page({
                     });
                   })
                 })
+                // cookie失效
               } else if(res.data.code == 400){
                 request({
                   url: "api/user/login?" + "account=" + userInfo.account + "&password=" + userInfo.password, method: 'GET', 
@@ -207,12 +216,11 @@ Page({
                         console.log(res.data);
                         let QA_all = res.data;
                         for(let i=0;i<QA_all.length;i++){
-                          let type = QA_all[i].type;
-                          switch(type){
-                            case '闲聊': {QA_all[i].color = '#747d8c'} break;
-                            case '情感': {QA_all[i].color = '#ff6b81'} break;
-                            case '学习': {QA_all[i].color = '#1e90ff'} break;
-                            case '生活': {QA_all[i].color = '#eccc68'} break;
+                          let QA_bg = this.data.QA_bg;
+                          for(let j=0;j<QA_bg.length;j++){
+                            if (QA_all[i].type == QA_bg[j].type) {
+                              QA_all[i].color = QA_bg[j].color;
+                            }
                           }
                           if(QA_all[i].reply_content != null){
                             let reply_content = myBase64.decode(QA_all[i].reply_content);
@@ -250,6 +258,50 @@ Page({
           }
         })
       }
+    } else {
+      this.setData({ QA_show: true });
+      // 获取问答列表
+      request({
+        url: "api/qa/list?page=1" , 
+        method: 'GET'
+      }).then(res =>{
+        console.log(res.data);
+        let QA_all = res.data;
+        for(let i=0;i<QA_all.length;i++){
+          let QA_bg = this.data.QA_bg;
+          for(let j=0;j<QA_bg.length;j++){
+            if (QA_all[i].type == QA_bg[j].type) {
+              QA_all[i].color = QA_bg[j].color;
+            }
+          }
+          if(QA_all[i].reply_content != null){
+            let reply_content = myBase64.decode(QA_all[i].reply_content);
+            QA_all[i].reply_content = reply_content;
+          }
+          if(QA_all[i].openname != null){
+            let openname = myBase64.decode(QA_all[i].openname);
+            QA_all[i].openname = openname;
+          }
+          let picture1 = QA_all[i].picture1;
+          let picture2 = QA_all[i].picture2;
+          if (picture1 != null) {
+            QA_all[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
+          }
+          if (picture2 != null) {
+            QA_all[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
+          }
+        }
+        this.setData({
+          QA_all: QA_all,
+          QALoading: false
+        })
+        Notify({
+          message: '获取到 ' + res.data.length + ' 条问答',
+          type: 'success ',
+          safeAreaInsetTop: true,
+          duration: '600'
+        });
+      })
     }
     // 获取轮播图
     request({
@@ -664,6 +716,7 @@ Page({
     console.log("====下拉====");
     let that = this;
     let QAEnd = that.data.QAEnd;
+    let QA_bg = that.data.QA_bg;
       if (!QAEnd) {
       let QA_all = that.data.QA_all;
       let QAPage = that.data.QAPage + 1;
@@ -679,12 +732,10 @@ Page({
         console.log(res.data)
         let arr = res.data;
         for(let i=0;i<arr.length;i++){
-          let type = arr[i].type;
-          switch(type){
-            case '闲聊': {arr[i].color = '#747d8c'} break;
-            case '情感': {arr[i].color = '#ff6b81'} break;
-            case '学习': {arr[i].color = '#1e90ff'} break;
-            case '生活': {arr[i].color = '#eccc68'} break;
+          for(let j=0;j<QA_bg.length;j++){
+            if (arr[i].type == QA_bg[j].type) {
+              arr[i].color = QA_bg[j].color;
+            }
           }
           if(arr[i].reply_content != null){
             let reply_content = myBase64.decode(arr[i].reply_content);
@@ -738,7 +789,7 @@ Page({
     }
   },
   // 分享相关
-  onShareAppMessage(res){
+  onShareAppMessage(){
     return {
       title: '大学查课表成绩选课，还有更多功能等你探索',
       path: '/pages/blank/blank',

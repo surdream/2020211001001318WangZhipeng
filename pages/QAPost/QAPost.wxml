@@ -1,5 +1,7 @@
 <!-- 弹出提示 -->
 <van-toast id="van-toast" />
+<!-- 确认弹框 -->
+<van-dialog id="van-dialog" />
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background:{{content.color}};">
   <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>

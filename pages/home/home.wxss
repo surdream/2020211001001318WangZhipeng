@@ -417,6 +417,7 @@ swiper image {
   height: 40rpx;
   opacity: 0.8;
   box-shadow: #fff 0px 0px 1rpx 1rpx inset;
+  border-radius: 50%;
 }
 .QABoxInfoBox{
   display: inline-block;

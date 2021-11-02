@@ -1,5 +1,5 @@
-var app = getApp();
 import Notify from '@vant/weapp/notify/notify';
+var app = getApp();
 const { request } = require("../../utils/request/request");
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 const qqmapsdk = new QQMapWX({key: '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM'});
@@ -114,8 +114,16 @@ Page({
       ]
     }]
   },
-  onLoad: function (options) {
-    let accountInfo = wx.getStorageSync('accountInfo');
+  onLoad(){
+    // 提示弹框
+    let firstMap = wx.getStorageSync('firstMap');
+    if(firstMap != 'not'){
+      wx.showToast({
+        title: '校园地图数据众多，第一次打开需要较长时间加载，感谢您的耐心等待',
+        icon: 'none'
+      })
+      wx.setStorageSync('firstMap', 'not');
+    }
     request({
       url: "api/map/address", 
       method: 'GET',
@@ -141,14 +149,14 @@ Page({
       })
       let str = "polyline[0].color";
       this.setData({
-        accountInfo: accountInfo,
+        accountInfo: wx.getStorageSync('accountInfo'),
         markers: res.data[1],
         [str]: '#EEC174'
       })
     })
 
   },
-  onShow: function () {
+  onShow(){
     const that = this;
     wx.getSetting({
       success: (res) => {
@@ -289,9 +297,9 @@ Page({
       },
     })
   },
-  gomapiftion:function(e){
+  gomapiftion(e){
     let plugin = requirePlugin('routePlan');
-    let key = '4JUBZ-3YMK6-PFRSG-E5RZQ-OTE52-62BHM';  //使用在腾讯位置服务申请的key
+    let key = this.data.key;  //使用在腾讯位置服务申请的key
     let mode='walking';
     let referer = '一目校园';   //调用插件的app的名称
     let endPoint = JSON.stringify({  //终点
@@ -300,18 +308,18 @@ Page({
       'longitude': this.data.currMaker.longitude
     });
     wx.navigateTo({
-        url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint +'&mode=' + mode
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint +'&mode=' + mode
     });
-    console.log(this.data.currMakerctname)
+    console.log(this.data.currMakerctname);
   },
   // 跳转到详情页
   godetails(e){
-    this.setData({ showPopup: false})
+    this.setData({ showPopup: false});
     wx.navigateTo({
       url: '/pages/navigation/details/details?data='+JSON.stringify(this.data.currMaker),
     })
   },
-  onChange(event) {
+  onChange(event){
     let active = event.detail.name;
     let markers0 = this.data.markers0;
     let markers1 = this.data.markers1;
@@ -349,26 +357,24 @@ Page({
         duration: 800,
         type: 'primary'
       });
-      this.setData({markers:markers2})
+      this.setData({ markers: markers2 });
     } else if (active == 3) {
-      this.setData({markers:markers3})
+      this.setData({ markers: markers3 });
     }
-    this.setData({
-      active: active,
-    })
+    this.setData({ active: active });
   },
-  popClose() {
+  popClose(){
     this.setData({ showPopup: false });
   },
-  BackPage() {
+  BackPage(){
     wx.navigateBack({
-        delta: 1,
-    }); 
+      delta: 1,
+    });
   },
-  onShareAppMessage: function (res) {
+  onShareAppMessage(){
     return {
       title: '大学查课表成绩选课，还有更多功能等你探索',
-      path: '/pages/blank/blank',
+      path: '/pages/blank/blank'
     }
   }
 })

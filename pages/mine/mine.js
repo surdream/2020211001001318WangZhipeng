@@ -16,7 +16,6 @@ Page({
   },
   onShow: function () {
     let accountInfo = wx.getStorageSync('accountInfo');
-    console.log(accountInfo);
     if(accountInfo == undefined || accountInfo == ''){
       this.setData({ loginStatus: '未登录' })
     } else{
@@ -49,7 +48,7 @@ Page({
       } else if(url == 'alterInfo'){
         wx.navigateTo({ url: './alterInfo/alterInfo' })
       } else if(url == 'official'){
-      }else{
+      } else{
         wx.navigateTo({ url: '/pages/' + url + '/' + url })
       }
     } else{
@@ -72,7 +71,7 @@ Page({
       icon: 'none'
     })
   },
-  onShareAppMessage: function (res) {
+  onShareAppMessage(){
     return {
       title: '大学查课表成绩选课，还有更多功能等你探索',
       path: '/pages/blank/blank',
