@@ -81,7 +81,7 @@ page{
 .alterBox_text{
   font-weight: 800;
   font-size: 28rpx;
-  color: #00b894;
+  color: #4CD9BD;
   margin: 0 0 0 20rpx;
 }
 .midWrap{

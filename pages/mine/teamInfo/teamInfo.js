@@ -4,7 +4,6 @@ Page({
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
-    activeName: '1',
     developer: '< 荣誉Developer >',
     designer: '< 荣誉Designer >',
     developer_list: [
@@ -67,18 +66,6 @@ Page({
   },
   onShow: function () {
 
-  },
-  onChange(event) {
-    this.setData({
-      activeName: event.detail,
-    });
-  },
-  // 跳转公众号
-  navPublic(){
-    let link = 'https://mp.weixin.qq.com/s/9WBqK2bTlHFwd2-na1j6zw';
-    wx.navigateTo({
-      url: '../../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link)),
-    })
   },
   BackPage() {
     wx.navigateBack({

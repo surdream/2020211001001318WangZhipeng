@@ -1,0 +1,24 @@
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #F9F9F9;">
+  <image class="navBarButton_bold" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">团队信息</text></view>
+</view>
+<!-- 内容区域 -->
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight}}px;">
+  <view class="honorTitle">一目校园 小程序&公众号 开发团队</view>
+  <view class="honorWrap">
+    <view class="honorBox" wx:for="{{developer_list}}" wx:key="index">
+      <view class="honorBox_title">{{developer}}</view>
+      <image class="honorBox_img" src="{{item.url}}"></image>
+      <view class="honorBox_name">{{item.name}}</view>
+      <view class="honorBox_job">{{item.job}}</view>
+    </view>
+    <view class="honorBox" wx:for="{{designer_list}}" wx:key="index">
+      <view class="honorBox_title">{{designer}}</view>
+      <image class="honorBox_img" src="{{item.url}}"></image>
+      <view class="honorBox_name">{{item.name}}</view>
+      <view class="honorBox_job">{{item.job}}</view>
+    </view>
+    <view class="safeBox"></view>
+  </view>
+</scroll-view>

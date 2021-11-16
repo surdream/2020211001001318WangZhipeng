@@ -16,6 +16,7 @@
     "pages/mine/mine",
     "pages/mine/alterInfo/alterInfo",
     "pages/mine/handbook/handbook",
+    "pages/mine/teamInfo/teamInfo",
     "pages/mine/about/about",
     "pages/mine/privacy/privacy",
     "pages/couple/couple",
@@ -39,7 +40,7 @@
   },
   "plugins": {
     "routePlan": {
-    "version": "1.0.16",
+    "version": "1.0.17",
     "provider": "wx50b5593e81dd937a"
     }
   },
@@ -59,11 +60,13 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-field": "@vant/weapp/field/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-share-sheet": "@vant/weapp/share-sheet/index"
+    "van-share-sheet": "@vant/weapp/share-sheet/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index"
   },
   "tabBar": {
-    "color": "#A1A1A1",
-    "selectedColor": "#42D3AD",
+    "color": "#999999",
+    "selectedColor": "#4CD9BD",
     "backgroundColor":"#F8F5F8",
     "borderStyle": "white",
     "list": [

@@ -266,3 +266,26 @@ page{
   font-size: 32rpx;
   color: rgba(0, 0, 0, 0.6);
 }
+.moreDetail{
+  width: 700rpx;
+  height: 800rpx;
+  margin: 0 auto;
+}
+.moreDetail_img{
+  width: 700rpx;
+  height: 250rpx;
+}
+.moreDetail_infoBox{
+  padding: 0 30rpx;
+}
+.moreDetail_title{
+  margin-bottom: 20rpx;
+  font-size: 60rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+.moreDetail_detail{
+  font-size: 30rpx;
+  font-weight: 500;
+  margin: 2rpx 0;
+}

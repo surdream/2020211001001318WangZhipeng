@@ -13,21 +13,38 @@
     <view class="newsBox_content"> · 在小程序点击“地图”Tab栏即可访问校园地图。</view>
     <view class="newsBox_content"> · 上方点击不同标签即可切换“教学区”-“生活区”。</view>
     <view class="newsBox_content"> · 地图中点击不同图标即可查看该地点信息，点击“到这去”可进行导航、路线规划”点击查看“可以查看该地点详细信息、进入须知等。</view>
-  </view>
-  <view class="honorTitle">一目校园 小程序&公众号 开发团队</view>
-  <view class="honorWrap">
-    <view class="honorBox" wx:for="{{developer_list}}" wx:key="index">
-      <view class="honorBox_title">{{developer}}</view>
-      <image class="honorBox_img" src="{{item.url}}"></image>
-      <view class="honorBox_name">{{item.name}}</view>
-      <view class="honorBox_job">{{item.job}}</view>
+    <view class="helpBox">
+      <view class="helpBox_notice">·常见问题·</view>
+      <van-collapse custom-class="helpBox_list" accordion value="{{ activeName }}" bind:change="onChange">
+        <van-collapse-item title="- 我是某个社团的成员，可以在一目校园上投稿吗？" name="1">
+          一目校园致力于为学校广大师生服务，为大家带来便利的同时，进行更好的内容创作，校内的社团可以在公众号内留言，或者直接添加我们的社团对接事务同学(微信号:ziv_chou)，一同合作打造更优质的内容，要强调的是，这一切都是公益免费的哦。
+        </van-collapse-item>
+        <van-collapse-item title="- 如何才能看到自己的课表?" name="2">
+          查看课表功能需要先进行导入哦，点击-认证登录-进行认证-完成后重新进入小程序即可在首页和教务查询到课表啦。
+        </van-collapse-item>
+        <van-collapse-item title="- 如何发起提问/回答别人的问题?" name="3">
+          校园问答功能为保证提问者与回答者信息的安全性，需要认证后再使用，发起提问的教程可以
+          <text class="helpLink" bindtap="navPublic">点击这里查看。</text>
+        </van-collapse-item>
+        <van-collapse-item title="- 昵称为什么是“微信用户”?要怎么修改?" name="4">
+          部分用户默认昵称即是“微信用户”，点击-我的-个人信息-同步微信账户-授权修改-即可完成修改。
+        </van-collapse-item>
+        <van-collapse-item title="- 如何查看/绑定TA的课表?" name="5">
+          查询TA课表需要先与对方进行绑定情侣，绑定成功后就可以在首页轻松查看TA的课表啦，还可以给对方发送留言哦。
+        </van-collapse-item>
+        <van-collapse-item title="- 如何进行校园地图导航?" name="6">
+          小程序内置了学校的地图，对很多教学、宿舍楼、生活便利设施进行了标注，点击想要去的点，在下方弹出框里点击“到这去”即可发起路线规划及导航。
+        </van-collapse-item>
+        <van-collapse-item title="- 信息显示不出来或乱码？按钮无法点击？" name="7">
+          请先检查网络是否通畅，然后重新进入小程序，如果问题仍然出现可以及时联系我们的客服同学，(由于小程序体积限制，少数情况下会出现异常)。
+        </van-collapse-item>
+        <van-collapse-item title="- 如何关注/查看一目校园公众号的文章？" name="8">
+          可以在微信搜索: 一目校园公众号，点击关注即可关注公众号了，我们会定期在首页的轮播图处更新，方便同学们查看。
+        </van-collapse-item>
+        <van-collapse-item title="- 我是个人/商户，想和一目校园进行合作/推广。" name="9">
+          一目校园支持学生创业项目，也已经与校内数个项目进行合作，我们会对合作方进行严格考察，我们欢迎例如“漂流屋二手书店”、“光光爱”、“花椒二手交易平台”、等优秀的学生创业项目，或校内外服务学生、切实对学生有益的项目与我们合作，可以在一目校园公众号留言或者联系合作对接同学(ziv_chou)。
+        </van-collapse-item>
+      </van-collapse>
     </view>
-    <view class="honorBox" wx:for="{{designer_list}}" wx:key="index">
-      <view class="honorBox_title">{{designer}}</view>
-      <image class="honorBox_img" src="{{item.url}}"></image>
-      <view class="honorBox_name">{{item.name}}</view>
-      <view class="honorBox_job">{{item.job}}</view>
-    </view>
-    <view class="safeBox"></view>
   </view>
 </scroll-view>

@@ -13,7 +13,9 @@ Page({
     menuButtonHeight: app.globalData.menuButtonHeight,
     contentHeight: app.globalData.contentHeight,
     loading: true,
+    popShow: false,
     showGrade: false,
+    selectIndex: null,
     diff: 0, //日期差值
     titleTarget: 0, //列表标签
     grade_term: '2020.2', //默认学期
@@ -174,6 +176,13 @@ Page({
       showGrade: true,
       pickerImg:'/images/conmon/up-tri.png'
     })
+  },
+  selectCourseTap(e){
+    let id = e.currentTarget.dataset.id;
+    this.setData({ 
+      selectIndex: id,
+      popShow: true
+    });
   },
   onClose() {
     this.setData({
@@ -339,6 +348,9 @@ Page({
     }
     clearInterval(interval);
     touchTime = 0;
+  },
+  onClose() {
+    this.setData({ popShow: false });
   },
   onShareAppMessage: function (res) {
     return {

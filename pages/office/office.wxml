@@ -18,7 +18,7 @@
   <!-- 课程列表 -->
   <view class="course_list">
     <scroll-view scroll-x="true" style="height:152rpx;white-space:nowrap;">
-      <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}">
+      <view class="courseBox" wx:for="{{courseList}}" wx:key="index" data-id="{{index}}" bindtap="selectCourseTap">
         <image class="courseBox_img" src="/images/office/course{{index%4}}.png"></image>
         <text class="courseBox_title">{{item.course_name}}</text>
         <text class="courseBox_class">{{item.class_name_fix}} {{item.class_number}}号</text>
@@ -151,3 +151,25 @@
     bind:select="onSelect"
     close-on-click-overlay="{{ true }}"
 />
+<!-- 小班序号 -->
+<van-popup
+  show="{{ popShow }}"
+  bind:close="onClose"
+  safe-area-inset-bottom="true"
+  custom-style="padding:0;"
+  round
+>
+  <view class="moreDetail" style="background:{{officeColorList[selectIndex%4]}};">
+    <image class="moreDetail_img" src="/images/office/course{{selectIndex%4}}.png" mode="top"></image>
+    <view class="moreDetail_infoBox">
+      <view class="moreDetail_title">{{courseList[selectIndex].course_name}}</view>
+      <view class="moreDetail_detail">教师: {{courseList[selectIndex].teacher_name}}</view>
+      <view class="moreDetail_detail">小班: {{courseList[selectIndex].class_name_fix}}</view>
+      <view class="moreDetail_detail">序号: {{courseList[selectIndex].class_number}}</view>
+      <view class="moreDetail_detail">学分: {{courseList[selectIndex].credit}}分</view>
+      <view class="moreDetail_detail">性质: [{{courseList[selectIndex].course_require}}] [{{courseList[selectIndex].method}}课]</view>
+      <view class="moreDetail_detail">学时: {{courseList[selectIndex].hours}}学时</view>
+      <view class="moreDetail_detail">学期: {{courseList[selectIndex].term}}</view>
+    </view>
+  </view>
+</van-popup>

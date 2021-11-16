@@ -40,6 +40,11 @@
         <text class="usefulBox_text">用户指南&功能更新</text>
         <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
       </view>
+      <view class="usefulBox" bindtap="aboutTo" data-url="teamInfo">
+        <image class="usefulBox_img" src="/images/mine/honor.png"></image>
+        <text class="usefulBox_text">团队成员&支持我们</text>
+        <image class="usefulBox_arrow" src="/images/conmon/right-grey.png"></image>
+      </view>
       <view class="usefulBox" bindtap="clearStorage">
         <image class="usefulBox_img" src="/images/mine/wechat.png"></image>
         <text class="usefulBox_text">清除缓存&进入引导</text>
