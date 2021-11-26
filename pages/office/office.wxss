@@ -268,12 +268,12 @@ page{
 }
 .moreDetail{
   width: 700rpx;
-  height: 800rpx;
+  height: 900rpx;
   margin: 0 auto;
 }
 .moreDetail_img{
   width: 700rpx;
-  height: 250rpx;
+  height: 270rpx;
 }
 .moreDetail_infoBox{
   padding: 0 30rpx;

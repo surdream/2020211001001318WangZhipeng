@@ -11,6 +11,7 @@ Page({
     checkStatus: 'checked',
     popShow: false,
     show: false,
+    showPwd: true,
     isLoading: false,
     haveResult: false,
     hasUserInfo: false,
@@ -22,7 +23,6 @@ Page({
     account_link: '',
     searchResult: '',
     nextBtn: '下一步',
-    inputType: 'password',
     passwordType: 'open',
     status_color: '#C9D6DE',
     pickerImg: '/images/conmon/down-tri.png',
@@ -415,12 +415,12 @@ Page({
     if(passwordType == 'open'){
       this.setData({
         passwordType: 'close',
-        inputType: 'text'
+        showPwd: false
       })
     } else{
       this.setData({
         passwordType: 'open',
-        inputType: 'password'
+        showPwd: true
       })
     }
   },

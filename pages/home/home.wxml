@@ -106,6 +106,7 @@
         </view>
         <view class="infoBox_notice" wx:if="{{chart_list.length === 0}}">今天没有课哦</view>
         <view class="infoBox_notice" wx:if="{{!hasImport}}">你还没有导入课表</view>
+        <view class="infoBox_noticeImg" wx:if="{{!hasImport || chart_list.length === 0}}"><image src="/images/home/noclass.png"></image></view>
       </block>
       <block wx:if="{{titleTarget == 1}}">
         <view class="infoBox" style="--background--:{{course_bg[item.status].color}}" wx:for="{{bind_list}}" wx:key="index" data-id="{{index}}">
@@ -188,11 +189,11 @@
         <!-- 点赞评论 -->
         <view class="QABoxInfo">
           <view class="QABoxInfo_agree QABoxInfoBox" bindtap="agreeTap" data-id="{{item.question_id}}" data-index="{{index}}">
-            <block wx:if="{{item.islike == 0}}">
+            <block wx:if="{{item.islike == 0 && !QA_show}}">
               <image src="/images/QA/agree{{item.islike}}.png"></image>
               <text>{{item.likes}}</text>
             </block>
-            <block wx:if="{{item.islike == 1}}">
+            <block wx:if="{{item.islike == 1 && !QA_show}}">
               <image src="/images/QA/agree{{item.islike}}.png" style="background:{{item.color}};"></image>
               <text style="color:{{item.color}};">{{item.likes}}</text>
             </block>
@@ -202,11 +203,11 @@
             </block>
           </view>
           <view class="QABoxInfo_flip QABoxInfoBox" bindtap="flipTap" data-id="{{item.question_id}}" data-index="{{index}}" data-name="{{item.openname}}">
-            <block wx:if="{{item.isapplaud == 0}}">
+            <block wx:if="{{item.isapplaud == 0 && !QA_show}}">
               <image src="/images/QA/flip{{item.isapplaud}}.png"></image>
               <text>{{item.applaud}}</text>
             </block>
-            <block wx:if="{{item.isapplaud == 1}}">
+            <block wx:if="{{item.isapplaud == 1 && !QA_show}}">
               <image src="/images/QA/flip{{item.isapplaud}}.png" style="background:{{item.color}};"></image>
               <text style="color:{{item.color}};">{{item.applaud}}</text>
             </block>

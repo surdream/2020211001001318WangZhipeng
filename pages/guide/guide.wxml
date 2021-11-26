@@ -70,7 +70,7 @@
         </view>
         <view class="inputPassword">
           <image src="/images/guide/eye_{{passwordType}}.png" bindtap="passwordTap"></image>
-          <input class="inputBox" placeholder="请输入你的密码" value="{{password}}" bindinput="detailInput" type="{{inputType}}" data-name="password" disabled="{{!canConnect}}" bindtap="inputTap"></input>
+          <input class="inputBox" placeholder="请输入你的密码" value="{{password}}" bindinput="detailInput" password="{{showPwd}}" data-name="password" disabled="{{!canConnect}}" bindtap="inputTap"></input>
         </view>
       </view>
       <!-- 关联好友 -->

@@ -135,7 +135,7 @@ swiper image {
 .infoBox_time{
   position: absolute;
   right: 40rpx;
-  margin-top: 24rpx;
+  margin-top: 20rpx;
   color: rgba(0, 0, 0, 0.6);
 }
 .infoBox_title{
@@ -159,8 +159,16 @@ swiper image {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 700;
   font-size: 26rpx;
-  margin-top: 100rpx;
+  margin-top: 50rpx;
   letter-spacing: 1rpx;
+}
+.infoBox_noticeImg{
+  text-align: center;
+  margin-top: 10rpx;
+}
+.infoBox_noticeImg image{
+  width: 100rpx;
+  height: 100rpx;
 }
 .courseStatus{
   padding: 6rpx 12rpx 0 12rpx;
