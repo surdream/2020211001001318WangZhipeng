@@ -18,7 +18,7 @@ Page({
     selectIndex: null,
     diff: 0, //日期差值
     titleTarget: 0, //列表标签
-    grade_term: '2020.2', //默认学期
+    grade_term: '2021.1', //默认学期
     pickerImg:'/images/conmon/down-tri.png',
     chart_list: [],
     grade_list: [],
@@ -36,8 +36,8 @@ Page({
       {name: '我的课表'},{name: '查询成绩'},{name: '考试安排'}
     ],
   },
-  onLoad: function (options) {
-    var timestamp = Date.parse(new Date());
+  onLoad(options) {
+    let timestamp = Date.parse(new Date());
     timestamp = timestamp / 1000;
     this.setData({
       courentTime: timestamp,
@@ -50,7 +50,7 @@ Page({
       this.setData({
         accountInfo: accountInfo,
         credit: credit,
-        grade_term: accountInfo.oldterm[accountInfo.oldterm.length-2]
+        grade_term: accountInfo.oldterm[accountInfo.oldterm.length-1]
       })
       for(let i=0;i<accountInfo.oldterm.length;i++){
         let term_list_str = 'grade_actions[' + i + '].name';
@@ -101,7 +101,7 @@ Page({
       })
       // 查询成绩
       request({
-        url: "api/edu/grade?term=2020.2", 
+        url: "api/edu/grade?term=" + this.data.grade_term, 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
         console.log(res.data)
@@ -159,12 +159,12 @@ Page({
       })
     }
   },
-  onShow: function () {
+  onShow(){
   },
-  BackPage() {
+  BackPage(){
     wx.navigateBack({ delta: 1 });
   },
-  infoListTap: function(e){
+  infoListTap(e){
     let titleTarget = e.currentTarget.dataset.id;
     this.setData({
       titleTarget:titleTarget,
@@ -184,7 +184,7 @@ Page({
       popShow: true
     });
   },
-  onClose() {
+  onGradeClose() {
     this.setData({
       showGrade: false,
       pickerImg:'/images/conmon/down-tri.png'

@@ -55,10 +55,10 @@ page{
   border-radius: 72rpx 72rpx 0 0;
   height: 1200rpx;
   margin-top: 50rpx;
-  padding-top: 60rpx;
+  overflow: scroll;
 }
 .alterBar{
-  margin: 0rpx 5%;
+  margin: 50rpx 5% 0;
   width: 90%;
   height: 120rpx;
   text-align: center;
@@ -72,7 +72,7 @@ page{
   display: inline-flex;
 }
 .alterBox_border{
-  border-right: 4rpx solid #ecf0f1;
+  border-right: 1rpx solid #ecf0f1;
 }
 .alterBox_img{
   width: 40rpx;

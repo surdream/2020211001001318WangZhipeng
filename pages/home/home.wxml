@@ -3,7 +3,7 @@
 <!-- 弹出提示 -->
 <van-toast id="van-toast" />
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+<view style="position:fixed;z-index:1;padding-top:{{menuButtonTop}}px;">
   <view class="navBar-Left35 navBar_title">
     <text class="gradient_title">一目校园</text>
     <text style="color:rgba(0,0,0,0.25);font-size:30rpx;"> (众测版)</text>
@@ -18,7 +18,7 @@
   </view>
 </view>
 <!-- 内容区域 -->
-<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height: {{contentHeight-75}}px;">
+<scroll-view class="container" scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="50" style="height: {{contentHeight - menuButtonHeight - menuButtonTop + 10}}px;padding-top: {{menuButtonHeight + menuButtonTop}}px;">
   <view class="topWrap">
     <!-- 轮播图 -->
     <view class="swiper-box">

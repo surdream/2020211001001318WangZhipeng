@@ -563,7 +563,7 @@ swiper image {
   font-size: 25rpx;
   color: rgba(0, 0, 0, 0.4);
   text-align: center;
-  margin: 40rpx 0 60rpx 0;
+  margin: 30rpx 0 60rpx 0;
 }
 .pwdSetWrap{
   background: #F8F5F8;

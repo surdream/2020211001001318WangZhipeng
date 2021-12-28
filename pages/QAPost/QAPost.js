@@ -616,7 +616,7 @@ Page({
     })
   },
   // 列表下拉相关
-  pullUpLoad: function(){
+  pullUpLoad(){
     let that = this;
     let QAEnd = that.data.QAEnd;
     let content = that.data.content;
@@ -638,11 +638,11 @@ Page({
             let openname = myBase64.decode(arr[i].openname);
             arr[i].content = content;
             arr[i].openname = openname;
+            arr[i].show = true;
           }
         }
-        let newArr = arr.concat(answerList);
-        console.log(arr);
-        console.log(newArr);
+        let newArr = answerList.concat(arr);
+        // console.log(newArr);
         this.setData({
           QALoading: false,
           answerList: newArr
@@ -650,14 +650,14 @@ Page({
         if (res.data.length > 0) {
           Notify({
             message: '获取到 ' + res.data.length + ' 条回答',
-            type: 'success ',
+            type: 'success',
             safeAreaInsetTop: true,
             duration: '600'
           });
         } else{
           Notify({
             message: '没有更多回答了哦',
-            type: 'warning ',
+            type: 'warning',
             safeAreaInsetTop: true,
             duration: '600'
           });
@@ -669,7 +669,7 @@ Page({
     } else{
       Notify({
         message: '没有更多问答了哦',
-        type: 'warning ',
+        type: 'warning',
         safeAreaInsetTop: true,
         duration: '600'
       });
@@ -682,7 +682,7 @@ Page({
     } else{ wx.navigateBack({ delta: 1 }); }
   },
   // 分享相关
-  onShareAppMessage: function (res) {
+  onShareAppMessage(res){
     let content = this.data.content;
     this.setData({
       topActionShow: false,

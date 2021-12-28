@@ -1,5 +1,5 @@
 <import src="office.skeleton.wxml"/>
-<template is="skeleton" wx-if="{{loading}}" />
+<template is="skeleton" wx-if="{{loading}}"/>
 <van-notify id="van-notify"/>
 <view style="height:{{menuButtonHeight+20}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar">
@@ -10,7 +10,7 @@
     </view>
   </view>
 </view>
-<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-100}}px;" wx-if="{{!loading}}">
+<scroll-view class="container" scroll-y="true" style="height: {{contentHeight-90}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
     <view class="topTitle">已选课程</view>
@@ -70,7 +70,7 @@
       <view class="infoControlBar" wx:if="{{titleTarget == 2}}">
           <image src="/images/office/schedule.png" class="infoControlBar_img" style="background: rgba(165,173,246, 0.5);"></image>
           <view class="infoControlBar_title">考试信息</view>
-          <view class="infoControlBar_detail">最近你有 {{arrange_list.length}} 门考试</view>
+          <view class="infoControlBar_detail">这学期你有 {{arrange_list.length}} 门考试</view>
       </view>
     </view>
     <!-- 信息选择栏 -->
@@ -119,7 +119,7 @@
         </view>
         <view class="defaultWrap" wx:if="{{grade_list.length == 0}}">
           <image class="defaultImg" src="/images/office/no_grade.png"></image>
-          <view class="defaultNotice">当前无成绩</view>
+          <view class="defaultNotice">当前学期({{grade_term}})暂无成绩</view>
         </view>
       </block>
       <block wx:if="{{titleTarget == 2}}">
@@ -129,7 +129,7 @@
             <image class="infoBox_notice" src=""></image>
             <view class="infoBox_top">{{arrangeItem.exam_time_raw}}</view>
             <view class="infoBox_title">{{arrangeItem.course_name}}</view>
-            <view class="infoBox_detail">{{arrangeItem.place}} {{'序号:' + arrangeItem.exam_id}}</view>
+            <view class="infoBox_detail">{{arrangeItem.weeks}}周 {{arrangeItem.place}} <text wx:if="{{arrangeItem.class_number != null}}">序号:{{arrangeItem.class_number}}</text></view>
           </view>
         </block>
         <view class="defaultWrap" wx:if="{{arrange_list.length == 0 && repair_list.length == 0}}">
@@ -147,7 +147,7 @@
     description="选择你要查询的学期"
     show="{{ showGrade }}"
     actions="{{ grade_actions }}"
-    bind:close="onClose"
+    bind:close="onGradeClose"
     bind:select="onSelect"
     close-on-click-overlay="{{ true }}"
 />

@@ -18,13 +18,13 @@
       <view class="topWrap_detail">华东交通大学 {{accountInfo.class}}</view>
     </block>
   </view>
-  <scroll-view class="mainContent" scroll-y="true" style="height:64vh;">
+  <view class="mainContent">
     <view class="alterBar">
-      <view class="alterBox" bindtap="navTo" data-url="alterInfo">
+      <view class="alterBox alterBox_border" bindtap="navTo" data-url="alterInfo">
         <image class="alterBox_img" src="/images/mine/import.png"></image>
         <text class="alterBox_text">个人信息</text>
       </view>
-      <view class="alterBox alterBox_border" bindtap="navTo" data-url="guide">
+      <view class="alterBox" bindtap="navTo" data-url="guide">
         <image class="alterBox_img" src="/images/mine/alter.png"></image>
         <text class="alterBox_text">认证登录</text>
       </view>
@@ -64,5 +64,5 @@
         <van-grid-item icon="/images/mine/miniProgram.png" text="一问论坛" bindtap="navApp"/>
       </van-grid>
     </view>
-  </scroll-view>
+  </view>
 </view>
