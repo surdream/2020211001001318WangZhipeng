@@ -4,7 +4,7 @@
 <view style="height:{{menuButtonHeight+20}}px;padding-top:{{menuButtonTop}}px;">
   <view class="navBar">
     <view class="navBar_title">
-      <view>教务信息</view> 
+      <view>综合教务</view> 
       <text class="courentWeek" wx:if="{{accountInfo.week > 0}}">(第{{accountInfo.week}}周)</text>
       <text class="courentWeek" wx:if="{{accountInfo.week <= 0}}">(未开学)</text>
     </view>
@@ -13,7 +13,7 @@
 <scroll-view class="container" scroll-y="true" style="height: {{contentHeight-80}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
-    <view class="topTitle">已选课程</view>
+    <view class="topTitle">课程信息</view>
   </view>
   <!-- 课程列表 -->
   <view class="course_list">

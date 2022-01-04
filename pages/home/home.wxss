@@ -265,6 +265,7 @@ swiper image {
   width: 92%;
   margin-left: 4%;
   border-radius: 25rpx;
+  min-height: 400rpx;
 }
 .QABox{
   margin: 18rpx auto;

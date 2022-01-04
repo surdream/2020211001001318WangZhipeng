@@ -55,7 +55,7 @@
     </view>
     <view class="useful-box">
       <image src="/images/home/club.png"></image>
-      <text>社团部门</text>
+      <text>社团圈子</text>
     </view>
     <view class="useful-box">
       <image src="/images/home/classroom.png"></image>
@@ -73,7 +73,7 @@
     </view>
   </view>
   <view class="switchBar">
-      <view wx:for="{{titleList}}" wx:key="index" class="infoListTitle{{titleTarget == index?'Checked':'UnCheck'}} {{titleTarget == index?item.style:''}}" bindtap="infoListTap" data-id="{{index}}">
+      <view wx:for="{{courseList}}" wx:key="index" class="infoListTitle{{titleTarget == index?'Checked':'UnCheck'}} {{titleTarget == index?item.style:''}}" bindtap="infoListTap" data-id="{{index}}">
         <text wx:if="{{titleTarget == index}}">{{item.pre}}</text>
         <text>{{item.default}}</text>
         <text wx:if="{{titleTarget == index}}">{{item.after}}</text>
@@ -81,7 +81,7 @@
   </view>
   <!-- 课表留言 -->
   <view class="courseWrap">
-    <scroll-view scroll-y="ture" style="height:270rpx;" bindtouchstart="touchStart" bindtouchend="touchEnd">
+    <scroll-view scroll-y="ture" style="height:270rpx;" bindtouchstart="touchStart" bindtouchend="touchEnd" data-type="course">
       <block wx:if="{{titleTarget == 0}}">
         <view class="infoBox" style="--background--:{{course_bg[item.status].color}}" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}">
           <view class="infoBox_time">{{item.startTime}}-{{item.endTime}}</view>
@@ -114,6 +114,8 @@
         <view class="infoBox_noticeImg" wx:if="{{bind_list.length === 0}}"><image src="/images/home/noclass_bind.png"></image></view>
         <view class="infoBox_notice" wx:if="{{lover_status != 1}}">你还没有绑定一位同学的课表</view>
       </block>
+      <block wx:if="{{titleTarget == 2}}">
+      </block>
       <block wx:if="{{titleTarget == 3}}">
         <view class="writeBtn" bindtap="writeTap">+ 给Ta留言</view>
         <view class="msgWrap" wx:for="{{accountInfo.lover.msg}}" wx:key="index" bindtap="navToMsg">
@@ -124,20 +126,18 @@
     </scroll-view>
   </view>
   <view class="switchBar">
-    <view class="viewAll" bindtap="navPublic" data-link="{{helplink}}">
-      <text>如何发布问题</text>
+    <view class="viewAll" bindtap="navPublic" data-link="{{qaList[QATarget].helplink.link}}">
+      <text>{{qaList[QATarget].helplink.title}}</text>
       <image src="/images/QA/help.png"></image>
     </view>
-    <view class="infoListTitle{{QATarget == 0?'Checked':'UnCheck'}}" bindtap="QAListTap" data-id="0">
-      <text wx:if="{{QATarget == 0}}">校园</text>
-      <text>问答</text>
+    <view class="infoListTitle{{QATarget == index?'Checked':'UnCheck'}}" wx:for="{{qaList}}" wx:key="index" bindtap="QAListTap" data-id="{{index}}">
+      <text wx:if="{{QATarget == index}}">{{item.pre}}</text>
+      <text>{{item.default}}</text>
+      <text wx:if="{{QATarget == index}}">{{item.after}}</text>
     </view>
-    <!-- <view class="infoListTitle{{QATarget == 1?'Checked':'UnCheck'}}" bindtap="QAListTap" data-id="1" wx:if="{{!QA_show}}">
-      <text>我的发布</text>
-    </view> -->
   </view>
   <!-- 校园问答 -->
-  <view class="QAWrap">
+  <view class="QAWrap" bindtouchstart="touchStart" bindtouchend="touchEnd" data-type="QA">
     <view class="QABox" wx:for="{{QA_all}}" wx:key="index" wx:if="{{QATarget == 0}}">
       <view class="QABoxTop" style="--background--:{{item.color}}">
         <view class="QABoxData">
@@ -273,7 +273,9 @@
         </view>
       </view>
     </view>
-    <view class="QABox_noData" wx:if="{{QA_mine.length == 0 && QATarget == 1}}">没有我发布的问答</view>
+    <view class="QABox_noData" wx:if="{{event_list.length == 0 && QATarget == 1}}">近期没有活动</view>
+    <view class="QABox_noData" wx:if="{{lost_list.length == 0 && QATarget == 2}}">近期没有比赛组队信息</view>
+    <view class="QABox_noData" wx:if="{{lost_list.length == 0 && QATarget == 3}}">近期没有失物招领发布</view>
   </view>
   <!-- 底部提示 -->
   <view>

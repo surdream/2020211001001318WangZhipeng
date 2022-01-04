@@ -14,11 +14,46 @@ Page({
     contentHeight: app.globalData.contentHeight,
     menuButtonMore: app.globalData.menuButtonMore,
     QA_all: [],
-    QA_mine: [],
+    event_list: [],
+    lost_list: [],
     imgUrls: [],
-    titleList: [
+    courseList: [ // 课表区域标题
       {default: '今日',after: '课表'},
       {default: '关联',after: '课表'}
+    ],
+    qaList: [ // 问答区域标题
+      {
+        default: '问答',
+        pre: '校园',
+        helplink: {
+          title: '如何发布问题',
+          link: 'https://mp.weixin.qq.com/s/9WBqK2bTlHFwd2-na1j6zw'
+        }
+      },
+      {
+        default: '活动',
+        pre: '近期',
+        helplink: {
+          title: '如何参加活动',
+          link: 'https://mp.weixin.qq.com/s/9WBqK2bTlHFwd2-na1j6zw'
+        }
+      },
+      {
+        default: '比赛',
+        after: '组队',
+        helplink: {
+          title: '如何进行组队',
+          link: 'https://mp.weixin.qq.com/s/9WBqK2bTlHFwd2-na1j6zw'
+        }
+      },
+      {
+        default: '失物',
+        after: '招领',
+        helplink: {
+          title: '如何进行发布',
+          link: 'https://mp.weixin.qq.com/s/9WBqK2bTlHFwd2-na1j6zw'
+        }
+      }
     ],
     course_bg: [ // 状态背景
       {color: 'rgba(110,119,131,0.2)'},
@@ -94,20 +129,20 @@ Page({
                   lover_status: lover_status
                 })
                 if (lover_status != 1) {
-                  let titleList = [
+                  let courseList = [
                     {default: '今日',after: '课表'},
                     {default: '关联',after: '课表'},
-                    {default: '私信',pre: '我的'}
+                    {default: '留言',pre: '我的'}
                   ]
-                  this.setData({ titleList: titleList});
+                  this.setData({ courseList: courseList});
                 } else {
-                  let titleList = [
+                  let courseList = [
                     {default: '今日',after: '课表'},
                     {default: '关联',after: '课表'},
-                    {default: '私信',pre: '我的'},
-                    {default: '留言',pre: '最近',style: 'msgText'}
+                    {default: '留言',pre: '我的'},
+                    {default: '关心',after: '的人',style: 'msgText'}
                   ]
-                  this.setData({ titleList: titleList});
+                  this.setData({ courseList: courseList});
                 }
                 // 判断留言状态
                 if (accountInfo.lover) {
@@ -366,12 +401,13 @@ Page({
     }).then(res =>{
       console.log(res);
       if(type == 'acceptLover'){
-        let titleList = [
+        let courseList = [
           {default: '今日',after: '课表'},
           {default: '关联',after: '课表'},
-          {default: '留言',pre: '最近',style: 'msgText'}
+          {default: '留言',pre: '我的'},
+          {default: '关心',after: '的人',style: 'msgText'}
         ]
-        this.setData({ titleList: titleList });
+        this.setData({ courseList: courseList });
       }
       this.setData({ popShow: false });
     })
@@ -384,23 +420,15 @@ Page({
   writeTap(){
     let lover_status = this.data.lover_status;
     if(lover_status == 1){
-      this.setData({ actionShow: true })
+      this.setData({ actionShow: true });
     } else{
-      wx.navigateTo({
-        url: '../guide/guide?from=home',
-      })
-      wx.showToast({
-        title: '绑定一位用户之后才能给对方留言哦',
-        icon: 'none'
-      })
+      wx.navigateTo({url: '../guide/guide?from=home'});
+      Toast('绑定一位用户之后才能给对方留言哦');
     }
   },
   // 抱歉提示
   sorryTap(){
-    wx.showToast({
-      title: '更多功能正在秃头开发中',
-      icon: 'none'
-    })
+    Toast('更多功能正在秃头开发中');
   },
   // 跳转留言板
   navToMsg(){
@@ -431,20 +459,16 @@ Page({
       id
     } = e.currentTarget.dataset;
     if (from == 'checkImg') {
-      wx.navigateTo({
-        url: '/pages/QAPost/QAPost?from=checkImg&content=' + encodeURIComponent(JSON.stringify(content)) + '&id=' + id
-      })
+      wx.navigateTo({url: '/pages/QAPost/QAPost?from=checkImg&content=' + encodeURIComponent(JSON.stringify(content)) + '&id=' + id});
     } else {
-      wx.navigateTo({
-        url: '/pages/QAPost/QAPost?content=' + encodeURIComponent(JSON.stringify(content))
-      })
+      wx.navigateTo({url: '/pages/QAPost/QAPost?content=' + encodeURIComponent(JSON.stringify(content))});
     }
   },
   // 轮播图切换
   swiperChange(e) {
     let that = this;
     let current = e.detail.current;
-    that.setData({ swiperCurrent: current })
+    that.setData({ swiperCurrent: current });
   },
   // 选项卡切换
   infoListTap(e){
@@ -467,7 +491,6 @@ Page({
       url: "api/user/changePassword?password=" + password, method: 'GET',
       header: {'cookie':wx.getStorageSync('sessionid')} 
     }).then(res => {
-      console.log(res)
       let code = res.data.code;
       if (code == 200) {
         let userInfo = {account: wx.getStorageSync('userInfo').account,password: password};
@@ -588,12 +611,12 @@ Page({
   // 留言输入
   onChange(e){
     let value = e.detail;
-    this.setData({ msgValue: value })
+    this.setData({ msgValue: value });
   },
   // 密码更新
   pwdOnChange(e){
     let value = e.detail;
-    this.setData({ pwdValue: value })
+    this.setData({ pwdValue: value });
   },
   // 留言面板关闭
   onClose() {
@@ -650,18 +673,30 @@ Page({
     let touchMoveY = e.changedTouches[0].pageY;
     let tmX = touchMoveX - touchDotX;
     let tmY = touchMoveY - touchDotY;
-    let {
-      titleTarget
-    } = this.data;
+    let type = e.currentTarget.dataset.type;
+    if (type == 'course') {
+      var length = this.data.courseList.length;
+      var target = this.data.titleTarget;
+      var targetStr = 'titleTarget';
+    } else if (type == 'QA') {
+      var length = this.data.qaList.length;
+      var target = this.data.QATarget;
+      var targetStr = 'QATarget';
+    }
     if (time < 20) {
       let absX = Math.abs(tmX);
       let absY = Math.abs(tmY);
       if (absX > 1 * absY) {
-        if (tmX < 0 && titleTarget != this.data.titleList.length - 1) {
-          this.setData({ titleTarget: titleTarget + 1});
-        } else if (tmX >= 0 && titleTarget != 0) {
-          this.setData({ titleTarget: titleTarget - 1});
+        if (tmX < 0 && target != length - 1) {
+          this.setData({ [targetStr]: target + 1});
+        } else if (tmX >= 0 && target != 0) {
+          this.setData({ [targetStr]: target - 1});
         } else {
+          if (tmX < 0 && target == length - 1) {
+            this.setData({ [targetStr]: 0 });
+          } else if (tmX >= 0 && target == 0) {
+            this.setData({ [targetStr]: length - 1 });
+          }
           return;
         }
       }
@@ -671,7 +706,6 @@ Page({
   },
   // 列表下拉
   pullUpLoad(){
-    console.log("====下拉====");
     let that = this;
     let QAEnd = that.data.QAEnd;
     let QA_bg = that.data.QA_bg;
@@ -750,7 +784,7 @@ Page({
   onShareAppMessage(){
     return {
       title: '大学查课表成绩选课，还有更多功能等你探索',
-      path: '/pages/blank/blank',
+      path: '/pages/blank/blank'
     }
   }
 })
