@@ -1,0 +1,67 @@
+page{
+    background: #F5F5F5;
+}
+.navBarImg{
+	border-radius: 50%;
+	margin-left: 3%;
+	position: absolute;
+}
+.cardWrap{
+    width: 94%;
+    margin-left: 3%;
+    border-radius: 25rpx;
+    display: inline-block;
+}
+.cardBox{
+    background: #fff;
+    margin: 40rpx auto 0;
+    border-radius: 32rpx;
+    box-shadow: 6rpx 6rpx 12rpx #d4d8d9,
+                -6rpx -6rpx 12rpx #ecf0f1;
+}
+.cardBox_type{
+    padding-top: 30rpx;
+    margin-left: 36rpx;
+    font-size: 24rpx;
+    color: rgba(0,0,0,0.4);
+}
+.cardBox_title{
+    margin: 18rpx 0 0 36rpx;
+    font-size: 35rpx;
+    font-weight: 700;
+    letter-spacing: 1rpx;
+}
+.cardBox_detail{
+    margin: 12rpx 0 0 36rpx;
+    font-size: 26rpx;
+    color: rgba(0,0,0,0.6);
+}
+.cardBox_tag{
+    position: absolute;
+    margin-top: 28rpx;
+    right: 50rpx;
+    padding: 5rpx 15rpx;
+    border-radius: 50rpx;
+    background: #EBEBED;
+    font-size: 24rpx;
+    font-weight: 700;
+    color: rgba(0,0,0,0.8);
+}
+.cardBox_img{
+    margin: 20rpx 0 0 5%;
+    width: 90%;
+    height: 240rpx;
+    border-radius: 25rpx 25rpx 0 0;
+}
+.cardBox_btn{
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 25rpx 25rpx;
+    line-height: 85rpx;
+    color: rgba(0,0,0,0.5);
+    font-weight: 700;
+}
+.club{
+    height: 500rpx;
+}

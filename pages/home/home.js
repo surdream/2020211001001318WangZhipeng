@@ -16,6 +16,10 @@ Page({
     QA_all: [],
     QA_mine: [],
     imgUrls: [],
+    titleList: [
+      {default: '今日',after: '课表'},
+      {default: '关联',after: '课表'}
+    ],
     course_bg: [ // 状态背景
       {color: 'rgba(110,119,131,0.2)'},
       {color: 'rgba(66,211,173,0.2)'},
@@ -52,7 +56,7 @@ Page({
     titleTarget: 0, // 当前选项卡
     swiperCurrent: 0, // 当前轮播图
   },
-  onLoad: function (options) {
+  onLoad(options){
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       this.setData({ hasImport: true })
@@ -67,7 +71,7 @@ Page({
           console.log(res);
           if (res.data.code == 401) {
             wx.clearStorageSync();
-            wx.redirectTo({ url: '/pages/guide/guide' })
+            wx.redirectTo({ url: '/pages/guide/guide' });
           } else {
             wx.removeStorageSync('sessionid');// 移除旧cookie
             wx.setStorageSync("sessionid", res.cookies[0]);// 存储cookie
@@ -89,12 +93,28 @@ Page({
                   accountInfo: accountInfo,
                   lover_status: lover_status
                 })
+                if (lover_status != 1) {
+                  let titleList = [
+                    {default: '今日',after: '课表'},
+                    {default: '关联',after: '课表'},
+                    {default: '私信',pre: '我的'}
+                  ]
+                  this.setData({ titleList: titleList});
+                } else {
+                  let titleList = [
+                    {default: '今日',after: '课表'},
+                    {default: '关联',after: '课表'},
+                    {default: '私信',pre: '我的'},
+                    {default: '留言',pre: '最近',style: 'msgText'}
+                  ]
+                  this.setData({ titleList: titleList});
+                }
                 // 判断留言状态
                 if (accountInfo.lover) {
                   if (accountInfo.lover.msg.length != 0) {
                     this.setData({ hasMsg: true });
                   }
-                }
+                }                
                 // 判断情侣状态
                 if (lover_status == 2) {
                   this.setData({ popShow: true });
@@ -181,19 +201,12 @@ Page({
                     })
                     // 判断留言状态
                     if(accountInfo.lover.msg.length != 0){
-                      this.setData({
-                        hasMsg: true
-                      })
+                      this.setData({ hasMsg: true });
                     }
                     // 判断情侣状态
                     if(lover_status == 2){
-                      this.setData({
-                        popShow: true
-                      })
-                      wx.showToast({
-                        title: '有一条绑定申请',
-                        icon: 'none'
-                      })
+                      this.setData({ popShow: true });
+                      Toast('有一条绑定申请');
                       this.onLoad();
                     }
                     // 获取今日课表
@@ -321,7 +334,7 @@ Page({
       })
     })
   },
-  onShow: function () {
+  onShow(){
     let firstTip = wx.getStorageSync('firstTip');
     if(firstTip == 'not'){
       this.setData({ pillNoticeShow: false });
@@ -335,13 +348,9 @@ Page({
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
       let url = e.currentTarget.dataset.url;
-      wx.navigateTo({
-        url: '/pages/' + url + '/' + url,
-      })
+      wx.navigateTo({url: '/pages/' + url + '/' + url});
     } else{
-      wx.navigateTo({
-        url: '../guide/guide?from=import',
-      })
+      wx.navigateTo({url: '../guide/guide?from=import'});
     }
   },
   // 胶囊提示相关
@@ -350,12 +359,20 @@ Page({
   },
   // 情侣弹出相关
   popBtnTap(e){
-    let type = e.currentTarget.dataset.type;
+    let type = e.currentTarget.dataset;
     request({
       url: "api/lover/" + type, 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
-      console.log(res)
+      console.log(res);
+      if(type == 'acceptLover'){
+        let titleList = [
+          {default: '今日',after: '课表'},
+          {default: '关联',after: '课表'},
+          {default: '留言',pre: '最近',style: 'msgText'}
+        ]
+        this.setData({ titleList: titleList });
+      }
       this.setData({ popShow: false });
     })
   },
@@ -396,25 +413,23 @@ Page({
   },
   // 跳转公众号
   navPublic(e){
-    let link = e.currentTarget.dataset.link;
-    let id = e.currentTarget.dataset.id;
-    console.log(e)
-    console.log(id)
+    let {
+      link,
+      id
+    } = e.currentTarget.dataset;
     request({
       url: "api/article/click?id=" + id, 
       method: 'GET'
-    }).then(res =>{
     })
-    wx.navigateTo({
-      url: '../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link)),
-    })
+    wx.navigateTo({url: '../publicPage/publicPage?link=' + encodeURIComponent(JSON.stringify(link))});
   },
   // 跳转问答详情
   navQAPost(e){
-    console.log(e);
-    let content = e.currentTarget.dataset.content;
-    let from = e.currentTarget.dataset.from;
-    let id = e.currentTarget.dataset.id;
+    let {
+      content,
+      from,
+      id
+    } = e.currentTarget.dataset;
     if (from == 'checkImg') {
       wx.navigateTo({
         url: '/pages/QAPost/QAPost?from=checkImg&content=' + encodeURIComponent(JSON.stringify(content)) + '&id=' + id
@@ -434,59 +449,15 @@ Page({
   // 选项卡切换
   infoListTap(e){
     let titleTarget = e.currentTarget.dataset.id;
-    this.setData({ titleTarget: titleTarget })
-    if(titleTarget == 2){ this.setData({ hasMsg: false }) }
+    this.setData({ titleTarget: titleTarget });
+    if(titleTarget == 2){
+      this.setData({ hasMsg: false })
+    }
   },
   // 问答选项卡
   QAListTap(e){
     let QATarget = e.currentTarget.dataset.id;
-    this.setData({ QATarget: QATarget })
-    if(QATarget == 1){
-      // 获取我的问答
-      request({
-        url: "api/qa/mylist?" , 
-        method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
-      }).then(res =>{
-        console.log(res.data);
-        let QA_mine = res.data;
-        for(let i=0;i<QA_mine.length;i++){
-          let type = QA_mine[i].type;
-          switch(type){
-            case '闲聊': {QA_mine[i].color = '#666699'} break;
-            case '情感': {QA_mine[i].color = '#FF6666'} break;
-            case '学习': {QA_mine[i].color = '#003399'} break;
-            case '生活': {QA_mine[i].color = '#FFCC99'} break;
-            case '求购': {QA_mine[i].color = '#339999'} break;
-          }
-          if(QA_mine[i].reply_content != null){
-            let reply_content = myBase64.decode(QA_mine[i].reply_content);
-            QA_mine[i].reply_content = reply_content;
-          }
-          if(QA_mine[i].openname != null){
-            let openname = myBase64.decode(QA_mine[i].openname);
-            QA_mine[i].openname = openname;
-          }
-          let picture1 = QA_mine[i].picture1;
-          let picture2 = QA_mine[i].picture2;
-          if (picture1 != null) {
-            QA_mine[i].picture1 = "https://static.powerv.top/static/img/QAImg/" + picture1;
-          }
-          if (picture2 != null) {
-            QA_mine[i].picture2 = "https://static.powerv.top/static/img/QAImg/" + picture2;
-          }
-        }
-        this.setData({
-          QA_mine: QA_mine,
-          QALoading: false
-        })
-        Notify({
-          message: '获取到 ' + res.data.length + ' 条问答',
-          type: 'success ',
-          safeAreaInsetTop: true,
-          duration: '600'
-        });
-      })
-    }
+    this.setData({ QATarget: QATarget });
   },
   // 密码更新相关
   pwdSetTap(){
@@ -530,17 +501,31 @@ Page({
       }
     })
   },
+  // 跳转个人主页
+  navHomepage(e){
+    let {
+      id,
+      content
+    } = e.currentTarget.dataset;
+    console.log(content)
+    if(id == this.data.accountInfo.userid_show){
+      wx.navigateTo({url: '../homepage/homepage?from=self'});
+    } else {
+      wx.navigateTo({url: '../homepage/homepage?from=other&content=' + encodeURIComponent(JSON.stringify(content))});
+    }
+  },
   // 点赞
   agreeTap(e){
-    let id = e.currentTarget.dataset.id;
-    let index = e.currentTarget.dataset.index;
+    let {
+      id,
+      index
+    } = e.currentTarget.dataset;
     let QA_all = this.data.QA_all;
     let likes = QA_all[index].likes;
     request({
       url: "api/qa/likes?id=" + id, 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
-      console.log(res)
       if (res.data.code == 200) {
         let str1 = "QA_all[" + index + "].islike";
         let str2 = "QA_all[" + index + "].likes";
@@ -556,21 +541,22 @@ Page({
           [str2]: likes - 1
         })
       }
-      Toast(res.data.msg)
+      Toast(res.data.msg);
     })
   },
   // 拍一拍
   flipTap(e){
-    let id = e.currentTarget.dataset.id;
-    let name = e.currentTarget.dataset.name;
-    let index = e.currentTarget.dataset.index;
+    let {
+      id,
+      name,
+      index
+    } = e.currentTarget.dataset;
     let QA_all = this.data.QA_all;
     let applaud = QA_all[index].applaud;
     request({
       url: "api/qa/applaud?id=" + id, 
       method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
     }).then(res =>{
-      console.log(res)
       if (res.data.code == 200) {
         let str1 = "QA_all[" + index + "].isapplaud";
         let str2 = "QA_all[" + index + "].applaud";
@@ -578,7 +564,7 @@ Page({
           [str1]: 1,
           [str2]: applaud + 1
         })
-        Toast('你拍了拍@' + name)
+        Toast('你拍了拍@' + name);
       } else if (res.data.code == 300) {
         let str1 = "QA_all[" + index + "].isapplaud";
         let str2 = "QA_all[" + index + "].applaud";
@@ -586,7 +572,7 @@ Page({
           [str1]: 0,
           [str2]: applaud - 1
         })
-        Toast('撤回了拍一拍@' + name)
+        Toast('撤回了拍一拍@' + name);
       }
     })
   },
@@ -625,21 +611,14 @@ Page({
   sentMsg(){
     let msgValue = this.data.msgValue;
     if(msgValue.length == 0){
-      wx.showToast({
-        title: '请输入想说的话',
-        icon: 'error'
-      })
+      Toast('请输入想说的话');
     } else{
       request({
         url: "api/lover/sendmsg?content=" + msgValue, 
         method: 'GET', header: {'cookie':wx.getStorageSync('sessionid')}
       }).then(res =>{
-        console.log(res);
         if(res.data.code == 200){
-          wx.showToast({
-            title: '留言发送成功！对方将在留言板看到你的留言',
-            icon: 'none'
-          })
+          Toast('留言发送成功！对方将在留言板看到你的留言');
           this.setData({
             actionShow: false,
             msgValue: ''
@@ -655,7 +634,6 @@ Page({
   },
   // 滑动反馈
   touchStart(e){
-    // console.log(e)
     touchDotX = e.touches[0].pageX; // 获取触摸时的原点
     touchDotY = e.touches[0].pageY;
     // 使用js计时器记录时间    
@@ -678,31 +656,11 @@ Page({
     if (time < 20) {
       let absX = Math.abs(tmX);
       let absY = Math.abs(tmY);
-      if (absX > 2 * absY) {
-        if (tmX < 0 && titleTarget == 0) {
-          this.setData({
-            titleTarget: 1,
-          });
-        } else if (tmX >= 0 && titleTarget == 1) {
-          this.setData({
-            titleTarget: 0,
-          });
-        } else if (tmX < 0 && titleTarget == 1) {
-          this.setData({
-            titleTarget: 2,
-          });
-        } else if (tmX >= 0 && titleTarget == 2) {
-          this.setData({
-            titleTarget: 1,
-          });
-        } else if (tmX < 0 && titleTarget == 2) {
-          this.setData({
-            titleTarget: 0,
-          });
-        } else if (tmX >= 0 && titleTarget == 0) {
-          this.setData({
-            titleTarget: 2,
-          });
+      if (absX > 1 * absY) {
+        if (tmX < 0 && titleTarget != this.data.titleList.length - 1) {
+          this.setData({ titleTarget: titleTarget + 1});
+        } else if (tmX >= 0 && titleTarget != 0) {
+          this.setData({ titleTarget: titleTarget - 1});
         } else {
           return;
         }

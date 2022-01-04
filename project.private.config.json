@@ -1,150 +1,174 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/office/office",
-          "pathName": "pages/office/office",
-          "query": "",
-          "scene": null
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/inbox/inbox",
-          "pathName": "pages/inbox/inbox",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/guide/guide",
-          "pathName": "pages/guide/guide",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/mine",
-          "pathName": "pages/mine/mine",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/couple/couple",
-          "pathName": "pages/couple/couple",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/couple/anniversary/anniversary",
-          "pathName": "pages/couple/anniversary/anniversary",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/couple/msgboard/msgboard",
-          "pathName": "pages/couple/msgboard/msgboard",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/about/about",
-          "pathName": "pages/mine/about/about",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/privacy/privacy",
-          "pathName": "pages/mine/privacy/privacy",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/update/update",
-          "pathName": "pages/mine/update/update",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/update/help/help",
-          "pathName": "pages/mine/update/help/help",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
-          "query": "",
-          "scene": 1047
-        },
-        {
-          "name": "pages/schoolCalendar/schoolCalendar",
-          "pathName": "pages/schoolCalendar/schoolCalendar",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/navigation/navigation",
-          "pathName": "pages/navigation/navigation",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/navigation/details/details",
-          "pathName": "pages/navigation/details/details",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/handbook/handbook",
-          "pathName": "pages/mine/handbook/handbook",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/guide/subscribe/subscribe",
-          "pathName": "pages/guide/subscribe/subscribe",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/testify/addImages/addImages",
-          "pathName": "pages/testify/addImages/addImages",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/QAPost/QAPost",
-          "pathName": "pages/QAPost/QAPost",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/teamInfo/teamInfo",
-          "pathName": "pages/mine/teamInfo/teamInfo",
-          "query": "",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/office/office",
+                    "pathName": "pages/office/office",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/inbox/inbox",
+                    "pathName": "pages/inbox/inbox",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/guide/guide",
+                    "pathName": "pages/guide/guide",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/home/home",
+                    "pathName": "pages/home/home",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/mine",
+                    "pathName": "pages/mine/mine",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/couple/couple",
+                    "pathName": "pages/couple/couple",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/couple/anniversary/anniversary",
+                    "pathName": "pages/couple/anniversary/anniversary",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/couple/msgboard/msgboard",
+                    "pathName": "pages/couple/msgboard/msgboard",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/about/about",
+                    "pathName": "pages/mine/about/about",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/privacy/privacy",
+                    "pathName": "pages/mine/privacy/privacy",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/update/update",
+                    "pathName": "pages/mine/update/update",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/update/help/help",
+                    "pathName": "pages/mine/update/help/help",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/home/home",
+                    "pathName": "pages/home/home",
+                    "query": "",
+                    "scene": 1047
+                },
+                {
+                    "name": "pages/schoolCalendar/schoolCalendar",
+                    "pathName": "pages/schoolCalendar/schoolCalendar",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/navigation/navigation",
+                    "pathName": "pages/navigation/navigation",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/navigation/details/details",
+                    "pathName": "pages/navigation/details/details",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/handbook/handbook",
+                    "pathName": "pages/mine/handbook/handbook",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/guide/subscribe/subscribe",
+                    "pathName": "pages/guide/subscribe/subscribe",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/testify/addImages/addImages",
+                    "pathName": "pages/testify/addImages/addImages",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/QAPost/QAPost",
+                    "pathName": "pages/QAPost/QAPost",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/teamInfo/teamInfo",
+                    "pathName": "pages/mine/teamInfo/teamInfo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/userInfo/userInfo",
+                    "pathName": "pages/userInfo/userInfo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/discover/discover",
+                    "pathName": "pages/discover/discover",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/alterInfo/alterInfo",
+                    "pathName": "pages/mine/alterInfo/alterInfo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/homepage/homepage",
+                    "pathName": "pages/homepage/homepage",
+                    "query": "",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

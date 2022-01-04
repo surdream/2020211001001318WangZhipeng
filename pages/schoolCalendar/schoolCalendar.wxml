@@ -1,6 +1,6 @@
 <!-- 状态栏区域 -->
 <view style="height:{{menuButtonHeight+20}}px;padding-top:{{menuButtonTop}}px;">
-  <image class="navBarButton" src="/images/conmon/close.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <image class="navBarButton" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
   <view class="navBar">
   <view class="navBar_title">
     <view>教学校历</view> 

@@ -1,16 +1,16 @@
 {
   "pages":[
     "pages/blank/blank",
+    "pages/guide/guide",
     "pages/home/home",
+    "pages/schoolCalendar/schoolCalendar",
     "pages/QAPost/QAPost",
+    "pages/homepage/homepage",
     "pages/publicPage/publicPage",
     "pages/office/office",
-    "pages/guide/guide",
-    "pages/userStatus/userStatus",
-    "pages/schoolCalendar/schoolCalendar",
-    "pages/target/target",
-    "pages/testify/testify",
     "pages/testify/addImages/addImages",
+    "pages/discover/discover",
+    "pages/discover/targetInfo/targetInfo",
     "pages/navigation/navigation",
     "pages/navigation/details/details",
     "pages/mine/mine",
@@ -62,12 +62,13 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-share-sheet": "@vant/weapp/share-sheet/index",
     "van-collapse": "@vant/weapp/collapse/index",
-    "van-collapse-item": "@vant/weapp/collapse-item/index"
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-sticky": "@vant/weapp/sticky/index"
   },
   "tabBar": {
     "color": "#999999",
     "selectedColor": "#4CD9BD",
-    "backgroundColor":"#F8F5F8",
+    "backgroundColor":"#F5F5F5",
     "borderStyle": "white",
     "list": [
       {
@@ -83,8 +84,8 @@
         "selectedIconPath": "/images/tabbar/office.png"
       },
       {
-        "pagePath": "pages/navigation/navigation",
-        "text": "地图",
+        "pagePath": "pages/discover/discover",
+        "text": "发现",
         "iconPath": "/images/tabbar/navigation_not.png",
         "selectedIconPath": "/images/tabbar/navigation.png"
       },

@@ -1,0 +1,79 @@
+<!-- 顶部通知 -->
+<van-notify id="van-notify"/>
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+    <image class="navBarButton_bold" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+    <view class="navBar"><text class="navBar_title black80">个人主页</text></view>
+</view>
+<scroll-view scroll-y="true" class="container" bind:scroll="onScroll" id="scroller" style="height:{{contentHeight}}px;">
+    <view class="topWrap" wx:if="{{from == 'self'}}">
+        <view class="topWrap_edit" bindtap="navAlterInfo">编辑个人资料</view>
+        <image class="topWrap_sex" src="/images/guide/{{accountInfo.sex}}.png"></image>
+        <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
+        <view class="topWrap_name">{{accountInfo.openname}}</view>
+        <view class="topWrap_class">华东交通大学 {{accountInfo.class}}</view>
+        <view class="topWrap_id"><text>ID: </text>{{accountInfo.userid_show}}</view>
+    </view>
+    <view class="topWrap" wx:if="{{from == 'other'}}">
+        <!-- <image class="topWrap_sex" src="/images/guide/{{accountInfo.sex}}.png"></image> -->
+        <image class="topWrap_avatar" src="{{content.avatar}}"></image>
+        <view class="topWrap_name">{{content.openname}}</view>
+        <view class="topWrap_class">华东交通大学 {{content.class}}</view>
+        <view class="topWrap_id"><text>ID: </text>{{content.sponorid}}</view>
+    </view>
+    <view class="infoWrap">
+        <van-sticky scroll-top="{{ scrollTop }}" offset-top="{{ offsetTop }}">
+            <scroll-view scroll-x="true" class="infoScroll">
+                <view class="infoTitle {{titleTarget == index?'has':'not'}}_selected" wx:for="{{infoTitle}}" wx:key="index" bindtap="swiftTap" data-id="{{index}}">{{item}}</view>
+            </scroll-view>
+        </van-sticky>
+        <view class="QAWrap" wx:if="{{titleTarget == 0}}">
+            <view class="QAWrap_count" wx:if="{{QA_mine}}">{{QA_mine.length}}项</view>
+            <view class="QABox" wx:for="{{QA_mine}}" wx:key="index">
+                <view class="QABoxTop" style="--background--:{{item.color}}">
+                    <view class="QABoxData">
+                    <image class="QABoxData_img" src="/images/QA/data.png" style="background:{{item.color}};"></image>
+                    <text>{{item.heat}}人在讨论</text>
+                    </view>
+                    <view class="QABoxTop_title"># {{item.type}}</view>
+                </view>
+                <view class="QABoxContent">
+                    <view class="QABoxContent_topBar">
+                    <view class="QABoxContent_name">
+                        <view class="QABoxContent_nameTxt">{{item.openname}}</view> 
+                        <view class="QABoxContent_from" style="border: 2rpx solid {{item.color}};color:{{item.color}};">{{item.source}}</view>
+                    </view>
+                    <view class="QABoxContent_count">
+                        <text>发布于:{{item.createtime}} / </text>
+                        <text wx:if="{{item.limittime == '长期可用'}}">长期有效</text>
+                        <text wx:if="{{item.limittime != '长期可用'}}">讨论剩余：{{item.limittime}}</text>
+                    </view>
+                    <image class="QABoxContent_avatar" src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="QABoxContent_title" bindtap="navQAPost" data-content="{{item}}">{{item.title}}</view>
+                    <!-- 预览图显示 -->
+                    <view class="contentWrap_imgBox">
+                        <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1 != null}}"/>
+                        <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2 != null}}"/>
+                    </view>
+                    <!-- 点赞评论 -->
+                    <view class="QABoxInfo">
+                        <view class="QABoxInfo_enterBtn" bindtap="navQAPost" data-content="{{item}}" style="background:{{item.color}};">进入问答</view>
+                        <view class="QABoxInfo_agree QABoxInfoBox">
+                            <image src="/images/QA/agree0.png"></image>
+                            <text>{{item.likes}}</text>
+                        </view>
+                        <view class="QABoxInfo_flip QABoxInfoBox">
+                            <image src="/images/QA/flip0.png"></image>
+                            <text>{{item.applaud}}</text>
+                        </view>
+                        <view class="QABoxInfo_msg QABoxInfoBox">
+                            <image src="/images/QA/remark0.png"></image>
+                            <text>{{item.replys}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

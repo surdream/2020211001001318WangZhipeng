@@ -1,82 +1,95 @@
 page{
-  background: #B6B6B6;
+  background: #F5F5F5;
 }
-.topWrap{
-  display: inline-flex;
+.optionBox{
+  width: 88%;
+  margin: 0 auto 80rpx;
+  background: #fff;
+  border-radius: 25rpx;
 }
-.topWrap_avatar{
-  border-radius: 50%;
-  border: 4rpx solid #EFEFEF;
+.optionBox_avatar{
+  padding: 25rpx 15rpx;
+  height: 125rpx;
+}
+.optionBox_avatar image{
+  float: right;
   width: 100rpx;
   height: 100rpx;
-  margin: 50rpx 0 0 25rpx;
-  box-shadow:  0rpx 0rpx 12rpx gray;
-}
-.avatarSex{
-  position: absolute;
-  width: 24rpx;
-  height: 24rpx;
-  margin: 50rpx 0 0 100rpx;
   border-radius: 50%;
-  background: #EFEFEF;
-  border: 4rpx solid #fff;
+  margin: 10rpx 16rpx 0 0;
 }
-.topWrap_openname{
+.optionBox_avatar text{
+  margin: 42rpx 0 0 15rpx;
   position: absolute;
-  margin: 60rpx 0 0 150rpx;
-  color: rgba(255, 255, 255, 1.0);
-  font-weight: 800;
-  font-size: 28rpx;
 }
-.topWrap_detail{
-  position: absolute;
-  margin: 100rpx 0 0 150rpx;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 700;
-  font-size: 26rpx;
+.optionBox_item{
+  padding: 25rpx 15rpx;
 }
-.topWrap_update{
-  display: inline-flex;
-  position: absolute;
-  margin-top: 100rpx;
-  right: 32rpx;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 800;
-  font-size: 24rpx;
+.optionBox_item image{
+  width: 38rpx;
+  height: 38rpx;
+  float: right;
 }
-.topWrap_update image{
-  width: 36rpx;
-  height: 36rpx;
-  margin-right: 4rpx;
+.optionBox_item text{
+  margin-left: 15rpx;
+  line-height: 40rpx;
 }
-.mainContent{
-  background: linear-gradient(180deg,#fff 0%,#EFEFEF 80%);
-  border-radius: 60rpx 60rpx 0 0;
-  height: 1500rpx;
-  margin-top: 50rpx;
-  padding-top: 25rpx;
-}
-.inputBox{
+.optionBox_border{
   width: 90%;
-  margin: 0 5%;
-  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
-  padding: 25rpx 0;
-  font-weight: 800;
+  margin: 0 auto;
+  border-bottom: 1rpx solid rgba(0,0,0,0.04);
 }
-.inputBox_detail{
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.5);
+.nickName{
+  float: right;
+  color: rgba(0,0,0,0.5);
 }
-.cancelBtn{
+.signOut{
+  position: absolute;
+  bottom: 0;
   text-align: center;
+  width: 100%;
+  font-size: 22rpx;
+  color: rgba(0,0,0,0.20);
+  letter-spacing: 1rpx;
+}
+.nameSetWrap{
+  background: #F5F5F5;
+  height: 40%;
+}
+.nameSetWrap{
+  padding: 30rpx;
+}
+.nameSetWrap_title{
+  background: linear-gradient(to right, #339966, #099970);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 35rpx;
   font-weight: 700;
-  font-size: 24rpx;
-  position: fixed;
-  bottom: 48rpx;
-  padding: 25rpx 0;
-  width: 40%;
-  margin-left: 30%;
-  border-radius: 40rpx;
-  background: #B6B6B6;
-  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 1rpx;
+  margin-left: 9rpx;
+}
+.nameSetWrap_subTitle{
+  background: linear-gradient(to right, #339966, #099970);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 4rpx 0 36rpx 0;
+  font-size: 26rpx;
+  margin-left: 9rpx;
+}
+.nameSetWrap_input{
+  border: solid 5rpx #099970;
+  border-radius: 20rpx;
+}
+.nameSetWrap_btn{
+  margin-top: 25rpx;
+  border-radius: 16rpx;
+  width: 100%;
+  background: #099970;
+  text-align: center;
+  padding: 20rpx 0;
+  letter-spacing: 1rpx;
+  font-weight: 700;
+  color: #F5F5F5;
 }

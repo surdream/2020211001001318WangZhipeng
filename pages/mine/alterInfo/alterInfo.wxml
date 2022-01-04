@@ -1,32 +1,87 @@
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight}}px;margin-top:{{menuButtonTop}}px;">
-  <image class="navBarButton_bold" src="/images/conmon/close-white.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
-  <view class="navBar"><text class="navBar_title white95">个人信息</text></view>
+<view class="whiteNav" style="height:{{menuButtonHeight}}px;padding:{{menuButtonTop}}px 0 15rpx 0;">
+  <image class="navBarButton_bold" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black95">个人资料</text></view>
 </view>
 <!-- 内容区域 -->
-<view class="container">
-  <view class="topWrap">
-    <image class="topWrap_avatar" src="{{accountInfo.avatar}}"></image>
-    <image class="avatarSex" src="/images/guide/{{accountInfo.sex}}.png" wx:if="{{accountInfo}}"></image>
-    <text class="topWrap_openname">{{accountInfo.openname}}</text>
-    <view class="topWrap_detail">一目校园 | id：{{accountInfo.userid_show}}</view>
-    <view class="topWrap_update" bindtap="updateTap">
-      <image src="/images/mine/update.png"></image>
-      <text>同步微信账户</text>
+<scroll-view class="container" scroll-y="true" style="height:{{contentHeight}}px;margin-top:80rpx;">
+  <view class="optionBox">
+    <view class="optionBox_avatar">
+      <image src="{{accountInfo.avatar}}" bindtap="checkImg"></image>
+      <text>个人头像</text>
+    </view>
+    <view class="optionBox_border"></view>
+    <view class="optionBox_item" bindtap="changeName">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">{{accountInfo.openname}}</text>
+      <text>我的昵称</text>
+    </view>
+    <view class="optionBox_border"></view>
+    <view class="optionBox_item" bindtap="updateTap">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">同步微信昵称头像</text>
+      <text>同步微信</text>
     </view>
   </view>
-  <view class="mainContent">
-    <scroll-view scroll-y="true" style="height: 60vh;">
-      <view class="inputBox">所属学校：<text class="inputBox_detail">华东交通大学</text></view>
-      <view class="inputBox">当前学期：<text class="inputBox_detail">{{accountInfo.term}}</text></view>
-      <view class="inputBox">政治面貌：<text class="inputBox_detail">{{accountInfo.political}}</text></view>
-      <view class="inputBox">英语分级：<text class="inputBox_detail">{{accountInfo.elevel}}</text></view>
-      <view class="inputBox">姓名：<text class="inputBox_detail">{{accountInfo.realname}}</text></view>
-      <view class="inputBox">班级：<text class="inputBox_detail">{{accountInfo.class}}</text></view>
-      <view class="inputBox">生日：<text class="inputBox_detail">{{accountInfo.birth}}</text></view>
-      <view class="inputBox">民族：<text class="inputBox_detail">{{accountInfo.nation}}</text></view>
-      <view class="inputBox">家乡：<text class="inputBox_detail">{{accountInfo.hometown}}</text></view>
-    </scroll-view>
-    <view class="cancelBtn" bindtap="cancelTap">注销账户</view>
+  <view class="optionBox">
+    <view class="optionBox_item">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">华东交通大学</text>
+      <text>我的高校</text>
+    </view>
+    <view class="optionBox_border"></view>
+    <view class="optionBox_item">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">{{accountInfo.term}}</text>
+      <text>当前学期</text>
+    </view>
+    <view class="optionBox_border"></view>
+    <view class="optionBox_item" bindtap="navGuide">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">已认证</text>
+      <image src="/images/mine/complete.png" style="width:36rpx;height:36rpx;"></image>
+      <text>学生认证</text>
+    </view>
   </view>
-</view>
+  <view class="optionBox">
+    <view class="optionBox_item" bindtap="clearStorage">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">清除后需要重新登陆</text>
+      <text>清除缓存</text>
+    </view>
+    <view class="optionBox_border"></view>
+    <view class="optionBox_item" bindtap="navPrivacy">
+      <image src="/images/conmon/right-deepGrey.png"></image>
+      <text class="nickName">一目校园隐私条例</text>
+      <text>隐私保护</text>
+    </view>
+  </view>
+  <view class="signOut" bindtap="cancelTap">注销账户</view>
+</scroll-view>
+<!-- 用户名更新 -->
+<van-popup
+  show="{{ nameShow }}"
+  bind:close="nameOnClose"
+  custom-style="padding:0;width:95%;margin:0 auto;border-radius:36rpx;"
+>
+  <view class="nameSetWrap">
+    <view class="nameSetWrap_title">编辑昵称</view>
+    <view class="nameSetWrap_subTitle">支持至多24位中英文数字，符号-和_</view>
+    <view class="nameSetWrap_input">
+      <van-field
+        value="{{ nameValue }}"
+        placeholder="输入新的昵称..."
+        border="{{ false }}"
+        bind:change="nameOnChange"
+        clearable="true"
+        custom-style="border-radius:16rpx;"
+        maxlength="24"
+        show-word-limit="{{ true }}"
+      />
+    </view>
+    <view class="nameSetWrap_btn">
+      <view wx:if="{{!isUpdate}}" bindtap="nameSetTap">更新</view>
+      <van-loading size="16px" text-size="12px" color="#0A1F14" wx:if="{{isUpdate}}"><text style="color:rgba(0,0,0,0.8);">验证中...</text></van-loading>
+    </view>
+  </view>
+</van-popup>

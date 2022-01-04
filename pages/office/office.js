@@ -24,17 +24,11 @@ Page({
     grade_list: [],
     arrange_list: [],
     repair_list: [],
-    weekDayLits: ['一','二','三','四','五','六','七',],
     grade_actions: [],
-    officeColorList: [
-      '#67D5B5','#EE7785','#C89EC4','#84B1ED'
-    ],
-    userInfo: {
-      schUrl: '/images/conmon/ecjtu.jpg'
-    },
-    infoListTitle: [
-      {name: '我的课表'},{name: '查询成绩'},{name: '考试安排'}
-    ],
+    weekDayLits: ['一','二','三','四','五','六','七',],
+    officeColorList: ['#67D5B5','#EE7785','#C89EC4','#84B1ED'],
+    userInfo: {schUrl: '/images/conmon/ecjtu.jpg'},
+    infoListTitle: [{name: '我的课表'},{name: '查询成绩'},{name: '考试安排'}],
   },
   onLoad(options) {
     let timestamp = Date.parse(new Date());
@@ -54,7 +48,7 @@ Page({
       })
       for(let i=0;i<accountInfo.oldterm.length;i++){
         let term_list_str = 'grade_actions[' + i + '].name';
-        this.setData({ [term_list_str]: accountInfo.oldterm[i] })
+        this.setData({[term_list_str]: accountInfo.oldterm[i]})
       }
       // 查询课表
       request({
@@ -167,7 +161,7 @@ Page({
   infoListTap(e){
     let titleTarget = e.currentTarget.dataset.id;
     this.setData({
-      titleTarget:titleTarget,
+      titleTarget: titleTarget,
       fromTarget: null,
     })
   },
@@ -183,6 +177,10 @@ Page({
       selectIndex: id,
       popShow: true
     });
+    wx.showToast({
+      title: '左右滑动可以切换课程😜',
+      icon: 'none'
+    })
   },
   onGradeClose() {
     this.setData({
@@ -276,15 +274,13 @@ Page({
     } else{
       wx.showToast({
         title: '未导入课表，无法进行查询',
-        icon: 'none'
+        icon: 'error'
       })
     }
   },
-  touchStart: function (e) {
-    // console.log(e)
-    touchDotX = e.touches[0].pageX; // 获取触摸时的原点
+  touchStart(e){
+    touchDotX = e.touches[0].pageX;
     touchDotY = e.touches[0].pageY;
-    // 使用js计时器记录时间    
     interval = setInterval(function () {
       touchTime++;
     }, 100);
@@ -293,56 +289,31 @@ Page({
       touchY: e.changedTouches[0].clientY,
     });
   },
-  touchEnd: function (e) {
-    // console.log(e)
+  touchEnd(e){
+    let {
+      selectIndex,
+      courseList
+    } = this.data;
     let touchMoveX = e.changedTouches[0].pageX;
     let touchMoveY = e.changedTouches[0].pageY;
     let tmX = touchMoveX - touchDotX;
     let tmY = touchMoveY - touchDotY;
-    let {
-      titleTarget
-    } = this.data;
     if (touchTime < 20) {
       let absX = Math.abs(tmX);
       let absY = Math.abs(tmY);
       if (absX > 2 * absY) {
-        if (tmX < 0) {
-          // console.log("左滑=====" + tmX)
+        if (tmX < 0 && selectIndex != courseList.length - 1) {
+          this.setData({ selectIndex: selectIndex + 1});
+        } else if (tmX >= 0 && selectIndex != 0) {
+          this.setData({ selectIndex: selectIndex - 1});
         } else {
-          // console.log("右滑=====" + tmX)
-        }
-        if (tmX < 0 && titleTarget == 0) {
-          this.setData({
-            titleTarget: 1,
-            fromTarget: null
-          });
-        } else if (tmX >= 0 && titleTarget == 1) {
-          this.setData({
-            titleTarget: 0,
-            fromTarget: null
-          });
-        } else if (tmX < 0 && titleTarget == 1) {
-          this.setData({
-            titleTarget: 2,
-            fromTarget: null
-          });
-        } else if (tmX >= 0 && titleTarget == 2) {
-          this.setData({
-            titleTarget: 1,
-            fromTarget: null
-          });
-        } else if (tmX < 0 && titleTarget == 2) {
-          this.setData({
-            titleTarget: 0,
-            fromTarget: null
-          });
-        } else if (tmX >= 0 && titleTarget == 0) {
-          this.setData({
-            titleTarget: 2,
-            fromTarget: null
-          });
-        }  else {
-          return;
+          if(selectIndex == 0){
+            this.setData({ selectIndex: courseList.length - 1});
+          } else if(selectIndex == courseList.length - 1){
+            this.setData({ selectIndex: 0});
+          } else {
+            return;
+          }
         }
       }
     }

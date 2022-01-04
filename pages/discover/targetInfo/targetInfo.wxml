@@ -1,0 +1,30 @@
+<!-- 状态栏区域 -->
+<view class="whiteNav" style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+  <image class="navBarButton_bold" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
+  <view class="navBar"><text class="navBar_title black80">{{content.type}}</text></view>
+</view>
+<!-- 内容区域 -->
+<scroll-view scroll-y="true" class="container" style="height:{{contentHeight-75}}px;">
+  <view class="topWrap">
+    <view class="topCard" style="background:{{content.background}};">
+      <view class="topCard_tag">{{content.tag}}</view>
+      <view class="topCard_detail">{{content.detail}}</view>
+      <view class="topCard_title">{{content.title}}</view>
+      <view class="topCard_award">{{content.award}}</view>
+    </view>
+    <view class="viewBtn" bindtap="navTo">{{content.method}}</view>
+  </view>
+  <view class="detailWrap">
+    <view class="detailWrap_title">活动说明</view>
+    <view class="detailItem">
+      <text class="detailItem_title">添加-志愿者报名QQ群</text>
+      <view class="detailItem_info"><view class="number" bindtap="getNumber">群号: 892301328</view></view>
+    </view>
+    <view class="detailItem">
+      <text class="detailItem_title">携带自己的学生证、身份证等有效证件</text>
+    </view>
+    <view class="detailItem">
+      <text class="detailItem_title">备注：^_^</text>
+    </view>
+  </view>
+</scroll-view>

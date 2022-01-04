@@ -1,0 +1,81 @@
+page{
+    background: #F5F5F5;
+}
+.topWrap{
+    padding: 36rpx 0 0 0;
+}
+.topCard{
+    display: inline-block;
+    width: 92%;
+    height: 400rpx;
+    margin: 0 4%;
+    border-radius: 36rpx;
+}
+.topCard_tag{
+    position: absolute;
+    right: 8%;
+    padding: 6rpx 18rpx;
+    font-size: 26rpx;
+    background: rgba(255,255,255,0.15);
+    border-radius: 25rpx;
+    margin-top: 28rpx;
+    color: #FFC996;
+    font-weight: 700;
+}
+.topCard_detail{
+    color: #FFC996;
+    font-size: 30rpx;
+    font-weight: 700;
+    margin: 30rpx 0 0 40rpx;
+}
+.topCard_title{
+    color: #fff;
+    font-size: 40rpx;
+    margin: 10rpx 0 0 40rpx;
+    font-weight: 800;
+}
+.topCard_award{
+    position: absolute;
+    padding: 6rpx 18rpx;
+    font-size: 24rpx;
+    background: rgba(255,255,255,0.15);
+    border-radius: 25rpx;
+    margin: 196rpx 0 0 40rpx;
+    color: rgba(255,255,255,0.8);
+}
+.viewBtn{
+    width: 240rpx;
+    text-align: center;
+    padding: 20rpx 0;
+    border-radius: 50rpx;
+    font-size: 30rpx;
+    font-weight: 800;
+    color: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.1);
+    margin: 60rpx auto;
+}
+
+/* 下半部分 */
+
+.detailWrap_title{
+    margin: 40rpx 0 56rpx 4%;
+    font-weight: 700;
+    font-size: 28rpx;
+}
+.detailItem{
+    width: 92%;
+    margin: 0 4% 25rpx;
+    border-radius: 25rpx;
+    background: #fff;
+    padding: 30rpx 0;
+}
+.detailItem_title{
+    margin-left: 32rpx;
+}
+.detailItem_info{
+    float: right;
+    margin-right: 32rpx;
+}
+.number{
+    color: #2b90d9;
+}

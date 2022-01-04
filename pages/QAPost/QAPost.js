@@ -24,39 +24,23 @@ Page({
     selfList: [],
     answerList: [],
     topActions: [
-      {
-        name: '分享',
-        openType: 'share'
-      },
-      {
-        name: '举报',
-        subname: '收到您的举报后，我们会尽快进行核查'
-      },
+      { name: '分享', openType: 'share' },
+      { name: '举报', subname: '收到您的举报后，我们会尽快进行核查' },
     ],
     midActions: [
-      {
-        name: '分享',
-        openType: 'share'
-      },
-      {
-        name: '删除'
-      }
+      { name: '分享', openType: 'share' },
+      { name: '删除' }
     ],
     btmActions: [
-      {
-        name: '分享',
-        openType: 'share'
-      },
-      {
-        name: '举报',
-      }
+      { name: '分享', openType: 'share' },
+      { name: '举报', }
     ],
     options: [
       { name: '微信', icon: 'wechat', openType: 'share' },
       { name: '复制链接', icon: 'link' },
     ],
   },
-  onLoad: function (options) {
+  onLoad(options){
     let from = options.from;
     let content = JSON.parse(decodeURIComponent(options.content));
     let imgUrl = [content.picture1].concat([content.picture2]);
@@ -67,7 +51,8 @@ Page({
     this.setData({
       content: content,
       imgUrl: imgUrl,
-      msgValue: QAMsgValue
+      msgValue: QAMsgValue,
+      accountInfo: wx.getStorageSync('accountInfo')
     })
     // 热门回答
     request({
@@ -87,7 +72,6 @@ Page({
           answerList[i].openname = openname;
           answerList[i].show = true;
         }
-
       }
       this.setData({
         QALoading: false,
@@ -130,6 +114,23 @@ Page({
   tagTap(){
     let type = this.data.content.type;
     Toast(type + '墙');
+  },
+  // 跳转我的主页
+  navSelfpage(){
+    wx.navigateTo({url: '../homepage/homepage?from=self'});
+  },
+  // 跳转个人主页
+  navHomepage(e){
+    let {
+      id,
+      content
+    } = e.currentTarget.dataset;
+    console.log(content)
+    if(id == this.data.accountInfo.userid_show){
+      wx.navigateTo({url: '../homepage/homepage?from=self'});
+    } else {
+      wx.navigateTo({url: '../homepage/homepage?from=other&content=' + encodeURIComponent(JSON.stringify(content))});
+    }
   },
   // 输入相关
   onChange(e){

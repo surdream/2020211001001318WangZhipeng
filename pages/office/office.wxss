@@ -1,6 +1,6 @@
 @import "./office.skeleton.wxss";
 page{
-  background: #F8F5F8;
+  background: #F5F5F5;
 }
 .courentWeek{
   font-size: 24rpx;
@@ -29,47 +29,65 @@ page{
   display: inline-flex;
   border-radius: 25rpx;
 }
+.course_scroll{
+  height: 240rpx;
+  white-space: nowrap;
+}
 .courseBox{
-  margin-left: 22rpx;
-  width: 216rpx;
-  height: 152rpx;
+  margin-right: 15rpx;
+  width: 160rpx;
+  height: 240rpx;
   display: inline-flex;
-  border-radius: 25rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.ml25{
+  margin-left: 25rpx;
 }
 .courseBox_img{
   position: absolute;
-  width: 216rpx;
-  height: 152rpx;
-  border-radius: 25rpx;
+  width: 160rpx;
+  height: 240rpx;
+  border-radius: 20rpx;
 }
 .courseBox_title{
-  color: rgba(0, 0, 0, 0.8);
-  font-weight: 800;
-  line-height: 27rpx;
-  font-size: 22rpx;
-  margin: 20rpx 0 0 15rpx;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  line-height: 30rpx;
+  font-style: italic;
+  font-size: 30rpx;
+  margin: 120rpx 0 0 5rpx;
   position: absolute;
-  width: 200rpx;
-  height: 54rpx;
+  height: 120rpx;
+  width: 150rpx;
   overflow: hidden;
   white-space: normal !important;
   word-break: break-all;
 }
-.courseBox_detail{
-  color: rgba(0, 0, 0, 1.0);
-  font-size: 20rpx;
-  margin: 76rpx 0 0 15rpx;
-  position: absolute;
-}
 .courseBox_class{
   color: rgba(0, 0, 0, 0.8);
-  font-size: 20rpx;
-  margin: 100rpx 0 0 15rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  line-height: 24rpx;
+  margin: 60rpx 0 0 10rpx;
   position: absolute;
-  width: 200rpx;
+  width: 100rpx;
   height: auto;
   white-space: normal !important;
   word-break: break-all;
+}
+.courseBox_num{
+  position: absolute;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 700;
+  font-size: 22rpx;
+  margin: 12rpx 0 0 88rpx;
+  width: 64rpx;
+  text-align: center;
+  height: 32rpx;
+  line-height: 34rpx;
+  border-radius: 32rpx;
+  background: rgba(255,255,255,0.4);
 }
 .usefulWrap{
   margin: 18rpx 0 0 30rpx;
@@ -268,8 +286,9 @@ page{
 }
 .moreDetail{
   width: 700rpx;
-  height: 900rpx;
+  height: 780rpx;
   margin: 0 auto;
+  border-radius: 36rpx;
 }
 .moreDetail_img{
   width: 700rpx;
@@ -288,4 +307,14 @@ page{
   font-size: 30rpx;
   font-weight: 500;
   margin: 2rpx 0;
+}
+.moreDetail_index{
+  background: rgba(255,255,255,0.3);
+  width: 60%;
+  margin: 50rpx 20%;
+  text-align: center;
+  height: 60rpx;
+  border-radius: 25rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
 }

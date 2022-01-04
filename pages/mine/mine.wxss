@@ -1,130 +1,70 @@
 page{
-  background: #F8F5F8;
-}
-.background{
-  position: absolute;
-  background: #B6B6B6;
-  z-index: -1;
-  height: 50%;
-  width: 100%;
+  background: #F5F5F5;
 }
 .topWrap{
-  display: inline-flex;
+  padding-bottom: 50rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .topWrap_avatar{
+  width: 150rpx;
+  height: 150rpx;
   border-radius: 50%;
-  border: 4rpx solid #EFEFEF;
-  width: 100rpx;
-  height: 100rpx;
-  margin: 50rpx 0 0 125rpx;
-  box-shadow:  0rpx 0rpx 12rpx gray;
 }
-.avatarSex{
+.topWrap_sex{
+  width: 30rpx;
+  height: 30rpx;
   position: absolute;
-  width: 24rpx;
-  height: 24rpx;
-  margin: 50rpx 0 0 200rpx;
+  margin: -200rpx 0 0 100rpx;
   border-radius: 50%;
-  background: #EFEFEF;
-  border: 4rpx solid #fff;
+  background: #F5F5F5;
+  border: 5rpx solid #fff;
+  padding: 5rpx;
 }
-.topWrap_openname{
-  position: absolute;
-  margin: 60rpx 0 0 250rpx;
-  color: rgba(255, 255, 255, 1.0);
-  font-weight: 800;
-  font-size: 28rpx;
-}
-.idInfo{
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 26rpx;
-}
-.topWrap_detail{
-  position: absolute;
-  margin: 100rpx 0 0 250rpx;
-  color: rgba(255, 255, 255, 0.75);
+.topWrap_title{
+  margin-top: 20rpx;
+  font-size: 32rpx;
   font-weight: 700;
-  font-size: 26rpx;
-  width: 500rpx;
-  white-space:nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.mainContent{
-  background: linear-gradient(180deg,#fff 0%,#F8F5F8 75%);
-  border-radius: 72rpx 72rpx 0 0;
-  height: 1200rpx;
-  margin-top: 50rpx;
-  overflow: scroll;
+.topWrap_notice{
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: rgba(0,0,0,0.6);
 }
-.alterBar{
-  margin: 50rpx 5% 0;
-  width: 90%;
-  height: 120rpx;
-  text-align: center;
-  border-radius: 16rpx;
-  box-shadow:  8rpx 8rpx 16rpx #d4d8d9,
-  -8rpx -8rpx 16rpx #ecf0f1;
+.optionBox{
+  width: 85%;
+  margin: 45rpx auto;
+  background: #fff;
+  border-radius: 25rpx;
 }
-.alterBox{
-  padding: 20rpx 80rpx;
-  margin: 20rpx 0;
-  display: inline-flex;
+.optionBox_item{
+  width: 100%;
+  padding: 25rpx 15rpx;
 }
-.alterBox_border{
-  border-right: 1rpx solid #ecf0f1;
-}
-.alterBox_img{
+.optionBox_item image{
   width: 40rpx;
   height: 40rpx;
+  float: right;
+  margin-right: 30rpx;
 }
-.alterBox_text{
-  font-weight: 800;
-  font-size: 28rpx;
-  color: #4CD9BD;
-  margin: 0 0 0 20rpx;
+.optionBox_item text{
+  margin-left: 15rpx;
 }
-.midWrap{
+.optionBox_border{
   width: 90%;
-  margin: 36rpx 5%;
-  border-radius: 16rpx;
-  box-shadow:  6rpx 6rpx 12rpx #d4d8d9,
-  -6rpx -6rpx 12rpx #ecf0f1;
-}
-.usefulBox{
-  padding: 25rpx;
-}
-.usefulBox_img{
-  width: 40rpx;
-  height: 40rpx;
-}
-.usefulBox_text{
-  position: absolute;
-  margin-left: 20rpx;
-  color: rgba(0, 0, 0, 0.75);
-  font-size: 26rpx;
-}
-.usefulBox_arrow{
-  position: absolute;
-  right: 6%;
-  width: 40rpx;
-  height: 40rpx;
-}
-.aboutWrap{
-  border-radius: 16rpx;
-  width: 90%;
-  margin-left: 5%;
-  box-shadow:  6rpx 6rpx 12rpx #d4d8d9,
-  -6rpx -6rpx 12rpx #ecf0f1;
-}
-.aboutLink{
-  border-radius: 16rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid rgba(0,0,0,0.04);
 }
 .supportBtn{
   position: absolute;
+  width: 92%;
+  height: 88rpx;
+  border-radius: 25rpx 25rpx 0 0;
   opacity: 0;
-  width: 45%;
-  margin-top: 163rpx;
-  z-index: 999;
-  height: 163rpx;
+}
+.navApp{
+  border-radius: 20rpx;
+  height: 40rpx;
 }

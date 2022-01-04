@@ -1,7 +1,6 @@
 function Base64() {
 	// private property  
 	const _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
- 
 	// public method for encoding  
 	this.encode = function (input) {
 		var output = "";
@@ -27,7 +26,6 @@ function Base64() {
 		}
 		return output;
 	}
- 
 	// public method for decoding  
 	this.decode = function (input) {
 		var output = "";

@@ -1,36 +1,36 @@
 var app = getApp();
 var myBase64 = require("../../../utils/mybase64.js");
 const { request } = require("../../../utils/request/request");
+import Toast from '@vant/weapp/toast/toast'; // Toast
 Page({
   data: {
     menuButtonTop: app.globalData.menuButtonTop,
     menuButtonHeight: app.globalData.menuButtonHeight,
+    contentHeight: app.globalData.contentHeight,
+    nameShow: false,
+    isUpdate: false,
+    pwdValue: null,
   },
-  onLoad: function (options) {
+  onLoad(options){
     let accountInfo = wx.getStorageSync('accountInfo');
     console.log(accountInfo);
-    this.setData({
-      accountInfo: accountInfo
+    this.setData({ accountInfo: accountInfo });
+    if(accountInfo.lover_status == 1){}
+  },
+  // 查看大图
+  checkImg(){
+    let imgUrl = [this.data.accountInfo.avatar];
+    console.log(imgUrl)
+    wx.previewImage({
+      urls: imgUrl, //需要预览的图片http链接列表，注意是数组
+      current: imgUrl[0], // 当前显示图片的http链接，默认是第一个
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
     })
-    if(accountInfo.lover_status == 1){
-      this.setData({
-        
-      })
-    }
   },
-  onShow: function () {
-
-  },
-  // 输入框
-  detailInput: function(e){
-    let {
-    } = this.data;
-    let name = e.currentTarget.dataset.name;
-    let value = e.detail.value;
-    this.setData({
-      [name]: value,
-      haveResult: false
-    });
+  changeName(){
+    this.setData({ nameShow: true });
   },
   updateTap(){
     wx.getUserProfile({
@@ -46,10 +46,7 @@ Page({
         })
       },
       fail: () => {
-        wx.showToast({
-          title: '用户取消授权',
-          icon: 'none'
-        })
+        Toast('用户取消授权');
       },
       complete: () => {
         request({
@@ -66,13 +63,26 @@ Page({
               accountInfo: accountInfo
             })
           } else if(res.data.code == 400){
-            wx.showToast({
-              title: '系统正在维护',
-              icon: 'error'
-            })
+            Toast('系统正在维护Orz');
           }
         })
       }
+    })
+  },
+  navGuide(){
+    wx.navigateTo({ url: '../../guide/guide?from=import' });
+  },
+  clearStorage(){
+    wx.showModal({
+        title: '提示',
+        content: '确定要清除全部缓存吗？',
+        success (res) {
+          if (res.confirm) {
+            wx.clearStorageSync();
+            wx.redirectTo({ url: '/pages/guide/guide' })
+            wx.showToast({ title: '已成功清除缓存' })
+          }
+        }
     })
   },
   cancelTap(){
@@ -89,11 +99,9 @@ Page({
                 request({
                   url: "api/user/cancel?",method: 'GET',header: {'cookie':wx.getStorageSync('sessionid')}
                 }).then(res => {
-                  console.log(res)
+                  console.log(res);
                   wx.clearStorageSync();
-                  wx.redirectTo({
-                    url: '/pages/blank/blank',
-                  })
+                  wx.redirectTo({ url: '/pages/blank/blank' });
                 })
               } else if (res.cancel) {
               }
@@ -104,9 +112,18 @@ Page({
       }
     })
   },
+  navPrivacy(){
+    wx.navigateTo({ url: '../privacy/privacy' });
+  },
+  // 更新面板关闭
+  nameOnClose() {
+    this.setData({ nameShow: false });
+  },
+  nameOnChange(e){
+    let value = e.detail;
+    this.setData({ nameValue: value });
+  },
   BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    }); 
+    wx.navigateBack({ delta: 1 }); 
   },
 })

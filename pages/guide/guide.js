@@ -72,17 +72,15 @@ Page({
     duration: 800,
     swiperCurrent: 0,
   },
-  onLoad: function (options) {
-    let from = options.from
+  onLoad(options){
+    let from = options.from;
     if(from == 'couple'){
       this.setData({
         swiperCurrent: 2,
         nextBtn: '完成'
       })
     }
-    this.setData({
-      from: from
-    })
+    this.setData({ from: from });
     let isSkip = wx.getStorageSync('isSkip');
     if(isSkip){
       wx.showToast({
@@ -91,13 +89,8 @@ Page({
       })
     }
   },
-  onShow: function () {
-
-  },
   // 输入框
-  detailInput: function(e){
-    let {
-    } = this.data;
+  detailInput(e){
     let name = e.currentTarget.dataset.name;
     let value = e.detail.value;
     this.setData({
@@ -165,7 +158,7 @@ Page({
           method: 'GET', 
         }).then(res => {
           console.log(res);
-          let userInfo = {account: account,password: password};
+          let userInfo = { account: account,password: password };
           wx.removeStorageSync('sessionid');
           wx.setStorageSync("sessionid", res.cookies[0]);
           if(res.data.code == 210){ //用户注册

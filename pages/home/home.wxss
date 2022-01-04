@@ -1,8 +1,8 @@
 page{
-  background: #F8F5F8;
+  background: #F5F5F5;
 }
 .gradient_title {
-  background: linear-gradient(to right, #3AC569, #1e90ff);
+  background: linear-gradient(to right, #66CC99, #1e90ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -20,7 +20,7 @@ swiper image {
   width: 100%;
   padding: 20rpx 4%;
 }
-.swiper-box{
+.swiperBox{
   position: relative;
   border-radius: 25rpx;
   height: 275rpx;
@@ -46,9 +46,9 @@ swiper image {
   width: 32rpx; 
   background: rgba(255, 255, 255, 0.8);
 }
-.notice-box{
+.noticeBox{
   margin-top: 15rpx;
-  border-radius: 25rpx;
+  border-radius: 20rpx;
   width: 92%;
   color: rgba(86,229,190,0.1);
 }
@@ -63,8 +63,7 @@ swiper image {
   width: 120rpx;
   font-size: 22rpx;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.5);
-  letter-spacing: 1rpx;
+  color: rgba(0, 0, 0, 0.6);
   margin-right: 24rpx;
 }
 .useful-box image{
@@ -86,27 +85,33 @@ swiper image {
 .courseWrap{
   background: #fff;
   width: 92%;
-  margin-left: 4%;
-  margin-bottom: 20rpx;
+  margin: 16rpx 0 36rpx 4%;
   border-radius: 25rpx;
 }
 .switchBar{
-  margin: 0 20rpx 10rpx 36rpx;
+  margin: 0 20rpx 0 36rpx;
   display: inline-flex;
-  font-size: 32rpx;
 }
-.switchBar image{
-  position: absolute;
-  width: 50rpx;
-  height: 50rpx;
-  margin-top: -4rpx;
+.infoListTitleChecked{
+  margin-right: 21rpx;
+  font-weight: 700;
 }
-.switchBar text{
-  margin-left: 52rpx;
+.infoListTitleChecked text{
+  font-size: 36rpx;
+  line-height: 36rpx;
+}
+.infoListTitleUnCheck{
+  margin-right: 21rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.25);
+}
+.infoListTitleUnCheck{
+  font-size: 28rpx;
+  line-height: 38rpx;
 }
 .msgDot{
   position: absolute;
-  background: #F06D71;
+  background: #F28083;
   border: 3rpx solid #fff;
   width: 12rpx;
   height: 12rpx;
@@ -114,16 +119,7 @@ swiper image {
   border-radius: 50%;
 }
 .msgText{
-  color: #FB4955;
-}
-.infoListTitleUnCheck{
-  margin-right: 20rpx;
-  font-weight: 800;
-  color: rgba(0, 0, 0, 0.4);
-}
-.infoListTitleChecked{
-  margin-right: 20rpx;
-  font-weight: 800;
+  color: #F28083;
 }
 /* 课程、留言模块 */
 .infoBox{
@@ -171,12 +167,13 @@ swiper image {
   height: 100rpx;
 }
 .courseStatus{
-  padding: 6rpx 12rpx 0 12rpx;
+  padding: 0 12rpx;
+  height: 36rpx;
+  line-height: 36rpx;
   font-size: 18rpx;
   border-radius: 25rpx;
   color: rgba(255, 255, 255, 1.0);
   margin: 0 0 0 8rpx;
-  height: 32rpx;
 }
 .end{
   background: rgba(110,119,131,0.8);
@@ -223,17 +220,17 @@ swiper image {
   right: 4%;
 }
 .viewAll{
-  margin-top: 8rpx;
+  line-height: 36rpx;
   position: absolute;
   right: 64rpx;
   font-size: 24rpx;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.4);
 }
 .viewAll image{
   position: absolute;
   width: 32rpx;
   height: 32rpx;
-  margin: 0rpx 0 0 4rpx;
+  margin: 0 0 0 4rpx;
 }
 .newsWrap{
   background: #fff;
@@ -270,7 +267,7 @@ swiper image {
   border-radius: 25rpx;
 }
 .QABox{
-  margin: 20rpx auto;
+  margin: 18rpx auto;
   border-radius: 25rpx;
   box-shadow: 3rpx 3rpx 6rpx #d4d8d9,
               -3rpx -3rpx 6rpx #ecf0f1;
@@ -408,7 +405,7 @@ swiper image {
 }
 .QABoxContent_answerDetail{
   margin-left: 152rpx;
-  width: 388rpx;
+  width: 348rpx;
 }
 .QABoxContent_answerTime{
   position: absolute;
@@ -440,6 +437,7 @@ swiper image {
   margin-left: 6rpx;
   color: #707070;
 }
+
 .popWrap{
   height: 100%;
   overflow: hidden;
@@ -566,7 +564,7 @@ swiper image {
   margin: 30rpx 0 60rpx 0;
 }
 .pwdSetWrap{
-  background: #F8F5F8;
+  background: #F5F5F5;
   height: 40%;
 }
 .pwdSetWrap{
@@ -604,5 +602,5 @@ swiper image {
   padding: 20rpx 0;
   letter-spacing: 1rpx;
   font-weight: 700;
-  color: #F8F5F8;
+  color: #F5F5F5;
 }

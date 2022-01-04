@@ -6,7 +6,7 @@
   <view class="navBar"><text class="navBar_title black80">校园地图</text></view>
 </view>
 <!-- 内容区域 -->
-<view class="container" style="height: {{contentHeight}}px;">
+<view class="container" style="height:{{contentHeight}}px;">
   <van-tabs active="{{ active }}" bind:change="onChange" color="{{activeColor}}">
     <van-tab title="生活区"></van-tab>
     <van-tab title="教学区"></van-tab>
@@ -44,7 +44,7 @@
     bind:close="popClose"
     close-on-click-overlay="{{ true }}"
     position="bottom"
-    custom-style="background:#F8F5F8;border-radius:50rpx 50rpx 0 0;"
+    custom-style="background:#F5F5F5;border-radius:50rpx 50rpx 0 0;"
 >
   <view class="popWrap" wx:if="{{currMaker}}">
     <image class="popWrap_look" src="/images/navigation/sorry.png" mode="aspectFill"></image>

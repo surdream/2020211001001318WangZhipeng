@@ -1,0 +1,20 @@
+<!-- 顶部提示区 -->
+<van-notify id="van-notify"/>
+<!-- 状态栏区域 -->
+<view style="height:{{menuButtonHeight}}px;padding-top:{{menuButtonTop}}px;">
+  <image class="navBarImg" src="{{accountInfo.avatar}}" style="height:{{menuButtonHeight}}px;width: {{menuButtonHeight}}px;" bindtap="navHomepage"></image>
+  <view class="navBar"><text class="navBar_title black80">发现校园</text></view>
+</view>
+<!-- 内容区域 -->
+<scroll-view scroll-y="true" class="container" style="height:{{contentHeight-75}}px;">
+    <view class="cardWrap">
+        <view class="cardBox club" wx:for="{{card_list}}" wx:key="index">
+            <view class="cardBox_tag">{{item.tag}}</view>
+            <view class="cardBox_type">{{item.type}}</view>
+            <view class="cardBox_title">{{item.title}}</view>
+            <view class="cardBox_detail">{{item.detail}}</view>
+            <view class="cardBox_img" style="background:{{item.background}};"></view>
+            <view class="cardBox_btn" bindtap="navTarget" data-content="{{item}}">{{item.method}}</view>
+        </view>
+    </view>
+</scroll-view>

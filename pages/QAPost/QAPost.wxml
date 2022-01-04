@@ -17,7 +17,7 @@
       <view class="postTag_type" bindtap="tagTap">{{content.type}}墙</view>
     </view>
     <image class="topMoreBtn" src="/images/QA/more.png" bindtap="topMoreBtn"></image>
-    <image class="askAvatar" src="{{content.avatar}}"></image>
+    <image class="askAvatar" src="{{content.avatar}}" bindtap="navHomepage" data-id="{{content.sponorid}}" data-content="{{content}}"></image>
   </view>
   <view class="contentWrap">
     <view class="contentWrap_detail">{{content.content}}</view>
@@ -34,7 +34,7 @@
       <view class="answerBox" wx:for="{{selfList}}" wx:key="index">
         <image class="midMoreBtn" src="/images/QA/more.png" bindtap="midMoreBtn" data-id="{{item.reply_id}}"></image>
         <view class="answerBox_top">
-          <image class="answerBox_avatar" src="{{item.avatar}}"></image>
+          <image class="answerBox_avatar" src="{{item.avatar}}" bindtap="navSelfpage"></image>
           <text class="answerBox_name" style="color:{{content.color}};">{{item.openname}}</text>
         </view>
         <view class="answerBox_detail">{{item.content}}</view>
@@ -58,7 +58,7 @@
       <view class="answerBox" wx:if="{{item.show}}" wx:for="{{answerList}}" wx:key="index">
         <image class="midMoreBtn" src="/images/QA/more.png" bindtap="btmMoreBtn"></image>
         <view class="answerBox_top">
-          <image class="answerBox_avatar" src="{{item.avatar}}"></image>
+          <image class="answerBox_avatar" src="{{item.avatar}}" bindtap="navHomepage" data-id="{{item.sponorid}}" data-content="{{item}}"></image>
           <text class="answerBox_name" style="color:{{content.color}};">{{item.openname}}</text>
         </view>
         <view class="answerBox_detail">{{item.content}}</view>
@@ -89,7 +89,7 @@
     </block>
   </view>
   <view class="answerWrap" wx:if="{{answerList.length == 0 && selfList.length == 0}}">
-    <view class="noticeTxt" style="color:{{content.color}};">还没有人来回答，你会是第一个吗</view>
+    <view class="noticeTxt" style="color:{{content.color}};" wx:if="{{!QALoading}}">还没有人来回答，你会是第一个吗</view>
   </view>
   <!-- 底部提示 -->
   <view>

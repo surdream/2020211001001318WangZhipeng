@@ -18,11 +18,13 @@ page {
   font-size: 32rpx;
   font-weight: 800;
   text-align: center;
+  padding-top: 8rpx;
 }
 .navBar-Left35{
   font-size: 35rpx;
   font-weight: 800;
   padding-left: 32rpx;
+  padding-top: 4rpx;
 }
 .navBar-Left32{
   font-size: 32rpx;
@@ -85,6 +87,10 @@ page {
   border-top: none;
   border-left-color: transparent;
   border-right-color: transparent;
+}
+.whiteNav{
+  width: 100%;
+  background: #fff;
 }
 
 /* 阴影效果 */
