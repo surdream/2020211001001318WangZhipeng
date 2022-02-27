@@ -381,7 +381,7 @@ Page({
   },
   // 同意协议
   acceptTap(){
-    this.setData({ popShow: false })
+    this.setData({ popShow: false });
   },
   // 拒绝协议
   cancelTap(){
@@ -517,7 +517,7 @@ Page({
   onSelect(event) {
     console.log(event.detail);
     let name = event.detail.name;
-    this.setData({ school: name})
+    this.setData({ school: name});
   },
   checkChange(event){
     this.setData({ checked: event.detail });
@@ -534,7 +534,7 @@ Page({
     })
   },
   navPrivacy(){
-    wx.navigateTo({ url: '/pages/mine/privacy/privacy' })
+    wx.navigateTo({ url: '/pages/mine/privacy/privacy' });
     wx.showToast({
       title: '请务必仔细阅读,同时我们会严格保护您的信息',
       icon: 'none'

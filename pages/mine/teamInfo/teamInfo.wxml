@@ -1,5 +1,5 @@
 <!-- 状态栏区域 -->
-<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #F9F9F9;">
+<view style="height:{{menuButtonHeight+10}}px;padding-top:{{menuButtonTop}}px;background: #EAEAEA;">
   <image class="navBarButton_bold" src="/images/conmon/left.png" style="padding:{{(menuButtonHeight-20)/2}}px;" bindtap="BackPage"></image>
   <view class="navBar"><text class="navBar_title black95">团队信息</text></view>
 </view>

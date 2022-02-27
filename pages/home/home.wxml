@@ -8,13 +8,13 @@
     <text class="gradient_title">一目校园</text>
     <text style="color:rgba(0,0,0,0.25);font-size:30rpx;font-style:italic;">(众测版)</text>
   </view>
-</view>
-<!-- 胶囊提示 -->
-<view class="pillNotice" bindtap="pillNoticeTap" wx:if="{{pillNoticeShow}}">
-  <view class="pillNotice_triangle" style="left:{{menuButtonMore}}px;"></view>
-  <view class="pillNotice_box">
-    <view>如果有帮到你,可以点击</view>
-    <view>"添加到我的小程序"哦</view>
+  <!-- 胶囊提示 -->
+  <view class="pillNotice" bindtap="pillNoticeTap" wx:if="{{pillNoticeShow}}">
+    <view class="pillNotice_triangle" style="left:{{menuButtonMore}}px;"></view>
+    <view class="pillNotice_box">
+      <view>如果有帮到你,可以点击</view>
+      <view>"添加到我的小程序"哦</view>
+    </view>
   </view>
 </view>
 <!-- 内容区域 -->
@@ -35,8 +35,32 @@
         </block> 
       </view>
     </view>
+    <view class="conmonBox">
+      <view class="useful-box">
+        <image src="/images/home/calendar.png" bindtap="navTo" data-url="schoolCalendar"></image>
+        <view>教学校历</view>
+      </view>
+      <view class="useful-box">
+        <image src="/images/home/club.png"></image>
+        <view>社团圈子</view>
+      </view>
+      <view class="useful-box">
+        <image src="/images/home/classroom.png"></image>
+        <view>失物招领</view>
+      </view>
+      <view class="useful-box">
+        <navigator class="navApp" target="miniProgram" open-type="navigate" app-id="wxecc5d3f8dea22aa7" path="" extra-data="" version="release"></navigator>
+        <image src="/images/home/note.png"></image>
+        <view>漂流书屋</view> 
+      </view>
+      <view class="useful-box">
+        <navigator class="navApp" target="miniProgram" open-type="navigate" app-id="wx4196eb138596f79e" path="" extra-data="" version="release"></navigator>
+        <image src="/images/home/confess.png"></image>
+        <view>光盘打卡</view>
+      </view>
+    </view>
     <!-- 公告栏 -->
-    <view class="noticeBox">
+    <!-- <view class="noticeBox">
       <van-notice-bar
       left-icon="/images/home/notice.png"
       mode="closeable"
@@ -45,39 +69,16 @@
       background="linear-gradient(90deg, #66CC99 -480%,#F5F5F5 120%);"
       speed="100"
       />
-    </view>
-  </view>
-  <!-- 常用功能 -->
-  <view class="midWrap">
-    <view class="useful-box">
-      <image src="/images/home/calendar.png" bindtap="navTo" data-url="schoolCalendar"></image>
-      <text>教学校历</text>
-    </view>
-    <view class="useful-box">
-      <image src="/images/home/club.png"></image>
-      <text>社团圈子</text>
-    </view>
-    <view class="useful-box">
-      <image src="/images/home/classroom.png"></image>
-      <text>失物招领</text>
-    </view>
-    <view class="useful-box">
-      <navigator class="navApp" target="miniProgram" open-type="navigate" app-id="wxecc5d3f8dea22aa7" path="" extra-data="" version="release"></navigator>
-      <image src="/images/home/note.png"></image>
-      <text>漂流书屋</text> 
-    </view>
-    <view class="useful-box">
-      <navigator class="navApp" target="miniProgram" open-type="navigate" app-id="wx4196eb138596f79e" path="" extra-data="" version="release"></navigator>
-      <image src="/images/home/confess.png"></image>
-      <text>光盘打卡</text>
-    </view>
+    </view> -->
   </view>
   <view class="switchBar">
-      <view wx:for="{{courseList}}" wx:key="index" class="infoListTitle{{titleTarget == index?'Checked':'UnCheck'}} {{titleTarget == index?item.style:''}}" bindtap="infoListTap" data-id="{{index}}">
-        <text wx:if="{{titleTarget == index}}">{{item.pre}}</text>
-        <text>{{item.default}}</text>
-        <text wx:if="{{titleTarget == index}}">{{item.after}}</text>
-      </view>
+    <view wx:for="{{courseList}}" wx:key="index" class="infoListTitle{{titleTarget == index?'Checked':'UnCheck'}} {{titleTarget == index?item.style:''}}" bindtap="infoListTap" data-id="{{index}}">
+      <text wx:if="{{titleTarget == index}}">- </text>
+      <text wx:if="{{titleTarget == index}}">{{item.pre}}</text>
+      <text>{{item.default}}</text>
+      <text wx:if="{{titleTarget == index}}">{{item.after}}</text>
+      <text wx:if="{{titleTarget == index}}"> -</text>
+    </view>
   </view>
   <!-- 课表留言 -->
   <view class="courseWrap">
@@ -126,18 +127,20 @@
     </scroll-view>
   </view>
   <view class="switchBar">
-    <view class="viewAll" bindtap="navPublic" data-link="{{qaList[QATarget].helplink.link}}">
+    <!-- <view class="viewAll" bindtap="navPublic" data-link="{{qaList[QATarget].helplink.link}}">
       <text>{{qaList[QATarget].helplink.title}}</text>
       <image src="/images/QA/help.png"></image>
-    </view>
+    </view> -->
     <view class="infoListTitle{{QATarget == index?'Checked':'UnCheck'}}" wx:for="{{qaList}}" wx:key="index" bindtap="QAListTap" data-id="{{index}}">
+      <text wx:if="{{QATarget == index}}">- </text>
       <text wx:if="{{QATarget == index}}">{{item.pre}}</text>
       <text>{{item.default}}</text>
       <text wx:if="{{QATarget == index}}">{{item.after}}</text>
+      <text wx:if="{{QATarget == index}}"> -</text>
     </view>
   </view>
   <!-- 校园问答 -->
-  <view class="QAWrap" bindtouchstart="touchStart" bindtouchend="touchEnd" data-type="QA">
+  <view class="QAWrap {{QATarget != 0?'bg-white':''}}" bindtouchstart="touchStart" bindtouchend="touchEnd" data-type="QA">
     <view class="QABox" wx:for="{{QA_all}}" wx:key="index" wx:if="{{QATarget == 0}}">
       <view class="QABoxTop" style="--background--:{{item.color}}">
         <view class="QABoxData">
@@ -204,67 +207,6 @@
               <image src="/images/QA/flip0.png" style="background:{{item.color}};"></image>
               <text>{{item.applaud}}</text>
             </block>
-          </view>
-          <view class="QABoxInfo_msg QABoxInfoBox" bindtap="navQAPost" data-content="{{item}}">
-            <image src="/images/QA/remark0.png"></image>
-            <text>{{item.replys}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="QABox" wx:for="{{QA_mine}}" wx:key="index" wx:if="{{QATarget == 1}}">
-      <view class="QABoxTop" style="--background--:{{item.color}}">
-        <view class="QABoxData">
-          <image class="QABoxData_img" src="/images/QA/data.png"></image>
-          <text>{{item.heat}}人在讨论</text>
-        </view>
-        <view class="QABoxTop_title"># {{item.type}}</view>
-      </view>
-      <view class="QABoxContent">
-        <view class="QABoxContent_topBar">
-          <view class="QABoxContent_name">
-            <view class="QABoxContent_nameTxt">{{item.openname}}</view> 
-            <view class="QABoxContent_from" style="border: 2rpx solid {{item.color}};color:{{item.color}};">{{item.source}}</view>
-          </view>
-          <view class="QABoxContent_count">
-            <text>发布于:{{item.createtime}} / </text>
-            <text wx:if="{{item.limittime == '长期可用'}}">长期有效</text>
-            <text wx:if="{{item.limittime != '长期可用'}}">讨论剩余：{{item.limittime}}</text>
-          </view>
-          <view class="QABoxContent_enterBtn" bindtap="navQAPost" data-content="{{item}}">进入问答</view>
-          <image class="QABoxContent_avatar" src="{{item.avatar}}"></image>
-        </view>
-        <view class="QABoxContent_title" bindtap="navQAPost" data-content="{{item}}">{{item.title}}</view>
-        <!-- 预览图显示 -->
-        <view class="contentWrap_imgBox">
-          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="1" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture1}}" wx:if="{{item.picture1 != null}}"/>
-          <van-image bindtap="navQAPost" data-content="{{item}}" data-from="checkImg" data-id="2" custom-class="contentWrap_img" radius="25rpx" fit="widthFix" src="{{item.picture2}}" wx:if="{{item.picture2 != null}}"/>
-        </view>
-        <!-- 最新回答 -->
-        <view class="QABoxContent_answer" wx:if="{{item.replys != 0}}">
-          <view class="QABoxContent_answerTitle" bindtap="navQAPost" data-content="{{item}}">
-            <text>最新回答: </text>
-            <image src="{{item.reply_avatar}}"></image>
-            <text class="QABoxContent_answerDetail">{{item.reply_content}}</text>
-            <text class="QABoxContent_answerTime">{{item.replytime}}</text>
-          </view>
-        </view>
-        <!-- 点赞评论 -->
-        <view class="QABoxInfo">
-          <view class="QABoxInfo_agree QABoxInfoBox">
-            <block wx:if="{{item.islike == 0}}">
-              <image src="/images/QA/agree{{item.islike}}.png"></image>
-              <text>{{item.likes}}</text>
-            </block>
-            <block wx:if="{{item.islike == 1}}">
-              <image src="/images/QA/agree{{item.islike}}.png" style="background:{{item.color}};"></image>
-              <text style="color:{{item.color}};">{{item.likes}}</text>
-            </block>
-          </view>
-          <view class="QABoxInfo_flip QABoxInfoBox">
-            <image src="/images/QA/flip{{item.isapplaud}}.png" style="background:{{item.color}};"></image>
-            <text wx:if="{{item.isapplaud == 0}}">{{item.applaud}}</text>
-            <text wx:if="{{item.isapplaud == 1}}" style="color:{{item.color}};">{{item.applaud}}</text>
           </view>
           <view class="QABoxInfo_msg QABoxInfoBox" bindtap="navQAPost" data-content="{{item}}">
             <image src="/images/QA/remark0.png"></image>

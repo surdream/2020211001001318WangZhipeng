@@ -157,8 +157,8 @@ Page({
       return day;
     },
   },
-  onLoad: function (options) {
-    var timestamp = Date.parse(new Date());
+  onLoad(){
+    let timestamp = Date.parse(new Date());
         timestamp = timestamp / 1000;
     let courentDay = time.formatTimeRev(timestamp,'Y/M/D');
     let startDate = this.data.startDate.replace(/-/g,'/');
@@ -181,11 +181,7 @@ Page({
       })
     }
   },
-  onShow: function () {
-  },
   BackPage() {
-    wx.navigateBack({
-        delta: 1,
-    });
+    wx.navigateBack({ delta: 1 });
   },
 })

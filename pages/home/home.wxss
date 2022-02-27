@@ -7,35 +7,31 @@ page{
   background-clip: text;
   color: transparent;
 }
-swiper{
-  width: 92%;
-  border-radius: 25rpx;
-}
 swiper image {
   width: 100%;
-  height: 275rpx;
-  border-radius: 25rpx;
+  height: 100%;
 }
 .topWrap{
-  width: 100%;
-  padding: 20rpx 4%;
+  width: 92%;
+  margin: 20rpx 4%;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
 }
 .swiperBox{
   position: relative;
-  border-radius: 25rpx;
-  height: 275rpx;
 }
 .dots{
-  width: 92%;
+  width: 100%;
   position: absolute; 
   left: 0; 
   right: 0; 
   bottom: 8rpx; 
-  display: flex; 
+  display: flex;
   justify-content: center; 
 } 
-.dots .dot{ 
-  margin: 0 5rpx; 
+.dots .dot{
+  margin: 0 5rpx;
   width: 14rpx; 
   height: 14rpx; 
   background: rgba(255, 255, 255, 0.6);
@@ -46,35 +42,31 @@ swiper image {
   width: 32rpx; 
   background: rgba(255, 255, 255, 0.8);
 }
+.conmonBox{
+  margin-top: 20rpx;
+}
+.useful-box{
+  text-align: center;
+  display: inline-block;
+  height: 132rpx;
+  width: 20%;
+  color: rgba(0, 0, 0, 0.9);
+}
+.useful-box image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.useful-box view{
+  line-height: 32rpx;
+  font-size: 20rpx;
+  letter-spacing: 1rpx;
+}
 .noticeBox{
   margin-top: 15rpx;
   border-radius: 20rpx;
   width: 92%;
   color: rgba(86,229,190,0.1);
-}
-.midWrap{
-  width: 98%;
-  margin-left: 4%;
-}
-.useful-box{
-  text-align: center;
-  display: inline-block;
-  height: 150rpx;
-  width: 120rpx;
-  font-size: 22rpx;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.6);
-  margin-right: 24rpx;
-}
-.useful-box image{
-  margin: 0 15rpx;
-  width: 90rpx;
-  height: 90rpx;
-  border-radius: 50%;
-}
-.useful-box text{
-  position: relative;
-  top: 5rpx;
 }
 .navApp{
   position: absolute;
@@ -85,29 +77,37 @@ swiper image {
 .courseWrap{
   background: #fff;
   width: 92%;
-  margin: 16rpx 0 36rpx 4%;
-  border-radius: 25rpx;
+  margin: 0 0 36rpx 4%;
+  border-radius: 20rpx;
+  box-shadow: 0 -2rpx 1rpx #F5F5F5
 }
 .switchBar{
-  margin: 0 20rpx 0 36rpx;
-  display: inline-flex;
+  margin: 0 10%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-radius: 16rpx 16rpx 0 0;
+  padding: 30rpx 0 16rpx;
+  box-shadow: 2rpx 4rpx 2rpx 2rpx #F5F5F5 inset; 
 }
 .infoListTitleChecked{
-  margin-right: 21rpx;
+  margin-right: 20rpx;
   font-weight: 700;
 }
 .infoListTitleChecked text{
-  font-size: 36rpx;
-  line-height: 36rpx;
+  font-size: 34rpx;
+  line-height: 34rpx;
+  color: rgba(0, 0, 0, 0.84);
 }
 .infoListTitleUnCheck{
-  margin-right: 21rpx;
+  margin-right: 20rpx;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.2);
 }
 .infoListTitleUnCheck{
-  font-size: 28rpx;
-  line-height: 38rpx;
+  font-size: 26rpx;
+  line-height: 36rpx;
 }
 .msgDot{
   position: absolute;
@@ -124,7 +124,7 @@ swiper image {
 /* 课程、留言模块 */
 .infoBox{
   margin: 12rpx;
-  border-radius: 25rpx;
+  border-radius: 20rpx;
   padding: 18rpx 25rpx;
   background: linear-gradient(90deg, var(--background--) 0%,#fff 100%);
 }
@@ -153,8 +153,7 @@ swiper image {
 .infoBox_notice{
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
-  font-weight: 700;
-  font-size: 26rpx;
+  font-size: 25rpx;
   margin-top: 50rpx;
   letter-spacing: 1rpx;
 }
@@ -187,7 +186,7 @@ swiper image {
 .writeBtn{
   text-align: center;
   padding: 10rpx 0;
-  border-radius: 25rpx;
+  border-radius: 20rpx;
   font-weight: 800;
   font-size: 25rpx;
   background: rgba(240,109,113, 0.8);
@@ -222,7 +221,7 @@ swiper image {
 .viewAll{
   line-height: 36rpx;
   position: absolute;
-  right: 64rpx;
+  right: 15%;
   font-size: 24rpx;
   color: rgba(0, 0, 0, 0.4);
 }
@@ -264,25 +263,25 @@ swiper image {
 .QAWrap{
   width: 92%;
   margin-left: 4%;
-  border-radius: 25rpx;
+  border-radius: 20rpx;
   min-height: 400rpx;
 }
 .QABox{
-  margin: 18rpx auto;
-  border-radius: 25rpx;
+  margin: 0 auto 30rpx;
+  border-radius: 20rpx;
   box-shadow: 3rpx 3rpx 6rpx #d4d8d9,
               -3rpx -3rpx 6rpx #ecf0f1;
 }
 .QABox_noData{
   text-align: center;
   letter-spacing: 2rpx;
-  margin-top: 100rpx;
+  padding-top: 100rpx;
   color: rgba(0, 0, 0, 0.4);
   font-weight: 700;
   font-size: 26rpx;
 }
 .QABoxTop{
-  border-radius: 25rpx 25rpx 0 0;
+  border-radius: 20rpx 20rpx 0 0;
   background: linear-gradient(120deg, var(--background--) 0%,#fff 120%);
 }
 .QABoxTop_title{
@@ -406,7 +405,7 @@ swiper image {
 }
 .QABoxContent_answerDetail{
   margin-left: 152rpx;
-  width: 348rpx;
+  width: 328rpx;
 }
 .QABoxContent_answerTime{
   position: absolute;

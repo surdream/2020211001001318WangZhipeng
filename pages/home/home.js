@@ -94,7 +94,7 @@ Page({
   onLoad(options){
     let firstUse = wx.getStorageSync('firstUse');
     if(firstUse == 'not'){
-      this.setData({ hasImport: true })
+      this.setData({ hasImport: true });
       // 用户登录
       let userInfo = wx.getStorageSync('userInfo');
       if (userInfo == undefined || userInfo == ''){
@@ -154,7 +154,7 @@ Page({
                 if (lover_status == 2) {
                   this.setData({ popShow: true });
                   Toast('有一条绑定申请');
-                  this.onLoad();
+                  // this.onLoad();
                 }
                 // 判断密码状态
                 if (edu_status == 2) {
@@ -688,14 +688,14 @@ Page({
       let absY = Math.abs(tmY);
       if (absX > 1 * absY) {
         if (tmX < 0 && target != length - 1) {
-          this.setData({ [targetStr]: target + 1});
+          this.setData({[targetStr]: target + 1});
         } else if (tmX >= 0 && target != 0) {
-          this.setData({ [targetStr]: target - 1});
+          this.setData({[targetStr]: target - 1});
         } else {
           if (tmX < 0 && target == length - 1) {
-            this.setData({ [targetStr]: 0 });
+            this.setData({[targetStr]: 0 });
           } else if (tmX >= 0 && target == 0) {
-            this.setData({ [targetStr]: length - 1 });
+            this.setData({[targetStr]: length - 1});
           }
           return;
         }

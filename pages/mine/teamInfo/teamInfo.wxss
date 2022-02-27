@@ -1,3 +1,6 @@
+page{
+  background: #F5F5F5;
+}
 .honorTitle{
   margin: 30rpx 0 0 60rpx;
   font-size: 22rpx;

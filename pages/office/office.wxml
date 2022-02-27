@@ -13,7 +13,7 @@
 <scroll-view class="container" scroll-y="true" style="height: {{contentHeight-80}}px;" wx-if="{{!loading}}">
   <view class="topWrap">
     <image class="topSchImg" src="{{userInfo.schUrl}}"></image>
-    <view class="topTitle">课程信息</view>
+    <view class="topTitle">课程信息<text> ({{grade_term}})</text></view>
   </view>
   <!-- 课程列表 -->
   <view class="course_list">
@@ -83,7 +83,6 @@
     </view>
     <!-- 主要内容区 -->
     <view class="infoListWrap">
-      <scroll-view>
       <block wx:if="{{titleTarget == 0}}">
         <view class="infoBox" wx:for="{{chart_list}}" wx:key="index" data-id="{{index}}" wx:for-item="chartItem">
           <view class="infoBox_stick" style="background:{{officeColorList[index%4]}};"></view>
@@ -137,7 +136,6 @@
           <view class="defaultNotice">当前没有考试安排</view>
         </view>
       </block>
-      </scroll-view>
     </view>
   </view>
 </scroll-view>
