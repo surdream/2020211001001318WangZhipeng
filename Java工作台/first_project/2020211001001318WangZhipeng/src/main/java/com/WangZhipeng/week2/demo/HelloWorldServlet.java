@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 
 public class HelloWorldServlet extends HttpServlet {
+
     String name="Wangzhipeng";
     String id="2020211001001318";
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
