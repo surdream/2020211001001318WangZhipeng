@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 
 public class HelloWorldServlet extends HttpServlet {
+
     String name="Wangzhipeng";
     String id="2020211001001318";
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -16,7 +17,7 @@ public class HelloWorldServlet extends HttpServlet {
         Date date=new Date();
         writer.println("name: "+name+"<br/>");
         writer.println("id: "+id+"<br/>");
-        writer.println("Date and Time: "+date.toString()+"<br/>");
+        writer.println("Date and Time: "+date+"<br/>");
     }
 
 
