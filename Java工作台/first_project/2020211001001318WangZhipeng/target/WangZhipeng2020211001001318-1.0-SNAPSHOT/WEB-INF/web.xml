@@ -5,12 +5,27 @@
          version="4.0">
     <servlet>
         <servlet-name>myname</servlet-name>
-        <servlet-class>com.WangZhipeng.week2.demo.HelloWorldServlet</servlet-class>
+        <servlet-class>com.Wangzhipeng.week2.demo.HelloWorldServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <servlet-class>com.Wangzhipeng.week3.LifeCycleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.Wangzhipeng.week3.RegisterServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>myname</servlet-name>
-
-        <!--可以使用其他的文件-->
         <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <url-pattern>/life</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 </web-app>
