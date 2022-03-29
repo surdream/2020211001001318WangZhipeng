@@ -1,4 +1,6 @@
 
+
+<%@include file="header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +21,7 @@
             max-width: 500px;
             width: 400px;
             height: 460px;
-            margin: 100px auto 0;
+            margin: 20px auto 0;
             border-radius: 8px;
             background-color: #f4f4f4;
             box-shadow: 0 0 20px #33333330;
@@ -87,7 +89,7 @@
     </style>
 </head>
 <body>
-<form action="../register" method="post" class="form">
+<form action="register" method="post" class="form">
     <div class="div1">
         <span>New User Registration!</span>
     </div>
@@ -195,3 +197,4 @@
 
 </script>
 </html>
+<%@include file="footer.jsp"%>
