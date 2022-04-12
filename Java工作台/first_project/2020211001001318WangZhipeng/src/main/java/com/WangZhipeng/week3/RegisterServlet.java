@@ -14,14 +14,13 @@ public class RegisterServlet extends HttpServlet {
     Connection con = null;
     PreparedStatement stmt = null;
     ServletContext context;
-    String driver,url,username,password;
-//    String name, password, email, gender, date;
+//    String driver,url,username,password;
 
     @Override
     public void init() throws ServletException {
         super.init();
 
-        context = getServletContext();
+/*        context = getServletContext();
         driver = context.getInitParameter("driver");
         url = context.getInitParameter("url");
         username = context.getInitParameter("username");
@@ -29,16 +28,17 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             Class.forName(driver);
-            System.out.println("驱动成功");
+//            System.out.println("驱动成功");
         } catch (ClassNotFoundException e) {
-            System.out.println("驱动失败");
+//            System.out.println("驱动失败");
         }
         try {
             con = DriverManager.getConnection(url, username, password);
-            System.out.println("连接成功 Connection in jdbc --> " + con);
+//            System.out.println("连接成功 Connection in jdbc --> " + con);
         } catch (Exception e) {
-            System.out.println("连接失败");
-        }
+//            System.out.println("连接失败");
+        }*/
+        con = (Connection) getServletContext().getAttribute("con");
     }
 
     @Override
@@ -56,6 +56,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String gender = request.getParameter("Gender");
         String birthDate = request.getParameter("birthDate");
+//        PrintWriter writer = response.getWriter();
 
         try {
             stmt = con.prepareStatement("insert into usertable values(?,?,?,?,?)");
@@ -69,29 +70,36 @@ public class RegisterServlet extends HttpServlet {
             throwables.printStackTrace();
             System.out.println("出错了");
         }
+//            response.sendRedirect("Login.jsp");
+        request.getRequestDispatcher("Login.jsp").forward(request,response);
 
         String trs = "", sql = "select * from usertable";
-        int num = 0;
-        String[] arr = new String[1000];
+/*        int num = 0;
+        String[] arr = new String[1000];*/
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
+/*            while (rs.next()) {
                 arr[num] = "<tr><td>" + (num + 1) + "</td><td>" + rs.getString(1) + "</td><td>" + rs.getString(2) +
                         "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) +
                         "</td><td>" + rs.getString(5) + "</td></tr>";
                 num++;
             }
+
+            for (int i = 0; i < num; i++) {
+                trs += arr[i];
+            }*/
+
+            // 向jsp传递数据库数据
+            request.setAttribute("rsname",rs);
+            request.getRequestDispatcher("userList.jsp").forward(request,response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        for (int i = 0; i < num; i++) {
-            trs += arr[i];
-        }
 
 
-        PrintWriter writer = response.getWriter();
+/*        PrintWriter writer = response.getWriter();
         writer.println(
                 "<table border width=\"80%\">" +
                         "<tr>" +
@@ -104,7 +112,8 @@ public class RegisterServlet extends HttpServlet {
                         "</tr>" +
                         trs +
                         "</table>"
-        );
+        );*/
+
     }
 
 
