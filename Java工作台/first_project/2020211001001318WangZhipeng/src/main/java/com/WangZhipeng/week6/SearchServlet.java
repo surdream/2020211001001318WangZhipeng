@@ -22,9 +22,9 @@ public class SearchServlet extends HttpServlet {
             if(search.equals("baidu")){
                 response.sendRedirect("https://www.baidu.com/s?wd="+txt);
 //                response.sendRedirect("https://www.baidu.com");
-            }else if(search == "bing"){
+            }else if(search.equals("bing")){
                 response.sendRedirect("https://cn.bing.com/search?q="+txt);
-            }else if(search == "goole"){
+            }else if(search.equals("goole")){
                 response.sendRedirect("https://www.goole.com/search?q="+txt);
             }
         }

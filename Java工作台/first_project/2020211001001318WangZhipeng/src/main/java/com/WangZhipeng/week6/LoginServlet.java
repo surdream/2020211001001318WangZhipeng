@@ -1,5 +1,8 @@
 package com.Wangzhipeng.week6;
 
+import com.Wangzhipeng.dao.UserDao;
+import com.Wangzhipeng.model.User;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -25,14 +28,35 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/views/Login.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+//        PrintWriter out = response.getWriter();
         username = request.getParameter("username");
         password = request.getParameter("password");
+
+        UserDao userDao = new UserDao();
+
+        System.out.println(con);
+        System.out.println(username);
+        System.out.println(password);
+        try {
+            User user = userDao.findByUsernamePassword(con,username,password);
+            System.out.println(user);
+            if(user != null){
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else{
+                request.setAttribute("message","Username or Password Error!!!");
+                request.getRequestDispatcher("WEB-INF/views/Login.jsp").forward(request,response);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+
+        }
+        /*
         String sql = "select * from usertable where username = '" + username + "'and password = '" + password + "'";
         ResultSet rs = null;
         try {
@@ -54,5 +78,7 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        */
     }
 }

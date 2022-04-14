@@ -23,8 +23,8 @@
                             border-style:solid;
                             border-top-width:0px;
                             border-color:black;" align="center">
-         <a style="color:white;" href="index.jsp">Home</a>
-       - <a style="color:white;" href="Login.jsp">Login</a>
+         <a style="color:white;" href="home">Home</a>
+       - <a style="color:white;" href="login">Login</a>
        - <a style="color:white;" href="productList">Product</a>
        - <a style="color:white;" href="#">FAQ</a>
        - <a style="color:white;" href="#">About</a>
