@@ -1,4 +1,4 @@
-package com.Wangzhipeng.week6;
+package com.Wangzhipeng.controller;
 
 import com.Wangzhipeng.dao.UserDao;
 import com.Wangzhipeng.model.User;
@@ -46,6 +46,10 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.findByUsernamePassword(con,username,password);
             System.out.println(user);
             if(user != null){
+                HttpSession session = request.getSession();
+
+                System.out.println("session id-->"+session.getId());
+
                 request.setAttribute("user",user);
                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
             }else{
