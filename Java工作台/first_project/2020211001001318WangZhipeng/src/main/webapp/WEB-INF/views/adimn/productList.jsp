@@ -1,11 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 小联
-  Date: 2022/5/17
-  Time: 21:30
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="com.Wangzhipeng.model.Category" %>
 <%@include file="../header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@page autoFlush="false" buffer="200kb"%>
 
 <section id="cart_items">
     <div class="container">
@@ -48,38 +47,45 @@
                 </tr>
                 </thead><tbody>
             <!-- loop_start -->
+            <c:forEach var="p" items="${requestScope.productList}">
 
             <tr>
                 <td class="cart_product">
-                    <a href=""><img src=""
-                                    style="border: 1px solid #F7F7F0; height: 100px;width: 80px;"/></a>
+                    <a href=""><img src="" style="border: 1px solid #F7F7F0; height: 100px;width: 80px;"/></a>
+                    <a href=""><img src="<%=basePath%>getImg?id=${p.productId}" style="border: 1px solid #F7F7F0; height: 100px;width: 80px;"/></a>
                 </td>
                 <td class="cart_description">
-                    <h4>productName </h4>
-                    <p>Web ID: productId</p>
+                    <h4>${p.productName} </h4>
+                    <p>Web ID: :${p.productId}</p>
                 </td>
                 <td class="cart_price">
-                    <p>price</p>
+                    <p>${p.price }</p>
                 </td>
-
-                <td class="cart_quantity">CategoryID</td>
+                <%
+                    com.JieMengyao.model.Product p = (com.JieMengyao.model.Product)pageContext.findAttribute("p");
+                    int n = p.getCategoryId();
+                    Connection con = (Connection)application.getAttribute("dbConn");
+                    String catName = Category.findByCategoryId(con,n);
+                %>
+                <td class="cart_quantity"><%=catName %></td>
 
                 <td class="cart_total">
-                    <p class="cart_total_price"> productDescription</p>
+                    <p class="cart_total_price"> ${productDescription}</p>
                 </td>
                 <td class="">
-                    <a class="cart_quantity_delete" href="<%=basePath%>admin/productEdit?productId=1" >
+                    <a class="cart_quantity_delete" href="<%=basePath%>admin/productEdit?productId=${p.productId}" >
                         <i class="fa fa-edit">Edit</i></a>&nbsp;
-                    <a class="cart_quantity_delete" href="<%=basePath%>admin/productDelete?productId=1">
+                    <a class="cart_quantity_delete" href="<%=basePath%>admin/productDelete?productId=${p.productId}">
                         <i class="fa fa-times">Delete</i></a>
                 </td>
             </tr>
 
-            <!-- loop_end -->
+            </c:forEach>
 
             <tr class="cart_menu">
                 <td colspan="5">&nbsp;</td>
                 <td  colspan="1">  <a class="btn btn-default update" id="buttonSubmit" href="<%=basePath %>admin/addProduct">Add Product</a></td>
+
 
             </tr>
             </tbody>
