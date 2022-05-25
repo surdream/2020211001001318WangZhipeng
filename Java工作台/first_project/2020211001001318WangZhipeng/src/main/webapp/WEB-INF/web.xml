@@ -30,6 +30,15 @@
         <servlet-class>com.Wangzhipeng.week2.demo.HelloWorldServlet</servlet-class>
     </servlet>
 
+    <filter>
+        <filter-name>WZPFilter</filter-name>
+        <filter-class>com.lab2.WZPFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>WZPFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
+
 <!--    <servlet>
         <servlet-name>LifeCycleServlet</servlet-name>
         <servlet-class>com.Wangzhipeng.week3.LifeCycleServlet</servlet-class>
